@@ -1,0 +1,181 @@
+period,cno4,dimension,category,gender,contratos,parados,personas,source_url
+2022-09,2220,gender,Hombre,Hombre,1958,872,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,gender,Mujer,Mujer,2309,1295,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,age,<18,Total,3,1,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,age,18-24,Total,204,29,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,age,25-29,Total,862,184,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,age,30-39,Total,1506,347,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,age,40-44,Total,592,253,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,age,>44,Total,1100,1353,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,Araba/Álava,Total,61,61,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,Albacete,Total,36,15,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,Alicante/Alacant,Total,111,79,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,Almería,Total,57,20,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,Ávila,Total,0,10,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,Badajoz,Total,31,14,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,"Balears, Illes",Total,88,24,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,Barcelona,Total,468,159,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,Burgos,Total,19,21,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,Cáceres,Total,6,12,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,Cádiz,Total,86,59,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,Castellón/Castelló,Total,35,17,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,Ciudad Real,Total,8,21,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,Córdoba,Total,146,36,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,"Coruña, A",Total,55,85,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,Cuenca,Total,1,2,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,Girona,Total,31,17,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,Granada,Total,141,46,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,Guadalajara,Total,4,19,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,Gipuzkoa,Total,127,119,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,Huelva,Total,35,9,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,Huesca,Total,8,14,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,Jaén,Total,35,28,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,León,Total,17,36,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,Lleida,Total,16,11,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,"Rioja, La",Total,17,12,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,Lugo,Total,5,33,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,Madrid,Total,655,241,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,Málaga,Total,112,44,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,Murcia,Total,145,58,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,Navarra,Total,527,42,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,Ourense,Total,10,18,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,Asturias,Total,52,42,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,Palencia,Total,4,8,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,"Palmas, Las",Total,38,33,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,Pontevedra,Total,77,71,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,Salamanca,Total,17,24,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,Santa Cruz de Tenerife,Total,25,19,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,Cantabria,Total,48,23,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,Segovia,Total,2,6,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,Sevilla,Total,247,69,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,Soria,Total,0,0,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,Tarragona,Total,29,28,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,Teruel,Total,1,2,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,Toledo,Total,16,20,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,Valencia/València,Total,216,121,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,Valladolid,Total,56,19,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,Bizkaia,Total,237,248,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,Zamora,Total,6,12,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,Zaragoza,Total,97,37,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,Ceuta,Total,0,2,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2220,province,Melilla,Total,6,1,,provider://sepe/ocup_prov_2022.xlsx#2220/2022-09
+2022-09,2230,gender,Hombre,Hombre,4746,3507,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,gender,Mujer,Mujer,7118,6314,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,age,<18,Total,1,0,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,age,18-24,Total,802,196,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,age,25-29,Total,3147,1589,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,age,30-39,Total,3934,2307,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,age,40-44,Total,1425,1379,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,age,>44,Total,2555,4350,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,Araba/Álava,Total,136,95,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,Albacete,Total,25,97,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,Alicante/Alacant,Total,259,412,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,Almería,Total,96,131,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,Ávila,Total,6,38,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,Badajoz,Total,134,145,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,"Balears, Illes",Total,361,130,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,Barcelona,Total,1120,707,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,Burgos,Total,49,64,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,Cáceres,Total,43,102,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,Cádiz,Total,222,309,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,Castellón/Castelló,Total,90,97,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,Ciudad Real,Total,40,152,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,Córdoba,Total,137,161,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,"Coruña, A",Total,122,361,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,Cuenca,Total,5,37,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,Girona,Total,81,115,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,Granada,Total,223,241,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,Guadalajara,Total,39,67,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,Gipuzkoa,Total,352,140,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,Huelva,Total,71,94,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,Huesca,Total,30,26,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,Jaén,Total,92,131,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,León,Total,33,126,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,Lleida,Total,69,58,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,"Rioja, La",Total,79,59,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,Lugo,Total,36,104,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,Madrid,Total,1880,1444,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,Málaga,Total,387,327,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,Murcia,Total,445,429,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,Navarra,Total,2267,143,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,Ourense,Total,64,85,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,Asturias,Total,120,249,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,Palencia,Total,13,39,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,"Palmas, Las",Total,236,194,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,Pontevedra,Total,145,290,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,Salamanca,Total,40,97,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,Santa Cruz de Tenerife,Total,204,167,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,Cantabria,Total,70,142,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,Segovia,Total,17,31,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,Sevilla,Total,479,431,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,Soria,Total,13,14,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,Tarragona,Total,110,108,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,Teruel,Total,11,23,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,Toledo,Total,73,99,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,Valencia/València,Total,481,612,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,Valladolid,Total,83,124,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,Bizkaia,Total,495,360,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,Zamora,Total,9,39,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,Zaragoza,Total,242,157,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,Ceuta,Total,27,10,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2230,province,Melilla,Total,3,8,,provider://sepe/ocup_prov_2022.xlsx#2230/2022-09
+2022-09,2323,gender,Hombre,Hombre,2556,777,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,gender,Mujer,Mujer,2797,1227,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,age,<18,Total,45,4,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,age,18-24,Total,1176,100,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,age,25-29,Total,1306,296,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,age,30-39,Total,1494,452,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,age,40-44,Total,515,240,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,age,>44,Total,817,912,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,Araba/Álava,Total,39,20,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,Albacete,Total,31,19,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,Alicante/Alacant,Total,330,106,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,Almería,Total,31,23,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,Ávila,Total,13,8,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,Badajoz,Total,48,34,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,"Balears, Illes",Total,120,24,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,Barcelona,Total,890,185,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,Burgos,Total,24,16,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,Cáceres,Total,12,11,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,Cádiz,Total,31,36,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,Castellón/Castelló,Total,113,18,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,Ciudad Real,Total,66,35,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,Córdoba,Total,43,47,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,"Coruña, A",Total,139,38,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,Cuenca,Total,28,6,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,Girona,Total,77,22,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,Granada,Total,103,52,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,Guadalajara,Total,14,10,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,Gipuzkoa,Total,134,41,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,Huelva,Total,18,21,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,Huesca,Total,17,5,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,Jaén,Total,33,35,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,León,Total,39,24,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,Lleida,Total,86,4,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,"Rioja, La",Total,28,9,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,Lugo,Total,13,10,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,Madrid,Total,849,270,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,Málaga,Total,83,74,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,Murcia,Total,136,60,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,Navarra,Total,139,23,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,Ourense,Total,32,9,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,Asturias,Total,61,51,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,Palencia,Total,11,12,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,"Palmas, Las",Total,32,34,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,Pontevedra,Total,138,59,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,Salamanca,Total,35,20,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,Santa Cruz de Tenerife,Total,52,55,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,Cantabria,Total,8,26,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,Segovia,Total,11,8,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,Sevilla,Total,90,113,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,Soria,Total,12,6,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,Tarragona,Total,146,21,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,Teruel,Total,20,0,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,Toledo,Total,39,27,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,Valencia/València,Total,633,138,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,Valladolid,Total,14,20,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,Bizkaia,Total,154,88,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,Zamora,Total,7,6,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,Zaragoza,Total,131,20,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,Ceuta,Total,0,1,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09
+2022-09,2323,province,Melilla,Total,0,4,,provider://sepe/ocup_prov_2022.xlsx#2323/2022-09

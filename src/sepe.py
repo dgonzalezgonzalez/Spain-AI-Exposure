@@ -18,6 +18,7 @@ from urllib3.util.retry import Retry
 from .config import PipelineConfig
 from .embeddings import EmbeddingCache, OllamaEmbeddingClient, embed_texts
 from .model import EXPOSURE_COLUMNS, ExposureModelBundle, predict_occupation_exposure
+from .sepe_supplement import add_missing_breakdowns, load_supplement
 from .taxonomy import load_cno4_records
 
 
@@ -77,6 +78,7 @@ def build_sepe_dataset_from_cached_reports(
         model_path=model_path,
         embedding_model=embedding_model or config.embedding_model,
     ).rename(columns={"occupation_title": "exposure_occupation_title"})
+    supplement = load_supplement(config.data_dir / "supplemental" / "sepe_provider_missing_breakdowns.csv")
 
     files = sorted(raw_reports.glob("*.html"))
     if resume:
@@ -96,7 +98,8 @@ def build_sepe_dataset_from_cached_reports(
                 chunk = pd.DataFrame(rows)
                 if chunk.empty:
                     continue
-                batch_chunks.append(sepe_long_to_compact_wide(chunk))
+                compact = sepe_long_to_compact_wide(chunk)
+                batch_chunks.append(add_missing_breakdowns(compact, supplement))
                 total_reports += 1
                 total_rows += len(batch_chunks[-1])
             if batch_chunks:
@@ -172,6 +175,7 @@ def scrape_sepe_monthly_dataset(
         embedding_model=embedding_model or config.embedding_model,
     )
     exposure = exposure.rename(columns={"occupation_title": "exposure_occupation_title"})
+    supplement = load_supplement(config.data_dir / "supplemental" / "sepe_provider_missing_breakdowns.csv")
 
     session = make_sepe_session()
     completed = _completed_report_keys(output_path) if resume else set()
@@ -203,6 +207,7 @@ def scrape_sepe_monthly_dataset(
                         total_rows,
                         progress,
                         progress_every,
+                        supplement,
                     )
                     if max_reports is not None and total_reports >= max_reports:
                         break
@@ -217,6 +222,7 @@ def scrape_sepe_monthly_dataset(
                     total_rows,
                     progress,
                     progress_every,
+                    supplement,
                 )
                 if delay_seconds:
                     time.sleep(delay_seconds)
@@ -244,12 +250,14 @@ def _write_report_chunk(
     total_rows: int,
     progress: Callable[[str], None] | None,
     progress_every: int,
+    supplement: pd.DataFrame,
 ) -> tuple[int, int]:
     link, rows = result
     chunk = pd.DataFrame(rows)
     if chunk.empty:
         return total_reports, total_rows
     chunk = sepe_long_to_compact_wide(chunk)
+    chunk = add_missing_breakdowns(chunk, supplement)
     merged = chunk.merge(exposure, on="cno4", how="left")
     _append_csv(output_path, merged)
     total_reports += 1
