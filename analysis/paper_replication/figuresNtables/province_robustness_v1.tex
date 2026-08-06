@@ -1,0 +1,33 @@
+\begin{table}[!htbp]
+\centering
+\caption{Province-panel robustness}
+\label{tab:v1_province}
+\begin{threeparttable}
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{lcccccc}
+\toprule
+& \multicolumn{3}{c}{\# of registered unemployed} & \multicolumn{3}{c}{\# of new contracts} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}
+& (1) & (2) & (3) & (4) & (5) & (6) \\
+\midrule
+AI exposure $\times$ adjustment period & 0.014$^{***}$ & 0.009$^{*}$ & 0.009 & 0.023$^{***}$ & 0.009 & 0.009 \\
+ & (0.004) & (0.005) & (0.006) & (0.006) & (0.007) & (0.007) \\
+Impact of a 10 pp increase (percent) & 1.4 & 0.9 & 0.9 & 2.3 & 0.9 & 0.9 \\
+\addlinespace
+AI exposure $\times$ later period & 0.025$^{***}$ & 0.010 & 0.010 & 0.023$^{***}$ & 0.009 & 0.009 \\
+ & (0.009) & (0.011) & (0.013) & (0.008) & (0.009) & (0.009) \\
+Impact of a 10 pp increase (percent) & 2.5 & 1.0 & 1.0 & 2.3 & 0.9 & 0.9 \\
+$p$-value: equal phase effects & 0.068 & 0.885 & 0.900 & 0.879 & 0.940 & 0.945 \\
+\midrule
+CNO1 $\times$ year-month FE & No & Yes & Yes & No & Yes & Yes \\
+Clustered standard errors & CNO4 & CNO4 & CNO3 & CNO4 & CNO4 & CNO3 \\
+Observations & 1,329,773 & 1,329,773 & 1,329,773 & 1,033,581 & 1,033,581 & 1,033,581 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item \emph{Notes:} Entries are marginal effects from the province-by-CNO4 panel. The adjustment and later periods cover event times 0--24 and 25--40, respectively; all pre-treatment months form the omitted category. Every specification includes province-by-CNO4 and province-by-year-month fixed effects. Columns 2, 3, 5, and 6 additionally include CNO1-by-year-month fixed effects. Standard errors are clustered as indicated. Missing May 2024 province cells are reconstructed from June levels and published June-over-May changes when the rounded rate uniquely identifies an integer value; unresolved cells remain missing. Exposure is divided by 0.10. $^{***}p<0.01$, $^{**}p<0.05$, and $^{*}p<0.10$.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

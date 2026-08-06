@@ -1,0 +1,28 @@
+\begin{table}[H]
+\centering
+\caption{Pre-treatment diagnostics for the binary-treatment design}
+\label{tab:v1_binary_pretrends}
+\begin{threeparttable}
+\scriptsize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llcccc}
+\toprule
+& & \multicolumn{2}{c}{CNO4 clustering} & \multicolumn{2}{c}{CNO3 clustering} \\
+\cmidrule(lr){3-4}\cmidrule(lr){5-6}
+Outcome & Window & Jointly zero & Equal coefficients & Jointly zero & Equal coefficients \\
+\midrule
+Registered unemployed & Full: -21 to -2 & 0.019 & 0.018 & 0.006 & 0.007 \\
+Registered unemployed & Early: -21 to -10 & 0.085 & 0.060 & 0.151 & 0.115 \\
+Registered unemployed & Recent: -10 to -2 & 0.847 & 0.786 & 0.903 & 0.852 \\
+\addlinespace
+New contracts & Full: -21 to -2 & 0.256 & 0.211 & 0.196 & 0.169 \\
+New contracts & Early: -21 to -10 & 0.690 & 0.662 & 0.754 & 0.715 \\
+New contracts & Recent: -10 to -2 & 0.368 & 0.285 & 0.283 & 0.218 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item \emph{Notes:} Entries are $p$-values from Wald tests of the pre-treatment coefficients in the preferred binary-treatment specification, which includes CNO4 and CNO1-by-year-month fixed effects. Treated occupations have exposure above 0.1169, the 75th percentile of exposure; occupations at or below the cutoff form the comparison group. The joint-nullity test evaluates whether all coefficients in the indicated window equal zero, while the equality test evaluates whether they equal one another. October 2022 is the omitted reference month. Inference allows arbitrary correlation within either CNO4 occupations or CNO3 occupation groups, as indicated.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

@@ -1,0 +1,37 @@
+\begin{table}[!htbp]
+\centering
+\caption{Pre-treatment diagnostics for feminization specifications}
+\label{tab:v1_feminization_pretrends}
+\begin{threeparttable}
+\small
+\begin{tabular}{llcc}
+\toprule
+Outcome & Specification & Joint nullity & Joint equality \\
+\midrule
+\multicolumn{4}{l}{\textbf{Panel A. Continuous feminization}} \\
+Registered unemployed & 25th percentile & 0.016 & 0.026 \\
+Registered unemployed & 50th percentile & 0.004 & 0.007 \\
+Registered unemployed & 75th percentile & 0.046 & 0.044 \\
+New contracts & 25th percentile & 0.055 & 0.075 \\
+New contracts & 50th percentile & 0.020 & 0.031 \\
+New contracts & 75th percentile & 0.032 & 0.029 \\
+\midrule
+\multicolumn{4}{l}{\textbf{Panel B. Median split}} \\
+Registered unemployed & Below median & 0.005 & 0.011 \\
+Registered unemployed & At or above median & 0.221 & 0.226 \\
+New contracts & Below median & 0.068 & 0.068 \\
+New contracts & At or above median & 0.109 & 0.113 \\
+\midrule
+\multicolumn{4}{l}{\textbf{Panel C. Median split with detrended outcomes}} \\
+Registered unemployed & Below median & 0.031 & 0.045 \\
+Registered unemployed & At or above median & 0.084 & 0.300 \\
+New contracts & Below median & 0.064 & 0.051 \\
+New contracts & At or above median & 0.056 & 0.043 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item \emph{Notes:} Entries are $p$-values from tests of event-study coefficients over event times $-21$ through $-2$; October 2022 is the omitted month. The joint-nullity test sets all coefficients in the window equal to zero. The joint-equality test permits a common nonzero level but requires the coefficients to be equal to one another. Panel A evaluates continuous-feminization marginal effects at the indicated percentiles. Panel B reports the median-group results using the original outcomes. Panel C reports the same median-group specification after detrending each outcome using the pre-treatment regression of the outcome on month fixed effects and CNO4-specific linear trends. Inference clusters by CNO4.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

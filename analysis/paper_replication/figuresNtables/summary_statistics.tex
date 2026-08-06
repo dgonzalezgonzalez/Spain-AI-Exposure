@@ -1,0 +1,25 @@
+\begin{table}[H]
+\centering
+\caption{Summary statistics for SEPE occupation-level variables and AI exposure indices}
+\label{tab:summary_statistics}
+\footnotesize
+\begin{tabular}{lrrrrr}
+\toprule
+ & mean & sd & min & max & obs. \\
+\midrule
+\textbf{Outcomes} & & & & & \\
+\hspace{0.3cm} Registered unemployed (in levels) & 5,693.240 & 25,338.023 & 0.000 & 467,292.000 & 31,626 \\
+\hspace{0.3cm} New registered contracts (in levels) & 2,776.130 & 11,080.937 & 0.000 & 216,727.000 & 31,626 \\
+\hspace{0.3cm} Registered unemployed (in logs) & 6.718 & 1.944 & 0.000 & 13.055 & 31,624 \\
+\hspace{0.3cm} New registered contracts (in logs) & 5.871 & 2.088 & 0.000 & 12.286 & 31,284 \\
+\textbf{AI exposure index} & & & & & \\
+\hspace{0.3cm} AI index - cosine similarity & 0.084 & 0.136 & 0.000 & 0.745 & 31,626 \\
+\hspace{0.3cm} AI index - cosine-weighted & 0.084 & 0.128 & 0.000 & 0.628 & 31,626 \\
+\hspace{0.3cm} AI index - random forest & 0.086 & 0.055 & 0.009 & 0.315 & 31,626 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\small
+\item \textit{Sources:} Labor-market data come from SEPE (Servicio Público de Empleo Estatal). The occupation-level AI exposure measure is based on a mapping of Anthropic/O*NET occupations to four-digit occupations in the Spanish National Classification of Occupations 2011 (CNO-11).
+\end{tablenotes}
+\end{table}

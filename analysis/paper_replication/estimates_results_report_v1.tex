@@ -1,0 +1,643 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{microtype}
+\usepackage{pdflscape}
+\usepackage{subcaption}
+\usepackage{threeparttable}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{xcolor}
+\usepackage{placeins}
+
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue}
+\captionsetup{font=small,labelfont=bf}
+\subcaptionsetup{font=small,labelfont=bf,justification=centering}
+\setlength{\parindent}{1.2em}
+\setlength{\parskip}{0.15em}
+\setlength{\emergencystretch}{2em}
+
+\newcommand{\figdir}{figuresNtables}
+\newcommand{\panelwidth}{0.76\textwidth}
+
+\title{AI Exposure and Labor-Market Outcomes in Spain\\
+\large Estimates Results Report, Version 1}
+\author{}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\setcounter{section}{3}
+\section{Results}
+\label{sec:v1_results}
+
+\subsection{Baseline Results}
+\label{sec:v1_baseline}
+
+Figure~\ref{fig:v1_descriptive} describes the evolution of the two labor-market outcomes before turning to the regression evidence. Registered unemployment falls in all three exposure groups, but the decline becomes slower among highly exposed occupations after November 2022. The separation is gradual rather than immediate, as one would expect if firms adopted generative AI over time. New contract registrations are much more volatile and show no stable ordering by exposure. The similar pre-release paths are reassuring, but they are not sufficient for identification because exposure groups may differ in their recovery from the pandemic and in other occupation-specific shocks.
+
+\begin{figure}[H]
+    \centering
+    \caption{Descriptive patterns by AI exposure}
+    \label{fig:v1_descriptive}
+    \begin{subfigure}{\panelwidth}
+        \centering
+        \includegraphics[width=\textwidth]{\figdir/Figure1_panelA.png}
+        \caption{Number of registered unemployed}
+    \end{subfigure}
+
+    \vspace{0.30cm}
+
+    \begin{subfigure}{\panelwidth}
+        \centering
+        \includegraphics[width=\textwidth]{\figdir/Figure1_panelB.png}
+        \caption{Number of new contracts}
+    \end{subfigure}
+
+    \begin{minipage}{0.92\textwidth}
+    \footnotesize \emph{Notes:} The figure plots equal-weighted means of
+    occupation-specific outcome indices in the total CNO4 panel. Each
+    occupation's outcome is normalized to November 2022 = 100 before averaging
+    within exposure group. Zero-exposure occupations have a nearest-neighbor
+    score of zero; middle-exposure occupations have a positive score below
+    0.1169; and high-exposure occupations have a score at or above 0.1169, the
+    75th percentile of exposure. The vertical dashed line marks November 2022,
+    the public release of ChatGPT. Registered unemployment is a stock; newly
+    registered contracts are monthly flows. Panel B excludes two occupations
+    with zero contracts in the reference month. The figure is descriptive and
+    does not report causal estimates.
+    \end{minipage}
+\end{figure}
+
+The preferred specification asks whether outcomes diverged after ChatGPT's release across occupations with different exposure, while comparing occupations within the same broad CNO1 family in every month. This restriction is economically important: it removes shocks shared by related occupations, such as changes in sectoral demand or the pace of the post-pandemic recovery, without requiring those shocks to follow a parametric trend.\footnote{For CNO4 occupation \(j\), CNO1 family \(g(j)\), and event time \(k\), the event-study regression is \(Y_{jt}=\alpha_j+\lambda_{g(j),t}+\sum_{k\neq -1}\beta_k(A_j/0.10)\mathbf{1}\{t-T_0=k\}+\varepsilon_{jt}\). The event window runs from \(-21\) to \(40\), November 2022 is \(T_0\), and October 2022 is omitted. Occupation fixed effects absorb permanent differences across CNO4 occupations, CNO1-by-month fixed effects absorb shocks common to occupations in the same broad family, and standard errors are clustered by CNO4.}
+
+Figure~\ref{fig:v1_eventstudy} reports the preferred dynamic estimates. In panel (a), the unemployment gradient is close to zero around the release date and becomes positive only after several months. A 10 percentage-point increase in exposure is associated with roughly 1--2 percent more registered unemployment over much of the post-treatment period. The estimates remain positive near the end of the sample, but their confidence intervals widen and frequently include zero. Panel (b) shows no comparable persistence in new contracts: the coefficients fluctuate around zero and are imprecisely estimated. Taken together, the panels are consistent with a gradual increase in the stock of registered unemployment rather than a discrete contraction in the monthly flow of hiring. They do not, by themselves, distinguish displacement from slower exits out of unemployment.
+
+The pre-treatment evidence warrants caution. For registered unemployment, the joint-nullity and flatness tests reject over event times \(-21\) through \(-2\) (both \(p=0.003\)), but not over the more recent window \(-10\) through \(-2\) (\(p=0.367\) and \(0.280\)). The early window accounts for the full-period rejection. For new contracts, the corresponding tests reject over the full window (\(p=0.032\) and \(0.045\)) and are borderline over the recent window (\(p=0.049\) and \(0.035\)). Allowing errors to be correlated within CNO3 groups does not overturn the broad conclusion. Appendix Table~\ref{tab:v1_pretrends} reports all windows and clustering choices. The CNO1-by-month effects improve the economic comparability of occupations, especially in the period closest to treatment, but they do not eliminate the possibility that differential recovery paths contaminate the post-treatment gradient. We therefore interpret the estimates as disciplined but still assumption-dependent evidence.
+
+\begin{figure}[H]
+    \centering
+    \caption{Impact of AI exposure on labor market outcomes. Event-study estimates.}
+    \label{fig:v1_eventstudy}
+    \begin{subfigure}{\panelwidth}
+        \centering
+        \includegraphics[width=\textwidth]{\figdir/Figure2_panelA.png}
+        \caption{Number of registered unemployed}
+    \end{subfigure}
+
+    \vspace{0.30cm}
+
+    \begin{subfigure}{\panelwidth}
+        \centering
+        \includegraphics[width=\textwidth]{\figdir/Figure2_panelB.png}
+        \caption{Number of new contracts}
+    \end{subfigure}
+
+    \begin{minipage}{0.92\textwidth}
+    \footnotesize \emph{Notes:} The figure reports estimates of the preferred
+    event-study specification for the total CNO4 occupation panel. The
+    dependent variables are the logarithm of registered unemployed workers in
+    panel (a) and the logarithm of new contracts in panel (b). Each marker is
+    the marginal effect of a 10 percentage-point increase in AI exposure at the
+    indicated event month. October 2022 (event time \(-1\)) is the omitted
+    reference month; the vertical dashed line marks November 2022, the public
+    release of ChatGPT. All regressions include CNO4 and CNO1-by-year-month
+    fixed effects. Shaded areas report 95 percent confidence intervals based on
+    standard errors clustered by CNO4.
+    \end{minipage}
+\end{figure}
+
+\setcounter{table}{1}
+\input{figuresNtables/table2_main_effects_v1.tex}
+\FloatBarrier
+
+Table~\ref{tab:v1_main_effects} summarizes the post-treatment path in two intervals. The adjustment period covers November 2022 through November 2024, when firms were learning about and beginning to deploy generative AI. The later period covers December 2024 through March 2026, when adoption had more time to affect staffing and job search.\footnote{The table estimates \(Y_{jt}=\alpha_j+\lambda_{g(j),t}+\beta_A(A_j/0.10)\mathbf{1}\{0\leq e_t\leq24\}+\beta_L(A_j/0.10)\mathbf{1}\{25\leq e_t\leq40\}+\varepsilon_{jt}\), where \(\lambda_{g(j),t}\) denotes common month effects or CNO1-by-month effects. All pre-treatment months form the omitted category. The table coefficients compare each interval with the average pre-treatment exposure gradient; Figure~\ref{fig:v1_eventstudy} instead normalizes each monthly coefficient to October 2022.}
+
+The benchmark in column 1 implies 1.9 percent more registered unemployment during the adjustment period and 3.8 percent more in the later period for a 10 percentage-point increase in exposure. Restricting identification to within-CNO1 comparisons attenuates the estimates to 1.2 and 1.7 percent in column 2. The adjustment-period coefficient is statistically significant at the 5 percent level; the later coefficient is positive but less precisely estimated. The hypothesis of equal effects across the two intervals cannot be rejected (\(p=0.486\)). Clustering at CNO3 in column 3 leaves the point estimates unchanged and modestly increases the standard errors. The attenuation after adding CNO1-by-month effects is economically informative: part of the unconditional relationship reflects shocks shared by broad occupational families rather than variation between comparable CNO4 occupations.
+
+The contract estimates display a similar attenuation. The benchmark coefficients in column 4 are 3.3 and 2.9 percent, while the preferred estimates in column 5 are 1.4 and 1.3 percent. Neither preferred estimate is statistically distinguishable from zero, and the two intervals are nearly identical (\(p=0.807\)). The baseline evidence therefore points to a modest increase in registered unemployment in more exposed occupations, but the effect is estimated imprecisely and is not accompanied by a persistent aggregate response in new contracts.
+
+The absence of a CNO4 labor-force denominator prevents a direct occupational unemployment rate from being constructed. The estimates should therefore be interpreted as effects on registered unemployment outcomes rather than as effects on unemployment rates. This limitation does not invalidate the within-CNO4 fixed-effects design, but it prevents the results from being expressed as changes in the share of the labor force that is unemployed.
+
+\subsubsection{Robustness Checks}
+\label{sec:v1_robustness}
+
+Appendix Table~\ref{tab:v1_robustness} examines whether the baseline result is an artifact of outcome coding or exposure construction. Replacing \(\log(Y)\) with \(\log(Y+1)\) leaves the preferred unemployment estimates at 1.2 percent in the adjustment period and 1.7 percent later. Cosine-weighted exposure produces somewhat larger estimates of 1.8 and 2.9 percent. The RF-relative score produces much larger coefficients, 7.9 and 13.6 percent, but it is less dispersed and reorders occupations more substantially, as shown in Appendix Figure~\ref{fig:v1_exposure_correlations}. Its scale is therefore not directly comparable to the nearest-neighbor measure. Appendix Table~\ref{tab:v1_robustness_pretrends} and Figures~\ref{fig:v1_robust_u}--\ref{fig:v1_robust_c} show that the identifying diagnostics remain the principal limitation across measures.
+
+The binary design in Appendix Table~\ref{tab:v1_binary_treatment} classifies occupations above the 75th-percentile cutoff, 0.1169, as treated and retains all remaining occupations as controls. The preferred specification yields 3.9 percent more registered unemployment during the adjustment period and 5.8 percent more later, although the later estimate is imprecise and the two interval effects are not statistically different. Contract estimates remain close to zero. The larger binary coefficients are consistent with concentration of the response in the upper exposure tail, but discretization discards dose information and changes the estimand. Appendix Table~\ref{tab:v1_binary_pretrends} and Figure~\ref{fig:v1_binary_event} report the corresponding diagnostics.
+
+Appendix Table~\ref{tab:v1_province} disaggregates the panel by province and absorbs province-specific monthly shocks. The preferred unemployment estimates are 0.9 percent during the adjustment period and 1.0 percent later; only the former is marginally distinguishable from zero. Contract estimates are approximately 0.9 percent in both intervals and are imprecise. The smaller coefficients suggest that regional composition contributes to the aggregate gradient, although the direction remains positive. Appendix Figure~\ref{fig:v1_province_event} reports the monthly estimates.
+
+No single CNO1 family drives the result: the leave-one-family-out estimates in Appendix Figure~\ref{fig:v1_leave_one_out} remain positive and close to the full-sample estimate. Appendix Table~\ref{tab:v1_trailing_contracts} and Figure~\ref{fig:v1_trailing_contracts} replace monthly contracts with registrations accumulated over the preceding 12 months. The preferred estimates, 1.5 percent during adjustment and 0.9 percent later, are not statistically different from zero. This measure smooths hiring flows but does not create a stock of active contracts, so it is a robustness check rather than a substitute outcome.
+
+\subsection{Heterogeneity}
+\label{sec:v1_heterogeneity}
+
+\input{figuresNtables/heterogeneity_v1.tex}
+
+Table~\ref{tab:v1_heterogeneity} shows that the average response masks economically relevant differences by age. In the preferred within-CNO1 specification, a 10 percentage-point increase in exposure is associated with 1.5 percent more registered unemployment for workers under 30, 1.7 percent for ages 30--39, and 0.9 percent for workers age 40 or older during the adjustment period. The later-period estimates are 2.2, 3.4, and 1.2 percent. The estimate for ages 30--39 is individually significant in the later period, but separate significance levels do not establish that effects differ across groups. The pooled tests in Appendix Table~\ref{tab:v1_age_cross_group_tests} do not reject equality across all three groups (\(p=0.105\)); they do reject equality between ages 30--39 and age 40 or older (\(p=0.035\)), but not between ages 30--39 and workers under 30 (\(p=0.320\)). The age concentration is therefore suggestive rather than definitive.
+
+The contract results provide a complementary view of adjustment. For workers under 30, the preferred coefficients are 2.2 percent during adjustment and 2.6 percent later, both statistically significant. The corresponding estimates for ages 30--39 are 1.3 and 1.7 percent, while those for workers age 40 or older are close to zero. The pooled tests reject equality across age groups in both periods. Younger workers may therefore experience more labor-market turnover, while the 30--39 group exhibits the clearest later accumulation in registered unemployment. The data do not observe worker transitions, however, so this interpretation cannot distinguish job creation, repeated short contracts, or slower exits from unemployment.
+
+The age results should be interpreted as heterogeneity in occupation-by-age cells, rather than as evidence that individual workers in one age group are causally displaced. Early-to-mid-career workers may occupy tasks and career positions that are more sensitive to organizational adoption, but the present data cannot distinguish this mechanism from differences in job mobility, hiring, or unemployment duration. The pooled tests and subgroup pre-trend diagnostics therefore make the age pattern suggestive rather than definitive. Appendix Table~\ref{tab:v1_heterogeneity_pretrends} and Figures~\ref{fig:v1_heterogeneity_u}--\ref{fig:v1_heterogeneity_c} report the subgroup diagnostics and dynamic paths.\footnote{SEPE omits its CNO4-by-age breakdown for May 2024. We recover uniquely identified integer cells by inverting each June level and the corresponding June-over-May percentage change, with the observed May CNO4 total used as an adding-up validation. Cells that are not uniquely identified remain missing.}
+
+\subsection{Heterogeneity by Occupational Feminization}
+\label{sec:v1_feminization}
+
+The occupational-feminization analysis asks whether exposure has different consequences in occupations with historically different gender composition. The predetermined index is the female share of EPA employment in the corresponding CNO2 group, averaged over 2017--2019. We split occupations at its median, 0.303, and allow the exposure gradient to differ on either side of that threshold within the preferred specification. This is an occupation-level task-composition exercise; it does not estimate different effects for individual men and women.\footnote{The estimating equation is \(\ln Y_{jt}=\alpha_j+\lambda_{g(j),t}+\sum_{p\in\{A,L\}}\sum_{h\in\{B,H\}}\beta_{ph}(A_j/0.10)\mathbf{1}\{e_t\in p\}\mathbf{1}\{F_j\in h\}+\varepsilon_{jt}\), where \(A\) and \(L\) denote the adjustment and later periods, \(F_j\) is the predetermined feminization index, and the pre-treatment period is omitted. Standard errors are clustered by CNO4.}
+
+\input{figuresNtables/feminization_median_split_v1.tex}
+
+Table~\ref{tab:v1_feminization_median_split} reports one regression for each outcome. Below-median occupations have unemployment gradients of 4.3 percent during adjustment and 7.7 percent later. The corresponding estimates for more feminized occupations are close to zero or negative and imprecise. New-contract estimates are small in both groups. This pattern is consistent with larger displacement or slower unemployment exits in less feminized occupations, but it is not robust enough to establish a mechanism: the subgroup pre-trend tests reject for part of the sample, and detrending materially changes the dynamic paths reported in Appendix~\ref{app:v1_feminization}.
+
+\subsection{Further Results}
+\label{sec:v1_further}
+
+This subsection asks whether the main conclusion survives estimators that construct the counterfactual differently. Both alternatives are informative, but neither reproduces the preferred within-CNO1 comparison while retaining a continuous treatment.
+
+\subsubsection{Continuous-DiD Alternative}
+\label{sec:v1_contdid}
+
+The public \texttt{contdid} implementation does not admit the CNO1-by-month effects used in the preferred design. We therefore report three transparent approximations instead of treating residualization as an equivalent conditional estimator. The CNO1-stratified estimator applies continuous DiD separately within families with at least 15 positive-exposure and 5 zero-exposure occupations and aggregates family-specific average causal responses using positive-exposure occupation shares. It retains CNO1 groups 1--5 and about 88 percent of positive-exposure occupations. A second estimator subtracts the change among zero-exposure occupations in each supported family before pooling. The third is the unconditional continuous-DiD comparison.
+
+Appendix Table~\ref{tab:v1_contdid_alternatives} reports average causal response on the treated (ACRT) estimates over the same two intervals.\footnote{For a post-treatment window \(W\), the estimand is \(\widehat{\theta}_{W}=|W|^{-1}\sum_{t\in W}\widehat{\mathrm{ACRT}}_{t}\). If \(a_W\) assigns weight \(1/|W|\) to event times in \(W\), the estimated variance is \(a_W'\widehat{\Sigma}a_W\), where \(\widehat{\Sigma}\) is the influence-function covariance matrix. Family-specific estimates are aggregated using positive-exposure occupation shares, and disjoint-family covariance matrices enter with squared aggregation weights.} The CNO1-stratified unemployment response rises from 3.4 percent during adjustment to 7.1 percent later. The contract estimates are 2.1 and 5.7 percent. These effects are larger than the TWFE estimates and reinforce the direction of the unemployment result. They remain secondary because stratification cannot absorb family-specific shocks in every month and because the full-period pre-treatment diagnostics are less favorable. Appendix Figure~\ref{fig:v1_contdid_paths} reports the dynamic paths.
+
+\subsubsection{Synthetic Difference-in-Differences}
+\label{sec:v1_sdid}
+
+Synthetic difference-in-differences provides a separate upper-tail design. Occupations with exposure above 0.1169 are treated, while every occupation at or below the cutoff remains eligible for the donor pool. Retaining middle-exposure occupations makes the donor pool more economically comparable than a zero-exposure-only design, but it changes the estimand from a marginal response to an upper-tail contrast.\footnote{Conceptually, \(\widehat{\tau}_{SDID}=T_1^{-1}\sum_{t>T_0}\left(\overline{Y}_{Tt}-\sum_j\widehat{\omega}_jY_{jt}\right)-\sum_{t\leq T_0}\widehat{\lambda}_t\left(\overline{Y}_{Tt}-\sum_j\widehat{\omega}_jY_{jt}\right)\), where \(\widehat{\omega}_j\) are donor weights and \(\widehat{\lambda}_t\) are pre-period time weights.}
+
+Unit weights reproduce the treated pre-period path, and time weights emphasize pre-treatment months that best predict post-treatment donor outcomes. The adjusted variant removes CNO1-by-month means before constructing the synthetic comparison.\footnote{Inference uses 500 placebo reassignments. The CNO1-by-month projection is computed from outcome and family-month cells and is held fixed across placebo assignments. Event-study confidence intervals use the same number of reassignments.}
+
+Appendix Table~\ref{tab:v1_sdid} reports a 2.7 percent unemployment effect during adjustment and 4.1 percent later; the corresponding contract estimates are near zero. Synthetic weighting improves pre-treatment fit and again points to a positive unemployment response. Its stronger fit comes at the cost of imposing an ad hoc binary treatment and estimating a different parameter. Appendix~\ref{app:v1_sdid} reports the paths, donor weights, and concentration diagnostics.
+
+\subsection{Summary of Evidence}
+\label{sec:v1_synthesis}
+
+Across designs, more exposed occupations tend to experience a relative increase in registered unemployment after the release of ChatGPT. The preferred within-family TWFE estimates are economically modest and imprecise, while continuous DiD and synthetic DiD produce larger positive effects under different identifying assumptions. New contracts do not show a stable aggregate response, although younger workers exhibit more positive contract gradients. The age evidence points most clearly to workers ages 30--39 in the later period, but formal cross-group tests make this conclusion suggestive rather than definitive. The full-period pre-trend rejections and the absence of a CNO4 labor-force denominator prevent a strong causal claim. The evidence is therefore consistent with gradual AI-related labor-market adjustment, concentrated in some worker and occupation groups, but does not establish that AI penetration has raised unemployment throughout the Spanish labor market.
+
+\clearpage
+\appendix
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+
+\section{Identification Support and Pre-Trend Diagnostics}
+\label{app:v1_support}
+
+\input{figuresNtables/pretrend_diagnostics_v1.tex}
+
+\section{Robustness Checks}
+\label{app:v1_twfe}
+
+\input{figuresNtables/robustness_checks_v1.tex}
+\input{figuresNtables/robustness_pretrend_diagnostics_v1.tex}
+
+\begin{figure}[H]
+    \centering
+    \caption{Comparison of alternative AI exposure measures}
+    \label{fig:v1_exposure_correlations}
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/Exposure_correlation_panelA.png}
+        \caption{Cosine-weighted exposure}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/Exposure_correlation_panelB.png}
+        \caption{RF-relative exposure}
+    \end{subfigure}
+
+    \begin{minipage}{0.94\textwidth}
+    \footnotesize \emph{Notes:} Each marker represents one CNO4 occupation.
+    The horizontal axis reports the nearest-neighbor AI exposure score, while
+    the vertical axis reports the alternative measure indicated by the panel
+    caption. Solid lines are least-squares fits. The Pearson correlations with nearest-neighbor exposure
+    are 0.905 for the cosine-weighted score and 0.687 for the RF-relative
+    score. The corresponding standard deviations are 0.136, 0.128, and 0.054
+    for the nearest-neighbor, cosine-weighted, and RF-relative measures,
+    respectively.
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \caption{Robustness event studies: registered unemployment}
+    \label{fig:v1_robust_u}
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/Robustness_unemployed_panel1.png}
+        \caption{Baseline}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/Robustness_unemployed_panel2.png}
+        \caption{\(\log(Y+1)\)}
+    \end{subfigure}
+
+    \vspace{0.22cm}
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/Robustness_unemployed_panel3.png}
+        \caption{Cosine-weighted exposure}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/Robustness_unemployed_panel4.png}
+        \caption{RF-relative exposure}
+    \end{subfigure}
+
+    \begin{minipage}{0.94\textwidth}
+    \footnotesize \emph{Notes:} The figure reports event-study estimates corresponding to Panels A--D of Table~\ref{tab:v1_robustness}. Panel (a) reproduces the preferred specification; panel (b) replaces the dependent variable with \(\log(Y+1)\); panels (c) and (d) replace the nearest-neighbor exposure score with the cosine-weighted and RF-relative measures. Each regression includes CNO4 and CNO1-by-year-month fixed effects. October 2022 is the omitted reference month, and the vertical dashed line marks November 2022. Shaded areas are 95 percent confidence intervals based on standard errors clustered by CNO4.
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \caption{Robustness event studies: new contracts}
+    \label{fig:v1_robust_c}
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/Robustness_contracts_panel1.png}
+        \caption{Baseline}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/Robustness_contracts_panel2.png}
+        \caption{\(\log(Y+1)\)}
+    \end{subfigure}
+
+    \vspace{0.22cm}
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/Robustness_contracts_panel3.png}
+        \caption{Cosine-weighted exposure}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/Robustness_contracts_panel4.png}
+        \caption{RF-relative exposure}
+    \end{subfigure}
+
+    \begin{minipage}{0.94\textwidth}
+    \footnotesize \emph{Notes:} The figure reports the same specifications and confidence intervals as Figure~\ref{fig:v1_robust_u}, using the logarithm of newly registered contracts as the dependent variable.
+    \end{minipage}
+\end{figure}
+
+\input{figuresNtables/binary_treatment_v1.tex}
+\input{figuresNtables/binary_pretrend_diagnostics_v1.tex}
+
+\clearpage
+\begin{figure}[H]
+    \centering
+    \caption{Event-study estimates under the binary treatment definition}
+    \label{fig:v1_binary_event}
+    \begin{subfigure}{\panelwidth}
+        \centering
+        \includegraphics[width=\textwidth]{\figdir/Binary_event_unemployed.png}
+        \caption{Number of registered unemployed}
+    \end{subfigure}
+
+    \vspace{0.30cm}
+
+    \begin{subfigure}{\panelwidth}
+        \centering
+        \includegraphics[width=\textwidth]{\figdir/Binary_event_contracts.png}
+        \caption{Number of new contracts}
+    \end{subfigure}
+
+    \begin{minipage}{0.92\textwidth}
+    \footnotesize \emph{Notes:} The figure reports the preferred TWFE
+    event-study specification under the binary treatment definition. Treatment
+    equals one for occupations with exposure above 0.1169 and zero otherwise,
+    so middle-exposure occupations remain in the control group. All
+    specifications include CNO4 and CNO1-by-year-month fixed effects, with
+    October 2022 as the omitted month. Shaded areas are 95 percent confidence
+    intervals based on standard errors clustered by CNO4.
+    \end{minipage}
+\end{figure}
+
+\input{figuresNtables/province_robustness_v1.tex}
+
+\clearpage
+\begin{figure}[H]
+    \centering
+    \caption{Province-panel event-study estimates}
+    \label{fig:v1_province_event}
+    \begin{subfigure}{\panelwidth}
+        \includegraphics[width=\textwidth]{\figdir/Province_event_unemployed.png}
+        \caption{Number of registered unemployed}
+    \end{subfigure}
+
+    \vspace{0.25cm}
+    \begin{subfigure}{\panelwidth}
+        \includegraphics[width=\textwidth]{\figdir/Province_event_contracts.png}
+        \caption{Number of new contracts}
+    \end{subfigure}
+
+    \begin{minipage}{0.92\textwidth}
+    \footnotesize \emph{Notes:} The figure reports event-study estimates from
+    the province-by-CNO4 panel. Both panels include province-by-CNO4,
+    province-by-year-month, and CNO1-by-year-month fixed effects. Each marker
+    is the marginal effect of a 10 percentage-point increase in AI exposure at
+    the indicated event month. October 2022 is the omitted reference month;
+    the vertical dashed line marks November 2022. Shaded areas are 95 percent
+    confidence intervals based on standard errors clustered by CNO4. May 2024
+    cells are recovered from June levels and published June-over-May changes
+    when those values uniquely imply an integer count. Of 52,208 expected
+    province-outcome cells, 2,323 remain unresolved and missing.
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \caption{Leave-one-CNO1-out sensitivity}
+    \label{fig:v1_leave_one_out}
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{\figdir/LeaveOneCNO1_unemployed.png}
+        \caption{Number of registered unemployed}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{\figdir/LeaveOneCNO1_contracts.png}
+        \caption{Number of new contracts}
+    \end{subfigure}
+
+    \begin{minipage}{0.94\textwidth}
+    \footnotesize \emph{Notes:} Each marker reports the November
+    2022--November 2025 long-difference estimate after omitting the indicated
+    CNO1 family. The regressions absorb CNO1 fixed effects in the differenced
+    equation and therefore compare occupations within the remaining CNO1
+    families. Vertical bars are 95 percent confidence intervals based on
+    standard errors clustered by CNO4.
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \caption{Within-family variation in AI exposure}
+    \label{fig:v1_support}
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{\figdir/Support_panelA.png}
+        \caption{Within-CNO1 variation}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{\figdir/Support_panelB.png}
+        \caption{Within-CNO2 variation}
+    \end{subfigure}
+
+    \begin{minipage}{0.94\textwidth}
+    \footnotesize \emph{Notes:} The histograms report the distribution of the
+    within-family standard deviation of nearest-neighbor AI exposure. Panel
+    (a) groups CNO4 occupations by CNO1 family and panel (b) groups them by
+    CNO2 family. The vertical dashed line marks the median family. Values near
+    zero indicate limited identifying variation after the corresponding
+    family-by-month fixed effects are absorbed.
+    \end{minipage}
+\end{figure}
+
+\input{figuresNtables/family_support_v1.tex}
+
+\clearpage
+\input{figuresNtables/trailing12_contracts_v1.tex}
+
+\begin{figure}[H]
+    \centering
+    \caption{Event-study estimates for trailing 12-month contract registrations}
+    \label{fig:v1_trailing_contracts}
+    \begin{subfigure}{\panelwidth}
+        \centering
+        \includegraphics[width=\textwidth]{\figdir/Trailing12_contracts_event.png}
+        \caption{Number of new contracts accumulated over 12 months}
+    \end{subfigure}
+
+    \begin{minipage}{0.92\textwidth}
+    \footnotesize \emph{Notes:} The dependent variable is the logarithm of
+    newly registered contracts accumulated over the current and preceding 11
+    months. The specification includes CNO4 and CNO1-by-year-month fixed
+    effects. October 2022 is the omitted event-study month, and the vertical
+    dashed line marks November 2022. Each marker is the marginal effect of a
+    10 percentage-point increase in AI exposure; shaded areas are 95 percent
+    confidence intervals based on standard errors clustered by CNO4. Because
+    a complete trailing window is first available in December 2021, the graph
+    has 11 pre-treatment months. Adjacent outcomes share 11 component months,
+    so the transformation mechanically smooths and delays the response. The
+    measure is a cumulative hiring flow, not a stock of active contracts.
+    \end{minipage}
+\end{figure}
+
+\clearpage
+\section{Heterogeneity Analysis}
+\label{app:v1_heterogeneity}
+
+\input{figuresNtables/heterogeneity_pretrend_diagnostics_v1.tex}
+\input{figuresNtables/age_cross_group_tests_v1.tex}
+
+\begin{figure}[H]
+    \centering
+    \caption{Heterogeneity in registered unemployment}
+    \label{fig:v1_heterogeneity_u}
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/Heterogeneity_unemployed_panel1.png}
+        \caption{Under 30}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/Heterogeneity_unemployed_panel2.png}
+        \caption{Ages 30--39}
+    \end{subfigure}
+
+    \vspace{0.20cm}
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/Heterogeneity_unemployed_panel3.png}
+        \caption{Age 40 or older}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/Heterogeneity_unemployed_panel4.png}
+        \caption{Men}
+    \end{subfigure}
+
+    \vspace{0.20cm}
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/Heterogeneity_unemployed_panel5.png}
+        \caption{Women}
+    \end{subfigure}
+
+    \begin{minipage}{0.94\textwidth}
+    \footnotesize \emph{Notes:} The figure reports subgroup-specific estimates from the preferred continuous-treatment specification, which includes CNO4 and CNO1-by-year-month fixed effects. Each marker is the marginal effect of a 10 percentage-point increase in exposure at the indicated event month. October 2022 is the omitted reference month and the vertical dashed line marks November 2022. Shaded areas are 95 percent confidence intervals based on standard errors clustered by CNO4. All panels use the same vertical scale. SEPE omits the age breakdown for May 2024; the age panels recover uniquely implied integer cells from June levels and the published June-over-May changes. Of 6,024 original age-outcome cells, 55 remain unresolved and missing.
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \caption{Heterogeneity in new contracts}
+    \label{fig:v1_heterogeneity_c}
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/Heterogeneity_contracts_panel1.png}
+        \caption{Under 30}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/Heterogeneity_contracts_panel2.png}
+        \caption{Ages 30--39}
+    \end{subfigure}
+
+    \vspace{0.20cm}
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/Heterogeneity_contracts_panel3.png}
+        \caption{Age 40 or older}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/Heterogeneity_contracts_panel4.png}
+        \caption{Men}
+    \end{subfigure}
+
+    \vspace{0.20cm}
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/Heterogeneity_contracts_panel5.png}
+        \caption{Women}
+    \end{subfigure}
+
+    \begin{minipage}{0.94\textwidth}
+    \footnotesize \emph{Notes:} The figure reports the same subgroup specifications and confidence intervals as Figure~\ref{fig:v1_heterogeneity_u}, using the logarithm of newly registered contracts as the dependent variable. All panels use the same vertical scale.
+    \end{minipage}
+\end{figure}
+
+\section{Further Results}
+\label{app:v1_further}
+
+\subsection{Occupational Feminization}
+\label{app:v1_feminization}
+
+\input{figuresNtables/occupational_feminization_main_v1.tex}
+\input{figuresNtables/feminization_pretrends_v1.tex}
+
+\begin{figure}[H]
+    \centering
+    \caption{Heterogeneity by occupational feminization: registered unemployment}
+    \label{fig:v1_feminization_u}
+    \begin{subfigure}{\panelwidth}
+        \includegraphics[width=\textwidth]{\figdir/Feminization_median_unemployed.png}
+        \caption{Levels}
+    \end{subfigure}
+
+    \vspace{0.25cm}
+
+    \begin{subfigure}{\panelwidth}
+        \includegraphics[width=\textwidth]{\figdir/Feminization_median_detrended_unemployed.png}
+        \caption{Pre-trended outcomes}
+    \end{subfigure}
+
+    \begin{minipage}{0.92\textwidth}
+    \footnotesize \emph{Notes:} The figure reports marginal effects of a 10 percentage-point increase in AI exposure separately for occupations below and at or above the median CNO2 feminization index. The specifications include CNO4 fixed effects and CNO1-by-year-month effects; October 2022 is the omitted month and November 2022 is event time zero. Shaded areas are 95 percent confidence intervals based on standard errors clustered by CNO4. The lower panel repeats the exercise after subtracting fitted pre-treatment common month effects and CNO4-specific linear trends; it is a diagnostic for differential pre-trends rather than the preferred specification.
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \caption{Heterogeneity by occupational feminization: new contracts}
+    \label{fig:v1_feminization_c}
+    \begin{subfigure}{\panelwidth}
+        \includegraphics[width=\textwidth]{\figdir/Feminization_median_contracts.png}
+        \caption{Levels}
+    \end{subfigure}
+
+    \vspace{0.25cm}
+
+    \begin{subfigure}{\panelwidth}
+        \includegraphics[width=\textwidth]{\figdir/Feminization_median_detrended_contracts.png}
+        \caption{Pre-trended outcomes}
+    \end{subfigure}
+
+    \begin{minipage}{0.92\textwidth}
+    \footnotesize \emph{Notes:} The figure reports the corresponding marginal effects for the logarithm of newly registered contracts. All specifications, event-time conventions, confidence intervals, and the interpretation of the lower panel are the same as in Figure~\ref{fig:v1_feminization_u}.
+    \end{minipage}
+\end{figure}
+
+\subsection{Continuous-DiD Alternative}
+\label{app:v1_contdid}
+
+\input{figuresNtables/contdid_alternatives_v1.tex}
+
+\begin{figure}[H]
+    \centering
+    \caption{CNO1-stratified continuous-DiD event-study estimates}
+    \label{fig:v1_contdid_paths}
+    \begin{subfigure}{\panelwidth}
+        \includegraphics[width=\textwidth]{\figdir/ContDID_panel1.png}
+        \caption{Number of registered unemployed}
+    \end{subfigure}
+
+    \vspace{0.30cm}
+
+    \begin{subfigure}{\panelwidth}
+        \includegraphics[width=\textwidth]{\figdir/ContDID_panel2.png}
+        \caption{Number of new contracts}
+    \end{subfigure}
+
+    \begin{minipage}{0.92\textwidth}
+    \footnotesize \emph{Notes:} The figure reports continuous-DiD estimates obtained separately within CNO1 families containing at least 15 positive-exposure and 5 zero-exposure occupations. Family-specific marginal responses are aggregated using each family's share of positive-exposure occupations. November 2022 is event time 0 and October 2022 is the reference month. Shaded areas are 95 percent confidence intervals based on the aggregated influence-function covariance matrices.
+    \end{minipage}
+\end{figure}
+
+\subsection{Synthetic Difference-in-Differences}
+\label{app:v1_sdid}
+
+\input{figuresNtables/sdid_estimates_v1.tex}
+
+\begin{figure}[H]
+    \centering
+    \caption{CNO1-by-month-adjusted synthetic-DiD estimates}
+    \label{fig:v1_sdid_projected}
+    \textit{\# of registered unemployed}\par\vspace{0.10cm}
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/SDID_adjusted_path_unemployed.png}
+        \caption{Evolution}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/SDID_adjusted_event_unemployed.png}
+        \caption{Event study}
+    \end{subfigure}
+
+    \vspace{0.25cm}
+    \textit{\# of new contracts}\par\vspace{0.10cm}
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/SDID_adjusted_path_contracts.png}
+        \caption{Evolution}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/SDID_adjusted_event_contracts.png}
+        \caption{Event study}
+    \end{subfigure}
+
+    \begin{minipage}{0.94\textwidth}
+    \footnotesize \emph{Notes:} Treated occupations have nearest-neighbor AI
+    exposure above 0.1169, while occupations at or below the cutoff form the
+    donor pool. Before constructing the synthetic comparison, outcomes are
+    adjust for CNO1-by-month indicators using the projected covariate-adjustment
+    procedure implemented within synthetic DID. Panels
+    (a) and (c) compare the treated outcome path with the weighted synthetic
+    counterfactual; panels (b) and (d) report the corresponding event-study
+    estimates. The counterfactual paths are reported as returned by the
+    estimator, without an additional graphical level shift. Unit weights minimize pre-treatment discrepancies between the
+    treated and donor paths, and time weights emphasize pre-treatment months
+    that best predict post-treatment donor outcomes. Event-study confidence
+    intervals use placebo inference with 500 repetitions.
+    \end{minipage}
+\end{figure}
+
+\input{figuresNtables/sdid_weight_diagnostics_v1.tex}
+\input{figuresNtables/sdid_donor_weights_v1.tex}
+
+\end{document}

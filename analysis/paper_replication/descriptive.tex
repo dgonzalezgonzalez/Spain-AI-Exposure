@@ -1,0 +1,52 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{adjustbox}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{natbib}
+\usepackage{threeparttable}
+
+\captionsetup{font=small,labelfont=bf}
+\newcommand{\figdir}{figuresNtables}
+
+\title{Descriptive Statistics: Replication Check}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Aggregate Validation}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.72\textwidth]{\figdir/figure_epa_vs_sepe_unemployment_quarterly.png}
+    \caption{Aggregate unemployment in EPA and SEPE}
+\end{figure}
+
+\section{Exposure Validation}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.78\textwidth]{\figdir/figure_ai_exposure_distribution_us_vs_spain.png}
+    \caption{Distribution of AI exposure in the United States and Spain}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.86\textwidth]{\figdir/figure_anthropic_country_soc_major_group_spain_us_may2026.png}
+    \caption{Claude usage by major occupational group}
+\end{figure}
+
+\clearpage
+\section{Descriptive Tables}
+
+\input{figuresNtables/summary_statistics.tex}
+
+\input{figuresNtables/table_top_bottom_exposure_appendix.tex}
+
+\end{document}

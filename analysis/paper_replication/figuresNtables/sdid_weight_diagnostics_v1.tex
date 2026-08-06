@@ -1,0 +1,25 @@
+\begin{table}[!htbp]
+\centering
+\caption{Synthetic-DiD donor-weight diagnostics}
+\label{tab:v1_sdid_weight_diagnostics}
+\begin{threeparttable}
+\small
+\begin{tabular}{lcc}
+\toprule
+& \# of registered unemployed & \# of new contracts \\
+\midrule
+Positive-weight donors & 377 & 363 \\
+Effective number of donors & 374.6 & 362.2 \\
+Largest donor weight & 0.004 & 0.003 \\
+Share held by top 10 donors & 0.034 & 0.031 \\
+Mean treated exposure & 0.289 & 0.293 \\
+Donor-weighted exposure & 0.017 & 0.017 \\
+Exposure contrast & 0.272 & 0.277 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item \emph{Notes:} The effective number of donors is \(1/\sum_j\widehat{\omega}_j^2\). The exposure contrast is the treated mean minus the donor-weighted mean. Calculations use the CNO1-by-month-adjusted expanded-donor synthetic-DiD specification.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

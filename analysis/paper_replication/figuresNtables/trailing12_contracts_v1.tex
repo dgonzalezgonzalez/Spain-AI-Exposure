@@ -1,0 +1,30 @@
+\begin{table}[H]
+\centering
+\caption{Robustness check: trailing 12-month contract registrations}
+\label{tab:v1_trailing_contracts}
+\begin{threeparttable}
+\small
+\begin{tabular}{lccc}
+\toprule
+& (1) & (2) & (3) \\
+\midrule
+AI exposure $\times$ adjustment period & 0.030$^{***}$ & 0.015 & 0.015 \\
+ & (0.009) & (0.009) & (0.009) \\
+Impact of a 10 pp increase (percent) & 3.0 & 1.5 & 1.5 \\
+\addlinespace
+AI exposure $\times$ later period & 0.026$^{**}$ & 0.009 & 0.009 \\
+ & (0.011) & (0.012) & (0.013) \\
+Impact of a 10 pp increase (percent) & 2.6 & 0.9 & 0.9 \\
+$p$-value: equal phase effects & 0.579 & 0.475 & 0.513 \\
+\midrule
+CNO1 $\times$ year-month FE & No & Yes & Yes \\
+Clustered standard errors & CNO4 & CNO4 & CNO3 \\
+Observations & 26,069 & 26,069 & 26,069 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item \emph{Notes:} The dependent variable is the logarithm of contract registrations accumulated over the current and preceding 11 months. This trailing sum is a cumulative hiring flow, not a stock of active contracts. The first available observation is December 2021, leaving 11 pre-treatment months. The adjustment and later periods cover event times 0--24 and 25--40; all available pre-treatment months form the omitted category. Because adjacent outcomes share 11 monthly observations, the transformation mechanically smooths and delays the dynamic response. Exposure is measured in 10 percentage-point units. Standard errors are clustered as indicated. $^{***}p<0.01$, $^{**}p<0.05$, and $^{*}p<0.10$.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

@@ -1,0 +1,37 @@
+\begin{table}[H]
+\centering
+\caption{Synthetic difference-in-differences estimates}
+\label{tab:v1_sdid}
+\begin{threeparttable}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lcc}
+\toprule
+& \multicolumn{1}{c}{\# of registered unemployed} & \multicolumn{1}{c}{\# of new contracts} \\
+\cmidrule(lr){2-2}\cmidrule(lr){3-3}
+& (1) & (2) \\
+\midrule
+High exposure: adjustment period & 0.027$^{**}$ & -0.000 \\
+ & (0.011) & (0.022) \\
+Impact (percent) & 2.7 & -0.0 \\
+\addlinespace
+High exposure: later period & 0.041$^{*}$ & 0.008 \\
+ & (0.024) & (0.029) \\
+Impact (percent) & 4.1 & 0.8 \\
+\midrule
+All lower-exposure occupations eligible as donors & Yes & Yes \\
+CNO1 $\times$ month residualization & Yes & Yes \\
+Treated occupations: adjustment period & 124 & 118 \\
+Donor occupations: adjustment period & 377 & 365 \\
+Observations: adjustment period & 23,547 & 22,701 \\
+Treated occupations: later period & 124 & 118 \\
+Donor occupations: later period & 377 & 363 \\
+Observations: later period & 19,038 & 18,278 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item \emph{Notes:} Treated occupations have nearest-neighbor exposure above 0.1169; every occupation at or below the cutoff is retained as a potential donor. The adjustment-period estimates use all pre-treatment months and event times 0--24. The later-period estimates use all pre-treatment months and event times 25--40; event times 0--24 are omitted from those fits. Unit and time weights are re-estimated separately for each interval. Both columns residualize outcomes on CNO1-by-month indicators before constructing the synthetic comparison. Because this residualization depends only on outcomes and family-month cells, it is held fixed across placebo assignments. Standard errors in parentheses use placebo inference with 500 repetitions. Impact rows report $100[\exp(\widehat{\tau})-1]$. $^{***}p<0.01$, $^{**}p<0.05$, and $^{*}p<0.10$.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

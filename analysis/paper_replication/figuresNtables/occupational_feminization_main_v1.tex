@@ -1,0 +1,33 @@
+\begin{table}[!htbp]
+\centering
+\caption{AI exposure and occupational feminization}
+\label{tab:v1_feminization_main}
+\begin{threeparttable}
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{lcccccc}
+\toprule
+& \multicolumn{3}{c}{\# of registered unemployed} & \multicolumn{3}{c}{\# of new contracts} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}
+& 25th pct. & Median & 75th pct. & 25th pct. & Median & 75th pct. \\
+\midrule
+AI exposure $\times$ adjustment period & 0.030$^{***}$ & 0.024$^{***}$ & 0.004 & 0.009 & 0.011 & 0.017$^{*}$ \\
+ & (0.008) & (0.007) & (0.006) & (0.010) & (0.009) & (0.010) \\
+Impact of a 10 pp increase (percent) & 3.0 & 2.4 & 0.4 & 0.9 & 1.1 & 1.7 \\
+\addlinespace
+AI exposure $\times$ later period & 0.054$^{***}$ & 0.042$^{***}$ & -0.000 & 0.003 & 0.006 & 0.018 \\
+ & (0.015) & (0.013) & (0.011) & (0.013) & (0.012) & (0.012) \\
+Impact of a 10 pp increase (percent) & 5.4 & 4.2 & -0.0 & 0.3 & 0.6 & 1.8 \\
+\addlinespace
+Observations & 31,122 & 31,122 & 31,122 & 30,786 & 30,786 & 30,786 \\
+CNO4 FE & Yes & Yes & Yes & Yes & Yes & Yes \\
+CNO1 $\times$ year-month FE & Yes & Yes & Yes & Yes & Yes & Yes \\
+Clustered standard errors & CNO4 & CNO4 & CNO4 & CNO4 & CNO4 & CNO4 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item \emph{Notes:} Entries are marginal effects of a 10 percentage-point increase in AI exposure, evaluated at the indicated percentiles of the predetermined CNO2 female-employment share. The index is the female share of EPA employment pooled over 2017--2019; its 25th percentile, median, and 75th percentile are 0.234, 0.303, and 0.539. The adjustment and later periods cover event times 0--24 and 25--40. The specification includes CNO4 and CNO1-by-year-month fixed effects. Standard errors in parentheses are clustered by CNO4. Entries are marginal effects, not ATTs. The impact rows report 100 times the log-point coefficients and carry no additional significance markers. $^{***}p<0.01$, $^{**}p<0.05$, and $^{*}p<0.10$.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

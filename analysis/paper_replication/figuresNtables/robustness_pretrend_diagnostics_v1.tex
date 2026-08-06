@@ -1,0 +1,55 @@
+\begin{landscape}
+\begin{table}[H]
+\centering
+\caption{Pre-treatment diagnostics for alternative outcomes and exposure measures}
+\label{tab:v1_robustness_pretrends}
+\begin{threeparttable}
+\scriptsize
+\renewcommand{\arraystretch}{0.88}
+\setlength{\tabcolsep}{3.0pt}
+\begin{tabular}{@{}llcccccc@{}}
+\toprule
+& & \multicolumn{2}{c}{Benchmark: CNO4 clustering} & \multicolumn{2}{c}{CNO1-by-month: CNO4 clustering} & \multicolumn{2}{c}{CNO1-by-month: CNO3 clustering} \\
+\cmidrule(lr){3-4}\cmidrule(lr){5-6}\cmidrule(lr){7-8}
+Outcome & Window & Nullity & Equality & Nullity & Equality & Nullity & Equality \\
+\midrule
+\multicolumn{8}{l}{\textbf{Panel A. Baseline specification}} \\
+Registered unemployed & Full: -21 to -2 & $<0.001$ & $<0.001$ & 0.003 & 0.003 & 0.015 & 0.022 \\
+Registered unemployed & Early: -21 to -10 & $<0.001$ & $<0.001$ & 0.027 & 0.021 & 0.134 & 0.102 \\
+Registered unemployed & Recent: -10 to -2 & $<0.001$ & $<0.001$ & 0.367 & 0.280 & 0.575 & 0.479 \\
+New contracts & Full: -21 to -2 & $<0.001$ & $<0.001$ & 0.032 & 0.045 & 0.018 & 0.026 \\
+New contracts & Early: -21 to -10 & $<0.001$ & $<0.001$ & 0.307 & 0.252 & 0.307 & 0.266 \\
+New contracts & Recent: -10 to -2 & $<0.001$ & $<0.001$ & 0.049 & 0.035 & 0.070 & 0.048 \\
+\addlinespace
+\multicolumn{8}{l}{\textbf{Panel B. Alternative outcomes: log(Y+1)}} \\
+Registered unemployed & Full: -21 to -2 & $<0.001$ & $<0.001$ & 0.002 & 0.003 & 0.013 & 0.022 \\
+Registered unemployed & Early: -21 to -10 & $<0.001$ & $<0.001$ & 0.024 & 0.019 & 0.122 & 0.095 \\
+Registered unemployed & Recent: -10 to -2 & $<0.001$ & $<0.001$ & 0.369 & 0.282 & 0.570 & 0.474 \\
+New contracts & Full: -21 to -2 & $<0.001$ & $<0.001$ & 0.007 & 0.009 & 0.006 & 0.007 \\
+New contracts & Early: -21 to -10 & $<0.001$ & $<0.001$ & 0.028 & 0.018 & 0.025 & 0.017 \\
+New contracts & Recent: -10 to -2 & $<0.001$ & $<0.001$ & 0.041 & 0.026 & 0.044 & 0.027 \\
+\addlinespace
+\multicolumn{8}{l}{\textbf{Panel C. Alternative exposure: cosine-weighted}} \\
+Registered unemployed & Full: -21 to -2 & $<0.001$ & $<0.001$ & 0.002 & 0.004 & 0.007 & 0.027 \\
+Registered unemployed & Early: -21 to -10 & $<0.001$ & $<0.001$ & 0.010 & 0.010 & 0.176 & 0.162 \\
+Registered unemployed & Recent: -10 to -2 & $<0.001$ & $<0.001$ & 0.165 & 0.126 & 0.298 & 0.272 \\
+New contracts & Full: -21 to -2 & $<0.001$ & $<0.001$ & 0.008 & 0.005 & 0.002 & 0.002 \\
+New contracts & Early: -21 to -10 & $<0.001$ & $<0.001$ & 0.110 & 0.102 & 0.098 & 0.082 \\
+New contracts & Recent: -10 to -2 & $<0.001$ & $<0.001$ & 0.019 & 0.011 & 0.043 & 0.027 \\
+\addlinespace
+\multicolumn{8}{l}{\textbf{Panel D. Alternative exposure: RF-relative}} \\
+Registered unemployed & Full: -21 to -2 & $<0.001$ & $<0.001$ & $<0.001$ & 0.002 & $<0.001$ & 0.006 \\
+Registered unemployed & Early: -21 to -10 & $<0.001$ & $<0.001$ & 0.004 & 0.003 & 0.013 & 0.010 \\
+Registered unemployed & Recent: -10 to -2 & $<0.001$ & $<0.001$ & 0.088 & 0.073 & 0.199 & 0.204 \\
+New contracts & Full: -21 to -2 & $<0.001$ & $<0.001$ & 0.009 & 0.008 & 0.002 & 0.004 \\
+New contracts & Early: -21 to -10 & $<0.001$ & $<0.001$ & 0.016 & 0.017 & 0.003 & 0.005 \\
+New contracts & Recent: -10 to -2 & $<0.001$ & $<0.001$ & 0.004 & 0.002 & 0.033 & 0.022 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\scriptsize
+\item \emph{Notes:} Entries are $p$-values from Wald tests of the pre-treatment event-study coefficients for the specifications reported in Table~\ref{tab:v1_robustness}. The nullity test evaluates whether all coefficients in the indicated window equal zero. The equality test evaluates whether they equal one another while allowing their common value to differ from zero. The benchmark includes CNO4 and year-month fixed effects. The other specifications include CNO4 and CNO1-by-year-month fixed effects, with standard errors clustered at the indicated occupational level. The full, early, and recent windows cover event times -21 to -2, -21 to -10, and -10 to -2; October 2022 (event time -1) is the omitted reference month.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+\end{landscape}

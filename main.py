@@ -89,6 +89,29 @@ def parse_args() -> argparse.Namespace:
         help="Render the frozen paper summary and econometric tables without re-estimating models.",
     )
     parser.add_argument(
+        "--run-paper-replication",
+        action="store_true",
+        help="Run Nico's tracked V1 paper replication package after staging shared pipeline inputs.",
+    )
+    parser.add_argument(
+        "--replication-step",
+        choices=["prepare", "descriptives", "estimates", "contdid", "tuning", "all"],
+        default="all",
+        help="Production step for --run-paper-replication; default runs all five steps.",
+    )
+    parser.add_argument(
+        "--replication-sdid-reps",
+        type=int,
+        default=500,
+        help="Synthetic-DiD placebo repetitions for --run-paper-replication.",
+    )
+    parser.add_argument(
+        "--replication-contdid-reps",
+        type=int,
+        default=1000,
+        help="ContDID bootstrap repetitions for --run-paper-replication.",
+    )
+    parser.add_argument(
         "--run-all-analyses",
         action="store_true",
         help="Run all analysis/table scripts after the exposure build, or by themselves with --analysis-only.",
@@ -182,8 +205,9 @@ def _run_requested_analyses(args: argparse.Namespace) -> None:
     run_source_check = args.run_unemployment_source_check or args.run_all_analyses
     run_anthropic_country_figure = args.run_anthropic_country_figure or args.run_all_analyses
     run_paper_tables = args.run_paper_tables or args.run_all_analyses
+    run_paper_replication = args.run_paper_replication
 
-    if args.analysis_only and not any([run_sepe, run_sdid, run_contdid, run_source_check, run_anthropic_country_figure, run_paper_tables]):
+    if args.analysis_only and not any([run_sepe, run_sdid, run_contdid, run_source_check, run_anthropic_country_figure, run_paper_tables, run_paper_replication]):
         run_sepe = True
         run_sdid = True
         run_contdid = True
@@ -191,7 +215,7 @@ def _run_requested_analyses(args: argparse.Namespace) -> None:
         run_anthropic_country_figure = True
         run_paper_tables = True
 
-    if not any([run_sepe, run_sdid, run_contdid, run_source_check, run_anthropic_country_figure, run_paper_tables]):
+    if not any([run_sepe, run_sdid, run_contdid, run_source_check, run_anthropic_country_figure, run_paper_tables, run_paper_replication]):
         return
 
     root = Path(__file__).resolve().parent
@@ -232,6 +256,22 @@ def _run_requested_analyses(args: argparse.Namespace) -> None:
     if run_contdid:
         _run_checked([_resolve_rscript(args), "scripts/run_contdid_analysis.R"], root)
 
+    if run_paper_replication:
+        command = [
+            sys.executable,
+            "scripts/run_paper_replication.py",
+            "--step",
+            args.replication_step,
+            "--sdid-reps",
+            str(args.replication_sdid_reps),
+            "--contdid-reps",
+            str(args.replication_contdid_reps),
+        ]
+        if args.stata_exe:
+            command.extend(["--stata-exe", args.stata_exe])
+        if args.rscript:
+            command.extend(["--rscript", args.rscript])
+        _run_checked(command, root)
 
 def main() -> None:
     args = parse_args()

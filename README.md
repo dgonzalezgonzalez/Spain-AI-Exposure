@@ -648,3 +648,30 @@ Older SQLite files may still contain historical dropped columns only if opened b
 
 - `4a697fe`: CNO4 cosine pipeline, cosine-only EPA outputs, docs note.
 - `05595af`: RF-inclusive EPA outputs and RF documentation.
+
+## Nico's V1 Paper Replication Package
+
+The latest paper-analysis bundle received from Nico is tracked under
+`analysis/paper_replication/`. It includes the preparation and descriptive
+notebooks, Stata TWFE/SDID/HonestDiD code, the R ContDID script, output tuning,
+publication figures/tables, and the current LaTeX reports. Large raw,
+prepared, and intermediate runtime files remain outside Git.
+
+Run the complete five-step package after the SEPE monthly dataset has been
+built:
+
+```powershell
+py -3 main.py --analysis-only --run-paper-replication `
+  --stata-exe "C:\Program Files\StataNow19\StataMP-64.exe" `
+  --rscript "C:\Users\dgonzalez\AppData\Local\Programs\R\R-4.5.2\bin\Rscript.exe"
+```
+
+The `main.py` wrapper stages shared inputs into an ignored runtime directory,
+then runs preparation, descriptives, estimates, ContDID, and output tuning in
+that order. Use `--replication-step prepare` (or another named step) for a
+partial run. Set `--replication-sdid-reps` and `--replication-contdid-reps`
+only for smoke tests; the defaults match Nico's production settings.
+
+The latest manuscript sources are
+`analysis/paper_replication/estimates_results_report_v1.tex` and
+`analysis/paper_replication/descriptive.tex`.

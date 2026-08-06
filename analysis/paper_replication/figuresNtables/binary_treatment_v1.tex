@@ -1,0 +1,33 @@
+\begin{table}[!htbp]
+\centering
+\caption{Binary-treatment robustness checks}
+\label{tab:v1_binary_treatment}
+\begin{threeparttable}
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{lcccccc}
+\toprule
+& \multicolumn{3}{c}{\# of registered unemployed} & \multicolumn{3}{c}{\# of new contracts} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}
+& (1) & (2) & (3) & (4) & (5) & (6) \\
+\midrule
+Binary treatment $\times$ adjustment period & 0.064$^{***}$ & 0.039$^{**}$ & 0.039$^{*}$ & 0.092$^{***}$ & 0.021 & 0.021 \\
+ & (0.015) & (0.017) & (0.020) & (0.025) & (0.025) & (0.024) \\
+Impact of a 10 pp increase (percent) & 6.4 & 3.9 & 3.9 & 9.2 & 2.1 & 2.1 \\
+\addlinespace
+Binary treatment $\times$ later period & 0.124$^{***}$ & 0.058$^{*}$ & 0.058 & 0.081$^{**}$ & 0.013 & 0.013 \\
+ & (0.027) & (0.031) & (0.036) & (0.033) & (0.034) & (0.034) \\
+Impact of a 10 pp increase (percent) & 12.4 & 5.8 & 5.8 & 8.1 & 1.3 & 1.3 \\
+$p$-value: equal phase effects & 0.000 & 0.307 & 0.333 & 0.571 & 0.691 & 0.735 \\
+\midrule
+CNO1 $\times$ year-month FE & No & Yes & Yes & No & Yes & Yes \\
+Clustered standard errors & CNO4 & CNO4 & CNO3 & CNO4 & CNO4 & CNO3 \\
+Observations & 31,122 & 31,122 & 31,122 & 30,787 & 30,786 & 30,786 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item \emph{Notes:} Treatment equals one for occupations with nearest-neighbor exposure above 0.1169, the 75th-percentile cutoff used in the binary design, and zero for occupations at or below the cutoff. The adjustment and later periods cover event times 0--24 and 25--40, respectively; all pre-treatment months form the omitted category. Columns 1 and 4 include CNO4 and year-month fixed effects; the remaining columns include CNO4 and CNO1-by-year-month fixed effects. Standard errors are clustered as indicated. Impact rows report 100 times the coefficients. Equality rows test whether the two phase effects are equal. $^{***}p<0.01$, $^{**}p<0.05$, and $^{*}p<0.10$.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

@@ -1,0 +1,503 @@
+﻿cno4,pdf_title_line,pdf_page,sepe_title,in_pdf,in_sepe
+0011,Oficiales de las fuerzas armadas,351,Oficiales de las fuerzas armadas,True,True
+0012,Suboficiales de las fuerzas armadas,351,Suboficiales de las fuerzas armadas,True,True
+0020,Tropa y marinería de las fuerzas armadas,352,Tropa y marinería de las fuerzas armadas,True,True
+1111,"Miembros del poder ejecutivo (nacional, autonómico y local) y del poder",3,"Miembros del poder ejecutivo (nacional, autonómico y local) y del poder legislativo",True,True
+1112,Personal directivo de la Administración Pública,4,Personal directivo de la administración pública,True,True
+1113,Directores de organizaciones de interés social,5,Directores de organizaciones de interés social,True,True
+1120,Directores generales y presidentes ejecutivos,6,Directores generales y presidentes ejecutivos,True,True
+1211,Directores financieros,7,Directores financieros,True,True
+1212,Directores de recursos humanos,7,Directores de recursos humanos,True,True
+1219,Directores de políticas y planificación y de otros departamentos administrat i-,8,Directores de políticas y planificación y de otros departamentos administrativos no clasificados bajo otros epígrafes,True,True
+1221,Directores comerciales y de ventas,9,Directores comerciales y de ventas,True,True
+1222,Directores de publicidad y relaciones públicas,10,Directores de publicidad y relaciones públicas,True,True
+1223,Directores de investigación y desarrollo,10,Directores de investigación y desarrollo,True,True
+1311,Directores de producción de explotaciones agropecuarias y forestales,11,Directores de producción de explotaciones agropecuarias y forestales,True,True
+1312,Directores de producción de explotaciones pesqueras y acuícolas,12,Directores de producción de explotaciones pesqueras y acuícolas,True,True
+1313,Directores de industrias manufactureras,13,Directores de industrias manufactureras,True,True
+1314,Directores de explotaciones mineras,14,Directores de explotaciones mineras,True,True
+1315,"Directores de empresas de abastecimiento, transporte, distribución y afines",14,"Directores de empresas de abastecimiento, transporte, distribución y afines",True,True
+1316,Directores de empresas de construcción,15,Directores de empresas de construcción,True,True
+1321,Directores de servicios de tecnologías de la información y las comuni caciones,16,Directores de servicios de tecnologías de la información y las comunicaciones (tic),True,True
+1322,Directores de servicios sociales para niños,17,Directores de servicios sociales para niños,True,True
+1323,Directores-gerentes de centros sanitarios,18,Directores-gerentes de centros sanitarios,True,True
+1324,Directores de servicios sociales para personas mayores,18,Directores de servicios sociales para personas mayores,True,True
+1325,Directores de otros servicios sociales,19,Directores de otros servicios sociales,True,True
+1326,Directores de servicios de educación,20,Directores de servicios de educación,True,True
+1327,"Directores de sucursales de bancos, de servicios financieros y de seguros",20,"Directores de sucursales de bancos, de servicios financieros y de seguros",True,True
+1329,Directores de otras empresas de servicios profesionales no clasif icados bajo,21,Directores de otras empresas de servicios profesionales no clasificados bajo otros epígrafes,True,True
+1411,Directores y gerentes de hoteles,22,Directores y gerentes de hoteles,True,True
+1419,Directores y gerentes de otras empresas de servicios de alojamiento,23,Directores y gerentes de otras empresas de servicios de alojamiento,True,True
+1421,Directores y gerentes de restaurantes,24,Directores y gerentes de restaurantes,True,True
+1422,"Directores y gerentes de bares, cafeterías y similares",25,"Directores y gerentes de bares, cafeterías y similares",True,True
+1429,Directores y gerentes de empresas de catering y otras empresas de restaur a-,25,Directores y gerentes de empresas de catering y otras empresas de restauración,True,True
+1431,Directores y gerentes de empresas de comercio al por mayor,26,Directores y gerentes de empresas de comercio al por mayor,True,True
+1432,Directores y gerentes de empresas de comercio al por menor,27,Directores y gerentes de empresas de comercio al por menor,True,True
+1501,"Directores y gerentes de empresas de actividades recreativas, cultur ales y",28,"Directores y gerentes de empresas de actividades recreativas, culturales y deportivas",True,True
+1509,Directores y gerentes de empresas de gestión de residuos y de otras empresas,29,Directores y gerentes de empresas de gestión de residuos y de otras empresas de servicios no clasificados bajo otros epígrafes,True,True
+2111,Médicos de familia,30,Médicos de familia,True,True
+2112,Otros médicos especialistas,31,Otros médicos especialistas,True,True
+2121,Enfermeros no especializados,32,Enfermeros no especializados,True,True
+2122,Enfermeros especializados (excepto matronos),33,Enfermeros especializados (excepto matronos),True,True
+2123,Matronos,34,Matronos,True,True
+2130,Veterinarios,35,Veterinarios,True,True
+2140,Farmacéuticos,36,Farmacéuticos,True,True
+2151,Odontólogos y estomatólogos,37,Odontólogos y estomatólogos,True,True
+2152,Fisioterapeutas,38,Fisioterapeutas,True,True
+2153,Dietistas y nutricionistas,38,Dietistas y nutricionistas,True,True
+2154,Logopedas,39,Logopedas,True,True
+2155,Ópticos-optometristas,40,Ópticos-optometristas,True,True
+2156,Terapeutas ocupacionales,40,Terapeutas ocupacionales,True,True
+2157,Podólogos,41,Podólogos,True,True
+2158,Profesionales de la salud y la higiene laboral y ambiental,41,Profesionales de la salud y la higiene laboral y ambiental,True,True
+2159,Profesionales de la salud no clasificados bajo otros epígrafes,42,Profesionales de la salud no clasificados bajo otros epígrafes,True,True
+2210,Profesores de universidades y otra enseñanza superior (excepto formación,43,Profesores de universidades y otra enseñanza superior (excepto formación profesional),True,True
+2220,Profesores de formación profesional (materias específicas),44,Profesores de formación profesional (materias específicas),True,True
+2230,Profesores de enseñanza secundaria (excepto materias específicas de form a-,45,Profesores de enseñanza secundaria (excepto materias específicas de formación profesional),True,True
+2240,Profesores de enseñanza primaria,46,Profesores de enseñanza primaria,True,True
+2251,Maestros de educación infantil,46,Maestros de educación infantil,True,True
+2252,Técnicos en educación infantil,47,Técnicos en educación infantil,True,True
+2311,Profesores de educación especial,48,Profesores de educación especial,True,True
+2312,Técnicos educadores de educación especial,49,Técnicos educadores de educación especial,True,True
+2321,Especialistas en métodos didácticos y pedagógicos,49,Especialistas en métodos didácticos y pedagógicos,True,True
+2322,Profesores de enseñanza no reglada de idiomas,50,Profesores de enseñanza no reglada de idiomas,True,True
+2323,Profesores de enseñanza no reglada de música y danza,51,Profesores de enseñanza no reglada de música y danza,True,True
+2324,Profesores de enseñanza no reglada de artes,52,Profesores de enseñanza no reglada de artes,True,True
+2325,Instructores en tecnologías de la información en enseñanza no reglada,53,Instructores en tecnologías de la información en enseñanza no reglada,True,True
+2326,Profesionales de la educación ambiental,53,Profesionales de la educación ambiental,True,True
+2329,Profesores y profesionales de la enseñanza no clasificados bajo otros epígra-,54,Profesores y profesionales de la enseñanza no clasificados bajo otros epígrafes,True,True
+2411,Físicos y astrónomos,55,Físicos y astrónomos,True,True
+2412,Meteorólogos,56,Meteorólogos,True,True
+2413,Químicos,57,Químicos,True,True
+2414,Geólogos y geofísicos,58,Geólogos y geofísicos,True,True
+2415,Matemáticos y actuarios,59,Matemáticos y actuarios,True,True
+2416,Estadísticos,59,Estadísticos,True,True
+2421,"Biólogos, botánicos, zoólogos y afines",60,"Biólogos, botánicos, zoólogos y afines",True,True
+2422,Ingenieros agrónomos,61,Ingenieros agrónomos,True,True
+2423,Ingenieros de montes,62,Ingenieros de montes,True,True
+2424,Ingenieros técnicos agrícolas,63,Ingenieros técnicos agrícolas,True,True
+2425,Ingenieros técnicos forestales y del medio natural,63,Ingenieros técnicos forestales y del medio natural,True,True
+2426,Profesionales de la protección ambiental,64,Profesionales de la protección ambiental,True,True
+2427,Enólogos,65,Enólogos,True,True
+2431,Ingenieros industriales y de producción,65,Ingenieros industriales y de producción,True,True
+2432,Ingenieros en construcción y obra civil,66,Ingenieros en construcción y obra civil,True,True
+2433,Ingenieros mecánicos,67,Ingenieros mecánicos,True,True
+2434,Ingenieros aeronáuticos,68,Ingenieros aeronáuticos,True,True
+2435,Ingenieros químicos,68,Ingenieros químicos,True,True
+2436,"Ingenieros de minas, metalúrgicos y afines",69,"Ingenieros de minas, metalúrgicos y afines",True,True
+2437,Ingenieros ambientales,70,Ingenieros ambientales,True,True
+2439,Ingenieros no clasificados bajo otros epígrafes,71,Ingenieros no clasificados bajo otros epígrafes,True,True
+2441,Ingenieros en electricidad,72,Ingenieros en electricidad,True,True
+2442,Ingenieros electrónicos,72,Ingenieros electrónicos,True,True
+2443,Ingenieros en telecomunicaciones,73,Ingenieros en telecomunicaciones,True,True
+2451,Arquitectos (excepto arquitectos paisajistas y urbanistas),74,Arquitectos (excepto arquitectos paisajistas y urbanistas),True,True
+2452,Arquitectos paisajistas,74,Arquitectos paisajistas,True,True
+2453,Urbanistas e ingenieros de tráfico,75,Urbanistas e ingenieros de tráfico,True,True
+2454,Ingenieros geógrafos y cartógrafos,76,Ingenieros geógrafos y cartógrafos,True,True
+2461,Ingenieros técnicos industriales y de producción,77,Ingenieros técnicos industriales y de producción,True,True
+2462,Ingenieros técnicos de obras públicas,78,Ingenieros técnicos de obras públicas,True,True
+2463,Ingenieros técnicos mecánicos,78,Ingenieros técnicos mecánicos,True,True
+2464,Ingenieros técnicos aeronáuticos,79,Ingenieros técnicos aeronáuticos,True,True
+2465,Ingenieros técnicos químicos,79,Ingenieros técnicos químicos,True,True
+2466,"Ingenieros técnicos de minas, metalúrgicos y afines",80,"Ingenieros técnicos de minas, metalúrgicos y afines",True,True
+2469,Ingenieros técnicos no clasificados bajo otros epígrafes,80,Ingenieros técnicos no clasificados bajo otros epígrafes,True,True
+2471,Ingenieros técnicos en electricidad,81,Ingenieros técnicos en electricidad,True,True
+2472,Ingenieros técnicos en electrónica,81,Ingenieros técnicos en electrónica,True,True
+2473,Ingenieros técnicos en telecomunicaciones,82,Ingenieros técnicos en telecomunicaciones,True,True
+2481,Arquitectos técnicos y técnicos urbanistas,82,Arquitectos técnicos y técnicos urbanistas,True,True
+2482,Diseñadores de productos y de prendas,83,Diseñadores de productos y de prendas,True,True
+2483,Ingenieros técnicos en topografía,84,Ingenieros técnicos en topografía,True,True
+2484,Diseñadores gráficos y multimedia,84,Diseñadores gráficos y multimedia,True,True
+2511,Abogados,85,Abogados,True,True
+2512,Fiscales,86,Fiscales,True,True
+2513,Jueces y magistrados,86,Jueces y magistrados,True,True
+2591,Notarios y registradores,87,Notarios y registradores,True,True
+2592,Procuradores,88,Procuradores,True,True
+2599,Profesionales del derecho no clasificados bajo otros epígrafes,88,Profesionales del derecho no clasificados bajo otros epígrafes,True,True
+2611,Especialistas en contabilidad,88,Especialistas en contabilidad,True,True
+2612,Asesores financieros y en inversiones,89,Asesores financieros y en inversiones,True,True
+2613,Analistas financieros,90,Analistas financieros,True,True
+2621,Analistas de gestión y organización,90,Analistas de gestión y organización,True,True
+2622,Especialistas en administración de política de empresas,91,Especialistas en administración de política de empresas,True,True
+2623,Especialistas de la Administración Pública,92,Especialistas de la administración pública,True,True
+2624,Especialistas en políticas y servicios de personal y afines,92,Especialistas en políticas y servicios de personal y afines,True,True
+2625,Especialistas en formación de personal,93,Especialistas en formación de personal,True,True
+2630,Técnicos de empresas y actividades turísticas,94,Técnicos de empresas y actividades turísticas,True,True
+2640,Profesionales de ventas técnicas y médicas (excepto las TIC),94,Profesionales de ventas técnicas y médicas (excepto las tic),True,True
+2651,Profesionales de la publicidad y la comercialización,95,Profesionales de la publicidad y la comercialización,True,True
+2652,Profesionales de relaciones públicas,96,Profesionales de relaciones públicas,True,True
+2653,Profesionales de la venta de tecnologías de la información y las comunicaci o-,97,Profesionales de la venta de tecnologías de la información y las comunicaciones,True,True
+2711,Analistas de sistemas,97,Analistas de sistemas,True,True
+2712,Analistas y diseñadores de software,98,Analistas y diseñadores de software,True,True
+2713,"Analistas, programadores y diseñadores Web y multimedia",98,"Analistas, programadores y diseñadores web y multimedia",True,True
+2719,Analistas y diseñadores de software y multimedia no clasificados bajo otros,99,Analistas y diseñadores de software y multimedia no clasificados bajo otros epígrafes,True,True
+2721,Diseñadores y administradores de bases de datos,100,Diseñadores y administradores de bases de datos,True,True
+2722,Administradores de sistemas y redes,100,Administradores de sistemas y redes,True,True
+2723,Analistas de redes informáticas,101,Analistas de redes informáticas,True,True
+2729,Especialistas en bases de datos y en redes informát icas no clasificados bajo,102,Especialistas en bases de datos y en redes informáticas no clasificados bajo otros epígrafes,True,True
+2810,Economistas,102,Economistas,True,True
+2821,"Sociólogos, geógrafos, antropólogos, arqueólogos y afines",103,"Sociólogos, geógrafos, antropólogos, arqueólogos y afines",True,True
+2822,"Filósofos, historiadores y profesionales en ciencias políticas",104,"Filósofos, historiadores y profesionales en ciencias políticas",True,True
+2823,Psicólogos,105,Psicólogos,True,True
+2824,Profesionales del trabajo y la educación social,106,Profesionales del trabajo y la educación social,True,True
+2825,Agentes de igualdad de oportunidades entre mujeres y hombres,107,Agentes de igualdad de oportunidades entre mujeres y hombres,True,True
+2830,Sacerdotes de las distintas religiones,107,Sacerdotes de las distintas religiones,True,True
+2911,Archivistas y conservadores de museos,108,Archivistas y conservadores de museos,True,True
+2912,"Bibliotecarios, documentalistas y afines",109,"Bibliotecarios, documentalistas y afines",True,True
+2921,Escritores,110,Escritores,True,True
+2922,Periodistas,111,Periodistas,True,True
+2923,"Filólogos, intérpretes y traductores",111,"Filólogos, intérpretes y traductores",True,True
+2931,Artistas de artes plásticas y visuales,112,Artistas de artes plásticas y visuales,True,True
+2932,"Compositores, músicos y cantantes",113,"Compositores, músicos y cantantes",True,True
+2933,Coreógrafos y bailarines,114,Coreógrafos y bailarines,True,True
+2934,"Directores de cine, de teatro y afines",114,"Directores de cine, de teatro y afines",True,True
+2935,Actores,115,Actores,True,True
+2936,"Locutores de radio, televisión y otros presentadores",116,"Locutores de radio, televisión y otros presentadores",True,True
+2937,Profesionales de espectáculos taurinos,116,Profesionales de espectáculos taurinos,True,True
+2939,Artistas creativos e interpretativos no clasificados bajo otros epígrafes,117,Artistas creativos e interpretativos no clasificados bajo otros epígrafes,True,True
+3110,Delineantes y dibujantes técnicos,117,Delineantes y dibujantes técnicos,True,True
+3121,Técnicos en ciencias físicas y químicas,118,Técnicos en ciencias físicas y químicas,True,True
+3122,Técnicos en construcción,119,Técnicos en construcción,True,True
+3123,Técnicos en electricidad,120,Técnicos en electricidad,True,True
+3124,Técnicos en electrónica (excepto electromedicina),120,Técnicos en electrónica (excepto electro medicina),True,True
+3125,"Técnicos en electrónica, especialidad en electromedicina",121,"Técnicos en electrónica, especialidad en electro medicina",True,True
+3126,Técnicos en mecánica,122,Técnicos en mecánica,True,True
+3127,Técnicos y analistas de laboratorio en química industrial,123,Técnicos y analistas de laboratorio en química industrial,True,True
+3128,Técnicos en metalurgia y minas,124,Técnicos en metalurgia y minas,True,True
+3129,"Otros técnicos de las ciencias físicas, químicas, medioa mbientales y de las",124,"Otros técnicos de las ciencias físicas, químicas, medioambientales y de las ingenierías",True,True
+3131,Técnicos en instalaciones de producción de energía,125,Técnicos en instalaciones de producción de energía,True,True
+3132,"Técnicos en instalaciones de tratamiento de residuos, de aguas y otros",126,"Técnicos en instalaciones de tratamiento de residuos, de aguas y otros operadores en plantas similares",True,True
+3133,Técnicos en control de instalaciones de procesamiento de productos químicos,127,Técnicos en control de instalaciones de procesamiento de productos químicos,True,True
+3134,Técnicos de refinerías de petróleo y gas natural,127,Técnicos de refinerías de petróleo y gas natural,True,True
+3135,Técnicos en control de procesos de producción de metales,128,Técnicos en control de procesos de producción de metales,True,True
+3139,Técnicos en control de procesos no clasificados bajo otros epígrafes,129,Técnicos en control de procesos no clasificados bajo otros epígrafes,True,True
+3141,Técnicos en ciencias biológicas (excepto en áreas sanitarias),129,Técnicos en ciencias biológicas (excepto en áreas sanitarias),True,True
+3142,Técnicos agropecuarios,130,Técnicos agropecuarios,True,True
+3143,Técnicos forestales y del medio natural,131,Técnicos forestales y del medio natural,True,True
+3151,Jefes y oficiales de máquinas,132,Jefes y oficiales de máquinas,True,True
+3152,Capitanes y oficiales de puente,132,Capitanes y oficiales de puente,True,True
+3153,Pilotos de aviación y profesionales afines,133,Pilotos de aviación y profesionales afines,True,True
+3154,Controladores de tráfico aéreo,133,Controladores de tráfico aéreo,True,True
+3155,Técnicos en seguridad aeronáutica,134,Técnicos en seguridad aeronáutica,True,True
+3160,"Técnicos de control de calidad de las ciencias físicas, químicas y de las",135,"Técnicos de control de calidad de las ciencias físicas, químicas y de las ingenierías",True,True
+3201,Supervisores en ingeniería de minas,136,Supervisores en ingeniería de minas,True,True
+3202,Supervisores de la construcción,136,Supervisores de la construcción,True,True
+3203,Supervisores de industrias alimenticias y del tabaco,137,Supervisores de industrias alimenticias y del tabaco,True,True
+3204,Supervisores de industrias química y farmacéutica,137,Supervisores de industrias química y farmacéutica,True,True
+3205,"Supervisores de industrias de transformación de plásticos, caucho y resinas",138,"Supervisores de industrias de transformación de plásticos, caucho y resinas naturales",True,True
+3206,Supervisores de industrias de la madera y pastero papeleras,138,Supervisores de industrias de la madera y pastero papeleras,True,True
+3207,Supervisores de la producción en industrias de artes gráficas y en la fabrica-,139,Supervisores de la producción en industrias de artes gráficas y en la fabricación de productos de papel,True,True
+3209,Supervisores de otras industrias manufactureras,139,Supervisores de otras industrias manufactureras,True,True
+3311,Técnicos en radioterapia,140,Técnicos en radioterapia,True,True
+3312,Técnicos en imagen para el diagnóstico,141,Técnicos en imagen para el diagnóstico,True,True
+3313,Técnicos en anatomía patológica y citología,141,Técnicos en anatomía patológica y citología,True,True
+3314,Técnicos en laboratorio de diagnóstico clínico,142,Técnicos en laboratorio de diagnóstico clínico,True,True
+3315,Técnicos en ortoprótesis,143,Técnicos en ortoprótesis,True,True
+3316,Técnicos en prótesis dentales,143,Técnicos en prótesis dentales,True,True
+3317,Técnicos en audioprótesis,143,Técnicos en audioprótesis,True,True
+3321,Técnicos superiores en higiene bucodental,144,Técnicos superiores en higiene bucodental,True,True
+3322,Técnicos superiores en documentación sanitaria,145,Técnicos superiores en documentación sanitaria,True,True
+3323,Técnicos superiores en dietética,145,Técnicos superiores en dietética,True,True
+3324,Técnicos en optometría,146,Técnicos en optometría,True,True
+3325,Ayudantes fisioterapeutas,146,Ayudantes fisioterapeutas,True,True
+3326,Técnicos en prevención de riesgos laborales y salud ambiental,147,Técnicos en prevención de riesgos laborales y salud ambiental,True,True
+3327,Ayudantes de veterinaria,148,Ayudantes de veterinaria,True,True
+3329,Técnicos de la sanidad no clasificados bajo otros epígrafes,149,Técnicos de la sanidad no clasificados bajo otros epígrafes,True,True
+3331,"Profesionales de la acupuntura, la naturopatía, la homeopatía, la medicina",149,"Profesionales de la acupuntura, la naturopatía, la homeopatía, la medicina tradicional china y la ayurveda",True,True
+3339,Otros profesionales de las terapias alternativas,150,Otros profesionales de las terapias alternativas,True,True
+3401,"Profesionales de apoyo e intermediarios de cambio, bolsa y finanzas",151,"Profesionales de apoyo e intermediarios de cambio, bolsa y finanzas",True,True
+3402,Comerciales de préstamos y créditos,152,Comerciales de préstamos y créditos,True,True
+3403,Tenedores de libros,152,Tenedores de libros,True,True
+3404,"Profesionales de apoyo en servicios estadísticos, matemáticos y afines",153,"Profesionales de apoyo en servicios estadísticos, matemáticos y afines",True,True
+3405,Tasadores,154,Tasadores,True,True
+3510,Agentes y representantes comerciales,154,Agentes y representantes comerciales,True,True
+3521,Mediadores y agentes de seguros,155,Mediadores y agentes de seguros,True,True
+3522,Agentes de compras,155,Agentes de compras,True,True
+3523,Consignatarios,156,Consignatarios,True,True
+3531,Representantes de aduanas,157,Representantes de aduanas,True,True
+3532,Organizadores de conferencias y eventos,157,Organizadores de conferencias y eventos,True,True
+3533,Agentes o intermediarios en la contratación de la mano de obra (excep to,158,Agentes o intermediarios en la contratación de la mano de obra (excepto representantes de espectáculos),True,True
+3534,Agentes y administradores de la propiedad inmobiliaria,159,Agentes y administradores de la propiedad inmobiliaria,True,True
+3535,Portavoces y agentes de relaciones públicas,159,Portavoces y agentes de relaciones públicas,True,True
+3539,Representantes artísticos y deportivos y otros agentes de servicios comercia-,160,Representantes artísticos y deportivos y otros agentes de servicios comerciales no clasificados bajo otros epígrafes,True,True
+3611,Supervisores de secretaría,161,Supervisores de secretaría,True,True
+3612,Asistentes jurídico-legales,161,Asistentes jurídico-legales,True,True
+3613,Asistentes de dirección y administrativos,162,Asistentes de dirección y administrativos,True,True
+3614,Secretarios de centros médicos o clínicas,162,Secretarios de centros médicos o clínicas,True,True
+3621,Profesionales de apoyo de la Administración Pública de tributos,163,Profesionales de apoyo de la administración pública de tributos,True,True
+3622,Profesionales de apoyo de la Administración Pública de servicios sociales,164,Profesionales de apoyo de la administración pública de servicios sociales,True,True
+3623,Profesionales de apoyo de la Administración Pública de servicios de expedi-,164,Profesionales de apoyo de la administración pública de servicios de expedición de licencias,True,True
+3629,Otros profesionales de apoyo de la Administración Pública para tareas de,165,Otros profesionales de apoyo de la administración pública para tareas de inspección y control y tareas similares,True,True
+3631,"Técnicos de la policía nacional, autonómica y local",165,"Técnicos de la policía nacional, autonómica y local",True,True
+3632,Suboficiales de la guardia civil,166,Suboficiales de la guardia civil,True,True
+3711,Profesionales de apoyo de servicios jurídicos y servicios similares,167,Profesionales de apoyo de servicios jurídicos y servicios similares,True,True
+3712,Detectives privados,167,Detectives privados,True,True
+3713,Profesionales de apoyo al trabajo y a la educación social,168,Profesionales de apoyo al trabajo y a la educación social,True,True
+3714,Promotores de igualdad de oportunidades entre mujeres y hombres,169,Promotores de igualdad de oportunidades entre mujeres y hombres,True,True
+3715,Animadores comunitarios,169,Animadores comunitarios,True,True
+3716,Auxiliares laicos de las religiones,170,Auxiliares laicos de las religiones,True,True
+3721,Atletas y deportistas,170,Atletas y deportistas,True,True
+3722,Entrenadores y árbitros de actividades deportivas,171,Entrenadores y árbitros de actividades deportivas,True,True
+3723,Instructores de actividades deportivas,172,Instructores de actividades deportivas,True,True
+3724,Monitores de actividades recreativas y de entretenimiento,172,Monitores de actividades recreativas y de entretenimiento,True,True
+3731,Fotógrafos,173,Fotógrafos,True,True
+3732,Diseñadores y decoradores de interior,174,Diseñadores y decoradores de interior,True,True
+3733,"Técnicos en galerías de arte, museos y bibliotecas",175,"Técnicos en galerías de arte, museos y bibliotecas",True,True
+3734,Chefs,175,Chefs,True,True
+3739,Otros técnicos y profesionales de apoyo de actividades culturales y artísticas,176,Otros técnicos y profesionales de apoyo de actividades culturales y artísticas,True,True
+3811,Técnicos en operaciones de sistemas informáticos,177,Técnicos en operaciones de sistemas informáticos,True,True
+3812,Técnicos en asistencia al usuario de tecnologías de la información,177,Técnicos en asistencia al usuario de tecnologías de la información,True,True
+3813,Técnicos en redes,178,Técnicos en redes,True,True
+3814,Técnicos de la Web,179,Técnicos de la web,True,True
+3820,Programadores informáticos,179,Programadores informáticos,True,True
+3831,Técnicos de grabación audiovisual,180,Técnicos de grabación audiovisual,True,True
+3832,Técnicos de radiodifusión,180,Técnicos de radiodifusión,True,True
+3833,Técnicos de ingeniería de las telecomunicaciones,181,Técnicos de ingeniería de las telecomunicaciones,True,True
+4111,Empleados de contabilidad,182,Empleados de contabilidad,True,True
+4112,Empleados de control de personal y nóminas,182,Empleados de control de personal y nóminas,True,True
+4113,"Empleados de oficina de servicios estadísticos, financieros y bancarios",183,"Empleados de oficina de servicios estadísticos, financieros y bancarios",True,True
+4121,Empleados de control de abastecimientos e inventario,183,Empleados de control de abastecimientos e inventario,True,True
+4122,Empleados de oficina de servicios de apoyo a la producción,184,Empleados de oficina de servicios de apoyo a la producción,True,True
+4123,Empleados de logística y transporte de pasajeros y mercancías,185,Empleados de logística y transporte de pasajeros y mercancías,True,True
+4210,Empleados de bibliotecas y archivos,185,Empleados de bibliotecas y archivos,True,True
+4221,Empleados de servicios de correos (excepto empleados de mostrador),186,Empleados de servicios de correos (excepto empleados de mostrador),True,True
+4222,Codificadores y correctores de imprenta,187,Codificadores y correctores de imprenta,True,True
+4223,Empleados de servicio de personal,187,Empleados de servicio de personal,True,True
+4301,Grabadores de datos,188,Grabadores de datos,True,True
+4309,Empleados administrativos sin tareas de atención al público no clasificados,188,Empleados administrativos sin tareas de atención al público no clasificados bajo otros epígrafes,True,True
+4411,Empleados de información al usuario,189,Empleados de información al usuario,True,True
+4412,Recepcionistas (excepto de hoteles),190,Recepcionistas (excepto de hoteles),True,True
+4421,Empleados de agencias de viajes,190,Empleados de agencias de viajes,True,True
+4422,Recepcionistas de hoteles,191,Recepcionistas de hoteles,True,True
+4423,Telefonistas,192,Telefonistas,True,True
+4424,Teleoperadores,192,Teleoperadores,True,True
+4430,Agentes de encuestas,193,Agentes de encuestas,True,True
+4441,Cajeros de bancos y afines,193,Cajeros de bancos y afines,True,True
+4442,Empleados de venta de apuestas,194,Empleados de venta de apuestas,True,True
+4443,Empleados de sala de juegos y afines,194,Empleados de sala de juegos y afines,True,True
+4444,Empleados de casas de empeño y de préstamos,195,Empleados de casas de empeño y de préstamos,True,True
+4445,"Cobradores de facturas, deudas y empleados afines",195,"Cobradores de facturas, deudas y empleados afines",True,True
+4446,Empleados de mostrador de correos,196,Empleados de mostrador de correos,True,True
+4500,Empleados administrativos con tareas de atención al público no clasificados,196,Empleados administrativos con tareas de atención al público no clasificados bajo otros epígrafes,True,True
+5000,Camareros y cocineros propietarios,197,Camareros y cocineros propietarios,True,True
+5110,Cocineros asalariados,198,Cocineros asalariados,True,True
+5120,Camareros asalariados,199,Camareros asalariados,True,True
+5210,Jefes de sección de tiendas y almacenes,200,Jefes de sección de tiendas y almacenes,True,True
+5220,Vendedores en tiendas y almacenes,201,Vendedores en tiendas y almacenes,True,True
+5300,Comerciantes propietarios de tiendas,202,Comerciantes propietarios de tiendas,True,True
+5411,Vendedores en quioscos,202,Vendedores en quioscos,True,True
+5412,Vendedores en mercados ocasionales y mercadillos,203,Vendedores en mercados ocasionales y mercadillos,True,True
+5420,Operadores de telemarketing,204,Operadores de telemarketing,True,True
+5430,Expendedores de gasolineras,205,Expendedores de gasolineras,True,True
+5491,Vendedores a domicilio,205,Vendedores a domicilio,True,True
+5492,Promotores de venta,206,Promotores de venta,True,True
+5493,"Modelos de moda, arte y publicidad",206,"Modelos de moda, arte y publicidad",True,True
+5499,Vendedores no clasificados bajo otros epígrafes,207,Vendedores no clasificados bajo otros epígrafes,True,True
+5500,Cajeros y taquilleros (excepto bancos),207,Cajeros y taquilleros (excepto bancos),True,True
+5611,Auxiliares de enfermería hospitalaria,208,Auxiliares de enfermería hospitalaria,True,True
+5612,Auxiliares de enfermería de atención primaria,209,Auxiliares de enfermería de atención primaria,True,True
+5621,Técnicos auxiliares de farmacia,209,Técnicos auxiliares de farmacia,True,True
+5622,Técnicos de emergencias sanitarias,210,Técnicos de emergencias sanitarias,True,True
+5629,Trabajadores de los cuidados a las personas en servicios de salud no clasifi-,211,Trabajadores de los cuidados a las personas en servicios de salud no clasificados bajo otros epígrafes,True,True
+5710,Trabajadores de los cuidados personales a domicilio,211,Trabajadores de los cuidados personales a domicilio,True,True
+5721,Cuidadores de niños en guarderías y centros educativos,213,Cuidadores de niños en guarderías y centros educativos,True,True
+5722,Cuidadores de niños en domicilios,213,Cuidadores de niños en domicilios,True,True
+5811,Peluqueros,214,Peluqueros,True,True
+5812,"Especialistas en tratamientos de estética, bienestar y afines",214,"Especialistas en tratamientos de estética, bienestar y afines",True,True
+5821,"Auxiliares de vuelo y camareros de avión, barco y tren",215,"Auxiliares de vuelo y camareros de avión, barco y tren",True,True
+5822,Revisores y cobradores de transporte terrestre,216,Revisores y cobradores de transporte terrestre,True,True
+5823,Acompañantes turísticos,216,Acompañantes turísticos,True,True
+5824,Azafatos de tierra,217,Azafatos de tierra,True,True
+5825,Guías de turismo,218,Guías de turismo,True,True
+5831,"Supervisores de mantenimiento y limpieza en oficinas, hoteles y otros establ e-",218,"Supervisores de mantenimiento y limpieza en oficinas, hoteles y otros establecimientos",True,True
+5832,Mayordomos del servicio doméstico,219,Mayordomos del servicio doméstico,True,True
+5833,Conserjes de edificios,220,Conserjes de edificios,True,True
+5840,Trabajadores propietarios de pequeños alojamientos,220,Trabajadores propietarios de pequeños alojamientos,True,True
+5891,Asistentes personales o personas de compañía,221,Asistentes personales o personas de compañía,True,True
+5892,Empleados de pompas fúnebres y embalsamadores,222,Empleados de pompas fúnebres y embalsamadores,True,True
+5893,Cuidadores de animales y adiestradores,222,Cuidadores de animales y adiestradores,True,True
+5894,Instructores de autoescuela,223,Instructores de autoescuela,True,True
+5895,"Astrólogos, adivinadores y afines",223,"Astrólogos, adivinadores y afines",True,True
+5899,Trabajadores de servicios personales no clasificados bajo otros epígrafes,224,Trabajadores de servicios personales no clasificados bajo otros epígrafes,True,True
+5910,Guardias civiles,224,Guardias civiles,True,True
+5921,Policías nacionales,225,Policías nacionales,True,True
+5922,Policías autonómicos,225,Policías autonómicos,True,True
+5923,Policías locales,226,Policías locales,True,True
+5931,Bomberos (excepto forestales),226,Bomberos (excepto forestales),True,True
+5932,Bomberos forestales,227,Bomberos forestales,True,True
+5941,Vigilantes de seguridad y similares habilitados para ir armados,227,Vigilantes de seguridad y similares habilitados para ir armados,True,True
+5942,Auxiliares de vigilante de seguridad y similares no habilitados para ir armados,228,Auxiliares de vigilante de seguridad y similares no habilitados para ir armados,True,True
+5991,Vigilantes de prisiones,229,Vigilantes de prisiones,True,True
+5992,Bañistas-socorristas,229,Bañistas-socorristas,True,True
+5993,Agentes forestales y medioambientales,230,Agentes forestales y medioambientales,True,True
+5999,Trabajadores de los servicios de protección y seguridad no clasificados bajo,230,Trabajadores de los servicios de protección y seguridad no clasificados bajo otros epígrafes,True,True
+6110,"Trabajadores cualificados en actividades agrícolas (excepto en huertas,",231,"Trabajadores cualificados en actividades agrícolas (excepto en huertas, invernaderos, viveros y jardines)",True,True
+6120,"Trabajadores cualificados en huertas, invernaderos, viveros y jardines",232,"Trabajadores cualificados en huertas, invernaderos, viveros y jardines",True,True
+6201,Trabajadores cualificados en actividades ganaderas de vacuno,233,Trabajadores cualificados en actividades ganaderas de vacuno,True,True
+6202,Trabajadores cualificados en actividades ganaderas de ovino y caprino,234,Trabajadores cualificados en actividades ganaderas de ovino y caprino,True,True
+6203,Trabajadores cualificados en actividades ganaderas de porcino,235,Trabajadores cualificados en actividades ganaderas de porcino,True,True
+6204,Trabajadores cualificados en apicultura y sericicultura,236,Trabajadores cualificados en apicultura y sericicultura,True,True
+6205,Trabajadores cualificados en la avicultura y la cunicultura,237,Trabajadores cualificados en la avicultura y la cunicultura,True,True
+6209,Trabajadores cualificados en actividades ganaderas no clasificados bajo otros,238,Trabajadores cualificados en actividades ganaderas no clasificados bajo otros epígrafes,True,True
+6300,Trabajadores cualificados en actividades agropecuarias mixtas,239,Trabajadores cualificados en actividades agropecuarias mixtas,True,True
+6410,Trabajadores cualificados en actividades forestales y del medio natural,240,Trabajadores cualificados en actividades forestales y del medio natural,True,True
+6421,Trabajadores cualificados en la acuicultura,241,Trabajadores cualificados en la acuicultura,True,True
+6422,Pescadores de aguas costeras y aguas dulces,242,Pescadores de aguas costeras y aguas dulces,True,True
+6423,Pescadores de altura,243,Pescadores de altura,True,True
+6430,Trabajadores cualificados en actividades cinegéticas,244,Trabajadores cualificados en actividades cinegéticas,True,True
+7111,Encofradores y operarios de puesta en obra de hormigón,244,Encofradores y operarios de puesta en obra de hormigón,True,True
+7112,Montadores de prefabricados estructurales (sólo hormigón),245,Montadores de prefabricados estructurales (sólo hormigón),True,True
+7121,Albañiles,246,Albañiles,True,True
+7122,"Canteros, tronzadores, labrantes y grabadores de piedras",246,"Canteros, tronzadores, labrantes y grabadores de piedras",True,True
+7131,Carpinteros (excepto ebanistas),247,Carpinteros (excepto ebanistas),True,True
+7132,Instaladores de cerramientos metálicos y carpinteros metálicos (excepto,247,Instaladores de cerramientos metálicos y carpinteros metálicos (excepto montadores de estructuras metálicas),True,True
+7191,Mantenedores de edificios,248,Mantenedores de edificios,True,True
+7192,Instaladores de fachadas técnicas,249,Instaladores de fachadas técnicas,True,True
+7193,Instaladores de sistemas de impermeabilización en edificios,249,Instaladores de sistemas de impermeabilización en edificios,True,True
+7199,Otros trabajadores de las obras estructurales de construcción no clasificados,249,Otros trabajadores de las obras estructurales de construcción no clasificados bajo otros epígrafes,True,True
+7211,Escayolistas,250,Escayolistas,True,True
+7212,Aplicadores de revestimientos de pasta y mortero,251,Aplicadores de revestimientos de pasta y mortero,True,True
+7221,Fontaneros,251,Fontaneros,True,True
+7222,Montadores-instaladores de gas en edificios,252,Montadores-instaladores de gas en edificios,True,True
+7223,Instaladores de conductos en obra pública,252,Instaladores de conductos en obra pública,True,True
+7231,Pintores y empapeladores,253,Pintores y empapeladores,True,True
+7232,Pintores en las industrias manufactureras,254,Pintores en las industrias manufactureras,True,True
+7240,"Soladores, colocadores de parquet y afines",254,"Soladores, colocadores de parquet y afines",True,True
+7250,Mecánicos-instaladores de refrigeración y climatización,255,Mecánicos-instaladores de refrigeración y climatización,True,True
+7291,Montadores de cubiertas,255,Montadores de cubiertas,True,True
+7292,Instaladores de material aislante térmico y de insonorización,256,Instaladores de material aislante térmico y de insonorización,True,True
+7293,Cristaleros,256,Cristaleros,True,True
+7294,Montadores-instaladores de placas de energía solar,257,Montadores-instaladores de placas de energía solar,True,True
+7295,Personal de limpieza de fachadas de edificios y chimeneas,258,Personal de limpieza de fachadas de edificios y chimeneas,True,True
+7311,Moldeadores y macheros,258,Moldeadores y macheros,True,True
+7312,Soldadores y oxicortadores,259,Soldadores y oxicortadores,True,True
+7313,Chapistas y caldereros,260,Chapistas y caldereros,True,True
+7314,Montadores de estructuras metálicas,260,Montadores de estructuras metálicas,True,True
+7315,Montadores de estructuras cableadas y empalmadores de cables,261,Montadores de estructuras cableadas y empalmadores de cables,True,True
+7321,Herreros y forjadores,262,Herreros y forjadores,True,True
+7322,"Trabajadores de la fabricación de herramientas, mecánico- ajustadores,",262,"Trabajadores de la fabricación de herramientas, mecánico-ajustadores, modelistas, matriceros y afines",True,True
+7323,Ajustadores y operadores de máquinas-herramienta,263,Ajustadores y operadores de máquinas-herramienta,True,True
+7324,Pulidores de metales y afiladores de herramientas,264,Pulidores de metales y afiladores de herramientas,True,True
+7401,Mecánicos y ajustadores de vehículos de motor,265,Mecánicos y ajustadores de vehículos de motor,True,True
+7402,Mecánicos y ajustadores de motores de avión,265,Mecánicos y ajustadores de motores de avión,True,True
+7403,Mecánicos y ajustadores de maquinaria agrícola e industrial,266,Mecánicos y ajustadores de maquinaria agrícola e industrial,True,True
+7404,Mecánicos y ajustadores de maquinaria naval y ferroviaria,267,Mecánicos y ajustadores de maquinaria naval y ferroviaria,True,True
+7405,Reparadores de bicicletas y afines,267,Reparadores de bicicletas y afines,True,True
+7510,Electricistas de la construcción y afines,268,Electricistas de la construcción y afines,True,True
+7521,Mecánicos y reparadores de equipos eléctricos,269,Mecánicos y reparadores de equipos eléctricos,True,True
+7522,Instaladores y reparadores de líneas eléctricas,269,Instaladores y reparadores de líneas eléctricas,True,True
+7531,Mecánicos y reparadores de equipos electrónicos,270,Mecánicos y reparadores de equipos electrónicos,True,True
+7532,Instaladores y reparadores en electromedicina,271,Instaladores y reparadores en electro medicina,True,True
+7533,Instaladores y reparadores en tecnologías de la información y las comunica-,271,Instaladores y reparadores en tecnologías de la información y las comunicaciones,True,True
+7611,Relojeros y mecánicos de instrumentos de precisión,272,Relojeros y mecánicos de instrumentos de precisión,True,True
+7612,Lutieres y similares; afinadores de instrumentos musicales,273,Lutieres y similares; afinadores de instrumentos musicales,True,True
+7613,"Joyeros, orfebres y plateros",274,"Joyeros, orfebres y plateros",True,True
+7614,"Trabajadores de la cerámica, alfareros y afines",275,"Trabajadores de la cerámica, alfareros y afines",True,True
+7615,"Sopladores, modeladores, laminadores, cortadores y pulidores de vidrio",275,"Sopladores, modeladores, laminadores, cortadores y pulidores de vidrio",True,True
+7616,"Rotulistas, grabadores de vidrio, pintores decorativos de artículos diversos",276,"Rotulistas, grabadores de vidrio, pintores decorativos de artículos diversos",True,True
+7617,"Artesanos en madera y materiales similares; cesteros, bruceros y trabajadores",277,Artesanos en madera y materiales similares,True,True
+7618,"Artesanos en tejidos, cueros y materiales similares, preparadores de fibra y",278,"Artesanos en tejidos, cueros y materiales similares, preparadores de fibra y tejedores con telares artesanos o de tejidos de punto y afines",True,True
+7619,Artesanos no clasificados bajo otros epígrafes,279,Artesanos no clasificados bajo otros epígrafes,True,True
+7621,Trabajadores de procesos de preimpresión,280,Trabajadores de procesos de preimpresión,True,True
+7622,Trabajadores de procesos de impresión,280,Trabajadores de procesos de impresión,True,True
+7623,Trabajadores de procesos de encuadernación,281,Trabajadores de procesos de encuadernación,True,True
+7701,Matarifes y trabajadores de las industrias cárnicas,282,Matarifes y trabajadores de las industrias cárnicas,True,True
+7702,Trabajadores de las industrias del pescado,282,Trabajadores de las industrias del pescado,True,True
+7703,"Panaderos, pasteleros y confiteros",283,"Panaderos, pasteleros y confiteros",True,True
+7704,Trabajadores del tratamiento de la leche y elaboración de productos lácteos,283,Trabajadores del tratamiento de la leche y elaboración de productos lácteos (incluidos helados),True,True
+7705,Trabajadores conserveros de frutas y hortalizas y trabajadores de la elabor a-,284,Trabajadores conserveros de frutas y hortalizas y trabajadores de la elaboración de bebidas no alcohólicas,True,True
+7706,Trabajadores de la elaboración de bebidas alcohólicas distintas del vino,285,Trabajadores de la elaboración de bebidas alcohólicas distintas del vino,True,True
+7707,Trabajadores de la elaboración del vino,286,Trabajadores de la elaboración del vino,True,True
+7708,Preparadores y elaboradores del tabaco y sus productos,286,Preparadores y elaboradores del tabaco y sus productos,True,True
+7709,Catadores y clasificadores de alimentos y bebidas,287,Catadores y clasificadores de alimentos y bebidas,True,True
+7811,Trabajadores del tratamiento de la madera,287,Trabajadores del tratamiento de la madera,True,True
+7812,Ajustadores y operadores de máquinas para trabajar la madera,288,Ajustadores y operadores de máquinas para trabajar la madera,True,True
+7820,Ebanistas y trabajadores afines,289,Ebanistas y trabajadores afines,True,True
+7831,"Sastres, modistos, peleteros y sombrereros",290,"Sastres, modistos, peleteros y sombrereros",True,True
+7832,Patronistas para productos en textil y piel,290,Patronistas para productos en textil y piel,True,True
+7833,"Cortadores de tejidos, cuero, piel y otros materiales",291,"Cortadores de tejidos, cuero, piel y otros materiales",True,True
+7834,"Costureros a mano, bordadores y afines",292,"Costureros a mano, bordadores y afines",True,True
+7835,"Tapiceros, colchoneros y afines",292,"Tapiceros, colchoneros y afines",True,True
+7836,Curtidores y preparadores de pieles,293,Curtidores y preparadores de pieles,True,True
+7837,Zapateros y afines,294,Zapateros y afines,True,True
+7891,Buceadores,295,Buceadores,True,True
+7892,Pegadores,295,Pegadores,True,True
+7893,"Clasificadores y probadores de productos (excepto alimentos, bebidas y",296,"Clasificadores y probadores de productos (excepto alimentos, bebidas y tabaco)",True,True
+7894,Fumigadores y otros controladores de plagas y malas hierbas,297,Fumigadores y otros controladores de plagas y malas hierbas,True,True
+7899,"Oficiales, operarios y artesanos de otros oficios no clasificados bajo otros",298,"Oficiales, operarios y artesanos de otros oficios no clasificados bajo otros epígrafes",True,True
+8111,Mineros y otros operadores en instalaciones mineras,298,Mineros y otros operadores en instalaciones mineras,True,True
+8112,Operadores en instalaciones para la preparación de minerales y rocas,299,Operadores en instalaciones para la preparación de minerales y rocas,True,True
+8113,Sondistas y trabajadores afines,300,Sondistas y trabajadores afines,True,True
+8114,Operadores de maquinaria para fabricar productos derivados de minerales no,301,Operadores de maquinaria para fabricar productos derivados de minerales no metálicos,True,True
+8121,Operadores en instalaciones para la obtención y transformación de metales,302,Operadores en instalaciones para la obtención y transformación de metales,True,True
+8122,"Operadores de máquinas pulidoras, galvanizadoras y recubridoras de metales",303,"Operadores de máquinas pulidoras, galvanizadoras y recubridoras de metales",True,True
+8131,Operadores en plantas industriales químicas,303,Operadores en plantas industriales químicas,True,True
+8132,"Operadores de máquinas para fabricar productos farmacéuticos, cosméticos y",304,"Operadores de máquinas para fabricar productos farmacéuticos, cosméticos y afines",True,True
+8133,Operadores de laboratorios fotográficos y afines,305,Operadores de laboratorios fotográficos y afines,True,True
+8141,Operadores de máquinas para fabricar productos de caucho y derivados de,305,Operadores de máquinas para fabricar productos de caucho y derivados de resinas naturales,True,True
+8142,Operadores de máquinas para fabricar productos de material plástico,306,Operadores de máquinas para fabricar productos de material plástico,True,True
+8143,Operadores de máquinas para fabricar productos de papel y cartón,307,Operadores de máquinas para fabricar productos de papel y cartón,True,True
+8144,"Operadores de serrerías, de máquinas de fabricación de tableros y de instal a-",307,"Operadores de serrerías, de máquinas de fabricación de tableros y de instalaciones afines para el tratamiento de la madera y el corcho",True,True
+8145,Operadores en instalaciones para la preparación de pasta de papel y fabrica-,308,Operadores en instalaciones para la preparación de pasta de papel y fabricación de papel,True,True
+8151,"Operadores de máquinas para preparar fibras, hilar y devanar",309,"Operadores de máquinas para preparar fibras, hilar y devanar",True,True
+8152,Operadores de telares y otras máquinas tejedoras,310,Operadores de telares y otras máquinas tejedoras,True,True
+8153,Operadores de máquinas de coser y bordar,310,Operadores de máquinas de coser y bordar,True,True
+8154,"Operadores de máquinas de blanquear, teñir, estampar y acabar textiles",311,"Operadores de máquinas de blanquear, teñir, estampar y acabar textiles",True,True
+8155,Operadores de máquinas para tratar pieles y cuero,312,Operadores de máquinas para tratar pieles y cuero,True,True
+8156,"Operadores de máquinas para la fabricación del calzado, marroquinería y",313,"Operadores de máquinas para la fabricación del calzado, marroquinería y guantería de piel",True,True
+8159,Operadores de máquinas para fabricar productos textiles no clasifica dos bajo,314,Operadores de máquinas para fabricar productos textiles no clasificados bajo otros epígrafes,True,True
+8160,"Operadores de máquinas para elaborar productos aliment icios, bebidas y",314,"Operadores de máquinas para elaborar productos alimenticios, bebidas y tabaco",True,True
+8170,Operadores de máquinas de lavandería y tintorería,315,Operadores de máquinas de lavandería y tintorería,True,True
+8191,Operadores de hornos e instalaciones de vidriería y cerámica,316,Operadores de hornos e instalaciones de vidriería y cerámica,True,True
+8192,Operadores de calderas y máquinas de vapor,317,Operadores de calderas y máquinas de vapor,True,True
+8193,"Operadores de máquinas de embalaje, embotellamiento y etiquetado",318,"Operadores de máquinas de embalaje, embotellamiento y etiquetado",True,True
+8199,Operadores de instalaciones y maquinaria fijas no clasificados bajo otros,318,Operadores de instalaciones y maquinaria fijas no clasificados bajo otros epígrafes,True,True
+8201,Ensambladores de maquinaria mecánica,318,Ensambladores de maquinaria mecánica,True,True
+8202,Ensambladores de equipos eléctricos y electrónicos,319,Ensambladores de equipos eléctricos y electrónicos,True,True
+8209,Montadores y ensambladores no clasificados en otros epígrafes,320,Montadores y ensambladores no clasificados en otros epígrafes,True,True
+8311,Maquinistas de locomotoras,321,Maquinistas de locomotoras,True,True
+8312,Agentes de maniobras ferroviarias,321,Agentes de maniobras ferroviarias,True,True
+8321,Operadores de maquinaria agrícola móvil,322,Operadores de maquinaria agrícola móvil,True,True
+8322,Operadores de maquinaria forestal móvil,322,Operadores de maquinaria forestal móvil,True,True
+8331,Operadores de maquinaria de movimientos de tierras y equipos similares,323,Operadores de maquinaria de movimientos de tierras y equipos similares,True,True
+8332,"Operadores de grúas, montacargas y de maquinaria similar de mov imiento de",323,"Operadores de grúas, montacargas y de maquinaria similar de movimiento de materiales",True,True
+8333,Operadores de carretillas elevadoras,324,Operadores de carretillas elevadoras,True,True
+8340,"Marineros de puente, marineros de máquinas y afines",325,"Marineros de puente, marineros de máquinas y afines",True,True
+8411,"Conductores propietarios de automóviles, taxis y furgonetas",325,"Conductores propietarios de automóviles, taxis y furgonetas",True,True
+8412,"Conductores asalariados de automóviles, taxis y furgonetas",326,"Conductores asalariados de automóviles, taxis y furgonetas",True,True
+8420,Conductores de autobuses y tranvías,326,Conductores de autobuses y tranvías,True,True
+8431,Conductores propietarios de camiones,327,Conductores propietarios de camiones,True,True
+8432,Conductores asalariados de camiones,328,Conductores asalariados de camiones,True,True
+8440,Conductores de motocicletas y ciclomotores,328,Conductores de motocicletas y ciclomotores,True,True
+9100,Empleados domésticos,330,Empleados domésticos,True,True
+9210,"Personal de limpieza de oficinas, hoteles y otros establecimientos similares",330,"Personal de limpieza de oficinas, hoteles y otros establecimientos similares",True,True
+9221,Limpiadores en seco a mano y afines,331,Limpiadores en seco a mano y afines,True,True
+9222,Limpiadores de vehículos,332,Limpiadores de vehículos,True,True
+9223,Limpiadores de ventanas,332,Limpiadores de ventanas,True,True
+9229,Otro personal de limpieza,333,Otro personal de limpieza,True,True
+9310,Ayudantes de cocina,333,Ayudantes de cocina,True,True
+9320,Preparadores de comidas rápidas,334,Preparadores de comidas rápidas,True,True
+9410,Vendedores callejeros,335,Vendedores callejeros,True,True
+9420,"Repartidores de publicidad, limpiabotas y otros trabajadores de oficios",335,"Repartidores de publicidad, limpiabotas y otros trabajadores de oficios callejeros",True,True
+9431,Ordenanzas,336,Ordenanzas,True,True
+9432,Mozos de equipaje y afines,336,Mozos de equipaje y afines,True,True
+9433,"Repartidores, recadistas y mensajeros a pie",337,"Repartidores, recadistas y mensajeros a pie",True,True
+9434,Lectores de contadores y recaudadores de máquinas recreativas y expendedo-,338,Lectores de contadores y recaudadores de máquinas recreativas y expendedoras,True,True
+9441,Recogedores de residuos,338,Recogedores de residuos,True,True
+9442,"Clasificadores de desechos, operarios de punto limpio y recogedores de",339,"Clasificadores de desechos, operarios de punto limpio y recogedores de chatarra",True,True
+9443,Barrenderos y afines,339,Barrenderos y afines,True,True
+9490,Otras ocupaciones elementales,340,Otras ocupaciones elementales,True,True
+9511,"Peones agrícolas (excepto en huertas, invernaderos, viveros y jardines)",341,"Peones agrícolas (excepto en huertas, invernaderos, viveros y jardines)",True,True
+9512,"Peones agrícolas en huertas, invernaderos, viveros y jardines",341,"Peones agrícolas en huertas, invernaderos, viveros y jardines",True,True
+9520,Peones ganaderos,342,Peones ganaderos,True,True
+9530,Peones agropecuarios,343,Peones agropecuarios,True,True
+9541,Peones de la pesca,344,Peones de la pesca,True,True
+9542,Peones de la acuicultura,344,Peones de la acuicultura,True,True
+9543,Peones forestales y de la caza,345,Peones forestales y de la caza,True,True
+9601,Peones de obras públicas,345,Peones de obras públicas,True,True
+9602,Peones de la construcción de edificios,346,Peones de la construcción de edificios,True,True
+9603,"Peones de la minería, canteras y otras industrias extractivas",346,"Peones de la minería, canteras y otras industrias extractivas",True,True
+9700,Peones de las industrias manufactureras,347,Peones de las industrias manufactureras,True,True
+9811,Peones del transporte de mercancías y descargadores,348,Peones del transporte de mercancías y descargadores,True,True
+9812,Conductores de vehículos de tracción animal para el transporte de personas y,349,Conductores de vehículos de tracción animal para el transporte de personas y similares,True,True
+9820,Reponedores,350,Reponedores,True,True
