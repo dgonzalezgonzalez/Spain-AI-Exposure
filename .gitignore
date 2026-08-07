@@ -1,18 +1,25 @@
 __pycache__/
 *.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
 .pytest_cache/
 .mypy_cache/
 .tmp_tests/
+.ruff_cache/
 test_artifacts/
 .r_libs/
 
 data/raw/
+data/tmp/
 data/interim/
 data/cache/
 models/
 *.sqlite
 *.sqlite3
 *.db
+# Keep the published parquet in git
+!data/sepe_demandas_ocupacion_long.parquet
 
 !data/processed/
 !data/processed/*.csv

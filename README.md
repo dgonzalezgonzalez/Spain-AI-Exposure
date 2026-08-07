@@ -675,3 +675,118 @@ only for smoke tests; the defaults match Nico's production settings.
 The latest manuscript sources are
 `analysis/paper_replication/estimates_results_report_v1.tex` and
 `analysis/paper_replication/descriptive.tex`.
+
+
+# SEPE demandas de empleo por ocupacion (paro registrado a CNO 2 dígitos). Serie mensual entre 2011 y 2026
+
+Este proyecto contiene un dataset ya preparado y las herramientas para:
+
+1. inspeccionar los datos con un dashboard
+2. comprobar si el SEPE ha publicado meses nuevos y actualizar el parquet
+3. reconstruir el scraper completo en otro ordenador y volver a generar tambien los datos raw
+
+## Que contiene la carpeta
+
+- `data/sepe_demandas_ocupacion_long.parquet`
+  Dataset final listo para usar. Incluye datos desde 2011 y solo la serie de parados registrados.
+- `app.py`
+  Dashboard en Streamlit para explorar el parquet.
+- `actualizar_datos_sepe.bat`
+  Lanzador de Windows para actualizar el parquet con nuevos meses publicados por el SEPE.
+- `abrir_dashboard_sepe.bat`
+  Lanzador de Windows para abrir el dashboard en el navegador.
+- `run_pipeline.py`
+  Punto de entrada del pipeline por linea de comandos.
+- `sepe_pipeline/`
+  Codigo del scraper, transformacion y sincronizacion.
+
+## Instalacion
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+Requisitos:
+
+- Python 3.11 o compatible
+- acceso a Internet si se quieren descargar o actualizar datos desde el SEPE
+
+## Opcion 1. Empezar el analisis con el parquet
+
+Si solo quieres analizar los datos, no necesitas reconstruir el scraper ni tener `data/raw/`.
+
+Con el repositorio clonado y las dependencias instaladas, puedes:
+
+### Abrir el dashboard
+
+Por consola:
+
+```bash
+streamlit run app.py
+```
+
+En Windows, tambien puedes hacer doble clic en:
+
+- `abrir_dashboard_sepe.bat`
+
+## Opcion 2. Comprobar si hay nuevos datos y actualizar el parquet
+
+Si ya existe `data/sepe_demandas_ocupacion_long.parquet`, el pipeline:
+
+- compara el parquet local con lo ultimo publicado por el SEPE
+- descarga solo los meses que falten
+- actualiza el parquet local
+
+### Forma sencilla en Windows
+
+Haz doble clic en:
+
+- `actualizar_datos_sepe.bat`
+
+### Alternativa por consola
+
+```bash
+python run_pipeline.py --workers 10
+```
+
+Este modo sirve para mantener actualizado el parquet sin rehacer todo el historico.
+
+## Opcion 3. Replicar el scraper completo y generar tambien los raw
+
+Si quieres reproducir todo el proceso en tu ordenador, incluyendo la descarga de Excel a `data/raw/`, ejecuta:
+
+```bash
+python run_pipeline.py --rebuild-full --workers 10
+```
+
+Esto hace:
+
+- descarga de los Excel mensuales del SEPE
+- guardado de los originales en `data/raw/`
+- uso de bloques temporales en `data/tmp/`
+- generacion del parquet final `data/sepe_demandas_ocupacion_long.parquet`
+
+Notas:
+
+- `data/raw/` y `data/tmp/` no se versionan en Git porque son regenerables y pesados
+- el parquet final si se versiona para que el equipo no tenga que reconstruir todo desde cero
+
+## Esquema del parquet final
+
+Columnas:
+
+- `anio`
+- `mes`
+- `codigo_ocupacion`
+- `subgrupo_ocupacion`
+- `sexo`
+- `total de parados registrados`
+- `archivo_origen`
+- `hoja_origen`
+
+## Notas tecnicas
+
+- El scraper localiza las paginas mensuales desde el indice del SEPE y tiene una ruta de reserva si cambia la maquetacion del indice.
+- El enlace Excel se busca por fila "Libro completo" y por extension `.xls` o `.xlsx`.
+- Algunos meses de 2005 no publican Excel y el pipeline los omite.
+- El parquet final exportado empieza en 2011 y se limita a la serie de parados registrados por compatibilidad de la clasificacion CNO.
