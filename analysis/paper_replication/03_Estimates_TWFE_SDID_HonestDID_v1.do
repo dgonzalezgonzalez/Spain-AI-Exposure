@@ -1105,6 +1105,7 @@ program define run_sdid_average_paths_v1
     preserve
         clear
         svmat double M_lambda
+        * Export pre-period time weights for the appendix diagnostics and month-weight tables.
         gen row = _n
         local usable_rows = rowsof(M_lambda) - 1
         keep if row <= `usable_rows'
