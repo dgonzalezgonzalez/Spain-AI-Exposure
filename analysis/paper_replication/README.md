@@ -23,10 +23,13 @@ It then runs:
 3. `03_Estimates_TWFE_SDID_HonestDID_v1.do`: Stata estimates and diagnostics.
 4. `04_Estimates_contDID_v1.R`: continuous-treatment alternatives.
 5. `05_Output_tuning_v1.ipynb`: publication figures, tables, and validation.
+6. `06_Calibration_aggregate_results.py`: micro calibration that applies the estimated TWFE unemployment gradients to each CNO4 occupation's observed AI exposure and aggregates the implied unemployment gap to the national monthly level.
 
 Use `--replication-step prepare` or another named step for partial runs. The
 default `500` SDID and `1000` ContDID repetitions are production settings;
-smoke tests should pass smaller values explicitly.
+smoke tests should pass smaller values explicitly. The calibration step assumes
+that the prepared panel from step 1 and the TWFE coefficient CSVs from step 3
+already exist in `runtime/`.
 
 ## Tracked Artifacts
 

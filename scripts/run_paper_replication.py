@@ -17,13 +17,14 @@ from zipfile import ZipFile
 ROOT = Path(__file__).resolve().parents[1]
 PACKAGE_ROOT = ROOT / "analysis" / "paper_replication"
 RUNTIME_ROOT = PACKAGE_ROOT / "runtime"
-STEPS = ("prepare", "descriptives", "estimates", "contdid", "tuning")
+STEPS = ("prepare", "descriptives", "estimates", "contdid", "tuning", "calibration")
 SOURCE_FILES = (
     "01_Preparation_v1.ipynb",
     "02_Descriptives_v1.ipynb",
     "03_Estimates_TWFE_SDID_HonestDID_v1.do",
     "04_Estimates_contDID_v1.R",
     "05_Output_tuning_v1.ipynb",
+    "06_Calibration_aggregate_results.py",
     "descriptive.tex",
     "estimates_results_report_v1.tex",
 )
@@ -41,7 +42,7 @@ def parse_args() -> argparse.Namespace:
         "--step",
         choices=[*STEPS, "all"],
         default="all",
-        help="Production step to run; all follows the package's five-step order.",
+        help="Production step to run; all follows the package's six-step order.",
     )
     parser.add_argument("--stata-exe", default=None, help="Path to StataMP for the TWFE/SDID step.")
     parser.add_argument("--rscript", default=None, help="Path to Rscript for the ContDID step.")
@@ -194,6 +195,12 @@ def _run_notebook(filename: str) -> None:
                 raise ReplicationError(f"{filename} failed in cell {index}: {error}") from error
 
 
+def _run_python(filename: str) -> None:
+    command = [sys.executable, str(RUNTIME_ROOT / filename)]
+    print(f"Running: {' '.join(command)}")
+    subprocess.run(command, cwd=RUNTIME_ROOT, check=True)
+
+
 def _resolve_executable(explicit: str | None, env_name: str, names: list[str], defaults: list[Path]) -> Path:
     candidates = [Path(explicit)] if explicit else []
     if os.environ.get(env_name):
@@ -267,6 +274,8 @@ def run_replication(args: argparse.Namespace) -> None:
             _run_r(args.rscript, args.contdid_reps)
         elif step == "tuning":
             _run_notebook("05_Output_tuning_v1.ipynb")
+        elif step == "calibration":
+            _run_python("06_Calibration_aggregate_results.py")
     print(f"Replication outputs written to {RUNTIME_ROOT}")
 
 

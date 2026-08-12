@@ -1,0 +1,25 @@
+\begin{table}[!htbp]
+\centering
+\caption{Aggregate unemployment calibration using occupation-level AI exposure}
+\label{tab:v1_calibration_aggregate}
+\begin{threeparttable}
+\scriptsize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llrrrr}
+\toprule
+Specification & Window & Avg. observed & Avg. no-AI counterfactual & Avg. AI-related extra & Extra share (\%) \\
+\midrule
+Benchmark TWFE & Adjustment (0--24) & 2,715,927 & 2,655,190 & 60,736 & 2.24 \\
+Benchmark TWFE & Later (25--40) & 2,471,182 & 2,364,169 & 107,012 & 4.33 \\
+Benchmark TWFE & Full post (0--40) & 2,620,416 & 2,541,621 & 78,795 & 3.01 \\
+Preferred within-CNO1 TWFE & Adjustment (0--24) & 2,715,927 & 2,677,370 & 38,557 & 1.42 \\
+Preferred within-CNO1 TWFE & Later (25--40) & 2,471,182 & 2,421,472 & 49,710 & 2.01 \\
+Preferred within-CNO1 TWFE & Full post (0--40) & 2,620,416 & 2,577,507 & 42,909 & 1.64 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item \emph{Notes:} The table applies the unemployment TWFE coefficients to each CNO4 occupation's observed AI exposure rather than to a uniform 10 percentage-point shock. For occupation $j$ in month $t$, the no-AI counterfactual is $U_{jt}^{0}=U_{jt}^{obs}/\exp(\beta_{p(t)} A_j/0.10)$, where $A_j$ is the observed exposure and $\beta_{p(t)}$ is the phase-specific post-treatment coefficient. The reported gap is the difference between observed unemployment and that counterfactual, aggregated across occupations within each month and then averaged over the indicated window.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
