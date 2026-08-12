@@ -95,9 +95,9 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--replication-step",
-        choices=["prepare", "descriptives", "estimates", "contdid", "tuning", "all"],
+        choices=["prepare", "descriptives", "estimates", "contdid", "tuning", "calibration", "all"],
         default="all",
-        help="Production step for --run-paper-replication; default runs all five steps.",
+        help="Production step for --run-paper-replication; default runs all six steps.",
     )
     parser.add_argument(
         "--replication-sdid-reps",
