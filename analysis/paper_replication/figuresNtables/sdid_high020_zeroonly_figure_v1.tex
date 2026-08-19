@@ -1,0 +1,29 @@
+\begin{figure}[!htbp]
+    \centering
+    \begin{subfigure}[t]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/SDID_high020_zeroonly_path_unemployed.png}
+        \caption{Registered unemployed: path}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/SDID_high020_zeroonly_event_unemployed.png}
+        \caption{Registered unemployed: event study}
+    \end{subfigure}
+
+    \vspace{0.75em}
+
+    \begin{subfigure}[t]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/SDID_high020_zeroonly_path_contracts.png}
+        \caption{New contracts: path}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/SDID_high020_zeroonly_event_contracts.png}
+        \caption{New contracts: event study}
+    \end{subfigure}
+
+    \begin{minipage}{0.94\textwidth}
+    \footnotesize \emph{Notes:} These panels restrict treatment to occupations with nearest-neighbor exposure above 0.2 and restrict the donor pool to occupations with exactly zero exposure. The counterfactual paths are reported as returned by the estimator, and the event-study confidence intervals use placebo inference with 500 repetitions. The horizontal axis is measured relative to November 2022.
+    \end{minipage}
+    \label{fig:v1_sdid_high020_zeroonly}
+\end{figure}

@@ -1,0 +1,2 @@
+specification,outcome,phase,event_start,event_end,estimate,se,ci_low,ci_high,p_value,effect_percent,observations,units,treated_units,donor_units,projected_cno1_month,projection_method,inference_method,dropped_last_pre,placebo_repetitions
+expanded_donor_cno1_month,ln_parados,adjustment,0,24,.0265464,.0105956,.005779024,.047313776,.0122306981854288,2.690189440416035,23547,501,124,377,1,CNO1-by-month residualization,placebo,0,500

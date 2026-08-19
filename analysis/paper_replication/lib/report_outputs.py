@@ -359,27 +359,35 @@ def _sdid_coefficient(row: pd.Series) -> str:
 
 
 def _build_sdid_phase_table(tables_dir: Path) -> None:
-    specifications = ("expanded_donor_cno1_month",)
-    columns = [
-        *[
-            {
-                phase: _sdid_phase_row(
-                    tables_dir, specification, "ln_parados", phase
-                )
-                for phase in ("adjustment", "later")
-            }
-            for specification in specifications
-        ],
-        *[
-            {
-                phase: _sdid_phase_row(
-                    tables_dir, specification, "ln_contratos", phase
-                )
-                for phase in ("adjustment", "later")
-            }
-            for specification in specifications
-        ],
+    specification_rows = [
+        {
+            "specification": "expanded_donor_cno1_month",
+            "threshold": "0.1169",
+            "all_lower_donors": "Yes",
+            "zero_only_donors": "No",
+        },
+        {
+            "specification": "high020_zeroonly_cno1_month",
+            "threshold": "0.2",
+            "all_lower_donors": "No",
+            "zero_only_donors": "Yes",
+        },
     ]
+    columns = []
+    for outcome in ("ln_parados", "ln_contratos"):
+        for spec_row in specification_rows:
+            columns.append(
+                {
+                    **spec_row,
+                    "outcome": outcome,
+                    **{
+                        phase: _sdid_phase_row(
+                            tables_dir, spec_row["specification"], outcome, phase
+                        )
+                        for phase in ("adjustment", "later")
+                    },
+                }
+            )
     repetitions = sorted(
         {
             int(column[phase].placebo_repetitions)
@@ -398,11 +406,11 @@ def _build_sdid_phase_table(tables_dir: Path) -> None:
         r"\begin{threeparttable}",
         r"\small",
         r"\setlength{\tabcolsep}{4pt}",
-        r"\begin{tabular}{lcc}",
+        r"\begin{tabular}{lcccc}",
         r"\toprule",
-        r"& \multicolumn{1}{c}{\# of registered unemployed} & \multicolumn{1}{c}{\# of new contracts} \\",
-        r"\cmidrule(lr){2-2}\cmidrule(lr){3-3}",
-        r"& (1) & (2) \\",
+        r"& \multicolumn{2}{c}{\# of registered unemployed} & \multicolumn{2}{c}{\# of new contracts} \\",
+        r"\cmidrule(lr){2-3}\cmidrule(lr){4-5}",
+        r"& (1) & (2) & (3) & (4) \\",
         r"\midrule",
         "High exposure: adjustment period & "
         + " & ".join(_sdid_coefficient(column["adjustment"]) for column in columns)
@@ -424,8 +432,16 @@ def _build_sdid_phase_table(tables_dir: Path) -> None:
         + " & ".join(f"{float(column['later'].effect_percent):.1f}" for column in columns)
         + r" \\",
         r"\midrule",
-        r"All lower-exposure occupations eligible as donors & Yes & Yes \\",
-        r"CNO1 $\times$ month residualization & Yes & Yes \\",
+        "Exposure threshold for treatment status & "
+        + " & ".join(column["threshold"] for column in columns)
+        + r" \\",
+        "All lower-exposure occupations eligible as donors & "
+        + " & ".join(column["all_lower_donors"] for column in columns)
+        + r" \\",
+        "Donor pool restricted to zero exposure & "
+        + " & ".join(column["zero_only_donors"] for column in columns)
+        + r" \\",
+        r"CNO1 $\times$ month residualization & Yes & Yes & Yes & Yes \\",
         "Treated occupations: adjustment period & "
         + " & ".join(f"{int(column['adjustment'].treated_units):,}" for column in columns)
         + r" \\",
@@ -448,7 +464,7 @@ def _build_sdid_phase_table(tables_dir: Path) -> None:
         r"\end{tabular}",
         r"\begin{tablenotes}[flushleft]",
         r"\footnotesize",
-        rf"\item \emph{{Notes:}} Treated occupations have nearest-neighbor exposure above 0.1169; every occupation at or below the cutoff is retained as a potential donor. The adjustment-period estimates use all pre-treatment months and event times 0--24. The later-period estimates use all pre-treatment months and event times 25--40; event times 0--24 are omitted from those fits. Unit and time weights are re-estimated separately for each interval. Both columns residualize outcomes on CNO1-by-month indicators before constructing the synthetic comparison. Because this residualization depends only on outcomes and family-month cells, it is held fixed across placebo assignments. Standard errors in parentheses use placebo inference with {repetitions[0]} repetitions. Impact rows report $100[\exp(\widehat{{\tau}})-1]$. $^{{***}}p<0.01$, $^{{**}}p<0.05$, and $^{{*}}p<0.10$.",
+        rf"\item \emph{{Notes:}} Columns 1 and 3 report the baseline SDID design, where treated occupations have nearest-neighbor exposure above 0.1169 and every occupation at or below that cutoff remains eligible for the donor pool. Columns 2 and 4 report the more dichotomous robustness design, where treated occupations have exposure above 0.2 and donors are restricted to zero-exposure occupations. The adjustment-period estimates use all pre-treatment months and event times 0--24. The later-period estimates use all pre-treatment months and event times 25--40; event times 0--24 are omitted from those fits. Unit and time weights are re-estimated separately for each specification, outcome, and interval. All columns residualize outcomes on CNO1-by-month indicators before constructing the synthetic comparison. Because this residualization depends only on outcomes and family-month cells, it is held fixed across placebo assignments. Standard errors in parentheses use placebo inference with {repetitions[0]} repetitions. Impact rows report $100[\exp(\widehat{{\tau}})-1]$. $^{{***}}p<0.01$, $^{{**}}p<0.05$, and $^{{*}}p<0.10$.",
         r"\end{tablenotes}",
         r"\end{threeparttable}",
         r"\end{table}",

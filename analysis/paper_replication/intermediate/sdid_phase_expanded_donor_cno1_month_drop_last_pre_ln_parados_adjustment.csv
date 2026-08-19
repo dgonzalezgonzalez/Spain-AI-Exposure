@@ -1,0 +1,2 @@
+specification,outcome,phase,event_start,event_end,estimate,se,ci_low,ci_high,p_value,effect_percent,observations,units,treated_units,donor_units,projected_cno1_month,projection_method,inference_method,dropped_last_pre,placebo_repetitions
+expanded_donor_cno1_month_drop_last_pre,ln_parados,adjustment,0,24,.037121,,,,,3.781858929041659,23046,501,124,377,1,Projected CNO1-by-month covariates,noinference,1,

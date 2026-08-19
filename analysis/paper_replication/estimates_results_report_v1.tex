@@ -637,8 +637,28 @@ Across designs, more exposed occupations tend to experience a relative increase 
     \end{minipage}
 \end{figure}
 
+\noindent A final robustness exercise removes October 2022, the last available
+pre-treatment month, before rebuilding the adjusted synthetic comparison. This
+diagnostic keeps the projected CNO1-by-month adjustment but suppresses placebo
+inference so the appendix can focus on how the point estimates and time-weight
+distribution change when the dominant pre-period month is excluded.
+
 \input{figuresNtables/sdid_weight_diagnostics_v1.tex}
 \input{figuresNtables/sdid_donor_weights_v1.tex}
 \input{figuresNtables/sdid_month_weights_v1.tex}
+\input{figuresNtables/sdid_drop_last_pre_summary_v1.tex}
+\input{figuresNtables/sdid_drop_last_pre_month_weights_v1.tex}
+
+\noindent Two further appendix diagnostics stress-test the SDID design from a
+different angle. First, a temporal-placebo exercise keeps only the pre-adoption
+history, trains the synthetic weights on 2021, and then labels January through
+October 2022 as an artificial post-period. Second, a stricter donor-pool
+exercise treats occupations with exposure above 0.2 as treated and restricts
+donors to occupations with exactly zero exposure.
+
+\input{figuresNtables/sdid_temporal_placebo_summary_v1.tex}
+\input{figuresNtables/sdid_temporal_placebo_figure_v1.tex}
+\input{figuresNtables/sdid_high020_zeroonly_summary_v1.tex}
+\input{figuresNtables/sdid_high020_zeroonly_figure_v1.tex}
 
 \end{document}

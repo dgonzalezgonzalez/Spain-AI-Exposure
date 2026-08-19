@@ -1,0 +1,2 @@
+specification,outcome,phase,event_start,event_end,estimate,se,ci_low,ci_high,p_value,effect_percent,observations,units,treated_units,donor_units,projected_cno1_month,projection_method,inference_method,dropped_last_pre,placebo_repetitions
+high020_zeroonly_cno1_month,ln_contratos,later,25,40,.0292744,.0370777,-.043397892,.101946692,.429795314445184,2.970710734284765,12426,327,82,245,1,Projected CNO1-by-month covariates,placebo,0,500

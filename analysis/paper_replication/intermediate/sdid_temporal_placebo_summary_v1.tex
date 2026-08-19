@@ -1,0 +1,28 @@
+\begin{table}[!htbp]
+\centering
+\caption{Synthetic-DiD temporal-placebo estimates}
+\label{tab:v1_sdid_temporal_placebo}
+\begin{threeparttable}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lcc}
+\toprule
+& \multicolumn{1}{c}{\# of registered unemployed} & \multicolumn{1}{c}{\# of new contracts} \\
+\cmidrule(lr){2-2}\cmidrule(lr){3-3}
+& (1) & (2) \\
+\midrule
+High exposure & 0.002 & 0.024 \\
+ & (0.009) & (0.021) \\
+Impact (percent) & 0.2 & 2.5 \\
+\midrule
+Treated occupations & 124 & 118 \\
+Donor occupations & 377 & 366 \\
+Observations & 11,022 & 10,648 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item \emph{Notes:} The sample is restricted to the pre-adoption history through October 2022. The synthetic weights are trained on calendar year 2021, while January 2022 through October 2022 are treated as a placebo post-period. Both columns keep the projected CNO1-by-month covariate adjustment and use placebo inference with 500 repetitions.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
