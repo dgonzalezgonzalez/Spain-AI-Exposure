@@ -89,6 +89,7 @@ global V1_SDID_EVENT_GRAPH_ONLY : environment V1_SDID_EVENT_GRAPH_ONLY
 global V1_SDID_JOB_SPEC : environment V1_SDID_JOB_SPEC
 global V1_SDID_JOB_OUTCOME : environment V1_SDID_JOB_OUTCOME
 global V1_SDID_JOB_PHASE : environment V1_SDID_JOB_PHASE
+global V1_SDID_ADDITIONAL_ONLY : environment V1_SDID_ADDITIONAL_ONLY
 
 capture mkdir "$TAB"
 capture mkdir "$FIG"
@@ -128,6 +129,9 @@ else if "$V1_SDID_EVENT_JOB" == "1" {
 }
 else if "$V1_SDID_PATH_ONLY" == "1" {
     log using "$LOG/Estimates_TWFE_SDID_HonestDID_v1_sdid_path_only.log", replace text
+}
+else if "$V1_SDID_ADDITIONAL_ONLY" == "1" {
+    log using "$LOG/Estimates_TWFE_SDID_HonestDID_v1_sdid_additional_only.log", replace text
 }
 else if "$V1_SMOKE" == "1" {
     log using "$LOG/Estimates_TWFE_SDID_HonestDID_v1_smoke.log", replace text
@@ -861,6 +865,21 @@ program define make_cno1_month_basis, rclass
 end
 
 
+capture program drop filter_sdid_covariates
+program define filter_sdid_covariates, rclass
+    syntax, COVARIATES(string asis)
+
+    local filtered
+    foreach variable of local covariates {
+        capture confirm variable `variable'
+        if _rc continue
+        quietly summarize `variable'
+        if r(sd) > 0 local filtered `filtered' `variable'
+    }
+    return local covariates "`filtered'"
+end
+
+
 capture program drop balance_sdid_panel
 program define balance_sdid_panel
     keep if !missing(unit_id, ym_stata, sdid_treatment)
@@ -873,9 +892,54 @@ program define balance_sdid_panel
 end
 
 
+capture program drop drop_sdid_last_preperiod
+program define drop_sdid_last_preperiod
+    drop if event_time == -1
+end
+
+
+capture program drop configure_sdid_design_v1
+program define configure_sdid_design_v1
+    syntax, EVENTMONTH(string asis) TREATEXPR(string asis) DONOREXPR(string asis) ///
+        [SAMPLEIF(string asis)]
+
+    if "`sampleif'" != "" keep if `sampleif'
+    keep if !missing(exposure_nearest)
+    foreach variable in event_time post post_effect sdid_high sdid_donor ///
+        sdid_treatment {
+        capture drop `variable'
+    }
+
+    gen int event_time = ym_stata - (`eventmonth')
+    gen byte post = ym_stata >= (`eventmonth')
+    gen byte post_effect = event_time >= 1
+    gen byte sdid_high = (`treatexpr')
+    gen byte sdid_donor = (`donorexpr')
+    keep if sdid_high == 1 | sdid_donor == 1
+
+    quietly count if sdid_high == 1
+    if r(N) == 0 {
+        display as error "No treated units remain in the requested SDID design."
+        exit 2000
+    }
+    quietly count if sdid_donor == 1
+    if r(N) == 0 {
+        display as error "No donor units remain in the requested SDID design."
+        exit 2000
+    }
+
+    gen byte sdid_treatment = sdid_high * post
+    format ym_stata %tm
+end
+
+
 capture program drop run_sdid_event_v1
 program define run_sdid_event_v1
-    syntax, SPEC(string) OUTCOME(name) [COVARIATES(string)]
+    syntax, SPEC(string) OUTCOME(name) [COVARIATES(string) PROJECTED ///
+        EVENTMONTH(string asis) XTITLE(string asis)]
+
+    if "`eventmonth'" == "" local eventmonth "$EVENT_MONTH"
+    if `"`xtitle'"' == "" local xtitle "Months relative to November 2022"
 
     preserve
         keep if !missing(`outcome', exposure_nearest)
@@ -891,7 +955,14 @@ program define run_sdid_event_v1
         local placebos : word count `pre_event_values'
 
         local covariate_option
-        if "`covariates'" != "" local covariate_option "covariates(`covariates')"
+        if "`covariates'" != "" {
+            if "`projected'" != "" {
+                local covariate_option "covariates(`covariates', projected)"
+            }
+            else {
+                local covariate_option "covariates(`covariates')"
+            }
+        }
 
         set seed $SEED
         capture noisily sdid_event `outcome' unit_id ym_stata sdid_treatment, ///
@@ -956,7 +1027,7 @@ program define run_sdid_event_v1
                 msymbol(O) msize(vsmall) lwidth(medthin)), ///
             xline(0, lpattern(dash) lcolor("127 140 141")) ///
             yline(0, lcolor("127 140 141")) ///
-            xtitle("Months relative to November 2022") ytitle("Synthetic DID effect") ///
+            xtitle("`xtitle'") ytitle("Synthetic DID effect") ///
             `event_axis' ///
             title("") subtitle("") note("") legend(off) ///
             graphregion(color(white)) plotregion(color(white))
@@ -967,12 +1038,22 @@ end
 
 capture program drop run_sdid_average_paths_v1
 program define run_sdid_average_paths_v1
-    syntax, SPEC(string) OUTCOME(name) [COVARIATES(string) PATHONLY]
+    syntax, SPEC(string) OUTCOME(name) [COVARIATES(string) PATHONLY ///
+        DROPLASTPRE AUTOCOVARIATES EVENTMONTH(string asis) XTITLE(string asis) ///
+        TREATEDLABEL(string asis) COUNTERFACTUALLABEL(string asis)]
+
+    if "`eventmonth'" == "" local eventmonth "$EVENT_MONTH"
+    if `"`xtitle'"' == "" local xtitle "Months relative to November 2022"
+    if `"`treatedlabel'"' == "" local treatedlabel "High exposure"
+    if `"`counterfactuallabel'"' == "" {
+        local counterfactuallabel "Synthetic lower-exposure counterfactual"
+    }
 
     tempfile source balanced unit_metadata titles
     save `source', replace
 
     keep if !missing(`outcome', exposure_nearest)
+    if "`droplastpre'" != "" drop_sdid_last_preperiod
     balance_sdid_panel
     save `balanced', replace
     quietly count
@@ -1010,6 +1091,11 @@ program define run_sdid_average_paths_v1
     save `unit_metadata', replace
 
     use `balanced', clear
+
+    if "`autocovariates'" != "" {
+        make_cno1_month_basis
+        local covariates `r(covariates)'
+    }
 
     levelsof ym_stata, local(time_values)
     levelsof unit_id if sdid_donor == 1, local(donor_values)
@@ -1075,7 +1161,7 @@ program define run_sdid_average_paths_v1
         rename M_series1 ym_stata
         rename M_series2 counterfactual
         rename M_series3 treated
-        gen int event_time = ym_stata - $EVENT_MONTH
+        gen int event_time = ym_stata - (`eventmonth')
         keep if inrange(event_time, $ES_MIN, $ES_MAX)
         gen str40 specification = "`spec'"
         gen str32 outcome = "`outcome'"
@@ -1093,9 +1179,9 @@ program define run_sdid_average_paths_v1
             (line treated event_time, lcolor("8 81 156") lwidth(medthick)) ///
             (line counterfactual event_time, lcolor("86 180 233") lwidth(medthick)), ///
             xline(0, lpattern(dash) lcolor("127 140 141")) ///
-            xtitle("Months relative to November 2022") ytitle("Log outcome") ///
+            xtitle("`xtitle'") ytitle("Log outcome") ///
             title("") subtitle("") note("") ///
-            legend(order(1 "High exposure" 2 "Synthetic lower-exposure counterfactual") ///
+            legend(order(1 "`treatedlabel'" 2 "`counterfactuallabel'") ///
                 cols(1) position(2) ring(0) region(fcolor(white%80) lcolor(white))) ///
             `path_axis' ///
             graphregion(color(white)) plotregion(color(white))
@@ -1105,6 +1191,7 @@ program define run_sdid_average_paths_v1
     preserve
         clear
         svmat double M_lambda
+        * Export pre-period time weights for the appendix diagnostics and month-weight tables.
         gen row = _n
         local usable_rows = rowsof(M_lambda) - 1
         keep if row <= `usable_rows'
@@ -1115,7 +1202,7 @@ program define run_sdid_average_paths_v1
             local ++j
         }
         rename M_lambda1 lambda
-        gen int event_time = ym_stata - $EVENT_MONTH
+        gen int event_time = ym_stata - (`eventmonth')
         gen str40 specification = "`spec'"
         gen str32 outcome = "`outcome'"
         order specification outcome ym_stata event_time lambda
@@ -1160,10 +1247,12 @@ end
 
 capture program drop run_sdid_phase_v1
 program define run_sdid_phase_v1
-    syntax, SPEC(string) OUTCOME(name) PHASE(string) [PROJECTCNO1]
+    syntax, SPEC(string) OUTCOME(name) PHASE(string) [PROJECTCNO1 ///
+        COVARIATES(string) NOINFERENCE DROPLASTPRE AUTOCOVARIATES]
 
     preserve
         keep if !missing(`outcome', exposure_nearest)
+        if "`droplastpre'" != "" drop_sdid_last_preperiod
         if "`phase'" == "adjustment" {
             keep if event_time < 0 | inrange(event_time, 0, 24)
             local phase_start = 0
@@ -1193,6 +1282,8 @@ program define run_sdid_phase_v1
         local estimation_outcome `outcome'
         local projected = 0
         local projection_method "none"
+        local covariate_option
+        local inference_method "placebo"
         if "`projectcno1'" != "" {
             tempvar cno1_month_residual
             quietly reghdfe `outcome', absorb(cno1_ym) ///
@@ -1201,20 +1292,50 @@ program define run_sdid_phase_v1
             local projected = 1
             local projection_method "CNO1-by-month residualization"
         }
+        else {
+            if "`autocovariates'" != "" {
+                make_cno1_month_basis
+                local covariates `r(covariates)'
+            }
+            if "`covariates'" != "" {
+                filter_sdid_covariates, covariates("`covariates'")
+                local covariates `r(covariates)'
+                if "`covariates'" != "" {
+                    local covariate_option "covariates(`covariates', projected)"
+                    local projected = 1
+                    local projection_method "Projected CNO1-by-month covariates"
+                }
+            }
+        }
 
         set seed $SEED
-        capture noisily sdid `estimation_outcome' unit_id ym_stata ///
-            sdid_treatment, vce(placebo) reps($SDID_REPS) ///
-            seed($SEED) method(sdid)
-        if _rc {
-            display as error ///
-                "Phase-specific sdid failed: `spec' / `outcome' / `phase'"
-            restore
-            exit _rc
+        if "`noinference'" != "" {
+            local inference_method "noinference"
+            capture noisily sdid `estimation_outcome' unit_id ym_stata ///
+                sdid_treatment, vce(noinference) seed($SEED) method(sdid) ///
+                `covariate_option'
+            if _rc {
+                display as error ///
+                    "Phase-specific sdid failed: `spec' / `outcome' / `phase'"
+                restore
+                exit _rc
+            }
+        }
+        else {
+            capture noisily sdid `estimation_outcome' unit_id ym_stata ///
+                sdid_treatment, vce(placebo) reps($SDID_REPS) ///
+                seed($SEED) method(sdid) `covariate_option'
+            if _rc {
+                display as error ///
+                    "Phase-specific sdid failed: `spec' / `outcome' / `phase'"
+                restore
+                exit _rc
+            }
         }
 
         local estimate = e(ATT)
-        local standard_error = e(se)
+        local standard_error = .
+        if "`noinference'" == "" local standard_error = e(se)
         clear
         set obs 1
         gen str40 specification = "`spec'"
@@ -1234,14 +1355,105 @@ program define run_sdid_phase_v1
         gen int donor_units = `donor_units'
         gen byte projected_cno1_month = `projected'
         gen str40 projection_method = "`projection_method'"
-        gen int placebo_repetitions = $SDID_REPS
+        gen str20 inference_method = "`inference_method'"
+        gen byte dropped_last_pre = "`droplastpre'" != ""
+        gen int placebo_repetitions = cond("`noinference'" != "", ., $SDID_REPS)
         order specification outcome phase event_start event_end estimate se ///
             ci_low ci_high p_value effect_percent observations units ///
             treated_units donor_units projected_cno1_month projection_method ///
-            placebo_repetitions
+            inference_method dropped_last_pre placebo_repetitions
         export delimited using ///
             "$TAB/sdid_phase_`spec'_`outcome'_`phase'.csv", replace
     restore
+end
+
+
+capture program drop export_sdid_att_summary_v1
+program define export_sdid_att_summary_v1
+    syntax, SPEC(string) OUTFILE(string) PREWINDOW(string asis) ///
+        POSTWINDOW(string asis) DESIGNNOTE(string asis)
+
+    tempfile unemployed contracts
+    import delimited using "$TAB/sdid_average_`spec'_ln_parados.csv", ///
+        clear varnames(1)
+    gen str40 pre_window = `"`prewindow'"'
+    gen str40 post_window = `"`postwindow'"'
+    gen str160 design_note = `"`designnote'"'
+    save `unemployed', replace
+
+    import delimited using "$TAB/sdid_average_`spec'_ln_contratos.csv", ///
+        clear varnames(1)
+    gen str40 pre_window = `"`prewindow'"'
+    gen str40 post_window = `"`postwindow'"'
+    gen str160 design_note = `"`designnote'"'
+    save `contracts', replace
+
+    use `unemployed', clear
+    append using `contracts'
+    order specification outcome estimate se ci_low ci_high p_value ///
+        effect_percent observations units treated_units donor_units ///
+        placebo_repetitions pre_window post_window design_note
+    export delimited using "$TAB/`outfile'", replace
+end
+
+
+capture program drop run_additional_sdid_exercises_v1
+program define run_additional_sdid_exercises_v1
+    local placebo_spec "temporal_placebo_2022m1_cno1_month"
+    local highzero_spec "high020_zeroonly_cno1_month"
+    local placebo_event_month "tm(2022m1)"
+
+    display as result ///
+        "Running temporal-placebo SDID: 2021 training window, placebo post in 2022m1-2022m10"
+    foreach outcome in ln_parados ln_contratos {
+        load_v1_panel using "$IN/est_total_cno4.csv"
+        configure_sdid_design_v1, eventmonth(`placebo_event_month') ///
+            sampleif(inrange(ym_stata, tm(2021m1), tm(2022m10))) ///
+            treatexpr(exposure_nearest > $HIGH_CUTOFF) ///
+            donorexpr(exposure_nearest <= $HIGH_CUTOFF)
+        make_cno1_month_basis
+        local placebo_covariates `r(covariates)'
+        run_sdid_average_paths_v1, spec("`placebo_spec'") outcome(`outcome') ///
+            covariates("`placebo_covariates'") ///
+            eventmonth(`placebo_event_month') ///
+            xtitle("Months relative to January 2022 placebo intervention")
+        run_sdid_event_v1, spec("`placebo_spec'") outcome(`outcome') ///
+            covariates("`placebo_covariates'") projected ///
+            eventmonth(`placebo_event_month') ///
+            xtitle("Months relative to January 2022 placebo intervention")
+    }
+    export_sdid_att_summary_v1, spec("`placebo_spec'") ///
+        outfile("sdid_att_table_`placebo_spec'.csv") ///
+        prewindow("January 2021 to December 2021") ///
+        postwindow("January 2022 to October 2022") ///
+        designnote("Expanded-donor temporal placebo with projected CNO1-by-month covariates.")
+
+    display as result ///
+        "Running restricted-donor SDID: treated exposure > 0.2 versus zero-exposure donors"
+    foreach outcome in ln_parados ln_contratos {
+        load_v1_panel using "$IN/est_total_cno4.csv"
+        configure_sdid_design_v1, eventmonth($EVENT_MONTH) ///
+            treatexpr(exposure_nearest > 0.2) ///
+            donorexpr(exposure_nearest == 0)
+        make_cno1_month_basis
+        local highzero_covariates `r(covariates)'
+        run_sdid_average_paths_v1, spec("`highzero_spec'") outcome(`outcome') ///
+            covariates("`highzero_covariates'") ///
+            treatedlabel("Exposure above 0.2") ///
+            counterfactuallabel("Synthetic zero-exposure counterfactual")
+        run_sdid_event_v1, spec("`highzero_spec'") outcome(`outcome') ///
+            covariates("`highzero_covariates'") projected
+        foreach phase in adjustment later {
+            run_sdid_phase_v1, spec("`highzero_spec'") ///
+                outcome(`outcome') phase("`phase'") ///
+                autocovariates
+        }
+    }
+    export_sdid_att_summary_v1, spec("`highzero_spec'") ///
+        outfile("sdid_att_table_`highzero_spec'.csv") ///
+        prewindow("January 2021 to October 2022") ///
+        postwindow("November 2022 to March 2026") ///
+        designnote("Treats exposure > 0.2 and restricts donors to zero exposure, with projected CNO1-by-month covariates.")
 end
 
 
@@ -1517,6 +1729,10 @@ if "$V1_SDID_PATH_ONLY" == "1" {
         run_sdid_average_paths_v1, spec("expanded_donor_cno1_month") ///
             outcome(`outcome') covariates("`cno1_month_covariates'") pathonly
     }
+    load_v1_panel using "$IN/est_total_cno4.csv"
+    run_sdid_average_paths_v1, ///
+        spec("expanded_donor_cno1_month_drop_last_pre") ///
+        outcome(ln_parados) pathonly droplastpre autocovariates
     display as result "Adjusted synthetic-DID paths completed."
     log close
     exit
@@ -1576,6 +1792,19 @@ if "$V1_SDID_PHASE_JOB" == "1" {
         run_sdid_phase_v1, spec("$V1_SDID_JOB_SPEC") ///
             outcome($V1_SDID_JOB_OUTCOME) phase("$V1_SDID_JOB_PHASE") ///
             projectcno1
+    }
+    else if "$V1_SDID_JOB_SPEC" == "high020_zeroonly_cno1_month" {
+        configure_sdid_design_v1, eventmonth($EVENT_MONTH) ///
+            treatexpr(exposure_nearest > 0.2) ///
+            donorexpr(exposure_nearest == 0)
+        run_sdid_phase_v1, spec("$V1_SDID_JOB_SPEC") ///
+            outcome($V1_SDID_JOB_OUTCOME) phase("$V1_SDID_JOB_PHASE") ///
+            autocovariates
+    }
+    else if "$V1_SDID_JOB_SPEC" == "expanded_donor_cno1_month_drop_last_pre" {
+        run_sdid_phase_v1, spec("$V1_SDID_JOB_SPEC") ///
+            outcome($V1_SDID_JOB_OUTCOME) phase("$V1_SDID_JOB_PHASE") ///
+            noinference droplastpre autocovariates
     }
     else {
         run_sdid_phase_v1, spec("$V1_SDID_JOB_SPEC") ///
@@ -2012,8 +2241,23 @@ if "$V1_SDID_PHASE_ONLY" == "1" {
                 outcome(`outcome') phase("`phase'") projectcno1
         }
     }
+    load_v1_panel using "$IN/est_total_cno4.csv"
+    foreach phase in adjustment later {
+        run_sdid_phase_v1, spec("expanded_donor_cno1_month_drop_last_pre") ///
+            outcome(ln_parados) phase("`phase'") ///
+            noinference droplastpre autocovariates
+    }
 
     display as result "Phase-specific synthetic DID outputs completed."
+    log close
+    exit
+}
+
+if "$V1_SDID_ADDITIONAL_ONLY" == "1" {
+    display as result ///
+        "V1_SDID_ADDITIONAL_ONLY=1: running additional synthetic-DID diagnostics"
+    run_additional_sdid_exercises_v1
+    display as result "Additional synthetic-DID diagnostics completed."
     log close
     exit
 }
@@ -2619,6 +2863,21 @@ foreach outcome in ln_parados ln_contratos {
             outcome(`outcome') phase("`phase'") projectcno1
     }
 }
+
+load_v1_panel using "$IN/est_total_cno4.csv"
+run_sdid_average_paths_v1, spec("expanded_donor_cno1_month_drop_last_pre") ///
+    outcome(ln_parados) pathonly droplastpre autocovariates
+foreach phase in adjustment later {
+    run_sdid_phase_v1, spec("expanded_donor_cno1_month_drop_last_pre") ///
+        outcome(ln_parados) phase("`phase'") ///
+        noinference droplastpre autocovariates
+}
+
+********************************************************************************
+* 11. Additional synthetic-DID diagnostics
+********************************************************************************
+
+run_additional_sdid_exercises_v1
 
 display as result "Finished Estimates_TWFE_SDID_HonestDID_v1.do"
 log close

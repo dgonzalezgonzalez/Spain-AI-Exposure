@@ -1,0 +1,28 @@
+\begin{table}[!htbp]
+\centering
+\caption{Synthetic-DiD estimates with treated occupations above 0.2 exposure and zero-exposure donors}
+\label{tab:v1_sdid_high020_zeroonly}
+\begin{threeparttable}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lcc}
+\toprule
+& \multicolumn{1}{c}{\# of registered unemployed} & \multicolumn{1}{c}{\# of new contracts} \\
+\cmidrule(lr){2-2}\cmidrule(lr){3-3}
+& (1) & (2) \\
+\midrule
+Exposure above 0.2 & 0.025 & 0.026 \\
+ & (0.019) & (0.031) \\
+Impact (percent) & 2.5 & 2.6 \\
+\midrule
+Treated occupations & 84 & 82 \\
+Donor occupations & 252 & 245 \\
+Observations & 21,168 & 20,601 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item \emph{Notes:} Treated occupations have nearest-neighbor exposure above 0.2, and the donor pool is restricted to occupations with exactly zero exposure. Both columns keep the projected CNO1-by-month covariate adjustment and use placebo inference with 500 repetitions.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

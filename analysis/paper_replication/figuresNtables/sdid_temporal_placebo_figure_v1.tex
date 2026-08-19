@@ -1,0 +1,29 @@
+\begin{figure}[!htbp]
+    \centering
+    \begin{subfigure}[t]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/SDID_temporal_placebo_path_unemployed.png}
+        \caption{Registered unemployed: path}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/SDID_temporal_placebo_event_unemployed.png}
+        \caption{Registered unemployed: event study}
+    \end{subfigure}
+
+    \vspace{0.75em}
+
+    \begin{subfigure}[t]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/SDID_temporal_placebo_path_contracts.png}
+        \caption{New contracts: path}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/SDID_temporal_placebo_event_contracts.png}
+        \caption{New contracts: event study}
+    \end{subfigure}
+
+    \begin{minipage}{0.94\textwidth}
+    \footnotesize \emph{Notes:} These panels implement a temporal-placebo exercise that uses the 2021 pre-period to train the synthetic weights and then treats January 2022 through October 2022 as an artificial post-period. The counterfactual paths are reported as returned by the estimator, and the event-study confidence intervals use placebo inference with 500 repetitions. The horizontal axis is measured relative to the placebo intervention in January 2022.
+    \end{minipage}
+    \label{fig:v1_sdid_temporal_placebo}
+\end{figure}

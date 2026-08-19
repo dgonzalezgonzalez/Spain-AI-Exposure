@@ -5,33 +5,35 @@
 \begin{threeparttable}
 \small
 \setlength{\tabcolsep}{4pt}
-\begin{tabular}{lcc}
+\begin{tabular}{lcccc}
 \toprule
-& \multicolumn{1}{c}{\# of registered unemployed} & \multicolumn{1}{c}{\# of new contracts} \\
-\cmidrule(lr){2-2}\cmidrule(lr){3-3}
-& (1) & (2) \\
+& \multicolumn{2}{c}{\# of registered unemployed} & \multicolumn{2}{c}{\# of new contracts} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+& (1) & (2) & (3) & (4) \\
 \midrule
-High exposure: adjustment period & 0.027$^{**}$ & -0.000 \\
- & (0.011) & (0.022) \\
-Impact (percent) & 2.7 & -0.0 \\
+High exposure: adjustment period & 0.027$^{**}$ & 0.029$^{**}$ & -0.000 & 0.024 \\
+ & (0.011) & (0.013) & (0.022) & (0.030) \\
+Impact (percent) & 2.7 & 2.9 & -0.0 & 2.5 \\
 \addlinespace
-High exposure: later period & 0.041$^{*}$ & 0.008 \\
- & (0.024) & (0.029) \\
-Impact (percent) & 4.1 & 0.8 \\
+High exposure: later period & 0.041$^{*}$ & 0.019 & 0.008 & 0.029 \\
+ & (0.024) & (0.030) & (0.029) & (0.037) \\
+Impact (percent) & 4.1 & 1.9 & 0.8 & 3.0 \\
 \midrule
-All lower-exposure occupations eligible as donors & Yes & Yes \\
-CNO1 $\times$ month residualization & Yes & Yes \\
-Treated occupations: adjustment period & 124 & 118 \\
-Donor occupations: adjustment period & 377 & 365 \\
-Observations: adjustment period & 23,547 & 22,701 \\
-Treated occupations: later period & 124 & 118 \\
-Donor occupations: later period & 377 & 363 \\
-Observations: later period & 19,038 & 18,278 \\
+Exposure threshold for treatment status & 0.1169 & 0.2 & 0.1169 & 0.2 \\
+All lower-exposure occupations eligible as donors & Yes & No & Yes & No \\
+Donor pool restricted to zero exposure & No & Yes & No & Yes \\
+CNO1 $\times$ month residualization & Yes & Yes & Yes & Yes \\
+Treated occupations: adjustment period & 124 & 84 & 118 & 82 \\
+Donor occupations: adjustment period & 377 & 252 & 365 & 246 \\
+Observations: adjustment period & 23,547 & 15,792 & 22,701 & 15,416 \\
+Treated occupations: later period & 124 & 84 & 118 & 82 \\
+Donor occupations: later period & 377 & 252 & 363 & 245 \\
+Observations: later period & 19,038 & 12,768 & 18,278 & 12,426 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}[flushleft]
 \footnotesize
-\item \emph{Notes:} Treated occupations have nearest-neighbor exposure above 0.1169; every occupation at or below the cutoff is retained as a potential donor. The adjustment-period estimates use all pre-treatment months and event times 0--24. The later-period estimates use all pre-treatment months and event times 25--40; event times 0--24 are omitted from those fits. Unit and time weights are re-estimated separately for each interval. Both columns residualize outcomes on CNO1-by-month indicators before constructing the synthetic comparison. Because this residualization depends only on outcomes and family-month cells, it is held fixed across placebo assignments. Standard errors in parentheses use placebo inference with 500 repetitions. Impact rows report $100[\exp(\widehat{\tau})-1]$. $^{***}p<0.01$, $^{**}p<0.05$, and $^{*}p<0.10$.
+\item \emph{Notes:} Columns 1 and 3 report the baseline SDID design, where treated occupations have nearest-neighbor exposure above 0.1169 and every occupation at or below that cutoff remains eligible for the donor pool. Columns 2 and 4 report the more dichotomous robustness design, where treated occupations have exposure above 0.2 and donors are restricted to zero-exposure occupations. The adjustment-period estimates use all pre-treatment months and event times 0--24. The later-period estimates use all pre-treatment months and event times 25--40; event times 0--24 are omitted from those fits. Unit and time weights are re-estimated separately for each specification, outcome, and interval. All columns residualize outcomes on CNO1-by-month indicators before constructing the synthetic comparison. Because this residualization depends only on outcomes and family-month cells, it is held fixed across placebo assignments. Standard errors in parentheses use placebo inference with 500 repetitions. Impact rows report $100[\exp(\widehat{\tau})-1]$. $^{***}p<0.01$, $^{**}p<0.05$, and $^{*}p<0.10$.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}

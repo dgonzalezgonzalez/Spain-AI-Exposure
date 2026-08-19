@@ -1,0 +1,25 @@
+\begin{table}[!htbp]
+\centering
+\caption{Synthetic-DiD robustness excluding October 2022 from the pre-treatment window}
+\label{tab:v1_sdid_drop_last_pre}
+\begin{threeparttable}
+\small
+\begin{tabular}{lc}
+\toprule
+& \# of registered unemployed \
+\midrule
+ATT: adjustment period & 0.037 \
+Impact (percent): adjustment period & 3.8 \
+ATT: later period & 0.056 \
+Impact (percent): later period & 5.7 \
+Largest month weight & 0.651 \
+Month with largest weight & Sep 2022 (event time -2) \
+Share of weights in event times -6 to -2 & 0.918 \
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item \emph{Notes:} This robustness re-estimates the adjusted expanded-donor synthetic-DiD after removing October 2022 (event time -1) from the pre-treatment window, then rebalancing the panel over the remaining months. The phase-specific unemployment effects are reported as point estimates only because the robustness is run with \texttt{vce(noinference)} while keeping projected CNO1-by-month covariates. The concentration statistic sums weights over event times -6 through -2 because event time -1 is excluded by construction.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
