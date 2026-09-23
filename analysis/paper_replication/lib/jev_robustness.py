@@ -130,12 +130,16 @@ def _render_event_file(source: Path, destination: Path, ylim: tuple[float, float
     plt.close(fig)
 
 
-def _shared_unemployed_limits(sources: list[Path]) -> tuple[float, float]:
-    """Give all unemployment event studies a common range that contains every CI."""
+def _event_y_limits(source: Path, tick_step: float) -> tuple[float, float]:
+    """Set an event plot's own y range from its confidence interval, with padding."""
 
-    max_ci = max(float(pd.read_csv(source)["ci_high"].max()) for source in sources)
-    upper = max(0.05, math.ceil((max_ci + 0.0125) / 0.025) * 0.025)
-    return -0.05, round(upper, 3)
+    frame = pd.read_csv(source)
+    ci_low = float(frame["ci_low"].min())
+    ci_high = float(frame["ci_high"].max())
+    padding = max((ci_high - ci_low) * 0.10, tick_step / 2)
+    lower = math.floor((min(0.0, ci_low) - padding) / tick_step + 1e-9) * tick_step
+    upper = math.ceil((max(0.0, ci_high) + padding) / tick_step - 1e-9) * tick_step
+    return round(lower, 3), round(upper, 3)
 
 
 def build_jev_robustness_outputs(
@@ -316,25 +320,20 @@ def build_jev_robustness_outputs(
     pd.DataFrame(rows).to_csv(results_path, index=False)
 
     figure_paths: dict[str, Path] = {}
-    unemployed_sources = [
-        estimates / f"twfe_event_jev_{measure}_cno1_month_ln_parados.csv"
-        for measure in ("nearest", "weighted", "direct")
-    ]
-    unemployed_limits = _shared_unemployed_limits(unemployed_sources)
     for measure, spec_measure in [
         ("nearest", "nearest"),
         ("weighted", "weighted"),
         ("direct", "direct"),
     ]:
-        for outcome, outcome_file, limits, step in [
-            ("unemployed", "ln_parados", unemployed_limits, 0.025),
-            ("contracts", "ln_contratos", (-0.30, 0.30), 0.10),
+        for outcome, outcome_file, step in [
+            ("unemployed", "ln_parados", 0.025),
+            ("contracts", "ln_contratos", 0.05),
         ]:
             source = estimates / f"twfe_event_jev_{spec_measure}_cno1_month_{outcome_file}.csv"
             if not source.exists():
                 raise FileNotFoundError(f"Missing event-study result: {source}")
             destination = output / f"Robustness_{outcome}_jev_{measure}.png"
-            _render_event_file(source, destination, limits, step)
+            _render_event_file(source, destination, _event_y_limits(source, step), step)
             figure_paths[f"{outcome}_{measure}"] = destination
     return {"table": table_path, "table_csv": results_path, **figure_paths}
 

@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "analysis" / "paper_replication"))
 
 from lib.jev_robustness import (
-    _shared_unemployed_limits,
+    _event_y_limits,
     build_exposure_correlation_matrix,
     build_jev_robustness_outputs,
     prepare_jev_panel,
@@ -77,16 +77,16 @@ class JevRobustnessTests(unittest.TestCase):
                 file_frame = event_frame.copy()
                 if measure == "direct" and outcome == "ln_parados":
                     file_frame["ci_high"] = 0.12
+                    file_frame["ci_low"] = -0.06
                 file_frame.to_csv(
                     estimates_dir / f"twfe_event_jev_{measure}_cno1_month_{outcome}.csv",
                     index=False,
                 )
 
-        unemployment_files = [
-            estimates_dir / f"twfe_event_jev_{measure}_cno1_month_ln_parados.csv"
-            for measure in ("nearest", "weighted", "direct")
-        ]
-        self.assertEqual(_shared_unemployed_limits(unemployment_files), (-0.05, 0.15))
+        nearest_unemployment = estimates_dir / "twfe_event_jev_nearest_cno1_month_ln_parados.csv"
+        direct_unemployment = estimates_dir / "twfe_event_jev_direct_cno1_month_ln_parados.csv"
+        self.assertEqual(_event_y_limits(nearest_unemployment, 0.025), (-0.025, 0.025))
+        self.assertEqual(_event_y_limits(direct_unemployment, 0.025), (-0.1, 0.15))
 
         outputs = build_jev_robustness_outputs(estimates_dir, output_dir)
         table = Path(outputs["table"]).read_text(encoding="utf-8")
