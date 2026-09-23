@@ -357,7 +357,7 @@ def build_exposure_correlation_matrix(
     values = correlations.to_numpy(dtype=float)
     mask = np.triu(np.ones_like(values, dtype=bool), k=0)
     shown = np.ma.array(values, mask=mask | ~np.isfinite(values))
-    cmap = plt.get_cmap("RdYlGn").with_extremes(bad="#F0F1F2")
+    cmap = plt.get_cmap("Blues").with_extremes(bad="#F0F1F2")
     fig, ax = plt.subplots(figsize=(8.6, 7.8))
     image = ax.imshow(shown, cmap=cmap, vmin=0.5, vmax=1.0, interpolation="none")
     ax.set_xticks(np.arange(len(labels)), labels=labels, rotation=30, ha="right", rotation_mode="anchor")
@@ -372,16 +372,13 @@ def build_exposure_correlation_matrix(
             rho = values[i, j]
             n = int(pairwise_n.iat[i, j])
             if np.isfinite(rho):
-                color = "white" if rho < 0.57 or rho > 0.94 else "#101820"
+                red, green, blue, _ = cmap((rho - 0.5) / 0.5)
+                luminance = 0.2126 * red + 0.7152 * green + 0.0722 * blue
+                color = "#FFFFFF" if luminance < 0.48 else "#17324D"
                 ax.text(j, i, f"{rho:.2f}\n(n={n})", ha="center", va="center", color=color, fontsize=8)
             elif (measure_names[i] == "bls_ai_category_code" or measure_names[j] == "bls_ai_category_code") and not bls_path:
                 ax.text(j, i, "—", ha="center", va="center", color="#56616A", fontsize=9)
-    subtitle = "Pairwise-complete CNO4 sample; values shown with occupation counts. Color scale clipped at 0.50."
-    if not bls_path:
-        subtitle += " BLS workbook pending; its cells are blank."
-    fig.suptitle("Occupation-level Spearman rank correlations", fontsize=12, y=0.98, color="#1D2730")
-    fig.text(0.5, 0.935, subtitle, ha="center", va="center", fontsize=8, color="#4B5560")
-    fig.subplots_adjust(top=0.88, bottom=0.20, left=0.24, right=0.87)
+    fig.subplots_adjust(top=0.98, bottom=0.20, left=0.24, right=0.87)
     colorbar = fig.colorbar(image, ax=ax, fraction=0.045, pad=0.04)
     colorbar.set_label("Spearman $\\rho$", rotation=90)
     figure_path = output / "Exposure_correlation_matrix.png"
