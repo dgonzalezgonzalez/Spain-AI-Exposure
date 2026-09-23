@@ -130,7 +130,7 @@ The absence of a CNO4 labor-force denominator prevents a direct occupational une
 \subsubsection{Robustness Checks}
 \label{sec:v1_robustness}
 
-Appendix Table~\ref{tab:v1_robustness} examines whether the baseline result is an artifact of outcome coding or exposure construction. Replacing \(\log(Y)\) with \(\log(Y+1)\) leaves the preferred unemployment estimates at 1.2 percent in the adjustment period and 1.7 percent later. Cosine-weighted exposure produces somewhat larger estimates of 1.8 and 2.9 percent. The RF-relative score produces much larger coefficients, 7.9 and 13.6 percent, but it is less dispersed and reorders occupations more substantially, as shown in Appendix Figure~\ref{fig:v1_exposure_correlations}. Its scale is therefore not directly comparable to the nearest-neighbor measure. Appendix Table~\ref{tab:v1_robustness_pretrends} and Figures~\ref{fig:v1_robust_u}--\ref{fig:v1_robust_c} show that the identifying diagnostics remain the principal limitation across measures.
+Appendix Table~\ref{tab:v1_robustness} examines whether the baseline result is an artifact of outcome coding or exposure construction. Replacing \(\log(Y)\) with \(\log(Y+1)\) leaves the preferred unemployment estimates at 1.2 percent in the adjustment period and 1.7 percent later. Cosine-weighted exposure produces somewhat larger estimates of 1.8 and 2.9 percent. Appendix Table~\ref{tab:v1_jev_robustness} applies the same long-difference specifications to three Jev-based exposure measures. Appendix Figure~\ref{fig:v1_exposure_correlations} compares the occupation rankings across measures. Appendix Table~\ref{tab:v1_robustness_pretrends} and Figures~\ref{fig:v1_robust_u}--\ref{fig:v1_jev_robust_c} report the corresponding event-study diagnostics.
 
 The binary design in Appendix Table~\ref{tab:v1_binary_treatment} classifies occupations above the 75th-percentile cutoff, 0.1169, as treated and retains all remaining occupations as controls. The preferred specification yields 3.9 percent more registered unemployment during the adjustment period and 5.8 percent more later, although the later estimate is imprecise and the two interval effects are not statistically different. Contract estimates remain close to zero. The larger binary coefficients are consistent with concentration of the response in the upper exposure tail, but discretization discards dose information and changes the estimand. Appendix Table~\ref{tab:v1_binary_pretrends} and Figure~\ref{fig:v1_binary_event} report the corresponding diagnostics.
 
@@ -199,30 +199,18 @@ Across designs, more exposed occupations tend to experience a relative increase 
 
 \input{figuresNtables/robustness_checks_v1.tex}
 \input{figuresNtables/robustness_pretrend_diagnostics_v1.tex}
+\input{figuresNtables/robustness_checks_jev_v1.tex}
 
 \begin{figure}[H]
     \centering
-    \caption{Comparison of alternative AI exposure measures}
+    \caption{Correlation across AI exposure measures}
     \label{fig:v1_exposure_correlations}
-    \begin{subfigure}{0.48\textwidth}
-        \includegraphics[width=\textwidth]{\figdir/Exposure_correlation_panelA.png}
-        \caption{Cosine-weighted exposure}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.48\textwidth}
-        \includegraphics[width=\textwidth]{\figdir/Exposure_correlation_panelB.png}
-        \caption{RF-relative exposure}
-    \end{subfigure}
-
+    \includegraphics[width=0.84\textwidth]{\figdir/Exposure_correlation_matrix.png}
     \begin{minipage}{0.94\textwidth}
-    \footnotesize \emph{Notes:} Each marker represents one CNO4 occupation.
-    The horizontal axis reports the nearest-neighbor AI exposure score, while
-    the vertical axis reports the alternative measure indicated by the panel
-    caption. Solid lines are least-squares fits. The Pearson correlations with nearest-neighbor exposure
-    are 0.905 for the cosine-weighted score and 0.687 for the RF-relative
-    score. The corresponding standard deviations are 0.136, 0.128, and 0.054
-    for the nearest-neighbor, cosine-weighted, and RF-relative measures,
-    respectively.
+    \footnotesize \emph{Notes:} Cells report pairwise Spearman rank correlations
+    across CNO4 occupations; the number of occupations used appears below each
+    coefficient. Correlations use pairwise-complete observations. The BLS
+    category cells remain blank until the source workbook is supplied.
     \end{minipage}
 \end{figure}
 
@@ -245,14 +233,9 @@ Across designs, more exposed occupations tend to experience a relative increase 
         \includegraphics[width=\textwidth]{\figdir/Robustness_unemployed_panel3.png}
         \caption{Cosine-weighted exposure}
     \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.48\textwidth}
-        \includegraphics[width=\textwidth]{\figdir/Robustness_unemployed_panel4.png}
-        \caption{RF-relative exposure}
-    \end{subfigure}
 
     \begin{minipage}{0.94\textwidth}
-    \footnotesize \emph{Notes:} The figure reports event-study estimates corresponding to Panels A--D of Table~\ref{tab:v1_robustness}. Panel (a) reproduces the preferred specification; panel (b) replaces the dependent variable with \(\log(Y+1)\); panels (c) and (d) replace the nearest-neighbor exposure score with the cosine-weighted and RF-relative measures. Each regression includes CNO4 and CNO1-by-year-month fixed effects. October 2022 is the omitted reference month, and the vertical dashed line marks November 2022. Shaded areas are 95 percent confidence intervals based on standard errors clustered by CNO4.
+    \footnotesize \emph{Notes:} The figure reports event-study estimates corresponding to Panels A--C of Table~\ref{tab:v1_robustness}. Panel (a) reproduces the preferred specification; panel (b) replaces the dependent variable with \(\log(Y+1)\); panel (c) replaces the nearest-neighbor exposure score with the cosine-weighted measure. Each regression includes CNO4 and CNO1-by-year-month fixed effects. October 2022 is the omitted reference month, and the vertical dashed line marks November 2022. Shaded areas are 95 percent confidence intervals based on standard errors clustered by CNO4.
     \end{minipage}
 \end{figure}
 
@@ -275,14 +258,55 @@ Across designs, more exposed occupations tend to experience a relative increase 
         \includegraphics[width=\textwidth]{\figdir/Robustness_contracts_panel3.png}
         \caption{Cosine-weighted exposure}
     \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.48\textwidth}
-        \includegraphics[width=\textwidth]{\figdir/Robustness_contracts_panel4.png}
-        \caption{RF-relative exposure}
-    \end{subfigure}
 
     \begin{minipage}{0.94\textwidth}
     \footnotesize \emph{Notes:} The figure reports the same specifications and confidence intervals as Figure~\ref{fig:v1_robust_u}, using the logarithm of newly registered contracts as the dependent variable.
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \caption{Jev exposure event studies: registered unemployment}
+    \label{fig:v1_jev_robust_u}
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/Robustness_unemployed_jev_nearest.png}
+        \caption{Highest-probability U.S. occupation}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/Robustness_unemployed_jev_weighted.png}
+        \caption{Probability-weighted exposure}
+    \end{subfigure}
+    \vspace{0.22cm}
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/Robustness_unemployed_jev_direct.png}
+        \caption{Direct score}
+    \end{subfigure}
+    \begin{minipage}{0.94\textwidth}
+    \footnotesize \emph{Notes:} Each regression includes CNO4 and CNO1-by-year-month fixed effects. October 2022 is the omitted reference month, and the vertical dashed line marks November 2022. Shaded areas are 95 percent confidence intervals based on standard errors clustered by CNO4. Exposure is scaled to a 10 percentage-point change.
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \caption{Jev exposure event studies: new contracts}
+    \label{fig:v1_jev_robust_c}
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/Robustness_contracts_jev_nearest.png}
+        \caption{Highest-probability U.S. occupation}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/Robustness_contracts_jev_weighted.png}
+        \caption{Probability-weighted exposure}
+    \end{subfigure}
+    \vspace{0.22cm}
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/Robustness_contracts_jev_direct.png}
+        \caption{Direct score}
+    \end{subfigure}
+    \begin{minipage}{0.94\textwidth}
+    \footnotesize \emph{Notes:} These event studies use the same specifications and confidence intervals as Figure~\ref{fig:v1_jev_robust_u}, with the logarithm of new contracts as the dependent variable.
     \end{minipage}
 \end{figure}
 

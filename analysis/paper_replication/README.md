@@ -24,6 +24,15 @@ It then runs:
 4. `04_Estimates_contDID_v1.R`: continuous-treatment alternatives.
 5. `05_Output_tuning_v1.ipynb`: publication figures, tables, and validation.
 
+The preparation stage also merges the frozen Jev occupation estimates into
+`est_total_cno4_jev.csv`. The estimates stage runs the baseline models and then
+a focused Jev O.D. pass. The tuning stage writes the baseline-plus-three-Jev
+robustness table, six event-study panels, and an occupation-level Spearman
+correlation heatmap. If the optional BLS AI exposure workbook
+(`bls_ai_exposure_categories_2025_35.xlsx`) is unavailable, its row and column
+are left blank and identified as pending; the matrix updates automatically
+when the workbook is placed in `data/raw/`.
+
 Use `--replication-step prepare` or another named step for partial runs. The
 default `500` SDID and `1000` ContDID repetitions are production settings;
 smoke tests should pass smaller values explicitly.

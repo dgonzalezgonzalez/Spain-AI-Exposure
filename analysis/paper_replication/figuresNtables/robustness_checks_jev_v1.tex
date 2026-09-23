@@ -1,0 +1,50 @@
+\begin{landscape}
+\begin{table}[H]
+\centering
+\caption{Robustness to Jev-imputed AI exposure measures}
+\label{tab:v1_jev_robustness}
+\begin{threeparttable}
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{lcccccc}
+\toprule
+& \multicolumn{3}{c}{\# of registered unemployed} & \multicolumn{3}{c}{\# of new contracts} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}
+& (1) & (2) & (3) & (4) & (5) & (6) \\
+\midrule
+\multicolumn{7}{l}{\textit{Panel A. Baseline specification}} \\
+AI exposure & 0.035*** & 0.014 & 0.014 & 0.003 & -0.002 & -0.002 \\
+ & (0.010) & (0.012) & (0.013) & (0.010) & (0.011) & (0.015) \\
+Impact of a 10 pp increase (percent) & 3.5 & 1.4 & 1.4 & 0.3 & -0.2 & -0.2 \\
+Observations & 502 & 502 & 502 & 492 & 492 & 492 \\
+\addlinespace
+\multicolumn{7}{l}{\textit{Panel B. Jev: highest-probability U.S. occupation}} \\
+AI exposure & 0.044*** & 0.027** & 0.027** & -0.006 & -0.005 & -0.005 \\
+ & (0.010) & (0.012) & (0.013) & (0.009) & (0.011) & (0.014) \\
+Impact of a 10 pp increase (percent) & 4.4 & 2.7 & 2.7 & -0.6 & -0.5 & -0.5 \\
+Observations & 502 & 502 & 502 & 492 & 492 & 492 \\
+\addlinespace
+\multicolumn{7}{l}{\textit{Panel C. Jev: probability-weighted U.S. occupations}} \\
+AI exposure & 0.052*** & 0.033*** & 0.033** & -0.012 & -0.016 & -0.016 \\
+ & (0.010) & (0.012) & (0.014) & (0.012) & (0.012) & (0.015) \\
+Impact of a 10 pp increase (percent) & 5.2 & 3.3 & 3.3 & -1.2 & -1.6 & -1.6 \\
+Observations & 502 & 502 & 502 & 492 & 492 & 492 \\
+\addlinespace
+\multicolumn{7}{l}{\textit{Panel D. Jev: directly imputed observed exposure}} \\
+AI exposure & 0.084*** & 0.081*** & 0.081*** & -0.004 & -0.023 & -0.023 \\
+ & (0.010) & (0.014) & (0.018) & (0.013) & (0.019) & (0.021) \\
+Impact of a 10 pp increase (percent) & 8.4 & 8.1 & 8.1 & -0.4 & -2.3 & -2.3 \\
+Observations & 502 & 502 & 502 & 492 & 492 & 492 \\
+\addlinespace
+\midrule
+CNO1 fixed effects & No & Yes & Yes & No & Yes & Yes \\
+Clustered standard errors & CNO4 & CNO4 & CNO3 & CNO4 & CNO4 & CNO3 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item \emph{Notes:} Entries are occupation-level long-difference estimates between November 2022 and November 2025. Panel A uses the Anthropic nearest-neighbor exposure. Panels B--D use, respectively, the Jev-assigned U.S. occupation with the highest probability, the probability-weighted average across U.S. occupations, and Jev's direct score for observed exposure. Columns 1 and 4 are unconditional first-difference regressions; columns 2, 3, 5, and 6 absorb CNO1 fixed effects. Standard errors are clustered as indicated. Each exposure measure is divided by 0.10, so coefficients correspond to a 10 percentage-point increase. $^{***}p<0.01$, $^{**}p<0.05$, and $^{*}p<0.10$.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+\end{landscape}

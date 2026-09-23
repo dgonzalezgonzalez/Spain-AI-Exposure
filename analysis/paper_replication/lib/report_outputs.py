@@ -267,11 +267,6 @@ def _build_robustness_pretrend_table(tables_dir: Path) -> None:
             ("benchmark_cosine_weighted", "cosine_weighted_cno1_month", "cosine_weighted_cno1_month_cluster_cno3"),
             ("ln_parados", "ln_contratos"),
         ),
-        (
-            "Panel D. Alternative exposure: RF-relative",
-            ("benchmark_rf_relative", "rf_relative_cno1_month", "rf_relative_cno1_month_cluster_cno3"),
-            ("ln_parados", "ln_contratos"),
-        ),
     ]
     windows = [
         ("Full: -21 to -2", "full_-21_-2"),
@@ -493,7 +488,6 @@ def build_phase_outputs(
         ("Panel A. Baseline specification", "benchmark_twfe", "preferred_cno1_month", "preferred_cno1_month_cluster_cno3", "ln_parados", "ln_contratos"),
         ("Panel B. Alternative outcomes: log(Y+1)", "benchmark_log_plus_one", "log_plus_one_cno1_month", "log_plus_one_cno1_month_cluster_cno3", "ln_parados_p1", "ln_contratos_p1"),
         ("Panel C. Alternative exposure: cosine-weighted", "benchmark_cosine_weighted", "cosine_weighted_cno1_month", "cosine_weighted_cno1_month_cluster_cno3", "ln_parados", "ln_contratos"),
-        ("Panel D. Alternative exposure: RF-relative", "benchmark_rf_relative", "rf_relative_cno1_month", "rf_relative_cno1_month_cluster_cno3", "ln_parados", "ln_contratos"),
     ]
     robust_lines = [
         r"\begin{landscape}", r"\begin{table}[H]", r"\centering",
@@ -525,7 +519,7 @@ def build_phase_outputs(
         r"CNO1 $\times$ year-month FE & No & Yes & Yes & No & Yes & Yes \\",
         r"Clustered standard errors & CNO4 & CNO4 & CNO3 & CNO4 & CNO4 & CNO3 \\",
         r"\bottomrule", r"\end{tabular}", r"\begin{tablenotes}[flushleft]", r"\tiny",
-        r"\item \emph{Notes:} Each panel reports marginal effects for the adjustment period (event times 0--24) and the later period (event times 25--40), relative to all pre-treatment months. Panel A reproduces the baseline specification. Panel B replaces the logarithmic outcomes with $\log(Y+1)$. Panels C and D use the cosine-weighted and RF-relative exposure measures; the latter subtracts its 10th percentile and sets lower values to zero. Columns 1 and 4 include CNO4 and year-month fixed effects; the remaining columns include CNO4 and CNO1-by-year-month fixed effects. Exposure measures are divided by 0.10. Standard errors are clustered as indicated. Impact rows report 100 times the coefficients; equality rows test whether adjustment- and later-period effects are equal. $^{***}p<0.01$, $^{**}p<0.05$, and $^{*}p<0.10$.",
+        r"\item \emph{Notes:} Each panel reports marginal effects for the adjustment period (event times 0--24) and the later period (event times 25--40), relative to all pre-treatment months. Panel A reproduces the baseline specification. Panel B replaces the logarithmic outcomes with $\log(Y+1)$. Panel C uses the cosine-weighted exposure measure. Columns 1 and 4 include CNO4 and year-month fixed effects; the remaining columns include CNO4 and CNO1-by-year-month fixed effects. Exposure measures are divided by 0.10. Standard errors are clustered as indicated. Impact rows report 100 times the coefficients; equality rows test whether adjustment- and later-period effects are equal. $^{***}p<0.01$, $^{**}p<0.05$, and $^{*}p<0.10$.",
         r"\end{tablenotes}", r"\end{threeparttable}", r"\end{table}", r"\end{landscape}",
     ]
     _write_tex(tables_dir / "robustness_checks_v1.tex", robust_lines)

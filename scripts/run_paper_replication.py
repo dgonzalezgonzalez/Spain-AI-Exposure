@@ -134,6 +134,37 @@ def _stage_inputs(step: str) -> dict[str, Path]:
     _materialize(sources["anthropic_exposure"], raw / "anthropic_job_exposure_onet.csv")
     _materialize(sources["cno_titles"], raw / "cno4_english_titles.csv")
 
+    sources["jev_estimates"] = _required_input(
+        "frozen Jev occupation estimates",
+        [ROOT / "data" / "processed" / "jev" / "occupation_estimates.csv"],
+    )
+    sources["occupation_crosswalk"] = _required_input(
+        "Spanish-to-Anthropic occupation crosswalk",
+        [ROOT / "data" / "processed" / "spanish_occupation_matches_cosine_nearest.csv"],
+    )
+    _materialize(sources["jev_estimates"], raw / "jev_occupation_estimates.csv")
+    _materialize(
+        sources["occupation_crosswalk"], raw / "spanish_occupation_matches_cosine_nearest.csv"
+    )
+
+    # External comparison files are optional. Their availability changes the
+    # matrix coverage, not the Jev robustness estimates.
+    optional_workbooks = {
+        "bls_categories": [
+            ROOT / "data" / "raw" / "bls_ai_exposure_categories_2025_35.xlsx",
+            PACKAGE_ROOT / "data_sources" / "bls_ai_exposure_categories_2025_35.xlsx",
+        ],
+        "frs_lm_aioe": [
+            ROOT / "data" / "raw" / "felten_raj_seamans_language_modeling_aioe.xlsx",
+            PACKAGE_ROOT / "data_sources" / "felten_raj_seamans_language_modeling_aioe.xlsx",
+        ],
+    }
+    for label, candidates in optional_workbooks.items():
+        workbook = _find_first(label, candidates)
+        if workbook is not None:
+            sources[label] = workbook
+            _materialize(workbook, raw / workbook.name)
+
     if step in {"descriptives", "all"}:
         sources["epa_unemployed"] = _required_input(
             "INE EPA unemployed table 65218",
@@ -223,6 +254,12 @@ def _run_stata(stata_exe: str | None, reps: int) -> None:
     command = [str(stata), "/e", "do", str(RUNTIME_ROOT / "03_Estimates_TWFE_SDID_HonestDID_v1.do")]
     print(f"Running: {' '.join(command)}")
     subprocess.run(command, cwd=RUNTIME_ROOT, env=env, check=True)
+
+    # Run the narrow Jev robustness specifications after the standard models.
+    jev_env = env.copy()
+    jev_env["V1_JEV_OD_ONLY"] = "1"
+    print(f"Running Jev O.D. specifications: {' '.join(command)}")
+    subprocess.run(command, cwd=RUNTIME_ROOT, env=jev_env, check=True)
 
 
 def _run_r(rscript: str | None, reps: int) -> None:

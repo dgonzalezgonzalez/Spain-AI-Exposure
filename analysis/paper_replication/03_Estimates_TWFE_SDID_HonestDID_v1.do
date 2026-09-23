@@ -76,6 +76,7 @@ global V1_SDID_EVENT_SKIP_TOTAL : environment V1_SDID_EVENT_SKIP_TOTAL
 global V1_AGE_TWFE_ONLY : environment V1_AGE_TWFE_ONLY
 global V1_MAIN_TABLE_ONLY : environment V1_MAIN_TABLE_ONLY
 global V1_LONGDIFF_ONLY : environment V1_LONGDIFF_ONLY
+global V1_JEV_OD_ONLY : environment V1_JEV_OD_ONLY
 global V1_HETERO_TWFE_ONLY : environment V1_HETERO_TWFE_ONLY
 global V1_FEMINIZATION_ONLY : environment V1_FEMINIZATION_ONLY
 global V1_PHASE_ONLY : environment V1_PHASE_ONLY
@@ -98,6 +99,9 @@ capture mkdir "$LOG"
 capture log close
 if "$V1_LONGDIFF_ONLY" == "1" {
     log using "$LOG/Estimates_TWFE_SDID_HonestDID_v1_longdiff_only.log", replace text
+}
+else if "$V1_JEV_OD_ONLY" == "1" {
+    log using "$LOG/Estimates_TWFE_SDID_HonestDID_v1_jev_od_only.log", replace text
 }
 else if "$V1_MAIN_TABLE_ONLY" == "1" {
     log using "$LOG/Estimates_TWFE_SDID_HonestDID_v1_main_table_only.log", replace text
@@ -146,7 +150,9 @@ else {
 * 0. Required packages
 ********************************************************************************
 
-foreach package in ftools reghdfe distinct sdid sdid_event honestdid {
+local required_packages "ftools reghdfe distinct sdid sdid_event honestdid"
+if "$V1_JEV_OD_ONLY" == "1" local required_packages "ftools reghdfe"
+foreach package of local required_packages {
     capture which `package'
     if _rc {
         display as error "Required package `package' is not installed."
@@ -170,6 +176,9 @@ program define load_v1_panel
         ln_parados_p1 ln_contratos_p1 exposure_nearest exposure_10pp ///
         exposure_weighted exposure_weighted_10pp exposure_rf exposure_rf_10pp ///
         exposure_rf_relative exposure_rf_relative_10pp post_nov2022 ///
+        exposure_jev_nearest exposure_jev_nearest_10pp ///
+        exposure_jev_weighted exposure_jev_weighted_10pp ///
+        exposure_jev_direct exposure_jev_direct_10pp ///
         may2024_age_backcast may2024_province_backcast female ///
         feminization_2017_2019 feminization_2021q1_2022q3 ///
         feminization_change feminization_10pp_centered ///
@@ -1455,6 +1464,51 @@ program define produce_pooled_age_tests
         run_pooled_age_phase, outcome(`outcome')
     }
 end
+
+if "$V1_JEV_OD_ONLY" == "1" {
+    display as result "V1_JEV_OD_ONLY=1: producing Jev O.D. robustness outputs"
+    load_v1_panel using "$IN/est_total_cno4_jev.csv"
+
+    * Match the O.D. long-difference design: two outcomes, three columns,
+    * and occupation exposure scaled to a ten percentage-point change.
+    foreach outcome in ln_parados ln_contratos {
+        run_long_difference, spec("benchmark_twfe") outcome(`outcome') ///
+            unitvar(unit_id)
+        run_long_difference, spec("preferred_cno1_month") outcome(`outcome') ///
+            unitvar(unit_id) familyfe(cno1d)
+        run_long_difference, spec("preferred_cno1_month_cluster_cno3") ///
+            outcome(`outcome') unitvar(unit_id) familyfe(cno1d) ///
+            clustervar(cno3_id)
+    }
+
+    foreach measure in nearest weighted direct {
+        foreach outcome in ln_parados ln_contratos {
+            run_long_difference, spec("benchmark_jev_`measure'") ///
+                outcome(`outcome') dosevar(exposure_jev_`measure'_10pp) ///
+                unitvar(unit_id)
+            run_long_difference, spec("jev_`measure'_cno1_month") ///
+                outcome(`outcome') dosevar(exposure_jev_`measure'_10pp) ///
+                unitvar(unit_id) familyfe(cno1d)
+            run_long_difference, spec("jev_`measure'_cno1_month_cluster_cno3") ///
+                outcome(`outcome') dosevar(exposure_jev_`measure'_10pp) ///
+                unitvar(unit_id) familyfe(cno1d) clustervar(cno3_id)
+        }
+    }
+
+    * Preferred CNO1-by-month event studies used for the O.D.2(c)/O.D.3(c)
+    * figure counterparts.
+    foreach measure in nearest weighted direct {
+        foreach outcome in ln_parados ln_contratos {
+            run_twfe, spec("jev_`measure'_cno1_month") outcome(`outcome') ///
+                dosevar(exposure_jev_`measure'_10pp) ///
+                absorb("cno4_id cno1_ym")
+        }
+    }
+
+    display as result "Jev O.D. robustness outputs completed."
+    log close
+    exit
+}
 
 if "$V1_ROBUST_PRETREND_ONLY" == "1" {
     display as result "Regenerating Table B.1 pre-treatment diagnostics"
