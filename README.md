@@ -12,6 +12,16 @@ The current EPA pipeline no longer uses Ridge Regression or Ensemble outputs. Ac
 - `cosine_weighted`: assignment-based cosine weighted average.
 - `cosine_nearest`: nearest Anthropic occupation by cosine similarity.
 
+Jev alternatives and Garicano's three job tiers are available through
+`scripts/build_jev_occupation_exposure.py`. Run with `--merge-sepe` to create a
+separate SEPE panel containing `observed_exposure_jev_nearest`,
+`observed_exposure_jev_weighted`, `observed_exposure_jev_direct`, and
+`jev_tier` (plus probability diagnostics).
+The exhaustive hierarchy retains all 756 US occupations. See
+[Jev methodology and run instructions](docs/jev-occupation-methodology.md) and the
+[exact shared Jev questions](docs/jev-prompts-appendix.md) for
+the approved hierarchical specification, rubric, reproducibility and outputs.
+
 The default occupation representation is now taxonomy-aware:
 
 1. Anthropic occupations use O*NET title plus O*NET description.

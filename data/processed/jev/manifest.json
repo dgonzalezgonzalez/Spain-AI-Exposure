@@ -1,0 +1,103 @@
+{
+  "created_at_utc": "2026-09-23T10:53:58.436626+00:00",
+  "model": "jev-1.13.0",
+  "rubric_version": "garicano-2026-07-09-v1",
+  "method": "exhaustive_soc_major_group_conditional_choice",
+  "joint_probability": "P(SOC group | CNO4) * P(US occupation | SOC group, CNO4)",
+  "nearest": "Exposure of maximum joint-probability US occupation; lexicographic SOC tie break",
+  "weighted": "Sum over ALL US occupations of joint probability times observed_exposure",
+  "direct": "Jev Score expected level divided by 9; no US exposure or occupation match enters the prompt",
+  "direct_rubric_version": "anthropic-observed-exposure-2026-03-v3",
+  "direct_sources": {
+    "paper": "https://www.anthropic.com/research/labor-market-impacts",
+    "appendix": "https://cdn.sanity.io/files/4zrzovbb/website/e5f77fc0e77c0185110b5e4b909602791ae76eae.pdf"
+  },
+  "category_count": 756,
+  "spanish_count": 502,
+  "full_cno_count": 502,
+  "partial_run": false,
+  "questions_sha256": "b13aa581bd7da749d1b422b62eac89e882d903829fceb90549b2e8ca0bfad5db",
+  "source_files": {
+    "anthropic": {
+      "url": "https://huggingface.co/datasets/Anthropic/EconomicIndex/raw/main/labor_market_impacts/job_exposure.csv",
+      "sha256": "4f0a3adf5feeb2ec5f5d02ab18cc5e851a2a4b8470bde84c0c9335017be12d68"
+    },
+    "onet": {
+      "url": "https://www.onetcenter.org/dl_files/database/db_30_3_excel/Occupation%20Data.xlsx",
+      "sha256": "13b2aa4c08e6c9a3708d5e5ac83e13da5cc184e3798313c8942a266d00593ace"
+    },
+    "cno": {
+      "url": "https://ine.es/daco/daco42/clasificaciones/cno11_notas.pdf",
+      "sha256": "614faa32dc755c14fa426f3a0217b22614cbefb948bc9fa02d500f5440fcfb65"
+    }
+  },
+  "tier_sources": {
+    "video": "https://www.youtube.com/watch?v=70IebKR2lK0",
+    "summary": "https://bcf.princeton.edu/events/luis-garicano-on-ai-and-messy-jobs/",
+    "sections_seconds": [
+      768,
+      1071,
+      2791,
+      3396,
+      3658
+    ]
+  },
+  "input_language": "Spanish CNO descriptions, English O*NET descriptions and rubric",
+  "requests": 3012,
+  "cached_requests": 2510,
+  "input_tokens": 34664612,
+  "output_tokens": 5319192,
+  "new_input_tokens": 845620,
+  "tier_counts": {
+    "1": 232,
+    "2": 207,
+    "3": 63
+  },
+  "review_counts": {
+    "jev_match_review": 170,
+    "jev_tier_review": 79,
+    "jev_direct_review": 117,
+    "jev_no_military_category": 3
+  },
+  "sepe_merge": {
+    "rows": 2088006,
+    "cno4_count": 502,
+    "source": "data\\processed\\sepe_cno4_monthly_ai_exposure.csv",
+    "source_sha256": "47ce6d91882fc502ed948bb2ab0536b36713491214bb1249f3a130d7e70e3eb6",
+    "output_sha256": "fba63e204c5fb60842ad6e86b4aa80d5a71ae7cd4277cf3bcf9646cd8380f101"
+  },
+  "us_direct_benchmark": {
+    "us_occupations": 756,
+    "holdout_occupations": 751,
+    "excluded_prompt_anchor_titles": [
+      "Bartenders",
+      "Computer Programmers",
+      "Cooks",
+      "Data Entry Keyers",
+      "Dishwashers",
+      "Dressing Room Attendants",
+      "Lifeguards",
+      "Motorcycle Mechanics"
+    ],
+    "holdout_spearman": 0.6896632663410068,
+    "holdout_mae": 0.08126808400621095,
+    "holdout_mean_error": 0.05380986578314586,
+    "holdout_true_zero_count": 408,
+    "requests": 756,
+    "new_input_tokens": 1026297
+  },
+  "artifacts": {
+    "direct_score_probabilities.csv": "b293369b0b6d59171b2ba9db2b6295c486e143d7f3db042c3672daa09c3b8866",
+    "jev_response_cache.zip": "3d4cf339f2c93fdfbc86541ef1fd4aa936f4a142d8d36e2459e0e5ebbc2df473",
+    "occupation_estimates.csv": "d6a01c9a013d87d136854a71756c5f6d467367f32592167144adb4a3d81a721c",
+    "occupation_probabilities.csv.gz": "798fb4c68f79629b7cb295008cc35b17c302ff98fe1fc481ff33beecdd8b714a",
+    "questions.json": "603c69eb48b9f85b39218d0873ca87f003c9badf3c8c6b5edacd3c7042400e23",
+    "request_audit.json": "51b3c9505801bf4ccd744fc4fb1894d11824218c64997d8a2b67732d5285dc1e",
+    "spanish_inputs.csv": "644f0ab99be69d5a40fc76d82a49f4678c573a9b989992a698310458121a46cc",
+    "us_catalogue.csv": "57628f322f26908b20780caf2078c0fb3eec922152b8783867adae6b168e5dc8",
+    "us_direct_request_audit.json": "0d76a383da66143dc7d305d345b5b5e9538e2a9e82f5c4c7f5529521b11b29c7",
+    "us_direct_score_probabilities.csv": "77f32a1cb0c1a64928e4ab02d6cc7b316cadb767135c189701c012e1b7392802",
+    "us_direct_validation.csv": "c531559e913622b1c1d7a2e8f5b88b9277d0d2a241099a8459226ba839042656",
+    "us_direct_validation_summary.json": "3e82190593d2b44e830affc7f9f4428cc6ade12ec5e1d3d06aa6307b44882dd6"
+  }
+}

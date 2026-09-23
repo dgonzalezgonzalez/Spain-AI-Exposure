@@ -21,6 +21,7 @@ models/
 analysis/paper_replication/runtime/
 .tmp_replication_package_20260806/
 data/processed/sepe_cno4_monthly_ai_exposure.csv
+data/processed/sepe_cno4_monthly_ai_exposure_jev.csv
 
 !.gitkeep
 analysis/econometrics_outputs/

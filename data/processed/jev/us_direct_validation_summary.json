@@ -1,0 +1,20 @@
+{
+  "us_occupations": 756,
+  "holdout_occupations": 751,
+  "excluded_prompt_anchor_titles": [
+    "Bartenders",
+    "Computer Programmers",
+    "Cooks",
+    "Data Entry Keyers",
+    "Dishwashers",
+    "Dressing Room Attendants",
+    "Lifeguards",
+    "Motorcycle Mechanics"
+  ],
+  "holdout_spearman": 0.6896632663410068,
+  "holdout_mae": 0.08126808400621095,
+  "holdout_mean_error": 0.05380986578314586,
+  "holdout_true_zero_count": 408,
+  "requests": 756,
+  "new_input_tokens": 1026297
+}
