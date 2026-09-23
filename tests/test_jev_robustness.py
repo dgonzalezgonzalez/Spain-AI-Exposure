@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "analysis" / "paper_replication"))
 
 from lib.jev_robustness import (
+    _shared_unemployed_limits,
     build_exposure_correlation_matrix,
     build_jev_robustness_outputs,
     prepare_jev_panel,
@@ -73,15 +74,28 @@ class JevRobustnessTests(unittest.TestCase):
         )
         for measure in ("nearest", "weighted", "direct"):
             for outcome in ("ln_parados", "ln_contratos"):
-                event_frame.to_csv(
+                file_frame = event_frame.copy()
+                if measure == "direct" and outcome == "ln_parados":
+                    file_frame["ci_high"] = 0.12
+                file_frame.to_csv(
                     estimates_dir / f"twfe_event_jev_{measure}_cno1_month_{outcome}.csv",
                     index=False,
                 )
 
+        unemployment_files = [
+            estimates_dir / f"twfe_event_jev_{measure}_cno1_month_ln_parados.csv"
+            for measure in ("nearest", "weighted", "direct")
+        ]
+        self.assertEqual(_shared_unemployed_limits(unemployment_files), (-0.05, 0.15))
+
         outputs = build_jev_robustness_outputs(estimates_dir, output_dir)
         table = Path(outputs["table"]).read_text(encoding="utf-8")
         self.assertIn("Panel A. Baseline specification", table)
+        self.assertIn("Panel B. Jev: highest-probability O*NET occupation", table)
+        self.assertIn("Panel C. Jev: probability-weighted O*NET occupations", table)
         self.assertIn("Panel D. Jev: directly imputed observed exposure", table)
+        self.assertIn("Jev-assigned O*NET occupation", table)
+        self.assertIn(r"\footnotesize", table)
         self.assertNotIn("RF-relative", table)
         self.assertIn(r"AI exposure $\times$ adjustment period", table)
         self.assertIn(r"AI exposure $\times$ later period", table)

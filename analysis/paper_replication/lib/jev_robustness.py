@@ -130,6 +130,14 @@ def _render_event_file(source: Path, destination: Path, ylim: tuple[float, float
     plt.close(fig)
 
 
+def _shared_unemployed_limits(sources: list[Path]) -> tuple[float, float]:
+    """Give all unemployment event studies a common range that contains every CI."""
+
+    max_ci = max(float(pd.read_csv(source)["ci_high"].max()) for source in sources)
+    upper = max(0.05, math.ceil((max_ci + 0.0125) / 0.025) * 0.025)
+    return -0.05, round(upper, 3)
+
+
 def build_jev_robustness_outputs(
     estimates_dir: str | Path,
     output_dir: str | Path,
@@ -147,13 +155,13 @@ def build_jev_robustness_outputs(
             "Anthropic nearest-neighbor exposure",
         ),
         (
-            "Panel B. Jev: highest-probability U.S. occupation",
+            "Panel B. Jev: highest-probability O*NET occupation",
             "nearest",
             ("jev_nearest_benchmark", "jev_nearest_cno1_month", "jev_nearest_cno1_month_no2021"),
             "Jev highest-probability category",
         ),
         (
-            "Panel C. Jev: probability-weighted U.S. occupations",
+            "Panel C. Jev: probability-weighted O*NET occupations",
             "weighted",
             ("jev_weighted_benchmark", "jev_weighted_cno1_month", "jev_weighted_cno1_month_no2021"),
             "Jev probability-weighted exposure",
@@ -293,8 +301,8 @@ def build_jev_robustness_outputs(
             r"\bottomrule",
             r"\end{tabular*}",
             r"\begin{tablenotes}[flushleft]",
-            r"\tiny",
-            r"\item \emph{Notes:} Entries are marginal effects for the adjustment period (event times 0--24) and the later period (25--40), relative to all pre-treatment months. Panel A reproduces the baseline specification. Panels B--D use, respectively, the Jev-assigned U.S. occupation with the highest probability, the probability-weighted average across U.S. occupations, and Jev's direct observed-exposure score. Columns 1 and 4 include CNO4 and year-month fixed effects; the remaining columns include CNO4 and CNO1-by-year-month fixed effects. Columns 3 and 6 exclude 2021. Exposure is divided by 0.10. Standard errors are clustered by CNO4. The pre-treatment row tests the joint null that all available pre-treatment event-study coefficients equal zero: event times $-21$ through $-2$ when 2021 is included and $-10$ through $-2$ otherwise. Equality rows test whether the adjustment- and later-period effects are equal. $^{***}p<0.01$, $^{**}p<0.05$, and $^{*}p<0.10$.",
+            r"\footnotesize",
+            r"\item \emph{Notes:} Entries are marginal effects for the adjustment period (event times 0--24) and the later period (25--40), relative to all pre-treatment months. Panel A reproduces the baseline specification. Panels B--D use, respectively, the Jev-assigned O*NET occupation with the highest probability, the probability-weighted average across O*NET occupations, and Jev's direct observed-exposure score. Columns 1 and 4 include CNO4 and year-month fixed effects; the remaining columns include CNO4 and CNO1-by-year-month fixed effects. Columns 3 and 6 exclude 2021. Exposure is divided by 0.10. Standard errors are clustered by CNO4. The pre-treatment row tests the joint null that all available pre-treatment event-study coefficients equal zero: event times $-21$ through $-2$ when 2021 is included and $-10$ through $-2$ otherwise. Equality rows test whether the adjustment- and later-period effects are equal. $^{***}p<0.01$, $^{**}p<0.05$, and $^{*}p<0.10$.",
             r"\end{tablenotes}",
             r"\end{threeparttable}",
             r"\end{table}",
@@ -308,13 +316,18 @@ def build_jev_robustness_outputs(
     pd.DataFrame(rows).to_csv(results_path, index=False)
 
     figure_paths: dict[str, Path] = {}
+    unemployed_sources = [
+        estimates / f"twfe_event_jev_{measure}_cno1_month_ln_parados.csv"
+        for measure in ("nearest", "weighted", "direct")
+    ]
+    unemployed_limits = _shared_unemployed_limits(unemployed_sources)
     for measure, spec_measure in [
         ("nearest", "nearest"),
         ("weighted", "weighted"),
         ("direct", "direct"),
     ]:
         for outcome, outcome_file, limits, step in [
-            ("unemployed", "ln_parados", (-0.05, 0.05), 0.025),
+            ("unemployed", "ln_parados", unemployed_limits, 0.025),
             ("contracts", "ln_contratos", (-0.30, 0.30), 0.10),
         ]:
             source = estimates / f"twfe_event_jev_{spec_measure}_cno1_month_{outcome_file}.csv"
