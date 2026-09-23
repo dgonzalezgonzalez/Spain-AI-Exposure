@@ -8,6 +8,11 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
+try:
+    from scipy.stats import t as student_t
+except ImportError:  # Keep the paper-output helper usable in lean runtimes.
+    student_t = None
+
 
 NAVY = "#08519C"
 SKY = "#56B4E9"
@@ -82,11 +87,18 @@ def prepare_jev_panel(
     }
 
 
-def _star(beta: float, se: float) -> str:
+def _star(beta: float, se: float, clusters: int) -> str:
     if not np.isfinite(beta) or not np.isfinite(se) or se <= 0:
         return ""
-    p_value = math.erfc(abs(beta / se) / math.sqrt(2))
-    return "***" if p_value < 0.01 else "**" if p_value < 0.05 else "*" if p_value < 0.10 else ""
+    degrees = max(int(clusters) - 1, 1)
+    statistic = abs(beta / se)
+    p_value = (
+        float(2 * student_t.sf(statistic, degrees))
+        if student_t is not None
+        else math.erfc(statistic / math.sqrt(2))
+    )
+    stars = "***" if p_value < 0.01 else "**" if p_value < 0.05 else "*" if p_value < 0.10 else ""
+    return rf"$^{{{stars}}}$" if stars else ""
 
 
 def _render_event_file(source: Path, destination: Path, ylim: tuple[float, float], ytick_step: float) -> None:
@@ -122,87 +134,167 @@ def build_jev_robustness_outputs(
     estimates_dir: str | Path,
     output_dir: str | Path,
 ) -> dict[str, Path]:
-    """Build a baseline-plus-three-Jev long-difference table and six event plots."""
+    """Build the O.D.1 phase table and six O.D.2/O.D.3 event-study plots."""
 
     estimates = Path(estimates_dir)
     output = Path(output_dir)
     output.mkdir(parents=True, exist_ok=True)
     panels = [
-        ("Panel A. Baseline specification", "", "Nearest-neighbor AI exposure"),
-        ("Panel B. Jev: highest-probability U.S. occupation", "nearest", "Jev highest-probability category"),
-        ("Panel C. Jev: probability-weighted U.S. occupations", "weighted", "Jev probability-weighted exposure"),
-        ("Panel D. Jev: directly imputed observed exposure", "direct", "Jev direct observed-exposure score"),
+        (
+            "Panel A. Baseline specification",
+            "",
+            ("benchmark_twfe", "preferred_cno1_month", "preferred_cno1_month_no2021"),
+            "Anthropic nearest-neighbor exposure",
+        ),
+        (
+            "Panel B. Jev: highest-probability U.S. occupation",
+            "nearest",
+            ("jev_nearest_benchmark", "jev_nearest_cno1_month", "jev_nearest_cno1_month_no2021"),
+            "Jev highest-probability category",
+        ),
+        (
+            "Panel C. Jev: probability-weighted U.S. occupations",
+            "weighted",
+            ("jev_weighted_benchmark", "jev_weighted_cno1_month", "jev_weighted_cno1_month_no2021"),
+            "Jev probability-weighted exposure",
+        ),
+        (
+            "Panel D. Jev: directly imputed observed exposure",
+            "direct",
+            ("jev_direct_benchmark", "jev_direct_cno1_month", "jev_direct_cno1_month_no2021"),
+            "Jev direct observed-exposure score",
+        ),
     ]
-    specifications = [
-        ("benchmark_twfe", "preferred_cno1_month", "preferred_cno1_month_cluster_cno3")
-        if not measure
-        else (
-            f"benchmark_jev_{measure}",
-            f"jev_{measure}_cno1_month",
-            f"jev_{measure}_cno1_month_cluster_cno3",
-        )
-        for _, measure, _ in panels
-    ]
+
+    def phase_results(specification: str, outcome: str) -> dict[str, dict[str, object]]:
+        path = estimates / f"twfe_phase_{specification}_{outcome}.csv"
+        if not path.is_file():
+            raise FileNotFoundError(f"Missing phase-specific result: {path}")
+        frame = pd.read_csv(path)
+        if set(frame["phase"]) != {"adjustment", "later"} or len(frame) != 2:
+            raise ValueError(f"Expected adjustment and later rows in {path}")
+        return {str(row["phase"]): row for _, row in frame.iterrows()}
+
+    def pretrend_p_value(specification: str, outcome: str) -> float:
+        path = estimates / f"twfe_pretrend_{specification}_{outcome}.csv"
+        if not path.is_file():
+            raise FileNotFoundError(f"Missing pre-trend diagnostics: {path}")
+        frame = pd.read_csv(path)
+        match = frame.loc[
+            frame["window"].astype(str).str.startswith("full_")
+            & frame["test"].eq("joint_equal_zero"),
+            "p_value",
+        ]
+        if len(match) != 1:
+            raise ValueError(f"Expected one full-window joint-null test in {path}")
+        return float(match.iloc[0])
+
+    def format_p(value: float) -> str:
+        return r"$<0.001$" if value < 0.001 else f"{value:.3f}"
 
     rows: list[dict[str, object]] = []
     latex = [
         r"\begin{landscape}",
         r"\begin{table}[H]",
         r"\centering",
-        r"\caption{Robustness to Jev-imputed AI exposure measures}",
+        r"\caption{Robustness checks: alternative exposure measures}",
         r"\label{tab:v1_jev_robustness}",
         r"\begin{threeparttable}",
-        r"\scriptsize",
+        r"\small",
+        r"\renewcommand{\arraystretch}{0.86}",
         r"\setlength{\tabcolsep}{3.5pt}",
-        r"\begin{tabular}{lcccccc}",
+        r"\begin{tabular*}{0.90\linewidth}{@{\extracolsep{\fill}}lcccccc}",
         r"\toprule",
         r"& \multicolumn{3}{c}{\# of registered unemployed} & \multicolumn{3}{c}{\# of new contracts} \\",
         r"\cmidrule(lr){2-4}\cmidrule(lr){5-7}",
         r"& (1) & (2) & (3) & (4) & (5) & (6) \\",
         r"\midrule",
     ]
-    for (label, measure, score_label), specs in zip(panels, specifications):
-        panel_rows = []
-        for outcome in ("ln_parados", "ln_contratos"):
-            for specification in specs:
-                path = estimates / f"twfe_longdiff_{specification}_{outcome}.csv"
-                if not path.exists():
-                    raise FileNotFoundError(f"Missing long-difference result: {path}")
-                record = pd.read_csv(path).iloc[0].to_dict()
-                record["panel"] = label
-                record["measure"] = score_label
-                rows.append(record)
-                panel_rows.append(record)
-        latex.append(rf"\multicolumn{{7}}{{l}}{{\textit{{{label}}}}} \\")
-        betas = [float(row["estimate"]) for row in panel_rows]
-        ses = [float(row["se"]) for row in panel_rows]
+    for panel_number, (label, measure, specs, score_label) in enumerate(panels):
+        if panel_number:
+            latex.append(r"\addlinespace")
+        latex.append(rf"\multicolumn{{7}}{{l}}{{\textbf{{{label}}}}} \\")
+        panel_columns = [
+            (specification, outcome, phase_results(specification, outcome))
+            for outcome in ("ln_parados", "ln_contratos")
+            for specification in specs
+        ]
+        pretrend = []
+        for specification, outcome, pair in panel_columns:
+            pretrend_p = pretrend_p_value(specification, outcome)
+            pretrend.append(pretrend_p)
+            rows.append(
+                {
+                    "panel": label,
+                    "measure": score_label,
+                    "specification": specification,
+                    "outcome": outcome,
+                    "adjustment_estimate": float(pair["adjustment"]["estimate"]),
+                    "adjustment_se": float(pair["adjustment"]["se"]),
+                    "later_estimate": float(pair["later"]["estimate"]),
+                    "later_se": float(pair["later"]["se"]),
+                    "pretrend_joint_null_p": pretrend_p,
+                    "phase_equality_p": float(pair["adjustment"]["equality_p"]),
+                    "observations": int(pair["adjustment"]["observations"]),
+                }
+            )
+
+        adjustment = [pair["adjustment"] for _, _, pair in panel_columns]
+        later = [pair["later"] for _, _, pair in panel_columns]
+        beta_adjustment = [float(row["estimate"]) for row in adjustment]
+        se_adjustment = [float(row["se"]) for row in adjustment]
+        clusters_adjustment = [int(row["clusters"]) for row in adjustment]
+        beta_later = [float(row["estimate"]) for row in later]
+        se_later = [float(row["se"]) for row in later]
+        clusters_later = [int(row["clusters"]) for row in later]
+        equality = [float(row["equality_p"]) for row in adjustment]
+        observations = [int(row["observations"]) for row in adjustment]
         latex.append(
-            "AI exposure & "
-            + " & ".join(f"{beta:.3f}{_star(beta, se)}" for beta, se in zip(betas, ses))
+            r"AI exposure $\times$ adjustment period & "
+            + " & ".join(
+                f"{beta:.3f}{_star(beta, se, clusters)}"
+                for beta, se, clusters in zip(beta_adjustment, se_adjustment, clusters_adjustment)
+            )
             + r" \\"
         )
-        latex.append(" & " + " & ".join(f"({se:.3f})" for se in ses) + r" \\")
+        latex.append(" & " + " & ".join(f"({se:.3f})" for se in se_adjustment) + r" \\")
+        latex.append(r"\addlinespace")
         latex.append(
-            "Impact of a 10 pp increase (percent) & "
-            + " & ".join(f"{100 * beta:.1f}" for beta in betas)
+            r"AI exposure $\times$ later period & "
+            + " & ".join(
+                f"{beta:.3f}{_star(beta, se, clusters)}"
+                for beta, se, clusters in zip(beta_later, se_later, clusters_later)
+            )
+            + r" \\"
+        )
+        latex.append(
+            " & " + " & ".join(f"({se:.3f})" for se in se_later) + r" \\"
+        )
+        latex.append(
+            r"Pre-treatment joint-null $p$-value & "
+            + " & ".join(format_p(value) for value in pretrend)
+            + r" \\"
+        )
+        latex.append(
+            r"$p$-value: equal phase effects & "
+            + " & ".join(format_p(value) for value in equality)
             + r" \\"
         )
         latex.append(
             "Observations & "
-            + " & ".join(f"{int(row['observations']):,}" for row in panel_rows)
+            + " & ".join(f"{value:,}" for value in observations)
             + r" \\"
         )
-        latex.append(r"\addlinespace")
     latex.extend(
         [
             r"\midrule",
-            r"CNO1 fixed effects & No & Yes & Yes & No & Yes & Yes \\",
-            r"Clustered standard errors & CNO4 & CNO4 & CNO3 & CNO4 & CNO4 & CNO3 \\",
+            r"CNO1 $\times$ year-month FE & No & Yes & Yes & No & Yes & Yes \\",
+            r"2021 included & Yes & Yes & No & Yes & Yes & No \\",
             r"\bottomrule",
-            r"\end{tabular}",
+            r"\end{tabular*}",
             r"\begin{tablenotes}[flushleft]",
-            r"\footnotesize",
-            r"\item \emph{Notes:} Entries are occupation-level long-difference estimates between November 2022 and November 2025. Panel A uses the Anthropic nearest-neighbor exposure. Panels B--D use, respectively, the Jev-assigned U.S. occupation with the highest probability, the probability-weighted average across U.S. occupations, and Jev's direct score for observed exposure. Columns 1 and 4 are unconditional first-difference regressions; columns 2, 3, 5, and 6 absorb CNO1 fixed effects. Standard errors are clustered as indicated. Each exposure measure is divided by 0.10, so coefficients correspond to a 10 percentage-point increase. $^{***}p<0.01$, $^{**}p<0.05$, and $^{*}p<0.10$.",
+            r"\tiny",
+            r"\item \emph{Notes:} Entries are marginal effects for the adjustment period (event times 0--24) and the later period (25--40), relative to all pre-treatment months. Panel A reproduces the baseline specification. Panels B--D use, respectively, the Jev-assigned U.S. occupation with the highest probability, the probability-weighted average across U.S. occupations, and Jev's direct observed-exposure score. Columns 1 and 4 include CNO4 and year-month fixed effects; the remaining columns include CNO4 and CNO1-by-year-month fixed effects. Columns 3 and 6 exclude 2021. Exposure is divided by 0.10. Standard errors are clustered by CNO4. The pre-treatment row tests the joint null that all available pre-treatment event-study coefficients equal zero: event times $-21$ through $-2$ when 2021 is included and $-10$ through $-2$ otherwise. Equality rows test whether the adjustment- and later-period effects are equal. $^{***}p<0.01$, $^{**}p<0.05$, and $^{*}p<0.10$.",
             r"\end{tablenotes}",
             r"\end{threeparttable}",
             r"\end{table}",

@@ -1,49 +1,65 @@
 \begin{landscape}
 \begin{table}[H]
 \centering
-\caption{Robustness to Jev-imputed AI exposure measures}
+\caption{Robustness checks: alternative exposure measures}
 \label{tab:v1_jev_robustness}
 \begin{threeparttable}
-\scriptsize
+\small
+\renewcommand{\arraystretch}{0.86}
 \setlength{\tabcolsep}{3.5pt}
-\begin{tabular}{lcccccc}
+\begin{tabular*}{0.90\linewidth}{@{\extracolsep{\fill}}lcccccc}
 \toprule
 & \multicolumn{3}{c}{\# of registered unemployed} & \multicolumn{3}{c}{\# of new contracts} \\
 \cmidrule(lr){2-4}\cmidrule(lr){5-7}
 & (1) & (2) & (3) & (4) & (5) & (6) \\
 \midrule
-\multicolumn{7}{l}{\textit{Panel A. Baseline specification}} \\
-AI exposure & 0.035*** & 0.014 & 0.014 & 0.003 & -0.002 & -0.002 \\
- & (0.010) & (0.012) & (0.013) & (0.010) & (0.011) & (0.015) \\
-Impact of a 10 pp increase (percent) & 3.5 & 1.4 & 1.4 & 0.3 & -0.2 & -0.2 \\
-Observations & 502 & 502 & 502 & 492 & 492 & 492 \\
+\multicolumn{7}{l}{\textbf{Panel A. Baseline specification}} \\
+AI exposure $\times$ adjustment period & 0.019$^{***}$ & 0.012$^{**}$ & 0.012$^{**}$ & 0.033$^{***}$ & 0.014 & 0.004 \\
+ & (0.005) & (0.006) & (0.006) & (0.008) & (0.009) & (0.007) \\
 \addlinespace
-\multicolumn{7}{l}{\textit{Panel B. Jev: highest-probability U.S. occupation}} \\
-AI exposure & 0.044*** & 0.027** & 0.027** & -0.006 & -0.005 & -0.005 \\
- & (0.010) & (0.012) & (0.013) & (0.009) & (0.011) & (0.014) \\
-Impact of a 10 pp increase (percent) & 4.4 & 2.7 & 2.7 & -0.6 & -0.5 & -0.5 \\
-Observations & 502 & 502 & 502 & 492 & 492 & 492 \\
+AI exposure $\times$ later period & 0.038$^{***}$ & 0.017 & 0.016 & 0.029$^{***}$ & 0.013 & 0.003 \\
+ & (0.010) & (0.012) & (0.012) & (0.010) & (0.011) & (0.010) \\
+Pre-treatment joint-null $p$-value & $<0.001$ & 0.003 & 0.367 & $<0.001$ & 0.032 & 0.049 \\
+$p$-value: equal phase effects & 0.001 & 0.486 & 0.486 & 0.488 & 0.807 & 0.806 \\
+Observations & 31,122 & 31,122 & 25,600 & 30,787 & 30,786 & 25,317 \\
 \addlinespace
-\multicolumn{7}{l}{\textit{Panel C. Jev: probability-weighted U.S. occupations}} \\
-AI exposure & 0.052*** & 0.033*** & 0.033** & -0.012 & -0.016 & -0.016 \\
- & (0.010) & (0.012) & (0.014) & (0.012) & (0.012) & (0.015) \\
-Impact of a 10 pp increase (percent) & 5.2 & 3.3 & 3.3 & -1.2 & -1.6 & -1.6 \\
-Observations & 502 & 502 & 502 & 492 & 492 & 492 \\
+\multicolumn{7}{l}{\textbf{Panel B. Jev: highest-probability U.S. occupation}} \\
+AI exposure $\times$ adjustment period & 0.022$^{***}$ & 0.018$^{***}$ & 0.017$^{***}$ & 0.020$^{**}$ & 0.003 & -0.001 \\
+ & (0.005) & (0.005) & (0.005) & (0.008) & (0.008) & (0.007) \\
 \addlinespace
-\multicolumn{7}{l}{\textit{Panel D. Jev: directly imputed observed exposure}} \\
-AI exposure & 0.084*** & 0.081*** & 0.081*** & -0.004 & -0.023 & -0.023 \\
- & (0.010) & (0.014) & (0.018) & (0.013) & (0.019) & (0.021) \\
-Impact of a 10 pp increase (percent) & 8.4 & 8.1 & 8.1 & -0.4 & -2.3 & -2.3 \\
-Observations & 502 & 502 & 502 & 492 & 492 & 492 \\
+AI exposure $\times$ later period & 0.046$^{***}$ & 0.030$^{***}$ & 0.029$^{**}$ & 0.015 & 0.002 & -0.002 \\
+ & (0.009) & (0.011) & (0.012) & (0.010) & (0.011) & (0.010) \\
+Pre-treatment joint-null $p$-value & $<0.001$ & $<0.001$ & 0.429 & $<0.001$ & 0.002 & 0.005 \\
+$p$-value: equal phase effects & $<0.001$ & 0.056 & 0.056 & 0.370 & 0.888 & 0.890 \\
+Observations & 31,122 & 31,122 & 25,600 & 30,787 & 30,786 & 25,317 \\
 \addlinespace
+\multicolumn{7}{l}{\textbf{Panel C. Jev: probability-weighted U.S. occupations}} \\
+AI exposure $\times$ adjustment period & 0.027$^{***}$ & 0.022$^{***}$ & 0.020$^{***}$ & 0.021$^{**}$ & 0.000 & -0.009 \\
+ & (0.005) & (0.006) & (0.006) & (0.009) & (0.008) & (0.007) \\
+\addlinespace
+AI exposure $\times$ later period & 0.054$^{***}$ & 0.037$^{***}$ & 0.036$^{***}$ & 0.015 & -0.003 & -0.011 \\
+ & (0.010) & (0.011) & (0.012) & (0.012) & (0.011) & (0.011) \\
+Pre-treatment joint-null $p$-value & $<0.001$ & $<0.001$ & 0.200 & $<0.001$ & 0.002 & 0.003 \\
+$p$-value: equal phase effects & $<0.001$ & 0.019 & 0.019 & 0.295 & 0.683 & 0.689 \\
+Observations & 31,122 & 31,122 & 25,600 & 30,787 & 30,786 & 25,317 \\
+\addlinespace
+\multicolumn{7}{l}{\textbf{Panel D. Jev: directly imputed observed exposure}} \\
+AI exposure $\times$ adjustment period & 0.036$^{***}$ & 0.040$^{***}$ & 0.037$^{***}$ & 0.036$^{***}$ & -0.009 & -0.014 \\
+ & (0.005) & (0.008) & (0.008) & (0.011) & (0.015) & (0.011) \\
+\addlinespace
+AI exposure $\times$ later period & 0.083$^{***}$ & 0.082$^{***}$ & 0.079$^{***}$ & 0.033$^{**}$ & -0.005 & -0.011 \\
+ & (0.010) & (0.014) & (0.014) & (0.013) & (0.018) & (0.016) \\
+Pre-treatment joint-null $p$-value & $<0.001$ & $<0.001$ & 0.215 & $<0.001$ & 0.005 & 0.098 \\
+$p$-value: equal phase effects & $<0.001$ & $<0.001$ & $<0.001$ & 0.636 & 0.737 & 0.743 \\
+Observations & 31,122 & 31,122 & 25,600 & 30,787 & 30,786 & 25,317 \\
 \midrule
-CNO1 fixed effects & No & Yes & Yes & No & Yes & Yes \\
-Clustered standard errors & CNO4 & CNO4 & CNO3 & CNO4 & CNO4 & CNO3 \\
+CNO1 $\times$ year-month FE & No & Yes & Yes & No & Yes & Yes \\
+2021 included & Yes & Yes & No & Yes & Yes & No \\
 \bottomrule
-\end{tabular}
+\end{tabular*}
 \begin{tablenotes}[flushleft]
-\footnotesize
-\item \emph{Notes:} Entries are occupation-level long-difference estimates between November 2022 and November 2025. Panel A uses the Anthropic nearest-neighbor exposure. Panels B--D use, respectively, the Jev-assigned U.S. occupation with the highest probability, the probability-weighted average across U.S. occupations, and Jev's direct score for observed exposure. Columns 1 and 4 are unconditional first-difference regressions; columns 2, 3, 5, and 6 absorb CNO1 fixed effects. Standard errors are clustered as indicated. Each exposure measure is divided by 0.10, so coefficients correspond to a 10 percentage-point increase. $^{***}p<0.01$, $^{**}p<0.05$, and $^{*}p<0.10$.
+\tiny
+\item \emph{Notes:} Entries are marginal effects for the adjustment period (event times 0--24) and the later period (25--40), relative to all pre-treatment months. Panel A reproduces the baseline specification. Panels B--D use, respectively, the Jev-assigned U.S. occupation with the highest probability, the probability-weighted average across U.S. occupations, and Jev's direct observed-exposure score. Columns 1 and 4 include CNO4 and year-month fixed effects; the remaining columns include CNO4 and CNO1-by-year-month fixed effects. Columns 3 and 6 exclude 2021. Exposure is divided by 0.10. Standard errors are clustered by CNO4. The pre-treatment row tests the joint null that all available pre-treatment event-study coefficients equal zero: event times $-21$ through $-2$ when 2021 is included and $-10$ through $-2$ otherwise. Equality rows test whether the adjustment- and later-period effects are equal. $^{***}p<0.01$, $^{**}p<0.05$, and $^{*}p<0.10$.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}

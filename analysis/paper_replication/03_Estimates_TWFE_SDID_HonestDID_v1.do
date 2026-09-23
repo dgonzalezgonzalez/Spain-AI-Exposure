@@ -225,6 +225,8 @@ program define load_v1_panel
     gen int event_time = ym_stata - $EVENT_MONTH
     gen byte post = ym_stata >= $EVENT_MONTH
     gen byte post_effect = event_time >= 1
+    capture drop sample_no2021
+    gen byte sample_no2021 = year(dofm(ym_stata)) != 2021
 
     * Expanded-donor SDID design. No middle-exposure occupation is removed.
     foreach variable in sdid_high sdid_donor sdid_treatment {
@@ -477,7 +479,7 @@ end
 capture program drop run_twfe
 program define run_twfe
     syntax, SPEC(string) OUTCOME(name) ABSORB(string) ///
-        [DOSEVAR(name) CLUSTERVAR(name) EXPORTFIG]
+        [DOSEVAR(name) CLUSTERVAR(name) SAMPLEVAR(name) EXPORTFIG]
 
     if "`dosevar'" == "" local dosevar exposure_10pp
     if "`clustervar'" == "" local clustervar cno4_id
@@ -486,6 +488,7 @@ program define run_twfe
     save `source_data', replace
 
     keep if inrange(event_time, $ES_MIN, $ES_MAX)
+    if "`samplevar'" != "" keep if `samplevar' == 1
     keep if !missing(`outcome', `dosevar', `clustervar')
     quietly levelsof event_time, local(observed_event_values)
     make_continuous_event_terms, dosevar(`dosevar')
@@ -595,8 +598,10 @@ program define run_twfe
     postfile P str40 specification str32 outcome str16 window str32 test ///
         double F_stat df_num df_den p_value long observations clusters ///
         using `pretrend_results', replace
+    local full_window "full_-21_-2"
+    if "`samplevar'" != "" local full_window "full_-10_-2"
     post_pretrend_test, handle(P) spec("`spec'") outcome("`outcome'") ///
-        window("full_-21_-2") vars("`prefull'")
+        window("`full_window'") vars("`prefull'")
     post_pretrend_test, handle(P) spec("`spec'") outcome("`outcome'") ///
         window("early_-21_-10") vars("`preearly'")
     post_pretrend_test, handle(P) spec("`spec'") outcome("`outcome'") ///
@@ -1467,41 +1472,44 @@ end
 
 if "$V1_JEV_OD_ONLY" == "1" {
     display as result "V1_JEV_OD_ONLY=1: producing Jev O.D. robustness outputs"
-    load_v1_panel using "$IN/est_total_cno4_jev.csv"
-
-    * Match the O.D. long-difference design: two outcomes, three columns,
-    * and occupation exposure scaled to a ten percentage-point change.
+    * Reproduce O.D.1's six columns: benchmark, preferred, preferred without 2021.
+    load_v1_panel using "$IN/est_total_cno4.csv"
     foreach outcome in ln_parados ln_contratos {
-        run_long_difference, spec("benchmark_twfe") outcome(`outcome') ///
-            unitvar(unit_id)
-        run_long_difference, spec("preferred_cno1_month") outcome(`outcome') ///
-            unitvar(unit_id) familyfe(cno1d)
-        run_long_difference, spec("preferred_cno1_month_cluster_cno3") ///
-            outcome(`outcome') unitvar(unit_id) familyfe(cno1d) ///
-            clustervar(cno3_id)
+        run_phase_effects, spec("benchmark_twfe") outcome(`outcome') ///
+            absorb("cno4_id ym_id")
+        run_phase_effects, spec("preferred_cno1_month") outcome(`outcome') ///
+            absorb("cno4_id cno1_ym")
+        run_phase_effects, spec("preferred_cno1_month_no2021") ///
+            outcome(`outcome') absorb("cno4_id cno1_ym") ///
+            samplevar(sample_no2021)
+        run_twfe, spec("benchmark_twfe") outcome(`outcome') ///
+            absorb("cno4_id ym_id")
+        run_twfe, spec("preferred_cno1_month") outcome(`outcome') ///
+            absorb("cno4_id cno1_ym")
+        run_twfe, spec("preferred_cno1_month_no2021") outcome(`outcome') ///
+            absorb("cno4_id cno1_ym") samplevar(sample_no2021)
     }
 
     foreach measure in nearest weighted direct {
+        load_v1_panel using "$IN/est_total_cno4_jev.csv"
         foreach outcome in ln_parados ln_contratos {
-            run_long_difference, spec("benchmark_jev_`measure'") ///
+            run_phase_effects, spec("jev_`measure'_benchmark") ///
                 outcome(`outcome') dosevar(exposure_jev_`measure'_10pp) ///
-                unitvar(unit_id)
-            run_long_difference, spec("jev_`measure'_cno1_month") ///
+                absorb("cno4_id ym_id")
+            run_phase_effects, spec("jev_`measure'_cno1_month") ///
                 outcome(`outcome') dosevar(exposure_jev_`measure'_10pp) ///
-                unitvar(unit_id) familyfe(cno1d)
-            run_long_difference, spec("jev_`measure'_cno1_month_cluster_cno3") ///
+                absorb("cno4_id cno1_ym")
+            run_phase_effects, spec("jev_`measure'_cno1_month_no2021") ///
                 outcome(`outcome') dosevar(exposure_jev_`measure'_10pp) ///
-                unitvar(unit_id) familyfe(cno1d) clustervar(cno3_id)
-        }
-    }
-
-    * Preferred CNO1-by-month event studies used for the O.D.2(c)/O.D.3(c)
-    * figure counterparts.
-    foreach measure in nearest weighted direct {
-        foreach outcome in ln_parados ln_contratos {
+                absorb("cno4_id cno1_ym") samplevar(sample_no2021)
+            run_twfe, spec("jev_`measure'_benchmark") outcome(`outcome') ///
+                dosevar(exposure_jev_`measure'_10pp) absorb("cno4_id ym_id")
             run_twfe, spec("jev_`measure'_cno1_month") outcome(`outcome') ///
                 dosevar(exposure_jev_`measure'_10pp) ///
                 absorb("cno4_id cno1_ym")
+            run_twfe, spec("jev_`measure'_cno1_month_no2021") ///
+                outcome(`outcome') dosevar(exposure_jev_`measure'_10pp) ///
+                absorb("cno4_id cno1_ym") samplevar(sample_no2021)
         }
     }
 

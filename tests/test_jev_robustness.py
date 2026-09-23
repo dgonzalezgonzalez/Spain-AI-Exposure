@@ -26,20 +26,40 @@ class JevRobustnessTests(unittest.TestCase):
         measures = ["", "nearest", "weighted", "direct"]
         for measure in measures:
             specs = (
-                ("benchmark_twfe", "preferred_cno1_month", "preferred_cno1_month_cluster_cno3")
+                ("benchmark_twfe", "preferred_cno1_month", "preferred_cno1_month_no2021")
                 if not measure
                 else (
-                    f"benchmark_jev_{measure}",
+                    f"jev_{measure}_benchmark",
                     f"jev_{measure}_cno1_month",
-                    f"jev_{measure}_cno1_month_cluster_cno3",
+                    f"jev_{measure}_cno1_month_no2021",
                 )
             )
             for outcome in ("ln_parados", "ln_contratos"):
                 for specification in specs:
                     pd.DataFrame(
-                        [{"estimate": 0.02, "se": 0.01, "observations": 502}]
+                        [
+                            {
+                                "phase": phase,
+                                "estimate": 0.02 if phase == "adjustment" else 0.01,
+                                "se": 0.01,
+                                "clusters": 400,
+                                "equality_p": 0.42,
+                                "observations": 502,
+                            }
+                            for phase in ("adjustment", "later")
+                        ]
+                    ).to_csv(estimates_dir / f"twfe_phase_{specification}_{outcome}.csv", index=False)
+                    pretrend_window = "full_-10_-2" if specification.endswith("no2021") else "full_-21_-2"
+                    pd.DataFrame(
+                        [
+                            {
+                                "window": pretrend_window,
+                                "test": "joint_equal_zero",
+                                "p_value": 0.234,
+                            }
+                        ]
                     ).to_csv(
-                        estimates_dir / f"twfe_longdiff_{specification}_{outcome}.csv",
+                        estimates_dir / f"twfe_pretrend_{specification}_{outcome}.csv",
                         index=False,
                     )
         event_times = list(range(-21, 41))
@@ -63,6 +83,12 @@ class JevRobustnessTests(unittest.TestCase):
         self.assertIn("Panel A. Baseline specification", table)
         self.assertIn("Panel D. Jev: directly imputed observed exposure", table)
         self.assertNotIn("RF-relative", table)
+        self.assertIn(r"AI exposure $\times$ adjustment period", table)
+        self.assertIn(r"AI exposure $\times$ later period", table)
+        self.assertIn(r"0.020$^{**}$", table)
+        self.assertIn("2021 included & Yes & Yes & No & Yes & Yes & No", table)
+        self.assertNotIn("Impact of a 10 pp increase", table)
+        self.assertNotIn("CNO3", table)
         self.assertEqual(len([key for key in outputs if key not in {"table", "table_csv"}]), 6)
         self.assertTrue(all(Path(path).is_file() for key, path in outputs.items() if key not in {"table", "table_csv"}))
 
