@@ -1,8 +1,8 @@
 measure,exposure_nearest,exposure_weighted,observed_exposure_jev_nearest,observed_exposure_jev_weighted,observed_exposure_jev_direct,bls_ai_category_code,frs_lm_percentile
-exposure_nearest,502,502,502,502,502,0,444
-exposure_weighted,502,502,502,502,502,0,444
-observed_exposure_jev_nearest,502,502,502,502,502,0,444
-observed_exposure_jev_weighted,502,502,502,502,502,0,444
-observed_exposure_jev_direct,502,502,502,502,502,0,444
-bls_ai_category_code,0,0,0,0,0,0,0
-frs_lm_percentile,444,444,444,444,444,0,444
+exposure_nearest,502,502,502,502,502,501,444
+exposure_weighted,502,502,502,502,502,501,444
+observed_exposure_jev_nearest,502,502,502,502,502,501,444
+observed_exposure_jev_weighted,502,502,502,502,502,501,444
+observed_exposure_jev_direct,502,502,502,502,502,501,444
+bls_ai_category_code,501,501,501,501,501,501,444
+frs_lm_percentile,444,444,444,444,444,444,444

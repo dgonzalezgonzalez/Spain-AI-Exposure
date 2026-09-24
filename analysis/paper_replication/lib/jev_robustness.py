@@ -344,8 +344,8 @@ def _find_workbook(root: Path, filename: str, explicit: str | Path | None) -> Pa
         return candidate if candidate.is_file() else None
     candidates = [
         root / "data" / "raw" / filename,
-        root / "analysis" / "paper_replication" / "runtime" / "data" / "raw" / filename,
         root / "analysis" / "paper_replication" / "data_sources" / filename,
+        root / "analysis" / "paper_replication" / "runtime" / "data" / "raw" / filename,
         root / "data_sources" / filename,
     ]
     return next((candidate for candidate in candidates if candidate.is_file()), None)
@@ -419,7 +419,9 @@ def build_exposure_correlation_matrix(
         merged["frs_lm_percentile"] = merged["frs_lm_aioe"].rank(method="average", pct=True)
 
     measure_names = list(MEASURES)
-    merged[measure_names].to_csv(output / "exposure_measure_matrix_inputs_v1.csv", index=False)
+    merged[["cno4", *measure_names]].to_csv(
+        output / "exposure_measure_matrix_inputs_v1.csv", index=False
+    )
     correlations = pd.DataFrame(np.nan, index=measure_names, columns=measure_names, dtype=float)
     pairwise_n = pd.DataFrame(0, index=measure_names, columns=measure_names, dtype=int)
     long_rows: list[dict[str, object]] = []
@@ -455,7 +457,7 @@ def build_exposure_correlation_matrix(
         "Jev\nhighest-probability",
         "Jev\nprobability-weighted",
         "Jev\ndirect",
-        "BLS category\n(data pending)",
+        "BLS category" if bls_path else "BLS category\n(data pending)",
         "LM-AIOE\npercentile",
     ]
     values = correlations.to_numpy(dtype=float)
@@ -489,9 +491,17 @@ def build_exposure_correlation_matrix(
     fig.savefig(figure_path, dpi=320, bbox_inches="tight")
     plt.close(fig)
 
+    def source_label(path: Path | None) -> str | None:
+        if path is None:
+            return None
+        try:
+            return str(path.resolve().relative_to(root.resolve()))
+        except ValueError:
+            return str(path)
+
     status = {
-        "bls_source": str(bls_path) if bls_path else None,
-        "frs_source": str(frs_path) if frs_path else None,
+        "bls_source": source_label(bls_path),
+        "frs_source": source_label(frs_path),
         "bls_occupations": int(merged["bls_ai_category_code"].notna().sum()),
         "frs_lm_aioe_occupations": int(merged["frs_lm_percentile"].notna().sum()),
         "matrix_measures": len(measure_names),

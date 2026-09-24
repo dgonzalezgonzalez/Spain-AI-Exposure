@@ -1,7 +1,7 @@
 {
-  "bls_source":null,
-  "frs_source":"C:\\Users\\dgonzalez\\Desktop\\Diego Gonz\u00e1lez\\Prestaciones por empleo AI exposure\\analysis\\paper_replication\\runtime\\data\\raw\\felten_raj_seamans_language_modeling_aioe.xlsx",
-  "bls_occupations":0,
+  "bls_source":"analysis\\paper_replication\\data_sources\\bls_ai_exposure_categories_2025_35.xlsx",
+  "frs_source":"analysis\\paper_replication\\data_sources\\felten_raj_seamans_language_modeling_aioe.xlsx",
+  "bls_occupations":501,
   "frs_lm_aioe_occupations":444,
   "matrix_measures":7
 }

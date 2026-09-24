@@ -28,10 +28,13 @@ The preparation stage also merges the frozen Jev occupation estimates into
 `est_total_cno4_jev.csv`. The estimates stage runs the baseline models and then
 a focused Jev O.D. pass. The tuning stage writes the baseline-plus-three-Jev
 robustness table, six event-study panels, and an occupation-level Spearman
-correlation heatmap. If the optional BLS AI exposure workbook
-(`bls_ai_exposure_categories_2025_35.xlsx`) is unavailable, its row and column
-are left blank and identified as pending; the matrix updates automatically
-when the workbook is placed in `data/raw/`.
+correlation heatmap. The BLS AI exposure workbook
+(`data_sources/bls_ai_exposure_categories_2025_35.xlsx`) and the LM AIOE
+workbook are bundled as paper inputs. The BLS file is the 2025--35
+[Employment Projections release](https://www.bls.gov/emp/publications/ai-exposure-categories.htm).
+If it is unavailable in another checkout, its row and column are left blank
+and identified as pending; the matrix updates when the workbook is restored
+or placed in `data/raw/`.
 
 Use `--replication-step prepare` or another named step for partial runs. The
 default `500` SDID and `1000` ContDID repetitions are production settings;
