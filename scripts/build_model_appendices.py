@@ -19,8 +19,14 @@ def prompt_tex(question: dict) -> str:
         question, ensure_ascii=False, indent=2) + "\n\\end{Verbatim}\n}\n"
 
 
+def jev_exposure_introduction() -> str:
+    return r"""We use Jev, a System One AI model that returns probabilities over predefined categories and score levels, to construct three alternative measures of observed AI exposure.\footnote{Repeated Jev API calls can yield different probability vectors. The replication package archives the exact requests, raw responses, probability distributions, and resulting occupation measures. The reported estimates use these frozen outputs.} Each measure uses the Spanish occupation's title, description, and task information. The first two retain Anthropic's O*NET exposure values and replace the embedding-based mapping in Section~\ref{sec:mapping}: one assigns the exposure of the O*NET occupation with the highest model probability, while the other averages exposure across all O*NET occupations using their model probabilities as weights. The third asks Jev to predict observed exposure directly, using the definition and the rules for task coverage, automation weighting, and task-time aggregation in \citet{massenkoff_mccrory_2026}. We summarize its probabilities over ten exposure levels by an expected score between zero and one. This direct measure is a semantic prediction of the index from occupational information; the underlying task-level Claude usage records and task-time weights are unavailable for this exercise. The exact direct-exposure prompt appears at the end of this subsection. We formalize the three measures below:
+
+"""
+
+
 def exposure_construction(label: str) -> str:
-    return r"""Let $i=1,\ldots,N$ index O*NET occupations and $j=1,\ldots,J$ index Spanish CNO4d occupations, as in Section 2.2.2, and let $y_i$ denote Anthropic observed exposure. MODEL evaluates every branch of the occupation hierarchy. If $\mathcal P(i)$ denotes the path to occupation $i$ and $q_{j\ell}$ the conditional branch probabilities,
+    return r"""Let $i=1,\ldots,N$ index O*NET occupations and $j=1,\ldots,J$ index Spanish CNO4d occupations and let $y_i$ denote Anthropic observed exposure. MODEL evaluates every branch of the occupation hierarchy. If $\mathcal P(i)$ denotes the path to occupation $i$ and $q_{j\ell}$ the conditional branch probabilities,
 \begin{equation}
 \label{eq:v1_FAMILY_occupation_probabilities}
 p_{ji}=\prod_{\ell\in\mathcal P(i)}q_{j\ell},\qquad \sum_{i=1}^{N}p_{ji}=1.
@@ -120,7 +126,8 @@ def main() -> None:
     for name in [*required, matrix]:
         if not (figures / name).is_file():
             raise FileNotFoundError(figures / name)
-    od = f"\\clearpage\n\\subsection*{{{label} Exposure Measures}}\n" + exposure_construction(label)
+    introduction = jev_exposure_introduction() if family == "jev" else ""
+    od = f"\\clearpage\n\\subsection*{{{label} Exposure Measures}}\n" + introduction + exposure_construction(label)
     od += f"\\input{{\\figdir/robustness_checks_{family}_v1.tex}}\n"
     for outcome in ("unemployed", "contracts"):
         od += exposure_events(family, outcome)
@@ -142,7 +149,7 @@ def main() -> None:
     oe += "\\clearpage\n\\subsubsection*{Three-tier categorization prompt}\n" + prompt_tex(tier)
     for name, source in [(f"appendix_od_{family}.tex", od), (f"appendix_oe_{family}_tiers.tex", oe)]:
         (figures / name).write_text(source, encoding="utf-8")
-    internal_od, internal_oe = od, oe
+    internal_od, internal_oe = od.replace(introduction, "", 1) if introduction else od, oe
     for outcome in ("unemployed", "contracts"):
         internal_od = internal_od.replace(exposure_events(family, outcome), "")
         internal_oe = internal_oe.replace(tier_events(family, outcome), "")
