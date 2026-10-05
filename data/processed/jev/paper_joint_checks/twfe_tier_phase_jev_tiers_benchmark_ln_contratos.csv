@@ -1,0 +1,5 @@
+specification,outcome,tier,phase,estimate,se,ci_low,ci_high,equality_p,observations,clusters
+jev_tiers_benchmark,ln_contratos,1,adjustment,-.2214042229549253,.032460384,-.28517947,-.15762897,.45321673,30787,502
+jev_tiers_benchmark,ln_contratos,1,later,-.2058786593357055,.045331772,-.29494247,-.11681486,.45321673,30787,502
+jev_tiers_benchmark,ln_contratos,2,adjustment,-.1058859883546333,.030824017,-.16644625,-.045325726,.45321673,30787,502
+jev_tiers_benchmark,ln_contratos,2,later,-.0749873558034077,.044669382,-.16274975,.01277504,.45321673,30787,502

@@ -43,6 +43,7 @@ def parse_args() -> argparse.Namespace:
         default="all",
         help="Production step to run; all follows the package's five-step order.",
     )
+    parser.add_argument("--occupation-model", choices=("jev", "tev"), default="jev")
     parser.add_argument("--stata-exe", default=None, help="Path to StataMP for the TWFE/SDID step.")
     parser.add_argument("--rscript", default=None, help="Path to Rscript for the ContDID step.")
     parser.add_argument(
@@ -134,15 +135,16 @@ def _stage_inputs(step: str) -> dict[str, Path]:
     _materialize(sources["anthropic_exposure"], raw / "anthropic_job_exposure_onet.csv")
     _materialize(sources["cno_titles"], raw / "cno4_english_titles.csv")
 
-    sources["jev_estimates"] = _required_input(
-        "frozen Jev occupation estimates",
-        [ROOT / "data" / "processed" / "jev" / "occupation_estimates.csv"],
+    occupation_model = os.getenv("V1_OCCUPATION_MODEL", "jev")
+    sources["occupation_estimates"] = _required_input(
+        f"frozen {occupation_model.upper()} occupation estimates",
+        [ROOT / "data" / "processed" / occupation_model / "occupation_estimates.csv"],
     )
     sources["occupation_crosswalk"] = _required_input(
         "Spanish-to-Anthropic occupation crosswalk",
         [ROOT / "data" / "processed" / "spanish_occupation_matches_cosine_nearest.csv"],
     )
-    _materialize(sources["jev_estimates"], raw / "jev_occupation_estimates.csv")
+    _materialize(sources["occupation_estimates"], raw / f"{occupation_model}_occupation_estimates.csv")
     _materialize(
         sources["occupation_crosswalk"], raw / "spanish_occupation_matches_cosine_nearest.csv"
     )
@@ -272,6 +274,7 @@ def _run_r(rscript: str | None, reps: int) -> None:
 
 
 def run_replication(args: argparse.Namespace) -> None:
+    os.environ["V1_OCCUPATION_MODEL"] = getattr(args, "occupation_model", "jev")
     selected = STEPS if args.step == "all" else (args.step,)
     if args.sdid_reps < 1 or args.contdid_reps < 1:
         raise ReplicationError("Bootstrap repetition counts must be positive.")

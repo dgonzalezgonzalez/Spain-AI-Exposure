@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -18,6 +19,23 @@ from lib.jev_robustness import (
 
 
 class JevRobustnessTests(unittest.TestCase):
+    def test_tier_join_is_constant_within_occupation_and_rejects_invalid_tiers(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            panel, estimates, output = [root / name for name in ("panel.csv", "estimates.csv", "output.csv")]
+            pd.DataFrame({"cno4": ["0011", "0011", "0012"],
+                          "period": ["2021-01", "2021-02", "2021-01"]}).to_csv(panel, index=False)
+            frame = pd.DataFrame({"cno4": ["0011", "0012"], "tev_tier": [3, 1],
+                                  **{f"observed_exposure_tev_{measure}": [0.1, 0.2]
+                                     for measure in ("nearest", "weighted", "direct")}})
+            frame.to_csv(estimates, index=False)
+            prepare_jev_panel(panel, estimates, output, model_family="tev")
+            self.assertEqual(pd.read_csv(output).tev_tier.tolist(), [3, 3, 1])
+            frame["tev_tier"] = [1.5, 1.0]
+            frame.to_csv(estimates, index=False)
+            with self.assertRaisesRegex(ValueError, "tiers"):
+                prepare_jev_panel(panel, estimates, output, model_family="tev")
+
     def test_builds_jev_table_and_six_event_study_figures(self) -> None:
         root = ROOT / "analysis" / "paper_replication" / "runtime" / "test_artifacts" / "jev_outputs_unit_test"
         estimates_dir = root / "intermediate"

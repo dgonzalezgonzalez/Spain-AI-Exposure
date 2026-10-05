@@ -1,0 +1,7 @@
+specification,outcome,window,test,F_stat,df_num,df_den,p_value,observations,clusters
+benchmark_twfe,ln_contratos,full_-21_-2,joint_equal_zero,4.053144889913272,20,501,1.5504909e-08,30787,502
+benchmark_twfe,ln_contratos,full_-21_-2,joint_equal_coefficients,4.240401604306927,19,501,9.1560795e-09,30787,502
+benchmark_twfe,ln_contratos,early_-21_-10,joint_equal_zero,4.15124857379555,12,501,3.1757156e-06,30787,502
+benchmark_twfe,ln_contratos,early_-21_-10,joint_equal_coefficients,3.907793427317859,11,501,.000018933701,30787,502
+benchmark_twfe,ln_contratos,recent_-10_-2,joint_equal_zero,3.72309904354064,9,501,.00015303548,30787,502
+benchmark_twfe,ln_contratos,recent_-10_-2,joint_equal_coefficients,3.691294437059748,8,501,.00033506725,30787,502

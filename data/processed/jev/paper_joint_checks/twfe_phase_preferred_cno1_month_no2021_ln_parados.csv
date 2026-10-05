@@ -1,0 +1,3 @@
+specification,outcome,dosevar,phase,event_start,event_end,estimate,se,ci_low,ci_high,effect_percent,equality_p,observations,clusters
+preferred_cno1_month_no2021,ln_parados,exposure_10pp,adjustment,0,24,.0115801458628703,.0058686575,.000049933682,.023110358,1.1580145,.48612207,25600,502
+preferred_cno1_month_no2021,ln_parados,exposure_10pp,later,25,40,.0163314449248662,.011912478,-.0070731244,.039736014,1.6331445,.48612207,25600,502

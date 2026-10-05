@@ -77,6 +77,11 @@ global V1_AGE_TWFE_ONLY : environment V1_AGE_TWFE_ONLY
 global V1_MAIN_TABLE_ONLY : environment V1_MAIN_TABLE_ONLY
 global V1_LONGDIFF_ONLY : environment V1_LONGDIFF_ONLY
 global V1_JEV_OD_ONLY : environment V1_JEV_OD_ONLY
+global V1_TIERS_ONLY : environment V1_TIERS_ONLY
+if "$V1_TIERS_ONLY" == "1" global V1_JEV_OD_ONLY "1"
+global V1_OCCUPATION_MODEL : environment V1_OCCUPATION_MODEL
+if "$V1_OCCUPATION_MODEL" == "" global V1_OCCUPATION_MODEL "jev"
+if !inlist("$V1_OCCUPATION_MODEL", "jev", "tev") exit 198
 global V1_HETERO_TWFE_ONLY : environment V1_HETERO_TWFE_ONLY
 global V1_FEMINIZATION_ONLY : environment V1_FEMINIZATION_ONLY
 global V1_PHASE_ONLY : environment V1_PHASE_ONLY
@@ -176,6 +181,10 @@ program define load_v1_panel
         ln_parados_p1 ln_contratos_p1 exposure_nearest exposure_10pp ///
         exposure_weighted exposure_weighted_10pp exposure_rf exposure_rf_10pp ///
         exposure_rf_relative exposure_rf_relative_10pp post_nov2022 ///
+        exposure_tev_nearest exposure_tev_nearest_10pp ///
+        exposure_tev_weighted exposure_tev_weighted_10pp ///
+        exposure_tev_direct exposure_tev_direct_10pp ///
+        tev_tier jev_tier ///
         exposure_jev_nearest exposure_jev_nearest_10pp ///
         exposure_jev_weighted exposure_jev_weighted_10pp ///
         exposure_jev_direct exposure_jev_direct_10pp ///
@@ -1470,8 +1479,12 @@ program define produce_pooled_age_tests
     }
 end
 
+do "`script_dir'/lib/job_tiers.do"
+
 if "$V1_JEV_OD_ONLY" == "1" {
-    display as result "V1_JEV_OD_ONLY=1: producing Jev O.D. robustness outputs"
+    local occupation_model "$V1_OCCUPATION_MODEL"
+    display as result "Producing `occupation_model' O.D. robustness outputs"
+    if "$V1_TIERS_ONLY" != "1" {
     * Reproduce O.D.1's six columns: benchmark, preferred, preferred without 2021.
     load_v1_panel using "$IN/est_total_cno4.csv"
     foreach outcome in ln_parados ln_contratos {
@@ -1491,29 +1504,31 @@ if "$V1_JEV_OD_ONLY" == "1" {
     }
 
     foreach measure in nearest weighted direct {
-        load_v1_panel using "$IN/est_total_cno4_jev.csv"
+        load_v1_panel using "$IN/est_total_cno4_`occupation_model'.csv"
         foreach outcome in ln_parados ln_contratos {
-            run_phase_effects, spec("jev_`measure'_benchmark") ///
-                outcome(`outcome') dosevar(exposure_jev_`measure'_10pp) ///
+            run_phase_effects, spec("`occupation_model'_`measure'_benchmark") ///
+                outcome(`outcome') dosevar(exposure_`occupation_model'_`measure'_10pp) ///
                 absorb("cno4_id ym_id")
-            run_phase_effects, spec("jev_`measure'_cno1_month") ///
-                outcome(`outcome') dosevar(exposure_jev_`measure'_10pp) ///
+            run_phase_effects, spec("`occupation_model'_`measure'_cno1_month") ///
+                outcome(`outcome') dosevar(exposure_`occupation_model'_`measure'_10pp) ///
                 absorb("cno4_id cno1_ym")
-            run_phase_effects, spec("jev_`measure'_cno1_month_no2021") ///
-                outcome(`outcome') dosevar(exposure_jev_`measure'_10pp) ///
+            run_phase_effects, spec("`occupation_model'_`measure'_cno1_month_no2021") ///
+                outcome(`outcome') dosevar(exposure_`occupation_model'_`measure'_10pp) ///
                 absorb("cno4_id cno1_ym") samplevar(sample_no2021)
-            run_twfe, spec("jev_`measure'_benchmark") outcome(`outcome') ///
-                dosevar(exposure_jev_`measure'_10pp) absorb("cno4_id ym_id")
-            run_twfe, spec("jev_`measure'_cno1_month") outcome(`outcome') ///
-                dosevar(exposure_jev_`measure'_10pp) ///
+            run_twfe, spec("`occupation_model'_`measure'_benchmark") outcome(`outcome') ///
+                dosevar(exposure_`occupation_model'_`measure'_10pp) absorb("cno4_id ym_id")
+            run_twfe, spec("`occupation_model'_`measure'_cno1_month") outcome(`outcome') ///
+                dosevar(exposure_`occupation_model'_`measure'_10pp) ///
                 absorb("cno4_id cno1_ym")
-            run_twfe, spec("jev_`measure'_cno1_month_no2021") ///
-                outcome(`outcome') dosevar(exposure_jev_`measure'_10pp) ///
+            run_twfe, spec("`occupation_model'_`measure'_cno1_month_no2021") ///
+                outcome(`outcome') dosevar(exposure_`occupation_model'_`measure'_10pp) ///
                 absorb("cno4_id cno1_ym") samplevar(sample_no2021)
         }
     }
 
-    display as result "Jev O.D. robustness outputs completed."
+    }
+    produce_job_tier_outputs, model("`occupation_model'")
+    display as result "`occupation_model' O.D. and tier robustness outputs completed."
     log close
     exit
 }

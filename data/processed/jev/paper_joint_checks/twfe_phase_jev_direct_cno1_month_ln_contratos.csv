@@ -1,0 +1,3 @@
+specification,outcome,dosevar,phase,event_start,event_end,estimate,se,ci_low,ci_high,effect_percent,equality_p,observations,clusters
+jev_direct_cno1_month,ln_contratos,exposure_jev_direct_10pp,adjustment,0,24,-.0085122604946053,.015167977,-.038312942,.021288419,-.85122603,.73728329,30786,502
+jev_direct_cno1_month,ln_contratos,exposure_jev_direct_10pp,later,25,40,-.0054929942156641,.018234812,-.041319117,.03033313,-.54929942,.73728329,30786,502

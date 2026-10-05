@@ -1,0 +1,3 @@
+specification,outcome,dosevar,phase,event_start,event_end,estimate,se,ci_low,ci_high,effect_percent,equality_p,observations,clusters
+jev_nearest_benchmark,ln_contratos,exposure_jev_nearest_10pp,adjustment,0,24,.019711227672148,.0081800604,.0036397781,.035782676,1.9711227,.37035388,30787,502
+jev_nearest_benchmark,ln_contratos,exposure_jev_nearest_10pp,later,25,40,.0148390926835624,.010088869,-.0049826126,.034660798,1.4839092,.37035388,30787,502

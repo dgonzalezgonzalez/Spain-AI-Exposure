@@ -1,0 +1,5 @@
+specification,outcome,tier,phase,estimate,se,ci_low,ci_high,equality_p,observations,clusters
+jev_tiers_cno1_month,ln_parados,1,adjustment,-.0012016705691399,.041474819,-.082687676,.080284335,.011754249,31122,502
+jev_tiers_cno1_month,ln_parados,1,later,-.0219848502350107,.083596669,-.1862281,.14225839,.011754249,31122,502
+jev_tiers_cno1_month,ln_parados,2,adjustment,-.0361374581805183,.039495282,-.11373425,.041459329,.011754249,31122,502
+jev_tiers_cno1_month,ln_parados,2,later,-.0971889554427682,.078466855,-.25135359,.056975681,.011754249,31122,502

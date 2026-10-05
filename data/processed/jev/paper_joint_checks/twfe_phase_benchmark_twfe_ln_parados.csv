@@ -1,0 +1,3 @@
+specification,outcome,dosevar,phase,event_start,event_end,estimate,se,ci_low,ci_high,effect_percent,equality_p,observations,clusters
+benchmark_twfe,ln_parados,exposure_10pp,adjustment,0,24,.019254705628622,.0048716101,.0096834023,.028826009,1.9254706,.001275714,31122,502
+benchmark_twfe,ln_parados,exposure_10pp,later,25,40,.0376019660021657,.0097127445,.018519236,.056684695,3.7601967,.001275714,31122,502

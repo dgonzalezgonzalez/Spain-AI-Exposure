@@ -1,0 +1,2 @@
+# Preserve frozen experiment/estimator bytes for recorded SHA-256 checksums.
+data/processed/jev/paper_joint_checks/* -text whitespace=cr-at-eol

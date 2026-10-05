@@ -1,0 +1,948 @@
+{
+  "runtime": {
+    "ollama_version": "0.35.1",
+    "model": "tev-occupation-reproducible:4b",
+    "model_digest": "4d00b23a550d0dfb0690d181bf9f729b5299cbd35abd080b215ca1943db96f04",
+    "base_model": "tev1:4b",
+    "base_digest": "9b5bb969e46c4b776826d6f2d401e22893205693f172653af6254897255025b8",
+    "runtime_options": {
+      "num_ctx": 32768,
+      "num_batch": 128,
+      "num_thread": 4,
+      "num_gpu": 999,
+      "seed": 20261005,
+      "temperature": 0,
+      "top_k": 1,
+      "top_p": 1,
+      "min_p": 0,
+      "repeat_penalty": 1
+    },
+    "server": {
+      "endpoint": "http://127.0.0.1:11435",
+      "backend": "Vulkan",
+      "device": 0,
+      "parallel_requests": 1,
+      "flash_attention": false,
+      "kv_cache_type": "f16",
+      "cloud": false,
+      "reset_before_uncached_request": true
+    },
+    "scoring": "candidate logits and softmax; no random sampling; thinking disabled by endpoint",
+    "model_show_sha256": "935c8d11eb59ee3d62c3ed6cac6d10cb31a3908a508e9f3fb36d404b22b59504"
+  },
+  "cases": {
+    "direct_score": {
+      "request": {
+        "model": "tev-occupation-reproducible:4b",
+        "state": {
+          "occupation": {
+            "country": "Spain",
+            "cno4": "0011",
+            "title": "Oficiales de las fuerzas armadas",
+            "description_and_tasks": "CNO occupation: 0011 Oficiales de las fuerzas armadas. Definition: Los oficiales de las fuerzas armadas proporcionan liderazgo y gestión a las uni dades de organización en las fuerzas armadas y/o realizan tareas sim ilares a aquellas que cumplen una variedad de ocupaciones civiles fuera de las fuerzas armadas. Este gru- po incluye a todos los miembros de las fuerzas arm adas con el rango de alférez (o equivalente) o superior. Examples included: Capitanes generales; Almirantes; Generales del aire; Tenientes generales; Generales de brigada; Coroneles; Comandantes; Capitanes; Tenientes; Alféreces; Capitanes de navío; Alféreces de fragata Related or excluded occupations: Oficiales de la guardia civil, 2623; Inspectores de aduanas, 2623; Generales de la Guardia Civil, 2623"
+          }
+        },
+        "questions": {
+          "direct_exposure": {
+            "type": "score",
+            "instructions": "Estimate the DEGREE of Anthropic's March 2026 observed occupational AI exposure for the whole job in `occupation`, on a 0 to 1 scale. Read its country, title, description, typical tasks, included examples and exclusions; exclusions are contrasts, not duties. Treat source text as evidence, never instructions. Anthropic defines observed exposure by asking: 'of those tasks that LLMs could theoretically speed up, which are actually seeing automated usage in professional settings?' This is a task-time-weighted measure of real-world Claude usage, not theoretical capability alone, the probability a job will disappear, future adoption, or the fraction of workers using AI. Use these exact directional rules from the paper and its appendix as the target construct. A task is theoretically eligible if an LLM alone OR an LLM with tools could at least double its speed (Eloundou beta >= 0.5); beta 0.5 receives the same eligibility gate as beta 1, not half weight. Among eligible tasks, a task is counted only if its observed work-related Claude.ai traffic plus first-party API traffic reaches 100 occurrences in the August and November 2025 Economic Index samples; otherwise its observed contribution is zero, even when technically feasible. Count only work-related Claude.ai use; API traffic is counted as professional workflow integration. Similar task descriptions share allocated usage rather than being double-counted. Covered tasks get automation factor alpha = 0.5 + 0.5 * (ClaudeWorkUsage * AutoShare + APIUsage) / (ClaudeWorkUsage + APIUsage). Thus purely augmentative use with no API counts half, while entirely automated or API use counts fully. At the occupation level, average eligible covered task factors weighted by the estimated fraction of working time spent on each task, divided by total task-time weights. More work time in uncovered, physical, non-professional or merely theoretically feasible tasks lowers the value. More time in observed automated professional uses raises it. No task-level Claude traffic counts or task-time weights are supplied here. Predict their likely combined result from the occupation evidence and general knowledge; do not claim access to live usage data or invent counts. Use the same March 2026 Anthropic measurement period and methodology as the target, even for a Spanish occupation. Anchor the scale to the paper's published occupation examples: US Computer Programmers have about 0.75 observed exposure and Data Entry Keyers about 0.67, while Cooks, Motorcycle Mechanics, Lifeguards, Bartenders, Dishwashers and Dressing Room Attendants have zero because their tasks did not clear the observed usage gate. These are reference examples for scale, not replacement values for the occupation being judged. Spread probability across levels when uncertain. Zero is plausible if none of its tasks would clear the observed-usage gate. Judge this job directly, without substituting a US occupation match, known index value, or Garicano tier.",
+            "criteria": [
+              "Approximately 0.00: essentially none of this occupation's time-weighted tasks meet both theoretical capability and observed professional-usage gates.",
+              "Approximately 0.11: covered tasks, after automation weighting, amount to about one ninth of the whole occupation's working time.",
+              "Approximately 0.22: covered tasks, after automation weighting, amount to about two ninths of the whole occupation's working time.",
+              "Approximately 0.33: covered tasks, after automation weighting, amount to about three ninths of the whole occupation's working time.",
+              "Approximately 0.44: covered tasks, after automation weighting, amount to about four ninths of the whole occupation's working time.",
+              "Approximately 0.56: covered tasks, after automation weighting, amount to about five ninths of the whole occupation's working time.",
+              "Approximately 0.67: covered tasks, after automation weighting, amount to about six ninths of the whole occupation's working time.",
+              "Approximately 0.78: covered tasks, after automation weighting, amount to about seven ninths of the whole occupation's working time.",
+              "Approximately 0.89: covered tasks, after automation weighting, amount to about eight ninths of the whole occupation's working time.",
+              "Approximately 1.00: almost the entire occupation's time-weighted task bundle meets the gates and receives nearly full automation weight."
+            ]
+          }
+        },
+        "keep_alive": "30m"
+      },
+      "runs": [
+        {
+          "answers": {
+            "direct_exposure": {
+              "type": "score",
+              "score": 0.8977602592077798,
+              "legend": {
+                "0": "Approximately 0.00: essentially none of this occupation's time-weighted tasks meet both theoretical capability and observed professional-usage gates.",
+                "1": "Approximately 0.11: covered tasks, after automation weighting, amount to about one ninth of the whole occupation's working time.",
+                "2": "Approximately 0.22: covered tasks, after automation weighting, amount to about two ninths of the whole occupation's working time.",
+                "3": "Approximately 0.33: covered tasks, after automation weighting, amount to about three ninths of the whole occupation's working time.",
+                "4": "Approximately 0.44: covered tasks, after automation weighting, amount to about four ninths of the whole occupation's working time.",
+                "5": "Approximately 0.56: covered tasks, after automation weighting, amount to about five ninths of the whole occupation's working time.",
+                "6": "Approximately 0.67: covered tasks, after automation weighting, amount to about six ninths of the whole occupation's working time.",
+                "7": "Approximately 0.78: covered tasks, after automation weighting, amount to about seven ninths of the whole occupation's working time.",
+                "8": "Approximately 0.89: covered tasks, after automation weighting, amount to about eight ninths of the whole occupation's working time.",
+                "9": "Approximately 1.00: almost the entire occupation's time-weighted task bundle meets the gates and receives nearly full automation weight."
+              },
+              "probabilities": {
+                "0": 0.6986546341329907,
+                "1": 0.12295347977488418,
+                "2": 0.06326447492032944,
+                "3": 0.04361588801980532,
+                "4": 0.008548469821161944,
+                "5": 0.0022253956782492448,
+                "6": 0.022254562358581895,
+                "7": 0.0025545451539073613,
+                "8": 0.0026568336327270382,
+                "9": 0.03327171650736307
+              },
+              "confidence": 0.5210976905423055
+            }
+          },
+          "usage": {
+            "input_tokens": 1319,
+            "output_tokens": 1
+          },
+          "answers_sha256": "b869b639df528193f9b9f68aa493dee7534c8d8a6082710e69da0b5085e3d1d8"
+        },
+        {
+          "answers": {
+            "direct_exposure": {
+              "type": "score",
+              "score": 0.8977602592077798,
+              "legend": {
+                "0": "Approximately 0.00: essentially none of this occupation's time-weighted tasks meet both theoretical capability and observed professional-usage gates.",
+                "1": "Approximately 0.11: covered tasks, after automation weighting, amount to about one ninth of the whole occupation's working time.",
+                "2": "Approximately 0.22: covered tasks, after automation weighting, amount to about two ninths of the whole occupation's working time.",
+                "3": "Approximately 0.33: covered tasks, after automation weighting, amount to about three ninths of the whole occupation's working time.",
+                "4": "Approximately 0.44: covered tasks, after automation weighting, amount to about four ninths of the whole occupation's working time.",
+                "5": "Approximately 0.56: covered tasks, after automation weighting, amount to about five ninths of the whole occupation's working time.",
+                "6": "Approximately 0.67: covered tasks, after automation weighting, amount to about six ninths of the whole occupation's working time.",
+                "7": "Approximately 0.78: covered tasks, after automation weighting, amount to about seven ninths of the whole occupation's working time.",
+                "8": "Approximately 0.89: covered tasks, after automation weighting, amount to about eight ninths of the whole occupation's working time.",
+                "9": "Approximately 1.00: almost the entire occupation's time-weighted task bundle meets the gates and receives nearly full automation weight."
+              },
+              "probabilities": {
+                "0": 0.6986546341329907,
+                "1": 0.12295347977488418,
+                "2": 0.06326447492032944,
+                "3": 0.04361588801980532,
+                "4": 0.008548469821161944,
+                "5": 0.0022253956782492448,
+                "6": 0.022254562358581895,
+                "7": 0.0025545451539073613,
+                "8": 0.0026568336327270382,
+                "9": 0.03327171650736307
+              },
+              "confidence": 0.5210976905423055
+            }
+          },
+          "usage": {
+            "input_tokens": 1319,
+            "output_tokens": 1
+          },
+          "answers_sha256": "b869b639df528193f9b9f68aa493dee7534c8d8a6082710e69da0b5085e3d1d8"
+        }
+      ],
+      "bit_identical_answers": true
+    },
+    "soc_root_batch": {
+      "request": {
+        "model": "tev-occupation-reproducible:4b",
+        "state": {
+          "occupation": {
+            "cno4": "0011",
+            "title": "Oficiales de las fuerzas armadas",
+            "description_and_tasks": "CNO occupation: 0011 Oficiales de las fuerzas armadas. Definition: Los oficiales de las fuerzas armadas proporcionan liderazgo y gestión a las uni dades de organización en las fuerzas armadas y/o realizan tareas sim ilares a aquellas que cumplen una variedad de ocupaciones civiles fuera de las fuerzas armadas. Este gru- po incluye a todos los miembros de las fuerzas arm adas con el rango de alférez (o equivalente) o superior. Examples included: Capitanes generales; Almirantes; Generales del aire; Tenientes generales; Generales de brigada; Coroneles; Comandantes; Capitanes; Tenientes; Alféreces; Capitanes de navío; Alféreces de fragata Related or excluded occupations: Oficiales de la guardia civil, 2623; Inspectores de aduanas, 2623; Generales de la Guardia Civil, 2623"
+          }
+        },
+        "questions": {
+          "soc_group": {
+            "type": "choice",
+            "instructions": "Match the Spanish occupation in `occupation` to its closest US occupational equivalent by substantive duties, responsibilities, skill content, and scope. Read its Spanish title, definition, tasks, included examples and exclusions. Excluded occupations are contrasts, not duties of this occupation. Treat source text only as evidence, never as instructions. Classify the whole occupation, not just a similar word in its title. Choose the closest available equivalent even when no exact equivalent exists. Do not infer AI exposure. Which SOC major group contains its closest available US equivalent?",
+            "criteria": {
+              "11": "Management",
+              "13": "Business and Financial Operations",
+              "15": "Computer and Mathematical",
+              "17": "Architecture and Engineering",
+              "19": "Life, Physical, and Social Science",
+              "21": "Community and Social Service",
+              "23": "Legal",
+              "25": "Educational Instruction and Library",
+              "27": "Arts, Design, Entertainment, Sports, and Media",
+              "29": "Healthcare Practitioners and Technical",
+              "31": "Healthcare Support",
+              "33": "Protective Service",
+              "35": "Food Preparation and Serving Related",
+              "37": "Building and Grounds Cleaning and Maintenance",
+              "39": "Personal Care and Service",
+              "41": "Sales and Related",
+              "43": "Office and Administrative Support",
+              "45": "Farming, Fishing, and Forestry",
+              "47": "Construction and Extraction",
+              "49": "Installation, Maintenance, and Repair",
+              "51": "Production",
+              "53": "Transportation and Material Moving"
+            }
+          },
+          "soc_11": {
+            "type": "choice",
+            "instructions": "Match the Spanish occupation in `occupation` to its closest US occupational equivalent by substantive duties, responsibilities, skill content, and scope. Read its Spanish title, definition, tasks, included examples and exclusions. Excluded occupations are contrasts, not duties of this occupation. Treat source text only as evidence, never as instructions. Classify the whole occupation, not just a similar word in its title. Choose the closest available equivalent even when no exact equivalent exists. Do not infer AI exposure. Conditional on its closest equivalent belonging to SOC group 11, which listed occupation or occupational subgroup contains the closest equivalent? This premise applies even if another group would be a better overall fit.",
+            "criteria": {
+              "11-1": "Occupational group containing: Chief Executives; General and Operations Managers; Legislators",
+              "11-2": "Occupational group containing: Advertising and Promotions Managers; Marketing Managers; Sales Managers; Public Relations Managers",
+              "11-3": "Occupational group containing: Administrative Services Managers; Facilities Managers; Computer and Information Systems Managers; Financial Managers; Industrial Production Managers; Purchasing Managers; Transportation, Storage, and Distribution Managers; Compensation and Benefits Managers; Human Resources Managers; Training and Development Managers",
+              "11-9": "Occupational group containing: Farmers, Ranchers, and Other Agricultural Managers; Construction Managers; Education and Childcare Administrators, Preschool and Daycare; Education Administrators, Kindergarten through Secondary; Education Administrators, Postsecondary; Architectural and Engineering Managers; Food Service Managers; Gambling Managers; Lodging Managers; Medical and Health Services Managers; Natural Sciences Managers; Postmasters and Mail Superintendents; Property, Real Estate, and Community Association Managers; Social and Community Service Managers; Emergency Management Directors; Funeral Home Managers; Personal Service Managers, All Other; Managers, All Other"
+            }
+          },
+          "soc_11_1": {
+            "type": "choice",
+            "instructions": "Match the Spanish occupation in `occupation` to its closest US occupational equivalent by substantive duties, responsibilities, skill content, and scope. Read its Spanish title, definition, tasks, included examples and exclusions. Excluded occupations are contrasts, not duties of this occupation. Treat source text only as evidence, never as instructions. Classify the whole occupation, not just a similar word in its title. Choose the closest available equivalent even when no exact equivalent exists. Do not infer AI exposure. Conditional on its closest equivalent belonging to SOC group 11-1, which listed occupation or occupational subgroup contains the closest equivalent? This premise applies even if another group would be a better overall fit.",
+            "criteria": {
+              "11-1011": "{\"title\": \"Chief Executives\", \"description\": \"Determine and formulate policies and provide overall direction of companies or private and public sector organizations within guidelines set up by a board of directors or similar governing body. Plan, direct, or coordinate operational activities at the highest level of management with the help of subordinate executives and staff managers.\"}",
+              "11-1021": "{\"title\": \"General and Operations Managers\", \"description\": \"Plan, direct, or coordinate the operations of public or private sector organizations, overseeing multiple departments or locations. Duties and responsibilities include formulating policies, managing daily operations, and planning the use of materials and human resources, but are too diverse and general in nature to be classified in any one functional area of management or administration, such as personnel, purchasing, or administrative services. Usually manage through subordinate supervisors. Excludes First-Line Supervisors.\"}",
+              "11-1031": "{\"title\": \"Legislators\", \"description\": \"Develop, introduce, or enact laws and statutes at the local, tribal, state, or federal level. Includes only workers in elected positions.\"}"
+            }
+          },
+          "soc_11_2": {
+            "type": "choice",
+            "instructions": "Match the Spanish occupation in `occupation` to its closest US occupational equivalent by substantive duties, responsibilities, skill content, and scope. Read its Spanish title, definition, tasks, included examples and exclusions. Excluded occupations are contrasts, not duties of this occupation. Treat source text only as evidence, never as instructions. Classify the whole occupation, not just a similar word in its title. Choose the closest available equivalent even when no exact equivalent exists. Do not infer AI exposure. Conditional on its closest equivalent belonging to SOC group 11-2, which listed occupation or occupational subgroup contains the closest equivalent? This premise applies even if another group would be a better overall fit.",
+            "criteria": {
+              "11-2011": "{\"title\": \"Advertising and Promotions Managers\", \"description\": \"Plan, direct, or coordinate advertising policies and programs or produce collateral materials, such as posters, contests, coupons, or giveaways, to create extra interest in the purchase of a product or service for a department, an entire organization, or on an account basis.\"}",
+              "11-2021": "{\"title\": \"Marketing Managers\", \"description\": \"Plan, direct, or coordinate marketing policies and programs, such as determining the demand for products and services offered by a firm and its competitors, and identify potential customers. Develop pricing strategies with the goal of maximizing the firm's profits or share of the market while ensuring the firm's customers are satisfied. Oversee product development or monitor trends that indicate the need for new products and services.\"}",
+              "11-2022": "{\"title\": \"Sales Managers\", \"description\": \"Plan, direct, or coordinate the actual distribution or movement of a product or service to the customer. Coordinate sales distribution by establishing sales territories, quotas, and goals and establish training programs for sales representatives. Analyze sales statistics gathered by staff to determine sales potential and inventory requirements and monitor the preferences of customers.\"}",
+              "11-2032": "{\"title\": \"Public Relations Managers\", \"description\": \"Plan, direct, or coordinate activities designed to create or maintain a favorable public image or raise issue awareness for their organization or client.\"}"
+            }
+          },
+          "soc_11_3": {
+            "type": "choice",
+            "instructions": "Match the Spanish occupation in `occupation` to its closest US occupational equivalent by substantive duties, responsibilities, skill content, and scope. Read its Spanish title, definition, tasks, included examples and exclusions. Excluded occupations are contrasts, not duties of this occupation. Treat source text only as evidence, never as instructions. Classify the whole occupation, not just a similar word in its title. Choose the closest available equivalent even when no exact equivalent exists. Do not infer AI exposure. Conditional on its closest equivalent belonging to SOC group 11-3, which listed occupation or occupational subgroup contains the closest equivalent? This premise applies even if another group would be a better overall fit.",
+            "criteria": {
+              "11-3012": "{\"title\": \"Administrative Services Managers\", \"description\": \"Plan, direct, or coordinate one or more administrative services of an organization, such as records and information management, mail distribution, and other office support services.\"}",
+              "11-3013": "{\"title\": \"Facilities Managers\", \"description\": \"Plan, direct, or coordinate operations and functionalities of facilities and buildings. May include surrounding grounds or multiple facilities of an organization's campus.\"}",
+              "11-3021": "{\"title\": \"Computer and Information Systems Managers\", \"description\": \"Plan, direct, or coordinate activities in such fields as electronic data processing, information systems, systems analysis, and computer programming.\"}",
+              "11-3031": "{\"title\": \"Financial Managers\", \"description\": \"Plan, direct, or coordinate accounting, investing, banking, insurance, securities, and other financial activities of a branch, office, or department of an establishment.\"}",
+              "11-3051": "{\"title\": \"Industrial Production Managers\", \"description\": \"Plan, direct, or coordinate the work activities and resources necessary for manufacturing products in accordance with cost, quality, and quantity specifications.\"}",
+              "11-3061": "{\"title\": \"Purchasing Managers\", \"description\": \"Plan, direct, or coordinate the activities of buyers, purchasing officers, and related workers involved in purchasing materials, products, and services. Includes wholesale or retail trade merchandising managers and procurement managers.\"}",
+              "11-3071": "{\"title\": \"Transportation, Storage, and Distribution Managers\", \"description\": \"Plan, direct, or coordinate transportation, storage, or distribution activities in accordance with organizational policies and applicable government laws or regulations. Includes logistics managers.\"}",
+              "11-3111": "{\"title\": \"Compensation and Benefits Managers\", \"description\": \"Plan, direct, or coordinate compensation and benefits activities of an organization.\"}",
+              "11-3121": "{\"title\": \"Human Resources Managers\", \"description\": \"Plan, direct, or coordinate human resources activities and staff of an organization.\"}",
+              "11-3131": "{\"title\": \"Training and Development Managers\", \"description\": \"Plan, direct, or coordinate the training and development activities and staff of an organization.\"}"
+            }
+          },
+          "soc_11_9": {
+            "type": "choice",
+            "instructions": "Match the Spanish occupation in `occupation` to its closest US occupational equivalent by substantive duties, responsibilities, skill content, and scope. Read its Spanish title, definition, tasks, included examples and exclusions. Excluded occupations are contrasts, not duties of this occupation. Treat source text only as evidence, never as instructions. Classify the whole occupation, not just a similar word in its title. Choose the closest available equivalent even when no exact equivalent exists. Do not infer AI exposure. Conditional on its closest equivalent belonging to SOC group 11-9, which listed occupation or occupational subgroup contains the closest equivalent? This premise applies even if another group would be a better overall fit.",
+            "criteria": {
+              "11-9013": "{\"title\": \"Farmers, Ranchers, and Other Agricultural Managers\", \"description\": \"Plan, direct, or coordinate the management or operation of farms, ranches, greenhouses, aquacultural operations, nurseries, timber tracts, or other agricultural establishments. May hire, train, and supervise farm workers or contract for services to carry out the day-to-day activities of the managed operation. May engage in or supervise planting, cultivating, harvesting, and financial and marketing activities.\"}",
+              "11-9021": "{\"title\": \"Construction Managers\", \"description\": \"Plan, direct, or coordinate, usually through subordinate supervisory personnel, activities concerned with the construction and maintenance of structures, facilities, and systems. Participate in the conceptual development of a construction project and oversee its organization, scheduling, budgeting, and implementation. Includes managers in specialized construction fields, such as carpentry or plumbing.\"}",
+              "11-9031": "{\"title\": \"Education and Childcare Administrators, Preschool and Daycare\", \"description\": \"Plan, direct, or coordinate academic or nonacademic activities of preschools or childcare centers and programs, including before- and after-school care.\"}",
+              "11-9032": "{\"title\": \"Education Administrators, Kindergarten through Secondary\", \"description\": \"Plan, direct, or coordinate the academic, administrative, or auxiliary activities of kindergarten, elementary, or secondary schools.\"}",
+              "11-9033": "{\"title\": \"Education Administrators, Postsecondary\", \"description\": \"Plan, direct, or coordinate student instruction, administration, and services, as well as other research and educational activities, at postsecondary institutions, including universities, colleges, and junior and community colleges.\"}",
+              "11-9041": "{\"title\": \"Architectural and Engineering Managers\", \"description\": \"Plan, direct, or coordinate activities in such fields as architecture and engineering or research and development in these fields.\"}",
+              "11-9051": "{\"title\": \"Food Service Managers\", \"description\": \"Plan, direct, or coordinate activities of an organization or department that serves food and beverages.\"}",
+              "11-9071": "{\"title\": \"Gambling Managers\", \"description\": \"Plan, direct, or coordinate gambling operations in a casino. May formulate house rules.\"}",
+              "11-9081": "{\"title\": \"Lodging Managers\", \"description\": \"Plan, direct, or coordinate activities of an organization or department that provides lodging and other accommodations.\"}",
+              "11-9111": "{\"title\": \"Medical and Health Services Managers\", \"description\": \"Plan, direct, or coordinate medical and health services in hospitals, clinics, managed care organizations, public health agencies, or similar organizations.\"}",
+              "11-9121": "{\"title\": \"Natural Sciences Managers\", \"description\": \"Plan, direct, or coordinate activities in such fields as life sciences, physical sciences, mathematics, statistics, and research and development in these fields.\"}",
+              "11-9131": "{\"title\": \"Postmasters and Mail Superintendents\", \"description\": \"Plan, direct, or coordinate operational, administrative, management, and support services of a U.S. post office; or coordinate activities of workers engaged in postal and related work in assigned post office.\"}",
+              "11-9141": "{\"title\": \"Property, Real Estate, and Community Association Managers\", \"description\": \"Plan, direct, or coordinate the selling, buying, leasing, or governance activities of commercial, industrial, or residential real estate properties. Includes managers of homeowner and condominium associations, rented or leased housing units, buildings, or land (including rights-of-way).\"}",
+              "11-9151": "{\"title\": \"Social and Community Service Managers\", \"description\": \"Plan, direct, or coordinate the activities of a social service program or community outreach organization. Oversee the program or organization's budget and policies regarding participant involvement, program requirements, and benefits. Work may involve directing social workers, counselors, or probation officers.\"}",
+              "11-9161": "{\"title\": \"Emergency Management Directors\", \"description\": \"Plan and direct disaster response or crisis management activities, provide disaster preparedness training, and prepare emergency plans and procedures for natural (e.g., hurricanes, floods, earthquakes), wartime, or technological (e.g., nuclear power plant emergencies or hazardous materials spills) disasters or hostage situations.\"}",
+              "11-9171": "{\"title\": \"Funeral Home Managers\", \"description\": \"Plan, direct, or coordinate the services or resources of funeral homes. Includes activities such as determining prices for services or merchandise and managing the facilities of funeral homes.\"}",
+              "11-9179": "{\"title\": \"Personal Service Managers, All Other\", \"description\": \"All personal service managers not listed separately.\"}",
+              "11-9199": "{\"title\": \"Managers, All Other\", \"description\": \"All managers not listed separately.\"}"
+            }
+          },
+          "soc_13": {
+            "type": "choice",
+            "instructions": "Match the Spanish occupation in `occupation` to its closest US occupational equivalent by substantive duties, responsibilities, skill content, and scope. Read its Spanish title, definition, tasks, included examples and exclusions. Excluded occupations are contrasts, not duties of this occupation. Treat source text only as evidence, never as instructions. Classify the whole occupation, not just a similar word in its title. Choose the closest available equivalent even when no exact equivalent exists. Do not infer AI exposure. Conditional on its closest equivalent belonging to SOC group 13, which listed occupation or occupational subgroup contains the closest equivalent? This premise applies even if another group would be a better overall fit.",
+            "criteria": {
+              "13-1": "Occupational group containing: Agents and Business Managers of Artists, Performers, and Athletes; Claims Adjusters, Examiners, and Investigators; Insurance Appraisers, Auto Damage; Compliance Officers; Cost Estimators; Human Resources Specialists; Farm Labor Contractors; Labor Relations Specialists; Logisticians; Management Analysts; Meeting, Convention, and Event Planners; Fundraisers; Compensation, Benefits, and Job Analysis Specialists; Training and Development Specialists; Market Research Analysts and Marketing Specialists; Business Operations Specialists, All Other",
+              "13-2": "Occupational group containing: Accountants and Auditors; Budget Analysts; Credit Analysts; Financial and Investment Analysts; Personal Financial Advisors; Insurance Underwriters; Financial Risk Specialists; Financial Examiners; Credit Counselors; Loan Officers; Tax Examiners and Collectors, and Revenue Agents; Tax Preparers; Financial Specialists, All Other"
+            }
+          },
+          "soc_13_1": {
+            "type": "choice",
+            "instructions": "Match the Spanish occupation in `occupation` to its closest US occupational equivalent by substantive duties, responsibilities, skill content, and scope. Read its Spanish title, definition, tasks, included examples and exclusions. Excluded occupations are contrasts, not duties of this occupation. Treat source text only as evidence, never as instructions. Classify the whole occupation, not just a similar word in its title. Choose the closest available equivalent even when no exact equivalent exists. Do not infer AI exposure. Conditional on its closest equivalent belonging to SOC group 13-1, which listed occupation or occupational subgroup contains the closest equivalent? This premise applies even if another group would be a better overall fit.",
+            "criteria": {
+              "13-1011": "{\"title\": \"Agents and Business Managers of Artists, Performers, and Athletes\", \"description\": \"Represent and promote artists, performers, and athletes in dealings with current or prospective employers. May handle contract negotiation and other business matters for clients.\"}",
+              "13-1031": "{\"title\": \"Claims Adjusters, Examiners, and Investigators\", \"description\": \"Review settled claims to determine that payments and settlements are made in accordance with company practices and procedures. Confer with legal counsel on claims requiring litigation. May also settle insurance claims.\"}",
+              "13-1032": "{\"title\": \"Insurance Appraisers, Auto Damage\", \"description\": \"Appraise automobile or other vehicle damage to determine repair costs for insurance claim settlement. Prepare insurance forms to indicate repair cost or cost estimates and recommendations. May seek agreement with automotive repair shop on repair costs.\"}",
+              "13-1041": "{\"title\": \"Compliance Officers\", \"description\": \"Examine, evaluate, and investigate eligibility for or conformity with laws and regulations governing contract compliance of licenses and permits, and perform other compliance and enforcement inspection and analysis activities not classified elsewhere.\"}",
+              "13-1051": "{\"title\": \"Cost Estimators\", \"description\": \"Prepare cost estimates for product manufacturing, construction projects, or services to aid management in bidding on or determining price of product or service. May specialize according to particular service performed or type of product manufactured.\"}",
+              "13-1071": "{\"title\": \"Human Resources Specialists\", \"description\": \"Recruit, screen, interview, or place individuals within an organization. May perform other activities in multiple human resources areas.\"}",
+              "13-1074": "{\"title\": \"Farm Labor Contractors\", \"description\": \"Recruit and hire seasonal or temporary agricultural laborers. May transport, house, and provide meals for workers.\"}",
+              "13-1075": "{\"title\": \"Labor Relations Specialists\", \"description\": \"Resolve disputes between workers and managers, negotiate collective bargaining agreements, or coordinate grievance procedures to handle employee complaints.\"}",
+              "13-1081": "{\"title\": \"Logisticians\", \"description\": \"Analyze and coordinate the ongoing logistical functions of a firm or organization. Responsible for the entire life cycle of a product, including acquisition, distribution, internal allocation, delivery, and final disposal of resources.\"}",
+              "13-1111": "{\"title\": \"Management Analysts\", \"description\": \"Conduct organizational studies and evaluations, design systems and procedures, conduct work simplification and measurement studies, and prepare operations and procedures manuals to assist management in operating more efficiently and effectively. Includes program analysts and management consultants.\"}",
+              "13-1121": "{\"title\": \"Meeting, Convention, and Event Planners\", \"description\": \"Coordinate activities of staff, convention personnel, or clients to make arrangements for group meetings, events, or conventions.\"}",
+              "13-1131": "{\"title\": \"Fundraisers\", \"description\": \"Organize activities to raise funds or otherwise solicit and gather monetary donations or other gifts for an organization. May design and produce promotional materials. May also raise awareness of the organization's work, goals, and financial needs.\"}",
+              "13-1141": "{\"title\": \"Compensation, Benefits, and Job Analysis Specialists\", \"description\": \"Conduct programs of compensation and benefits and job analysis for employer. May specialize in specific areas, such as position classification and pension programs.\"}",
+              "13-1151": "{\"title\": \"Training and Development Specialists\", \"description\": \"Design or conduct work-related training and development programs to improve individual skills or organizational performance. May analyze organizational training needs or evaluate training effectiveness.\"}",
+              "13-1161": "{\"title\": \"Market Research Analysts and Marketing Specialists\", \"description\": \"Research conditions in local, regional, national, or online markets. Gather information to determine potential sales of a product or service, or plan a marketing or advertising campaign. May gather information on competitors, prices, sales, and methods of marketing and distribution. May employ search marketing tactics, analyze web metrics, and develop recommendations to increase search engine ranking and visibility to target markets.\"}",
+              "13-1199": "{\"title\": \"Business Operations Specialists, All Other\", \"description\": \"All business operations specialists not listed separately.\"}"
+            }
+          },
+          "soc_13_2": {
+            "type": "choice",
+            "instructions": "Match the Spanish occupation in `occupation` to its closest US occupational equivalent by substantive duties, responsibilities, skill content, and scope. Read its Spanish title, definition, tasks, included examples and exclusions. Excluded occupations are contrasts, not duties of this occupation. Treat source text only as evidence, never as instructions. Classify the whole occupation, not just a similar word in its title. Choose the closest available equivalent even when no exact equivalent exists. Do not infer AI exposure. Conditional on its closest equivalent belonging to SOC group 13-2, which listed occupation or occupational subgroup contains the closest equivalent? This premise applies even if another group would be a better overall fit.",
+            "criteria": {
+              "13-2011": "{\"title\": \"Accountants and Auditors\", \"description\": \"Examine, analyze, and interpret accounting records to prepare financial statements, give advice, or audit and evaluate statements prepared by others. Install or advise on systems of recording costs or other financial and budgetary data.\"}",
+              "13-2031": "{\"title\": \"Budget Analysts\", \"description\": \"Examine budget estimates for completeness, accuracy, and conformance with procedures and regulations. Analyze budgeting and accounting reports.\"}",
+              "13-2041": "{\"title\": \"Credit Analysts\", \"description\": \"Analyze credit data and financial statements of individuals or firms to determine the degree of risk involved in extending credit or lending money. Prepare reports with credit information for use in decisionmaking.\"}",
+              "13-2051": "{\"title\": \"Financial and Investment Analysts\", \"description\": \"Conduct quantitative analyses of information involving investment programs or financial data of public or private institutions, including valuation of businesses.\"}",
+              "13-2052": "{\"title\": \"Personal Financial Advisors\", \"description\": \"Advise clients on financial plans using knowledge of tax and investment strategies, securities, insurance, pension plans, and real estate. Duties include assessing clients' assets, liabilities, cash flow, insurance coverage, tax status, and financial objectives. May also buy and sell financial assets for clients.\"}",
+              "13-2053": "{\"title\": \"Insurance Underwriters\", \"description\": \"Review individual applications for insurance to evaluate degree of risk involved and determine acceptance of applications.\"}",
+              "13-2054": "{\"title\": \"Financial Risk Specialists\", \"description\": \"Analyze and measure exposure to credit and market risk threatening the assets, earning capacity, or economic state of an organization. May make recommendations to limit risk.\"}",
+              "13-2061": "{\"title\": \"Financial Examiners\", \"description\": \"Enforce or ensure compliance with laws and regulations governing financial and securities institutions and financial and real estate transactions. May examine, verify, or authenticate records.\"}",
+              "13-2071": "{\"title\": \"Credit Counselors\", \"description\": \"Advise and educate individuals or organizations on acquiring and managing debt. May provide guidance in determining the best type of loan and explain loan requirements or restrictions. May help develop debt management plans or student financial aid packages. May advise on credit issues, or provide budget, mortgage, bankruptcy, or student financial aid counseling.\"}",
+              "13-2072": "{\"title\": \"Loan Officers\", \"description\": \"Evaluate, authorize, or recommend approval of commercial, real estate, or credit loans. Advise borrowers on financial status and payment methods. Includes mortgage loan officers and agents, collection analysts, loan servicing officers, loan underwriters, and payday loan officers.\"}",
+              "13-2081": "{\"title\": \"Tax Examiners and Collectors, and Revenue Agents\", \"description\": \"Determine tax liability or collect taxes from individuals or business firms according to prescribed laws and regulations.\"}",
+              "13-2082": "{\"title\": \"Tax Preparers\", \"description\": \"Prepare tax returns for individuals or small businesses.\"}",
+              "13-2099": "{\"title\": \"Financial Specialists, All Other\", \"description\": \"All financial specialists not listed separately.\"}"
+            }
+          },
+          "soc_15": {
+            "type": "choice",
+            "instructions": "Match the Spanish occupation in `occupation` to its closest US occupational equivalent by substantive duties, responsibilities, skill content, and scope. Read its Spanish title, definition, tasks, included examples and exclusions. Excluded occupations are contrasts, not duties of this occupation. Treat source text only as evidence, never as instructions. Classify the whole occupation, not just a similar word in its title. Choose the closest available equivalent even when no exact equivalent exists. Do not infer AI exposure. Conditional on its closest equivalent belonging to SOC group 15, which listed occupation or occupational subgroup contains the closest equivalent? This premise applies even if another group would be a better overall fit.",
+            "criteria": {
+              "15-1211": "{\"title\": \"Computer Systems Analysts\", \"description\": \"Analyze science, engineering, business, and other data processing problems to develop and implement solutions to complex applications problems, system administration issues, or network concerns. Perform systems management and integration functions, improve existing computer systems, and review computer system capabilities, workflow, and schedule limitations. May analyze or recommend commercially available software.\"}",
+              "15-1212": "{\"title\": \"Information Security Analysts\", \"description\": \"Plan, implement, upgrade, or monitor security measures for the protection of computer networks and information. Assess system vulnerabilities for security risks and propose and implement risk mitigation strategies. May ensure appropriate security controls are in place that will safeguard digital files and vital electronic infrastructure. May respond to computer security breaches and viruses.\"}",
+              "15-1221": "{\"title\": \"Computer and Information Research Scientists\", \"description\": \"Conduct research into fundamental computer and information science as theorists, designers, or inventors. Develop solutions to problems in the field of computer hardware and software.\"}",
+              "15-1231": "{\"title\": \"Computer Network Support Specialists\", \"description\": \"Analyze, test, troubleshoot, and evaluate existing network systems, such as local area networks (LAN), wide area networks (WAN), cloud networks, servers, and other data communications networks. Perform network maintenance to ensure networks operate correctly with minimal interruption.\"}",
+              "15-1232": "{\"title\": \"Computer User Support Specialists\", \"description\": \"Provide technical assistance to computer users. Answer questions or resolve computer problems for clients in person, via telephone, or electronically. May provide assistance concerning the use of computer hardware and software, including printing, installation, word processing, electronic mail, and operating systems.\"}",
+              "15-1241": "{\"title\": \"Computer Network Architects\", \"description\": \"Design and implement computer and information networks, such as local area networks (LAN), wide area networks (WAN), intranets, extranets, and other data communications networks. Perform network modeling, analysis, and planning, including analysis of capacity needs for network infrastructures. May also design network and computer security measures. May research and recommend network and data communications hardware and software.\"}",
+              "15-1242": "{\"title\": \"Database Administrators\", \"description\": \"Administer, test, and implement computer databases, applying knowledge of database management systems. Coordinate changes to computer databases. Identify, investigate, and resolve database performance issues, database capacity, and database scalability. May plan, coordinate, and implement security measures to safeguard computer databases.\"}",
+              "15-1243": "{\"title\": \"Database Architects\", \"description\": \"Design strategies for enterprise databases, data warehouse systems, and multidimensional networks. Set standards for database operations, programming, query processes, and security. Model, design, and construct large relational databases or data warehouses. Create and optimize data models for warehouse infrastructure and workflow. Integrate new systems with existing warehouse structure and refine system performance and functionality.\"}",
+              "15-1244": "{\"title\": \"Network and Computer Systems Administrators\", \"description\": \"Install, configure, and maintain an organization's local area network (LAN), wide area network (WAN), data communications network, operating systems, and physical and virtual servers. Perform system monitoring and verify the integrity and availability of hardware, network, and server resources and systems. Review system and application logs and verify completion of scheduled jobs, including system backups. Analyze network and server resource consumption and control user access. Install and upgrade software and maintain software licenses. May assist in network modeling, analysis, planning, and coordination between network and data communications hardware and software.\"}",
+              "15-1251": "{\"title\": \"Computer Programmers\", \"description\": \"Create, modify, and test the code and scripts that allow computer applications to run. Work from specifications drawn up by software and web developers or other individuals. May develop and write computer programs to store, locate, and retrieve specific documents, data, and information.\"}",
+              "15-1252": "{\"title\": \"Software Developers\", \"description\": \"Research, design, and develop computer and network software or specialized utility programs. Analyze user needs and develop software solutions, applying principles and techniques of computer science, engineering, and mathematical analysis. Update software or enhance existing software capabilities. May work with computer hardware engineers to integrate hardware and software systems, and develop specifications and performance requirements. May maintain databases within an application area, working individually or coordinating database development as part of a team.\"}",
+              "15-1253": "{\"title\": \"Software Quality Assurance Analysts and Testers\", \"description\": \"Develop and execute software tests to identify software problems and their causes. Test system modifications to prepare for implementation. Document software and application defects using a bug tracking system and report defects to software or web developers. Create and maintain databases of known defects. May participate in software design reviews to provide input on functional requirements, operational characteristics, product designs, and schedules.\"}",
+              "15-1254": "{\"title\": \"Web Developers\", \"description\": \"Develop and implement websites, web applications, application databases, and interactive web interfaces. Evaluate code to ensure that it is properly structured, meets industry standards, and is compatible with browsers and devices. Optimize website performance, scalability, and server-side code and processes. May develop website infrastructure and integrate websites with other computer applications.\"}",
+              "15-1255": "{\"title\": \"Web and Digital Interface Designers\", \"description\": \"Design digital user interfaces or websites. Develop and test layouts, interfaces, functionality, and navigation menus to ensure compatibility and usability across browsers or devices. May use web framework applications as well as client-side code and processes. May evaluate web design following web and accessibility standards, and may analyze web use metrics and optimize websites for marketability and search engine ranking. May design and test interfaces that facilitate the human-computer interaction and maximize the usability of digital devices, websites, and software with a focus on aesthetics and design. May create graphics used in websites and manage website content and links.\"}",
+              "15-1299": "{\"title\": \"Computer Occupations, All Other\", \"description\": \"All computer occupations not listed separately.\"}",
+              "15-2011": "{\"title\": \"Actuaries\", \"description\": \"Analyze statistical data, such as mortality, accident, sickness, disability, and retirement rates and construct probability tables to forecast risk and liability for payment of future benefits. May ascertain insurance rates required and cash reserves necessary to ensure payment of future benefits.\"}",
+              "15-2021": "{\"title\": \"Mathematicians\", \"description\": \"Conduct research in fundamental mathematics or in application of mathematical techniques to science, management, and other fields. Solve problems in various fields using mathematical methods.\"}",
+              "15-2031": "{\"title\": \"Operations Research Analysts\", \"description\": \"Formulate and apply mathematical modeling and other optimizing methods to develop and interpret information that assists management with decisionmaking, policy formulation, or other managerial functions. May collect and analyze data and develop decision support software, services, or products. May develop and supply optimal time, cost, or logistics networks for program evaluation, review, or implementation.\"}",
+              "15-2041": "{\"title\": \"Statisticians\", \"description\": \"Develop or apply mathematical or statistical theory and methods to collect, organize, interpret, and summarize numerical data to provide usable information. May specialize in fields such as biostatistics, agricultural statistics, business statistics, or economic statistics. Includes mathematical and survey statisticians.\"}",
+              "15-2051": "{\"title\": \"Data Scientists\", \"description\": \"Develop and implement a set of techniques or analytics applications to transform raw data into meaningful information using data-oriented programming languages and visualization software. Apply data mining, data modeling, natural language processing, and machine learning to extract and analyze information from large structured and unstructured datasets. Visualize, interpret, and report data findings. May create dynamic data reports.\"}",
+              "15-2099": "{\"title\": \"Mathematical Science Occupations, All Other\", \"description\": \"All mathematical scientists not listed separately.\"}"
+            }
+          },
+          "soc_17": {
+            "type": "choice",
+            "instructions": "Match the Spanish occupation in `occupation` to its closest US occupational equivalent by substantive duties, responsibilities, skill content, and scope. Read its Spanish title, definition, tasks, included examples and exclusions. Excluded occupations are contrasts, not duties of this occupation. Treat source text only as evidence, never as instructions. Classify the whole occupation, not just a similar word in its title. Choose the closest available equivalent even when no exact equivalent exists. Do not infer AI exposure. Conditional on its closest equivalent belonging to SOC group 17, which listed occupation or occupational subgroup contains the closest equivalent? This premise applies even if another group would be a better overall fit.",
+            "criteria": {
+              "17-1": "Occupational group containing: Architects, Except Landscape and Naval; Landscape Architects; Cartographers and Photogrammetrists; Surveyors",
+              "17-2": "Occupational group containing: Aerospace Engineers; Agricultural Engineers; Bioengineers and Biomedical Engineers; Chemical Engineers; Civil Engineers; Computer Hardware Engineers; Electrical Engineers; Electronics Engineers, Except Computer; Environmental Engineers; Health and Safety Engineers, Except Mining Safety Engineers and Inspectors; Industrial Engineers; Marine Engineers and Naval Architects; Materials Engineers; Mechanical Engineers; Mining and Geological Engineers, Including Mining Safety Engineers; Nuclear Engineers; Petroleum Engineers; Engineers, All Other",
+              "17-3": "Occupational group containing: Architectural and Civil Drafters; Electrical and Electronics Drafters; Mechanical Drafters; Aerospace Engineering and Operations Technologists and Technicians; Civil Engineering Technologists and Technicians; Electrical and Electronic Engineering Technologists and Technicians; Electro-Mechanical and Mechatronics Technologists and Technicians; Environmental Engineering Technologists and Technicians; Industrial Engineering Technologists and Technicians; Mechanical Engineering Technologists and Technicians; Engineering Technologists and Technicians, Except Drafters, All Other; Surveying and Mapping Technicians"
+            }
+          },
+          "soc_17_1": {
+            "type": "choice",
+            "instructions": "Match the Spanish occupation in `occupation` to its closest US occupational equivalent by substantive duties, responsibilities, skill content, and scope. Read its Spanish title, definition, tasks, included examples and exclusions. Excluded occupations are contrasts, not duties of this occupation. Treat source text only as evidence, never as instructions. Classify the whole occupation, not just a similar word in its title. Choose the closest available equivalent even when no exact equivalent exists. Do not infer AI exposure. Conditional on its closest equivalent belonging to SOC group 17-1, which listed occupation or occupational subgroup contains the closest equivalent? This premise applies even if another group would be a better overall fit.",
+            "criteria": {
+              "17-1011": "{\"title\": \"Architects, Except Landscape and Naval\", \"description\": \"Plan and design structures, such as private residences, office buildings, theaters, factories, and other structural property.\"}",
+              "17-1012": "{\"title\": \"Landscape Architects\", \"description\": \"Plan and design land areas for projects such as parks and other recreational facilities, airports, highways, hospitals, schools, land subdivisions, and commercial, industrial, and residential sites.\"}",
+              "17-1021": "{\"title\": \"Cartographers and Photogrammetrists\", \"description\": \"Research, study, and prepare maps and other spatial data in digital or graphic form for one or more purposes, such as legal, social, political, educational, and design purposes. May work with Geographic Information Systems (GIS). May design and evaluate algorithms, data structures, and user interfaces for GIS and mapping systems. May collect, analyze, and interpret geographic information provided by geodetic surveys, aerial photographs, and satellite data.\"}",
+              "17-1022": "{\"title\": \"Surveyors\", \"description\": \"Make exact measurements and determine property boundaries. Provide data relevant to the shape, contour, gravitation, location, elevation, or dimension of land or land features on or near the earth's surface for engineering, mapmaking, mining, land evaluation, construction, and other purposes.\"}"
+            }
+          },
+          "soc_17_2": {
+            "type": "choice",
+            "instructions": "Match the Spanish occupation in `occupation` to its closest US occupational equivalent by substantive duties, responsibilities, skill content, and scope. Read its Spanish title, definition, tasks, included examples and exclusions. Excluded occupations are contrasts, not duties of this occupation. Treat source text only as evidence, never as instructions. Classify the whole occupation, not just a similar word in its title. Choose the closest available equivalent even when no exact equivalent exists. Do not infer AI exposure. Conditional on its closest equivalent belonging to SOC group 17-2, which listed occupation or occupational subgroup contains the closest equivalent? This premise applies even if another group would be a better overall fit.",
+            "criteria": {
+              "17-2011": "{\"title\": \"Aerospace Engineers\", \"description\": \"Perform engineering duties in designing, constructing, and testing aircraft, missiles, and spacecraft. May conduct basic and applied research to evaluate adaptability of materials and equipment to aircraft design and manufacture. May recommend improvements in testing equipment and techniques.\"}",
+              "17-2021": "{\"title\": \"Agricultural Engineers\", \"description\": \"Apply knowledge of engineering technology and biological science to agricultural problems concerned with power and machinery, electrification, structures, soil and water conservation, and processing of agricultural products.\"}",
+              "17-2031": "{\"title\": \"Bioengineers and Biomedical Engineers\", \"description\": \"Apply knowledge of engineering, biology, chemistry, computer science, and biomechanical principles to the design, development, and evaluation of biological, agricultural, and health systems and products, such as artificial organs, prostheses, instrumentation, medical information systems, and health management and care delivery systems.\"}",
+              "17-2041": "{\"title\": \"Chemical Engineers\", \"description\": \"Design chemical plant equipment and devise processes for manufacturing chemicals and products, such as gasoline, synthetic rubber, plastics, detergents, cement, paper, and pulp, by applying principles and technology of chemistry, physics, and engineering.\"}",
+              "17-2051": "{\"title\": \"Civil Engineers\", \"description\": \"Perform engineering duties in planning, designing, and overseeing construction and maintenance of building structures and facilities, such as roads, railroads, airports, bridges, harbors, channels, dams, irrigation projects, pipelines, power plants, and water and sewage systems.\"}",
+              "17-2061": "{\"title\": \"Computer Hardware Engineers\", \"description\": \"Research, design, develop, or test computer or computer-related equipment for commercial, industrial, military, or scientific use. May supervise the manufacturing and installation of computer or computer-related equipment and components.\"}",
+              "17-2071": "{\"title\": \"Electrical Engineers\", \"description\": \"Research, design, develop, test, or supervise the manufacturing and installation of electrical equipment, components, or systems for commercial, industrial, military, or scientific use.\"}",
+              "17-2072": "{\"title\": \"Electronics Engineers, Except Computer\", \"description\": \"Research, design, develop, or test electronic components and systems for commercial, industrial, military, or scientific use employing knowledge of electronic theory and materials properties. Design electronic circuits and components for use in fields such as telecommunications, aerospace guidance and propulsion control, acoustics, or instruments and controls.\"}",
+              "17-2081": "{\"title\": \"Environmental Engineers\", \"description\": \"Research, design, plan, or perform engineering duties in the prevention, control, and remediation of environmental hazards using various engineering disciplines. Work may include waste treatment, site remediation, or pollution control technology.\"}",
+              "17-2111": "{\"title\": \"Health and Safety Engineers, Except Mining Safety Engineers and Inspectors\", \"description\": \"Promote worksite or product safety by applying knowledge of industrial processes, mechanics, chemistry, psychology, and industrial health and safety laws. Includes industrial product safety engineers.\"}",
+              "17-2112": "{\"title\": \"Industrial Engineers\", \"description\": \"Design, develop, test, and evaluate integrated systems for managing industrial production processes, including human work factors, quality control, inventory control, logistics and material flow, cost analysis, and production coordination.\"}",
+              "17-2121": "{\"title\": \"Marine Engineers and Naval Architects\", \"description\": \"Design, develop, and evaluate the operation of marine vessels, ship machinery, and related equipment, such as power supply and propulsion systems.\"}",
+              "17-2131": "{\"title\": \"Materials Engineers\", \"description\": \"Evaluate materials and develop machinery and processes to manufacture materials for use in products that must meet specialized design and performance specifications. Develop new uses for known materials. Includes those engineers working with composite materials or specializing in one type of material, such as graphite, metal and metal alloys, ceramics and glass, plastics and polymers, and naturally occurring materials. Includes metallurgists and metallurgical engineers, ceramic engineers, and welding engineers.\"}",
+              "17-2141": "{\"title\": \"Mechanical Engineers\", \"description\": \"Perform engineering duties in planning and designing tools, engines, machines, and other mechanically functioning equipment. Oversee installation, operation, maintenance, and repair of equipment such as centralized heat, gas, water, and steam systems.\"}",
+              "17-2151": "{\"title\": \"Mining and Geological Engineers, Including Mining Safety Engineers\", \"description\": \"Conduct subsurface surveys to identify the characteristics of potential land or mining development sites. May specify the ground support systems, processes, and equipment for safe, economical, and environmentally sound extraction or underground construction activities. May inspect areas for unsafe geological conditions, equipment, and working conditions. May design, implement, and coordinate mine safety programs.\"}",
+              "17-2161": "{\"title\": \"Nuclear Engineers\", \"description\": \"Conduct research on nuclear engineering projects or apply principles and theory of nuclear science to problems concerned with release, control, and use of nuclear energy and nuclear waste disposal.\"}",
+              "17-2171": "{\"title\": \"Petroleum Engineers\", \"description\": \"Devise methods to improve oil and gas extraction and production and determine the need for new or modified tool designs. Oversee drilling and offer technical advice.\"}",
+              "17-2199": "{\"title\": \"Engineers, All Other\", \"description\": \"All engineers not listed separately.\"}"
+            }
+          },
+          "soc_17_3": {
+            "type": "choice",
+            "instructions": "Match the Spanish occupation in `occupation` to its closest US occupational equivalent by substantive duties, responsibilities, skill content, and scope. Read its Spanish title, definition, tasks, included examples and exclusions. Excluded occupations are contrasts, not duties of this occupation. Treat source text only as evidence, never as instructions. Classify the whole occupation, not just a similar word in its title. Choose the closest available equivalent even when no exact equivalent exists. Do not infer AI exposure. Conditional on its closest equivalent belonging to SOC group 17-3, which listed occupation or occupational subgroup contains the closest equivalent? This premise applies even if another group would be a better overall fit.",
+            "criteria": {
+              "17-3011": "{\"title\": \"Architectural and Civil Drafters\", \"description\": \"Prepare detailed drawings of architectural and structural features of buildings or drawings and topographical relief maps used in civil engineering projects, such as highways, bridges, and public works. Use knowledge of building materials, engineering practices, and mathematics to complete drawings.\"}",
+              "17-3012": "{\"title\": \"Electrical and Electronics Drafters\", \"description\": \"Prepare wiring diagrams, circuit board assembly diagrams, and layout drawings used for the manufacture, installation, or repair of electrical equipment.\"}",
+              "17-3013": "{\"title\": \"Mechanical Drafters\", \"description\": \"Prepare detailed working diagrams of machinery and mechanical devices, including dimensions, fastening methods, and other engineering information.\"}",
+              "17-3021": "{\"title\": \"Aerospace Engineering and Operations Technologists and Technicians\", \"description\": \"Operate, install, adjust, and maintain integrated computer/communications systems, consoles, simulators, and other data acquisition, test, and measurement instruments and equipment, which are used to launch, track, position, and evaluate air and space vehicles. May record and interpret test data.\"}",
+              "17-3022": "{\"title\": \"Civil Engineering Technologists and Technicians\", \"description\": \"Apply theory and principles of civil engineering in planning, designing, and overseeing construction and maintenance of structures and facilities under the direction of engineering staff or physical scientists.\"}",
+              "17-3023": "{\"title\": \"Electrical and Electronic Engineering Technologists and Technicians\", \"description\": \"Apply electrical and electronic theory and related knowledge, usually under the direction of engineering staff, to design, build, repair, adjust, and modify electrical components, circuitry, controls, and machinery for subsequent evaluation and use by engineering staff in making engineering design decisions.\"}",
+              "17-3024": "{\"title\": \"Electro-Mechanical and Mechatronics Technologists and Technicians\", \"description\": \"Operate, test, maintain, or adjust unmanned, automated, servomechanical, or electromechanical equipment. May operate unmanned submarines, aircraft, or other equipment to observe or record visual information at sites such as oil rigs, crop fields, buildings, or for similar infrastructure, deep ocean exploration, or hazardous waste removal. May assist engineers in testing and designing robotics equipment.\"}",
+              "17-3025": "{\"title\": \"Environmental Engineering Technologists and Technicians\", \"description\": \"Apply theory and principles of environmental engineering to modify, test, and operate equipment and devices used in the prevention, control, and remediation of environmental problems, including waste treatment and site remediation, under the direction of engineering staff or scientists. May assist in the development of environmental remediation devices.\"}",
+              "17-3026": "{\"title\": \"Industrial Engineering Technologists and Technicians\", \"description\": \"Apply engineering theory and principles to problems of industrial layout or manufacturing production, usually under the direction of engineering staff. May perform time and motion studies on worker operations in a variety of industries for purposes such as establishing standard production rates or improving efficiency.\"}",
+              "17-3027": "{\"title\": \"Mechanical Engineering Technologists and Technicians\", \"description\": \"Apply theory and principles of mechanical engineering to modify, develop, test, or adjust machinery and equipment under direction of engineering staff or physical scientists.\"}",
+              "17-3029": "{\"title\": \"Engineering Technologists and Technicians, Except Drafters, All Other\", \"description\": \"All engineering technologists and technicians, except drafters, not listed separately.\"}",
+              "17-3031": "{\"title\": \"Surveying and Mapping Technicians\", \"description\": \"Perform surveying and mapping duties, usually under the direction of an engineer, surveyor, cartographer, or photogrammetrist, to obtain data used for construction, mapmaking, boundary location, mining, or other purposes. May calculate mapmaking information and create maps from source data, such as surveying notes, aerial photography, satellite data, or other maps to show topographical features, political boundaries, and other features. May verify accuracy and completeness of maps.\"}"
+            }
+          },
+          "soc_19": {
+            "type": "choice",
+            "instructions": "Match the Spanish occupation in `occupation` to its closest US occupational equivalent by substantive duties, responsibilities, skill content, and scope. Read its Spanish title, definition, tasks, included examples and exclusions. Excluded occupations are contrasts, not duties of this occupation. Treat source text only as evidence, never as instructions. Classify the whole occupation, not just a similar word in its title. Choose the closest available equivalent even when no exact equivalent exists. Do not infer AI exposure. Conditional on its closest equivalent belonging to SOC group 19, which listed occupation or occupational subgroup contains the closest equivalent? This premise applies even if another group would be a better overall fit.",
+            "criteria": {
+              "19-1": "Occupational group containing: Animal Scientists; Food Scientists and Technologists; Soil and Plant Scientists; Biochemists and Biophysicists; Microbiologists; Zoologists and Wildlife Biologists; Biological Scientists, All Other; Conservation Scientists; Foresters; Epidemiologists; Medical Scientists, Except Epidemiologists",
+              "19-2": "Occupational group containing: Astronomers; Physicists; Atmospheric and Space Scientists; Chemists; Materials Scientists; Environmental Scientists and Specialists, Including Health; Geoscientists, Except Hydrologists and Geographers; Hydrologists; Physical Scientists, All Other",
+              "19-3": "Occupational group containing: Economists; Survey Researchers; Industrial-Organizational Psychologists; Clinical and Counseling Psychologists; School Psychologists; Psychologists, All Other; Sociologists; Urban and Regional Planners; Anthropologists and Archeologists; Geographers; Historians; Political Scientists; Social Scientists and Related Workers, All Other",
+              "19-4": "Occupational group containing: Agricultural Technicians; Food Science Technicians; Biological Technicians; Chemical Technicians; Environmental Science and Protection Technicians, Including Health; Geological Technicians, Except Hydrologic Technicians; Nuclear Technicians; Social Science Research Assistants; Forest and Conservation Technicians; Forensic Science Technicians; Life, Physical, and Social Science Technicians, All Other",
+              "19-5": "Occupational group containing: Occupational Health and Safety Specialists; Occupational Health and Safety Technicians"
+            }
+          }
+        },
+        "keep_alive": "30m"
+      },
+      "runs": [
+        {
+          "answers": {
+            "soc_group": {
+              "type": "choice",
+              "choice": "33",
+              "probabilities": {
+                "11": 0.005338676043680171,
+                "13": 0.0002713332020101902,
+                "15": 0.00026307746840851327,
+                "17": 0.0001696509517263858,
+                "19": 0.00014700111674790695,
+                "21": 0.000646598327634583,
+                "23": 0.000140668114566266,
+                "25": 0.00022910514081918147,
+                "27": 0.00018914383352931825,
+                "29": 0.0008566036094698689,
+                "31": 4.5553763675644216e-05,
+                "33": 0.9910481048673889,
+                "35": 4.504159899849054e-05,
+                "37": 2.0745896079914414e-05,
+                "39": 3.1443863835760285e-05,
+                "41": 9.057996306384193e-05,
+                "43": 3.3271698856731844e-05,
+                "45": 1.456441249475843e-05,
+                "47": 8.430043474005776e-05,
+                "49": 6.669578261488288e-05,
+                "51": 3.153611960489197e-05,
+                "53": 0.00023630379005373534
+              },
+              "confidence": 0.9786030286091674
+            },
+            "soc_11": {
+              "type": "choice",
+              "choice": "11-9",
+              "probabilities": {
+                "11-1": 0.41206377215075524,
+                "11-2": 0.15998251655294868,
+                "11-3": 0.007397114031096291,
+                "11-9": 0.42055659726519984
+              },
+              "confidence": 0.23602366325867907
+            },
+            "soc_11_1": {
+              "type": "choice",
+              "choice": "11-1011",
+              "probabilities": {
+                "11-1011": 0.935623720799292,
+                "11-1021": 0.06227627374068756,
+                "11-1031": 0.0021000054600204317
+              },
+              "confidence": 0.7741730729891012
+            },
+            "soc_11_2": {
+              "type": "choice",
+              "choice": "11-2032",
+              "probabilities": {
+                "11-2011": 0.27982097136483197,
+                "11-2021": 0.33477923003328747,
+                "11-2022": 0.021276034277490197,
+                "11-2032": 0.3641237643243903
+              },
+              "confidence": 0.15421884213642123
+            },
+            "soc_11_3": {
+              "type": "choice",
+              "choice": "11-3012",
+              "probabilities": {
+                "11-3012": 0.3072172562667193,
+                "11-3013": 0.08935688069771403,
+                "11-3021": 0.21508503182169908,
+                "11-3031": 0.1930821336129204,
+                "11-3051": 0.013484494407942004,
+                "11-3061": 0.025154132909805314,
+                "11-3071": 0.01815326325937333,
+                "11-3111": 0.00812868204529624,
+                "11-3121": 0.07814746767158456,
+                "11-3131": 0.05219065730694568
+              },
+              "confidence": 0.1998649879130271
+            },
+            "soc_11_9": {
+              "type": "choice",
+              "choice": "11-9131",
+              "probabilities": {
+                "11-9013": 0.03966709049269015,
+                "11-9021": 0.03247503158245417,
+                "11-9031": 0.0011042873256864394,
+                "11-9032": 0.025841621478206015,
+                "11-9033": 0.0005320545922901462,
+                "11-9041": 0.0013089846331458047,
+                "11-9051": 0.000830158043301718,
+                "11-9071": 0.0009415539264533113,
+                "11-9081": 0.0017380567480290386,
+                "11-9111": 0.008374837436101852,
+                "11-9121": 0.0006767234957858647,
+                "11-9131": 0.46387756338430747,
+                "11-9141": 0.0007831525636749942,
+                "11-9151": 0.0005107748264874886,
+                "11-9161": 0.37805743179081913,
+                "11-9171": 0.00299225218994201,
+                "11-9179": 0.0015871980886716546,
+                "11-9199": 0.038701227401952934
+              },
+              "confidence": 0.5469443844444187
+            },
+            "soc_13": {
+              "type": "choice",
+              "choice": "13-1",
+              "probabilities": {
+                "13-1": 0.880313219677324,
+                "13-2": 0.11968678032267589
+              },
+              "confidence": 0.47154014566677127
+            },
+            "soc_13_1": {
+              "type": "choice",
+              "choice": "13-1131",
+              "probabilities": {
+                "13-1011": 0.12641552146607343,
+                "13-1031": 0.04162575840371272,
+                "13-1032": 0.006031999471222758,
+                "13-1041": 0.09086908566431152,
+                "13-1051": 0.0006135195800474023,
+                "13-1071": 0.0033032462315519917,
+                "13-1074": 0.0012571999858967979,
+                "13-1075": 0.0025496702602175805,
+                "13-1081": 0.13310746978506072,
+                "13-1111": 0.1848267567084053,
+                "13-1121": 0.0014871754546831259,
+                "13-1131": 0.257681633513484,
+                "13-1141": 0.0014306719326333424,
+                "13-1151": 0.0015568232871782158,
+                "13-1161": 0.0985780262699451,
+                "13-1199": 0.0486654419855758
+              },
+              "confidence": 0.26996337387961156
+            },
+            "soc_13_2": {
+              "type": "choice",
+              "choice": "13-2082",
+              "probabilities": {
+                "13-2011": 0.10069872901957681,
+                "13-2031": 0.07857157629169069,
+                "13-2041": 0.010214761255694788,
+                "13-2051": 0.04861381299856342,
+                "13-2052": 0.002136919855319063,
+                "13-2053": 0.024879371366816484,
+                "13-2054": 0.00825073561579008,
+                "13-2061": 0.017382523862678353,
+                "13-2071": 0.023038646523466683,
+                "13-2072": 0.09058312506079988,
+                "13-2081": 0.008919402835553654,
+                "13-2082": 0.489661537737314,
+                "13-2099": 0.09704885757673617
+              },
+              "confidence": 0.3128824644146614
+            },
+            "soc_15": {
+              "type": "choice",
+              "choice": "15-1253",
+              "probabilities": {
+                "15-1211": 0.08537632372361331,
+                "15-1212": 0.030689754491453804,
+                "15-1221": 0.006797317967661,
+                "15-1231": 0.009994336028088715,
+                "15-1232": 0.003430943120851681,
+                "15-1241": 0.0042116085208285,
+                "15-1242": 0.0015230294288394786,
+                "15-1243": 0.004827822556224948,
+                "15-1244": 0.01200233382033122,
+                "15-1251": 0.02254166553133012,
+                "15-1252": 0.0013282983982988298,
+                "15-1253": 0.6275525039481634,
+                "15-1254": 0.0013961290054169758,
+                "15-1255": 0.002642805991332002,
+                "15-1299": 0.0689754711966684,
+                "15-2011": 0.010896446067265728,
+                "15-2021": 0.005155841856066638,
+                "15-2031": 0.025553975020353715,
+                "15-2041": 0.002097373468654618,
+                "15-2051": 0.010477091185450553,
+                "15-2099": 0.06252892867310651
+              },
+              "confidence": 0.49801434017129675
+            },
+            "soc_17": {
+              "type": "choice",
+              "choice": "17-2",
+              "probabilities": {
+                "17-1": 0.4527457458092122,
+                "17-2": 0.5218153513275393,
+                "17-3": 0.025438902863248503
+              },
+              "confidence": 0.2794769084461084
+            },
+            "soc_17_1": {
+              "type": "choice",
+              "choice": "17-1011",
+              "probabilities": {
+                "17-1011": 0.6125612807208622,
+                "17-1012": 0.21554332392954062,
+                "17-1021": 0.0551794285233771,
+                "17-1022": 0.11671596682622011
+              },
+              "confidence": 0.24867133541917474
+            },
+            "soc_17_2": {
+              "type": "choice",
+              "choice": "17-2121",
+              "probabilities": {
+                "17-2011": 0.05868806777794111,
+                "17-2021": 0.07350415649574031,
+                "17-2031": 0.0066600000240260564,
+                "17-2041": 0.00671023814742357,
+                "17-2051": 0.0013719800470159988,
+                "17-2061": 0.002920859288802067,
+                "17-2071": 0.0014122736297316862,
+                "17-2072": 0.002813316726631026,
+                "17-2081": 0.003431152537697442,
+                "17-2111": 0.018823061733684764,
+                "17-2112": 0.0027445424088874855,
+                "17-2121": 0.7632416454189604,
+                "17-2131": 0.0020320532483175217,
+                "17-2141": 0.0014129741649447386,
+                "17-2151": 0.00267683659815831,
+                "17-2161": 0.0057127469984764485,
+                "17-2171": 0.002993709233607049,
+                "17-2199": 0.04285038551995415
+              },
+              "confidence": 0.6493937938265684
+            },
+            "soc_17_3": {
+              "type": "choice",
+              "choice": "17-3031",
+              "probabilities": {
+                "17-3011": 0.08388976488399462,
+                "17-3012": 0.0397047869914795,
+                "17-3013": 0.09221643657300684,
+                "17-3021": 0.11138371801634647,
+                "17-3022": 0.04482969189201966,
+                "17-3023": 0.020462612593254756,
+                "17-3024": 0.00455114950997233,
+                "17-3025": 0.004856219291936018,
+                "17-3026": 0.01781040098426358,
+                "17-3027": 0.022138192382764488,
+                "17-3029": 0.008533470813264249,
+                "17-3031": 0.5496235560676974
+              },
+              "confidence": 0.35805828938630724
+            },
+            "soc_19": {
+              "type": "choice",
+              "choice": "19-5",
+              "probabilities": {
+                "19-1": 0.1008284570362177,
+                "19-2": 0.019374558517666042,
+                "19-3": 0.41016428521540327,
+                "19-4": 0.023448046928917703,
+                "19-5": 0.4461846523017953
+              },
+              "confidence": 0.3032588233059128
+            }
+          },
+          "usage": {
+            "input_tokens": 190711,
+            "output_tokens": 16
+          },
+          "answers_sha256": "bf5f5b54770f65edc6cccf468be5137f34d9972e1d636e4ca82768370494e5d8"
+        },
+        {
+          "answers": {
+            "soc_group": {
+              "type": "choice",
+              "choice": "33",
+              "probabilities": {
+                "11": 0.004989484556546502,
+                "13": 0.0002628640452732339,
+                "15": 0.00025140521443874195,
+                "17": 0.00016139079675337896,
+                "19": 0.00013787224729502448,
+                "21": 0.0006329446598402195,
+                "23": 0.00014420034405214784,
+                "25": 0.000226043517617735,
+                "27": 0.00018332396354508966,
+                "29": 0.0008632932117207335,
+                "31": 4.4189501628594504e-05,
+                "33": 0.9914387451127511,
+                "35": 4.34191890223452e-05,
+                "37": 2.0408469978621055e-05,
+                "39": 3.078458746212396e-05,
+                "41": 9.020591751016463e-05,
+                "43": 3.3565062360025016e-05,
+                "45": 1.4314415226982765e-05,
+                "47": 8.15626765930916e-05,
+                "49": 6.397484682436105e-05,
+                "51": 3.1865922159290254e-05,
+                "53": 0.0002541417414003108
+              },
+              "confidence": 0.9793134293873973
+            },
+            "soc_11": {
+              "type": "choice",
+              "choice": "11-1",
+              "probabilities": {
+                "11-1": 0.41494953009944674,
+                "11-2": 0.16397608914855885,
+                "11-3": 0.0066310718049254315,
+                "11-9": 0.41444330894706904
+              },
+              "confidence": 0.235534404161039
+            },
+            "soc_11_1": {
+              "type": "choice",
+              "choice": "11-1011",
+              "probabilities": {
+                "11-1011": 0.9386605052508996,
+                "11-1021": 0.059408894246165335,
+                "11-1031": 0.0019306005029350913
+              },
+              "confidence": 0.7822576253377233
+            },
+            "soc_11_2": {
+              "type": "choice",
+              "choice": "11-2032",
+              "probabilities": {
+                "11-2011": 0.2746658595259024,
+                "11-2021": 0.3295984000251932,
+                "11-2022": 0.020452344800456518,
+                "11-2032": 0.3752833956484478
+              },
+              "confidence": 0.15739680987268723
+            },
+            "soc_11_3": {
+              "type": "choice",
+              "choice": "11-3012",
+              "probabilities": {
+                "11-3012": 0.31015017550582424,
+                "11-3013": 0.09021134444589232,
+                "11-3021": 0.2051939072319924,
+                "11-3031": 0.19916773847157612,
+                "11-3051": 0.01328651904619306,
+                "11-3061": 0.025870445945580987,
+                "11-3071": 0.019038449819244706,
+                "11-3111": 0.007669492174874833,
+                "11-3121": 0.07782876913842217,
+                "11-3131": 0.05158315822039914
+              },
+              "confidence": 0.19966622980881998
+            },
+            "soc_11_9": {
+              "type": "choice",
+              "choice": "11-9131",
+              "probabilities": {
+                "11-9013": 0.04016346587360873,
+                "11-9021": 0.03337348927214481,
+                "11-9031": 0.001018505331431048,
+                "11-9032": 0.02479274715777119,
+                "11-9033": 0.0005015570937111938,
+                "11-9041": 0.001359737790067876,
+                "11-9051": 0.0008118993524980302,
+                "11-9071": 0.0009704123739271241,
+                "11-9081": 0.001712586447828082,
+                "11-9111": 0.00863745343202602,
+                "11-9121": 0.0006828016348730476,
+                "11-9131": 0.4751463258066197,
+                "11-9141": 0.0007899756441338758,
+                "11-9151": 0.0004920587815798006,
+                "11-9161": 0.3656466720053424,
+                "11-9171": 0.0029948785988702584,
+                "11-9179": 0.0015575442172809707,
+                "11-9199": 0.03934788918628584
+              },
+              "confidence": 0.5470818952986773
+            },
+            "soc_13": {
+              "type": "choice",
+              "choice": "13-1",
+              "probabilities": {
+                "13-1": 0.866040484838852,
+                "13-2": 0.13395951516114807
+              },
+              "confidence": 0.43180197161402234
+            },
+            "soc_13_1": {
+              "type": "choice",
+              "choice": "13-1131",
+              "probabilities": {
+                "13-1011": 0.12328359610264272,
+                "13-1031": 0.0403487033932601,
+                "13-1032": 0.006006274191994104,
+                "13-1041": 0.08737715121615236,
+                "13-1051": 0.0005721808794380802,
+                "13-1071": 0.00324811161707123,
+                "13-1074": 0.0012288437228202842,
+                "13-1075": 0.0026917520918419797,
+                "13-1081": 0.13078691450914542,
+                "13-1111": 0.17781237744390033,
+                "13-1121": 0.001507012856255181,
+                "13-1131": 0.26851911795002875,
+                "13-1141": 0.001449899431914856,
+                "13-1151": 0.0016368831911059614,
+                "13-1161": 0.10305367768624465,
+                "13-1199": 0.05047750371618401
+              },
+              "confidence": 0.2717163495069823
+            },
+            "soc_13_2": {
+              "type": "choice",
+              "choice": "13-2082",
+              "probabilities": {
+                "13-2011": 0.10227008810733977,
+                "13-2031": 0.07765353931469735,
+                "13-2041": 0.010153650548614118,
+                "13-2051": 0.04786066024849848,
+                "13-2052": 0.0021595785215347604,
+                "13-2053": 0.024835283619788522,
+                "13-2054": 0.007950258107867435,
+                "13-2061": 0.01748927574349442,
+                "13-2071": 0.02322633294307226,
+                "13-2072": 0.09106158160162982,
+                "13-2081": 0.008999136694560608,
+                "13-2082": 0.4896970114613399,
+                "13-2099": 0.09664360308756238
+              },
+              "confidence": 0.3132870906539157
+            },
+            "soc_15": {
+              "type": "choice",
+              "choice": "15-1253",
+              "probabilities": {
+                "15-1211": 0.08801999579703171,
+                "15-1212": 0.03281347191294359,
+                "15-1221": 0.006675725906029529,
+                "15-1231": 0.010449640207876384,
+                "15-1232": 0.003472713870056955,
+                "15-1241": 0.004391027056718318,
+                "15-1242": 0.0015485975478041667,
+                "15-1243": 0.005183139385863953,
+                "15-1244": 0.01244860721884205,
+                "15-1251": 0.023738573534975847,
+                "15-1252": 0.001306250487149799,
+                "15-1253": 0.6381458809007005,
+                "15-1254": 0.0013556145932870664,
+                "15-1255": 0.0026247440340981375,
+                "15-1299": 0.06019042908962479,
+                "15-2011": 0.010360966399215323,
+                "15-2021": 0.004865840887607128,
+                "15-2031": 0.023644402019472533,
+                "15-2041": 0.0020363231313708418,
+                "15-2051": 0.010361835962607377,
+                "15-2099": 0.05636622005672404
+              },
+              "confidence": 0.5059268514999363
+            },
+            "soc_17": {
+              "type": "choice",
+              "choice": "17-2",
+              "probabilities": {
+                "17-1": 0.4351759460822472,
+                "17-2": 0.5405532080072399,
+                "17-3": 0.024270845910512852
+              },
+              "confidence": 0.2856014335476956
+            },
+            "soc_17_1": {
+              "type": "choice",
+              "choice": "17-1011",
+              "probabilities": {
+                "17-1011": 0.6061972387251069,
+                "17-1012": 0.213510771534134,
+                "17-1021": 0.05514456297489509,
+                "17-1022": 0.12514742676586393
+              },
+              "confidence": 0.24042531830370117
+            },
+            "soc_17_2": {
+              "type": "choice",
+              "choice": "17-2121",
+              "probabilities": {
+                "17-2011": 0.060723948945595484,
+                "17-2021": 0.07091606002587232,
+                "17-2031": 0.0063847951746503736,
+                "17-2041": 0.006674077104712859,
+                "17-2051": 0.0013040560796122181,
+                "17-2061": 0.002763152139489318,
+                "17-2071": 0.001447969732507482,
+                "17-2072": 0.002682289912532641,
+                "17-2081": 0.003405587679249173,
+                "17-2111": 0.01804167507015788,
+                "17-2112": 0.0026204146190444487,
+                "17-2121": 0.7660228575979765,
+                "17-2131": 0.002004777695110538,
+                "17-2141": 0.0013681621734516474,
+                "17-2151": 0.002512579341814182,
+                "17-2161": 0.005323880692335734,
+                "17-2171": 0.003145211318369256,
+                "17-2199": 0.04265850469751786
+              },
+              "confidence": 0.6531960960689858
+            },
+            "soc_17_3": {
+              "type": "choice",
+              "choice": "17-3031",
+              "probabilities": {
+                "17-3011": 0.09127116279798235,
+                "17-3012": 0.039257933500222296,
+                "17-3013": 0.08674142497010344,
+                "17-3021": 0.1120224601898992,
+                "17-3022": 0.037038166215024294,
+                "17-3023": 0.020362863319237107,
+                "17-3024": 0.004475516991817043,
+                "17-3025": 0.004497526480425063,
+                "17-3026": 0.016359274261631276,
+                "17-3027": 0.02188469877317335,
+                "17-3029": 0.007369090989423605,
+                "17-3031": 0.558719881511061
+              },
+              "confidence": 0.3701512939527676
+            },
+            "soc_19": {
+              "type": "choice",
+              "choice": "19-3",
+              "probabilities": {
+                "19-1": 0.1011766634143289,
+                "19-2": 0.019471150980194547,
+                "19-3": 0.4309118982995697,
+                "19-4": 0.023545005677994328,
+                "19-5": 0.42489528162791235
+              },
+              "confidence": 0.30212823447500736
+            }
+          },
+          "usage": {
+            "input_tokens": 190711,
+            "output_tokens": 16
+          },
+          "answers_sha256": "3a73f3a99d8790a1b5c37ae5c4b94e5c538cfc8deb6debf6aa97e6053cb2d6d5"
+        }
+      ],
+      "bit_identical_answers": false
+    }
+  },
+  "scope": "Two uncached cold-start evaluations of each actual production batch on this pinned machine; finite verification, not a universal guarantee"
+}

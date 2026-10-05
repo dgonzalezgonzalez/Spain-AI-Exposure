@@ -1,0 +1,7 @@
+specification,outcome,window,test,F_stat,df_num,df_den,p_value,observations,clusters
+jev_weighted_cno1_month,ln_parados,full_-21_-2,joint_equal_zero,2.624858155876495,20,501,.00016934802,31122,502
+jev_weighted_cno1_month,ln_parados,full_-21_-2,joint_equal_coefficients,2.328480887175091,19,501,.0012531774,31122,502
+jev_weighted_cno1_month,ln_parados,early_-21_-10,joint_equal_zero,2.62566984220658,12,501,.0020694332,31122,502
+jev_weighted_cno1_month,ln_parados,early_-21_-10,joint_equal_coefficients,2.728916837760212,11,501,.0019576929,31122,502
+jev_weighted_cno1_month,ln_parados,recent_-10_-2,joint_equal_zero,1.367339347877811,9,501,.2000103,31122,502
+jev_weighted_cno1_month,ln_parados,recent_-10_-2,joint_equal_coefficients,1.488520632215473,8,501,.15853016,31122,502

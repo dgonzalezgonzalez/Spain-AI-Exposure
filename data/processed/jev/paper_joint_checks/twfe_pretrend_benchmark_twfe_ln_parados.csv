@@ -1,0 +1,7 @@
+specification,outcome,window,test,F_stat,df_num,df_den,p_value,observations,clusters
+benchmark_twfe,ln_parados,full_-21_-2,joint_equal_zero,3.995041053551356,20,501,2.2957389e-08,31122,502
+benchmark_twfe,ln_parados,full_-21_-2,joint_equal_coefficients,3.387420083005307,19,501,2.1840829e-06,31122,502
+benchmark_twfe,ln_parados,early_-21_-10,joint_equal_zero,4.773046297078128,12,501,1.9921055e-07,31122,502
+benchmark_twfe,ln_parados,early_-21_-10,joint_equal_coefficients,4.68974312113389,11,501,7.5803115e-07,31122,502
+benchmark_twfe,ln_parados,recent_-10_-2,joint_equal_zero,4.18700627301681,9,501,.000031205404,31122,502
+benchmark_twfe,ln_parados,recent_-10_-2,joint_equal_coefficients,3.800330815784018,8,501,.00023963055,31122,502

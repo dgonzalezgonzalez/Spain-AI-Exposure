@@ -1,0 +1,5 @@
+specification,outcome,window,test,F_stat,df_num,df_den,p_value,observations,clusters
+preferred_cno1_month_no2021,ln_contratos,full_-10_-2,joint_equal_zero,1.903270553300604,9,501,.049342357,25317,502
+preferred_cno1_month_no2021,ln_contratos,full_-10_-2,joint_equal_coefficients,2.083351011318069,8,501,.035839401,25317,502
+preferred_cno1_month_no2021,ln_contratos,recent_-10_-2,joint_equal_zero,1.903270553300604,9,501,.049342357,25317,502
+preferred_cno1_month_no2021,ln_contratos,recent_-10_-2,joint_equal_coefficients,2.083351011318069,8,501,.035839401,25317,502

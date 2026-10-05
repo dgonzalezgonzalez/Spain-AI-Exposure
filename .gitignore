@@ -19,6 +19,10 @@ models/
 !data/processed/*.json
 !data/processed/*.sqlite
 analysis/paper_replication/runtime/
+analysis/paper_replication/shareout_*_results.tex
+analysis/paper_replication/shareout_*_results.pdf
+analysis/paper_replication/shareout_*_results.aux
+analysis/paper_replication/shareout_*_results.log
 .tmp_replication_package_20260806/
 data/processed/sepe_cno4_monthly_ai_exposure.csv
 data/processed/sepe_cno4_monthly_ai_exposure_jev.csv

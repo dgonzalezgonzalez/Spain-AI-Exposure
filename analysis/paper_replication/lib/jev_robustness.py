@@ -44,15 +44,18 @@ def prepare_jev_panel(
     prepared_panel: str | Path,
     jev_estimates: str | Path,
     output_path: str | Path,
+    *, model_family: str = "jev",
 ) -> dict[str, int]:
-    """Join frozen Jev estimates to every CNO4-month and add 10 pp scalings."""
+    """Join frozen model estimates to every CNO4-month and add 10 pp scalings."""
+    if model_family not in {"jev", "tev"}:
+        raise ValueError("Unknown occupation model")
 
     prepared = pd.read_csv(prepared_panel, dtype={"cno4": "string"})
     estimates = pd.read_csv(jev_estimates, dtype={"cno4": "string"})
     exposure_columns = [
-        "observed_exposure_jev_nearest",
-        "observed_exposure_jev_weighted",
-        "observed_exposure_jev_direct",
+        f"observed_exposure_{model_family}_nearest",
+        f"observed_exposure_{model_family}_weighted",
+        f"observed_exposure_{model_family}_direct",
     ]
     missing = [column for column in ["cno4", *exposure_columns] if column not in estimates]
     if missing:
@@ -60,7 +63,14 @@ def prepare_jev_panel(
 
     prepared["cno4"] = _normalize_cno4(prepared["cno4"])
     estimates["cno4"] = _normalize_cno4(estimates["cno4"])
-    estimates = estimates[["cno4", *exposure_columns]].copy()
+    tier_column = f"{model_family}_tier"
+    join_columns = ["cno4", *exposure_columns]
+    if tier_column in estimates:
+        estimates[tier_column] = pd.to_numeric(estimates[tier_column], errors="raise")
+        if not estimates[tier_column].isin([1, 2, 3]).all():
+            raise ValueError("Occupation tiers must be complete integers 1, 2, or 3")
+        join_columns.append(tier_column)
+    estimates = estimates[join_columns].copy()
     if estimates["cno4"].duplicated().any():
         raise ValueError("Jev estimates must contain exactly one row per CNO4 code.")
     for column in exposure_columns:
@@ -73,7 +83,7 @@ def prepare_jev_panel(
         missing_codes = sorted(merged.loc[merged[exposure_columns[0]].isna(), "cno4"].unique())
         raise ValueError(f"No Jev score for {len(missing_codes)} panel occupations: {missing_codes[:8]}")
     for column in exposure_columns:
-        merged[f"exposure_jev_{column.removeprefix('observed_exposure_jev_')}_10pp"] = (
+        merged[f"exposure_{model_family}_{column.removeprefix(f'observed_exposure_{model_family}_')}_10pp"] = (
             merged[column] / 0.10
         )
 
@@ -101,7 +111,8 @@ def _star(beta: float, se: float, clusters: int) -> str:
     return rf"$^{{{stars}}}$" if stars else ""
 
 
-def _render_event_file(source: Path, destination: Path, ylim: tuple[float, float], ytick_step: float) -> None:
+def _render_event_file(source: Path, destination: Path, ylim: tuple[float, float], ytick_step: float,
+                       *, ylabel: str = "Estimated marginal effect") -> None:
     frame = pd.read_csv(source).sort_values("event_time")
     grid = pd.DataFrame({"event_time": np.arange(EVENT_MIN, EVENT_MAX + 1)})
     frame = grid.merge(frame, on="event_time", how="left")
@@ -120,13 +131,17 @@ def _render_event_file(source: Path, destination: Path, ylim: tuple[float, float
     ax.scatter(frame["event_time"], frame["estimate"], color=NAVY, s=9, zorder=3)
     ax.set_xlim(EVENT_MIN, EVENT_MAX)
     ax.set_ylim(*ylim)
-    ax.set_yticks(np.arange(ylim[0], ylim[1] + ytick_step / 2, ytick_step))
+    if (ylim[1] - ylim[0]) / ytick_step > 10:
+        from matplotlib.ticker import MaxNLocator
+        ax.yaxis.set_major_locator(MaxNLocator(nbins=8))
+    else:
+        ax.set_yticks(np.arange(ylim[0], ylim[1] + ytick_step / 2, ytick_step))
     ax.set_xticks(np.arange(-20, 41, 10))
     ax.set_xlabel("Months relative to November 2022")
-    ax.set_ylabel("Estimated marginal effect")
+    ax.set_ylabel(ylabel)
     fig.tight_layout()
     destination.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(destination, bbox_inches="tight")
+    fig.savefig(destination, dpi=320, bbox_inches="tight")
     plt.close(fig)
 
 
@@ -145,9 +160,13 @@ def _event_y_limits(source: Path, tick_step: float) -> tuple[float, float]:
 def build_jev_robustness_outputs(
     estimates_dir: str | Path,
     output_dir: str | Path,
+    *, model_family: str = "jev",
 ) -> dict[str, Path]:
     """Build the O.D.1 phase table and six O.D.2/O.D.3 event-study plots."""
 
+    if model_family not in {"jev", "tev"}:
+        raise ValueError("Unknown occupation model")
+    model_label = "TEV" if model_family == "tev" else "Jev"
     estimates = Path(estimates_dir)
     output = Path(output_dir)
     output.mkdir(parents=True, exist_ok=True)
@@ -178,6 +197,11 @@ def build_jev_robustness_outputs(
         ),
     ]
 
+    panels = [(label.replace("Jev", model_label), measure,
+               tuple(spec.replace("jev_", model_family + "_") for spec in specs),
+               score_label.replace("Jev", model_label))
+              for label, measure, specs, score_label in panels]
+
     def phase_results(specification: str, outcome: str) -> dict[str, dict[str, object]]:
         path = estimates / f"twfe_phase_{specification}_{outcome}.csv"
         if not path.is_file():
@@ -206,16 +230,16 @@ def build_jev_robustness_outputs(
 
     rows: list[dict[str, object]] = []
     latex = [
-        r"\begin{landscape}",
         r"\begin{table}[H]",
         r"\centering",
         r"\caption{Robustness checks: alternative exposure measures}",
         r"\label{tab:v1_jev_robustness}",
         r"\begin{threeparttable}",
-        r"\small",
-        r"\renewcommand{\arraystretch}{0.86}",
-        r"\setlength{\tabcolsep}{3.5pt}",
-        r"\begin{tabular*}{0.90\linewidth}{@{\extracolsep{\fill}}lcccccc}",
+        r"\scriptsize",
+        r"\renewcommand{\arraystretch}{0.78}",
+        r"\setlength{\tabcolsep}{3.0pt}",
+        r"\resizebox{0.92\textwidth}{!}{%",
+        r"\begin{tabular}{lcccccc}",
         r"\toprule",
         r"& \multicolumn{3}{c}{\# of registered unemployed} & \multicolumn{3}{c}{\# of new contracts} \\",
         r"\cmidrule(lr){2-4}\cmidrule(lr){5-7}",
@@ -224,7 +248,7 @@ def build_jev_robustness_outputs(
     ]
     for panel_number, (label, measure, specs, score_label) in enumerate(panels):
         if panel_number:
-            latex.append(r"\addlinespace")
+            latex.append(r"\addlinespace[5pt]")
         latex.append(rf"\multicolumn{{7}}{{l}}{{\textbf{{{label}}}}} \\")
         panel_columns = [
             (specification, outcome, phase_results(specification, outcome))
@@ -270,7 +294,6 @@ def build_jev_robustness_outputs(
             + r" \\"
         )
         latex.append(" & " + " & ".join(f"({se:.3f})" for se in se_adjustment) + r" \\")
-        latex.append(r"\addlinespace")
         latex.append(
             r"AI exposure $\times$ later period & "
             + " & ".join(
@@ -282,6 +305,7 @@ def build_jev_robustness_outputs(
         latex.append(
             " & " + " & ".join(f"({se:.3f})" for se in se_later) + r" \\"
         )
+        latex.append(r"\addlinespace[2pt]")
         latex.append(
             r"Pre-treatment joint-null $p$-value & "
             + " & ".join(format_p(value) for value in pretrend)
@@ -303,36 +327,39 @@ def build_jev_robustness_outputs(
             r"CNO1 $\times$ year-month FE & No & Yes & Yes & No & Yes & Yes \\",
             r"2021 included & Yes & Yes & No & Yes & Yes & No \\",
             r"\bottomrule",
-            r"\end{tabular*}",
-            r"\begin{tablenotes}[flushleft]",
+            r"\end{tabular}",
+            r"}",
+            r"\begin{minipage}{0.92\textwidth}",
             r"\footnotesize",
-            r"\item \emph{Notes:} Entries are marginal effects for the adjustment period (event times 0--24) and the later period (25--40), relative to all pre-treatment months. Panel A reproduces the baseline specification. Panels B--D use, respectively, the Jev-assigned O*NET occupation with the highest probability, the probability-weighted average across O*NET occupations, and Jev's direct observed-exposure score. Columns 1 and 4 include CNO4 and year-month fixed effects; the remaining columns include CNO4 and CNO1-by-year-month fixed effects. Columns 3 and 6 exclude 2021. Exposure is divided by 0.10. Standard errors are clustered by CNO4. The pre-treatment row tests the joint null that all available pre-treatment event-study coefficients equal zero: event times $-21$ through $-2$ when 2021 is included and $-10$ through $-2$ otherwise. Equality rows test whether the adjustment- and later-period effects are equal. $^{***}p<0.01$, $^{**}p<0.05$, and $^{*}p<0.10$.",
-            r"\end{tablenotes}",
+            r"\emph{Notes:} Entries are marginal effects for the adjustment period (event times 0--24) and the later period (25--40), relative to all pre-treatment months. Panel A reproduces the baseline specification. Panels B--D use, respectively, the Jev-assigned O*NET occupation with the highest probability, the probability-weighted average across O*NET occupations, and Jev's direct observed-exposure score. Columns 1 and 4 include CNO4 and year-month fixed effects; the remaining columns include CNO4 and CNO1-by-year-month fixed effects. Columns 3 and 6 exclude 2021. Exposure is divided by 0.10. Standard errors are clustered by CNO4. The pre-treatment row tests the joint null that all available pre-treatment event-study coefficients equal zero: event times $-21$ through $-2$ when 2021 is included and $-10$ through $-2$ otherwise. Equality rows test whether the adjustment- and later-period effects are equal. $^{***}p<0.01$, $^{**}p<0.05$, and $^{*}p<0.10$.",
+            r"\end{minipage}",
             r"\end{threeparttable}",
             r"\end{table}",
-            r"\end{landscape}",
         ]
     )
 
-    table_path = output / "robustness_checks_jev_v1.tex"
+    latex = [line.replace("Jev", model_label).replace("v1_jev_", f"v1_{model_family}_") for line in latex]
+    output_tag = model_family
+    table_path = output / f"robustness_checks_{output_tag}_v1.tex"
     table_path.write_text("\n".join(latex) + "\n", encoding="utf-8")
-    results_path = output / "robustness_checks_jev_v1.csv"
+    results_path = output / f"robustness_checks_{output_tag}_v1.csv"
     pd.DataFrame(rows).to_csv(results_path, index=False)
 
     figure_paths: dict[str, Path] = {}
-    for measure, spec_measure in [
+    figure_specs = [
         ("nearest", "nearest"),
         ("weighted", "weighted"),
         ("direct", "direct"),
-    ]:
+    ]
+    for measure, spec_measure in figure_specs:
         for outcome, outcome_file, step in [
             ("unemployed", "ln_parados", 0.025),
             ("contracts", "ln_contratos", 0.05),
         ]:
-            source = estimates / f"twfe_event_jev_{spec_measure}_cno1_month_{outcome_file}.csv"
+            source = estimates / f"twfe_event_{model_family}_{spec_measure}_cno1_month_{outcome_file}.csv"
             if not source.exists():
                 raise FileNotFoundError(f"Missing event-study result: {source}")
-            destination = output / f"Robustness_{outcome}_jev_{measure}.png"
+            destination = output / f"Robustness_{outcome}_{model_family}_{measure}.png"
             _render_event_file(source, destination, _event_y_limits(source, step), step)
             figure_paths[f"{outcome}_{measure}"] = destination
     return {"table": table_path, "table_csv": results_path, **figure_paths}
@@ -359,9 +386,15 @@ def build_exposure_correlation_matrix(
     *,
     bls_workbook: str | Path | None = None,
     frs_workbook: str | Path | None = None,
+    model_family: str = "jev",
 ) -> dict[str, object]:
     """Create the lower-triangle Spearman matrix, leaving BLS cells blank if absent."""
 
+    if model_family not in {"jev", "tev"}:
+        raise ValueError("Unknown occupation model")
+    model_label = "TEV" if model_family == "tev" else "Jev"
+    measures = {key.replace("_jev_", f"_{model_family}_"): value.replace("Jev", model_label)
+                for key, value in MEASURES.items()}
     root, output = Path(project_root), Path(output_dir)
     output.mkdir(parents=True, exist_ok=True)
     panel = pd.read_csv(prepared_panel, dtype={"cno4": "string"})
@@ -370,9 +403,9 @@ def build_exposure_correlation_matrix(
     jev = pd.read_csv(jev_estimates, dtype={"cno4": "string"})
     jev["cno4"] = _normalize_cno4(jev["cno4"])
     jev_vars = [
-        "observed_exposure_jev_nearest",
-        "observed_exposure_jev_weighted",
-        "observed_exposure_jev_direct",
+        f"observed_exposure_{model_family}_nearest",
+        f"observed_exposure_{model_family}_weighted",
+        f"observed_exposure_{model_family}_direct",
     ]
     merged = panel.merge(jev[["cno4", *jev_vars]], on="cno4", validate="one_to_one")
 
@@ -418,7 +451,7 @@ def build_exposure_correlation_matrix(
         merged = merged.merge(frs, on="soc6", how="left", validate="many_to_one")
         merged["frs_lm_percentile"] = merged["frs_lm_aioe"].rank(method="average", pct=True)
 
-    measure_names = list(MEASURES)
+    measure_names = list(measures)
     merged[["cno4", *measure_names]].to_csv(
         output / "exposure_measure_matrix_inputs_v1.csv", index=False
     )
@@ -460,12 +493,16 @@ def build_exposure_correlation_matrix(
         "BLS category" if bls_path else "BLS category\n(data pending)",
         "LM-AIOE\npercentile",
     ]
+    labels = [label.replace("Jev", model_label) for label in labels]
     values = correlations.to_numpy(dtype=float)
     mask = np.triu(np.ones_like(values, dtype=bool), k=0)
     shown = np.ma.array(values, mask=mask | ~np.isfinite(values))
     cmap = plt.get_cmap("Blues").with_extremes(bad="#F0F1F2")
+    lower_triangle = values[np.tril_indices(len(labels), k=-1)]
+    finite = lower_triangle[np.isfinite(lower_triangle)]
+    color_min = min(0.5, math.floor(float(finite.min()) * 10) / 10) if len(finite) else 0.5
     fig, ax = plt.subplots(figsize=(8.6, 7.8))
-    image = ax.imshow(shown, cmap=cmap, vmin=0.5, vmax=1.0, interpolation="none")
+    image = ax.imshow(shown, cmap=cmap, vmin=color_min, vmax=1.0, interpolation="none")
     ax.set_xticks(np.arange(len(labels)), labels=labels, rotation=30, ha="right", rotation_mode="anchor")
     ax.set_yticks(np.arange(len(labels)), labels=labels)
     ax.tick_params(axis="both", length=0, labelsize=9)
@@ -478,7 +515,7 @@ def build_exposure_correlation_matrix(
             rho = values[i, j]
             n = int(pairwise_n.iat[i, j])
             if np.isfinite(rho):
-                red, green, blue, _ = cmap((rho - 0.5) / 0.5)
+                red, green, blue, _ = cmap((rho - color_min) / (1.0 - color_min))
                 luminance = 0.2126 * red + 0.7152 * green + 0.0722 * blue
                 color = "#FFFFFF" if luminance < 0.48 else "#17324D"
                 ax.text(j, i, f"{rho:.2f}\n(n={n})", ha="center", va="center", color=color, fontsize=8)
@@ -487,7 +524,7 @@ def build_exposure_correlation_matrix(
     fig.subplots_adjust(top=0.98, bottom=0.20, left=0.24, right=0.87)
     colorbar = fig.colorbar(image, ax=ax, fraction=0.045, pad=0.04)
     colorbar.set_label("Spearman $\\rho$", rotation=90)
-    figure_path = output / "Exposure_correlation_matrix.png"
+    figure_path = output / ("Exposure_correlation_matrix.png" if model_family == "jev" else "Exposure_correlation_matrix_tev.png")
     fig.savefig(figure_path, dpi=320, bbox_inches="tight")
     plt.close(fig)
 

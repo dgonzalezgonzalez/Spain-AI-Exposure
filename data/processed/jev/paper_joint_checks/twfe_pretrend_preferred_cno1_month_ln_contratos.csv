@@ -1,0 +1,7 @@
+specification,outcome,window,test,F_stat,df_num,df_den,p_value,observations,clusters
+preferred_cno1_month,ln_contratos,full_-21_-2,joint_equal_zero,1.686696932136304,20,501,.031847086,30786,502
+preferred_cno1_month,ln_contratos,full_-21_-2,joint_equal_coefficients,1.632472942104871,19,501,.044630613,30786,502
+preferred_cno1_month,ln_contratos,early_-21_-10,joint_equal_zero,1.16294666381251,12,501,.30705732,30786,502
+preferred_cno1_month,ln_contratos,early_-21_-10,joint_equal_coefficients,1.248133574249949,11,501,.25203842,30786,502
+preferred_cno1_month,ln_contratos,recent_-10_-2,joint_equal_zero,1.908687100638276,9,501,.048595592,30786,502
+preferred_cno1_month,ln_contratos,recent_-10_-2,joint_equal_coefficients,2.09057812041241,8,501,.035155989,30786,502

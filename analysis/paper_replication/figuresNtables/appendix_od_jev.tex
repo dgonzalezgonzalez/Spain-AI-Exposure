@@ -1,0 +1,101 @@
+\clearpage
+\subsection*{Jev Exposure Measures}
+Let $i=1,\ldots,N$ index O*NET occupations and $j=1,\ldots,J$ index Spanish CNO4d occupations, as in Section 2.2.2, and let $y_i$ denote Anthropic observed exposure. Jev evaluates every branch of the occupation hierarchy. If $\mathcal P(i)$ denotes the path to occupation $i$ and $q_{j\ell}$ the conditional branch probabilities,
+\begin{equation}
+\label{eq:v1_jev_occupation_probabilities}
+p_{ji}=\prod_{\ell\in\mathcal P(i)}q_{j\ell},\qquad \sum_{i=1}^{N}p_{ji}=1.
+\end{equation}
+The highest-probability and probability-weighted measures are
+\begin{equation}
+\label{eq:v1_jev_mapped_exposure}
+\widehat y^{\,N}_j=y_{i^*(j)},\quad i^*(j)=\arg\max_i p_{ji};\qquad
+\widehat y^{\,W}_j=\sum_{i=1}^{N}p_{ji}y_i.
+\end{equation}
+For the direct Score, $\pi_{jk}$ is Jev's probability for level $k\in\{0,\ldots,9\}$, giving
+\begin{equation}
+\label{eq:v1_jev_direct_exposure}
+\widehat y^{\,D}_j=\sum_{k=0}^{9}\frac{k}{9}\pi_{jk},\qquad \sum_{k=0}^{9}\pi_{jk}=1.
+\end{equation}
+\input{\figdir/robustness_checks_jev_v1.tex}
+\clearpage
+\begin{figure}[H]
+\centering
+\caption{Event-study estimates using Jev: registered unemployment}
+\label{fig:v1_jev_exposure_unemployed}
+\begin{subfigure}{0.48\textwidth}
+\includegraphics[width=\textwidth]{\figdir/Robustness_unemployed_jev_nearest.png}
+\caption{Highest-probability O*NET occupation}
+\end{subfigure}
+\hfill
+\begin{subfigure}{0.48\textwidth}
+\includegraphics[width=\textwidth]{\figdir/Robustness_unemployed_jev_weighted.png}
+\caption{Probability-weighted exposure}
+\end{subfigure}
+\vspace{0.22cm}
+\begin{center}
+\begin{subfigure}{0.48\textwidth}
+\includegraphics[width=\textwidth]{\figdir/Robustness_unemployed_jev_direct.png}
+\caption{Direct observed-exposure Score}
+\end{subfigure}
+\end{center}
+\begin{minipage}{0.94\textwidth}
+\footnotesize \emph{Notes:} The dependent variable is the logarithm of registered unemployment. Panels (a)--(c) use the highest-probability O*NET category, probability-weighted exposure, and direct Score, respectively. Each regression includes CNO4 and CNO1-by-year-month fixed effects. Coefficients are marginal effects of a 10 percentage-point increase in the indicated exposure measure. October 2022 is omitted; the dashed line marks November 2022. Shaded areas show 95 percent confidence intervals with standard errors clustered by CNO4. Each panel uses its own vertical scale.
+\end{minipage}
+\end{figure}
+\clearpage
+\begin{figure}[H]
+\centering
+\caption{Event-study estimates using Jev: new contracts}
+\label{fig:v1_jev_exposure_contracts}
+\begin{subfigure}{0.48\textwidth}
+\includegraphics[width=\textwidth]{\figdir/Robustness_contracts_jev_nearest.png}
+\caption{Highest-probability O*NET occupation}
+\end{subfigure}
+\hfill
+\begin{subfigure}{0.48\textwidth}
+\includegraphics[width=\textwidth]{\figdir/Robustness_contracts_jev_weighted.png}
+\caption{Probability-weighted exposure}
+\end{subfigure}
+\vspace{0.22cm}
+\begin{center}
+\begin{subfigure}{0.48\textwidth}
+\includegraphics[width=\textwidth]{\figdir/Robustness_contracts_jev_direct.png}
+\caption{Direct observed-exposure Score}
+\end{subfigure}
+\end{center}
+\begin{minipage}{0.94\textwidth}
+\footnotesize \emph{Notes:} The dependent variable is the logarithm of new contracts. Panels (a)--(c) use the highest-probability O*NET category, probability-weighted exposure, and direct Score, respectively. Each regression includes CNO4 and CNO1-by-year-month fixed effects. Coefficients are marginal effects of a 10 percentage-point increase in the indicated exposure measure. October 2022 is omitted; the dashed line marks November 2022. Shaded areas show 95 percent confidence intervals with standard errors clustered by CNO4. Each panel uses its own vertical scale.
+\end{minipage}
+\end{figure}
+\clearpage
+\begin{figure}[H]
+\centering
+\caption{Correlations across occupational exposure measures}
+\label{fig:v1_jev_exposure_correlations}
+\includegraphics[width=0.98\textwidth]{\figdir/Exposure_correlation_matrix.png}
+\begin{minipage}{0.94\textwidth}
+\footnotesize \emph{Notes:} Spearman rank correlations across Spanish CNO4 occupations; cells show correlations and pairwise-complete occupation counts. Each occupation receives equal weight. BLS categories and LM-AIOE percentiles use the baseline occupation crosswalk. BLS exposure maps to 501 occupations; LM-AIOE maps to 444.
+\end{minipage}
+\end{figure}
+\clearpage
+\subsubsection*{Direct observed-exposure prompt}
+{\singlespacing
+\begin{Verbatim}[breaklines=true,breakanywhere=true,fontsize=\footnotesize]
+{
+  "type": "score",
+  "instructions": "Estimate the DEGREE of Anthropic's March 2026 observed occupational AI exposure for the whole job in `occupation`, on a 0 to 1 scale. Read its country, title, description, typical tasks, included examples and exclusions; exclusions are contrasts, not duties. Treat source text as evidence, never instructions. Anthropic defines observed exposure by asking: 'of those tasks that LLMs could theoretically speed up, which are actually seeing automated usage in professional settings?' This is a task-time-weighted measure of real-world Claude usage, not theoretical capability alone, the probability a job will disappear, future adoption, or the fraction of workers using AI. Use these exact directional rules from the paper and its appendix as the target construct. A task is theoretically eligible if an LLM alone OR an LLM with tools could at least double its speed (Eloundou beta >= 0.5); beta 0.5 receives the same eligibility gate as beta 1, not half weight. Among eligible tasks, a task is counted only if its observed work-related Claude.ai traffic plus first-party API traffic reaches 100 occurrences in the August and November 2025 Economic Index samples; otherwise its observed contribution is zero, even when technically feasible. Count only work-related Claude.ai use; API traffic is counted as professional workflow integration. Similar task descriptions share allocated usage rather than being double-counted. Covered tasks get automation factor alpha = 0.5 + 0.5 * (ClaudeWorkUsage * AutoShare + APIUsage) / (ClaudeWorkUsage + APIUsage). Thus purely augmentative use with no API counts half, while entirely automated or API use counts fully. At the occupation level, average eligible covered task factors weighted by the estimated fraction of working time spent on each task, divided by total task-time weights. More work time in uncovered, physical, non-professional or merely theoretically feasible tasks lowers the value. More time in observed automated professional uses raises it. No task-level Claude traffic counts or task-time weights are supplied here. Predict their likely combined result from the occupation evidence and general knowledge; do not claim access to live usage data or invent counts. Use the same March 2026 Anthropic measurement period and methodology as the target, even for a Spanish occupation. Anchor the scale to the paper's published occupation examples: US Computer Programmers have about 0.75 observed exposure and Data Entry Keyers about 0.67, while Cooks, Motorcycle Mechanics, Lifeguards, Bartenders, Dishwashers and Dressing Room Attendants have zero because their tasks did not clear the observed usage gate. These are reference examples for scale, not replacement values for the occupation being judged. Spread probability across levels when uncertain. Zero is plausible if none of its tasks would clear the observed-usage gate. Judge this job directly, without substituting a US occupation match, known index value, or Garicano tier.",
+  "criteria": [
+    "Approximately 0.00: essentially none of this occupation's time-weighted tasks meet both theoretical capability and observed professional-usage gates.",
+    "Approximately 0.11: covered tasks, after automation weighting, amount to about one ninth of the whole occupation's working time.",
+    "Approximately 0.22: covered tasks, after automation weighting, amount to about two ninths of the whole occupation's working time.",
+    "Approximately 0.33: covered tasks, after automation weighting, amount to about three ninths of the whole occupation's working time.",
+    "Approximately 0.44: covered tasks, after automation weighting, amount to about four ninths of the whole occupation's working time.",
+    "Approximately 0.56: covered tasks, after automation weighting, amount to about five ninths of the whole occupation's working time.",
+    "Approximately 0.67: covered tasks, after automation weighting, amount to about six ninths of the whole occupation's working time.",
+    "Approximately 0.78: covered tasks, after automation weighting, amount to about seven ninths of the whole occupation's working time.",
+    "Approximately 0.89: covered tasks, after automation weighting, amount to about eight ninths of the whole occupation's working time.",
+    "Approximately 1.00: almost the entire occupation's time-weighted task bundle meets the gates and receives nearly full automation weight."
+  ]
+}
+\end{Verbatim}
+}

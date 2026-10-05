@@ -1,0 +1,5 @@
+specification,outcome,tier,phase,estimate,se,ci_low,ci_high,equality_p,observations,clusters
+jev_tiers_cno1_month_no2021,ln_contratos,1,adjustment,-.0885951932107525,.045469806,-.17793019,.00073980482,.33965874,25317,502
+jev_tiers_cno1_month_no2021,ln_contratos,1,later,-.0631249745551979,.076783709,-.21398272,.087732762,.33965874,25317,502
+jev_tiers_cno1_month_no2021,ln_contratos,2,adjustment,-.0669040760865039,.041986682,-.14939575,.015587592,.33965874,25317,502
+jev_tiers_cno1_month_no2021,ln_contratos,2,later,-.0193041999842446,.071921922,-.16060995,.12200155,.33965874,25317,502

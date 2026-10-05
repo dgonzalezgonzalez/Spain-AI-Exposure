@@ -1,0 +1,7 @@
+specification,outcome,window,test,F_stat,df_num,df_den,p_value,observations,clusters
+jev_direct_benchmark,ln_contratos,full_-21_-2,joint_equal_zero,6.653849153590919,20,501,2.7458278e-16,30787,502
+jev_direct_benchmark,ln_contratos,full_-21_-2,joint_equal_coefficients,6.896239502319205,19,501,2.2780723e-16,30787,502
+jev_direct_benchmark,ln_contratos,early_-21_-10,joint_equal_zero,6.004586133583999,12,501,7.6152329e-10,30787,502
+jev_direct_benchmark,ln_contratos,early_-21_-10,joint_equal_coefficients,6.139196519967956,11,501,1.7242455e-09,30787,502
+jev_direct_benchmark,ln_contratos,recent_-10_-2,joint_equal_zero,7.15626260560175,9,501,8.5663182e-10,30787,502
+jev_direct_benchmark,ln_contratos,recent_-10_-2,joint_equal_coefficients,7.335555699792692,8,501,3.0538523e-09,30787,502

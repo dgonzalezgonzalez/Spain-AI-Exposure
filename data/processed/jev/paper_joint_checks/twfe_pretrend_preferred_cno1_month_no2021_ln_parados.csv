@@ -1,0 +1,5 @@
+specification,outcome,window,test,F_stat,df_num,df_den,p_value,observations,clusters
+preferred_cno1_month_no2021,ln_parados,full_-10_-2,joint_equal_zero,1.092417648972304,9,501,.36655796,25600,502
+preferred_cno1_month_no2021,ln_parados,full_-10_-2,joint_equal_coefficients,1.228482642905137,8,501,.28001729,25600,502
+preferred_cno1_month_no2021,ln_parados,recent_-10_-2,joint_equal_zero,1.092417648972304,9,501,.36655796,25600,502
+preferred_cno1_month_no2021,ln_parados,recent_-10_-2,joint_equal_coefficients,1.228482642905137,8,501,.28001729,25600,502
