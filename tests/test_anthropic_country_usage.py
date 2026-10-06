@@ -20,13 +20,15 @@ class AnthropicCountryUsageTests(TestCase):
             [
                 "date_start,date_end,geo_id,geo_level,category_name,hierarchy_level,metric_id,value,node_name,node_external_id",
                 "2026-04-01,2026-05-01,ESP,country,soc_occupation,1,pct,1.00,Management,11",
-                "2026-04-01,2026-05-01,USA,country,soc_occupation,1,pct,2.00,Management,11",
+                "2026-04-01,2026-05-01,GLOBAL,global,soc_occupation,1,pct,2.00,Management,11",
                 "2026-05-01,2026-06-01,ESP,country,soc_occupation,1,pct,5.91,Management,11",
-                "2026-05-01,2026-06-01,USA,country,soc_occupation,1,pct,5.85,Management,11",
+                "2026-05-01,2026-06-01,GLOBAL,global,soc_occupation,1,pct,5.90,Management,11",
                 "2026-05-01,2026-06-01,ESP,country,soc_occupation,1,pct,23.92,Computer and Mathematical,15",
-                "2026-05-01,2026-06-01,USA,country,soc_occupation,1,pct,21.13,Computer and Mathematical,15",
+                "2026-05-01,2026-06-01,GLOBAL,global,soc_occupation,1,pct,23.80,Computer and Mathematical,15",
                 "2026-05-01,2026-06-01,ESP,country,soc_occupation,0,pct,99.00,Software Developers,15-1252",
                 "2026-05-01,2026-06-01,ESP,country,request,2,pct,99.00,Writing,x",
+                "2026-05-01,2026-06-01,USA,country,soc_occupation,1,pct,99.00,Management,11",
+                "2026-05-01,2026-06-01,GLOBAL,country,soc_occupation,1,pct,98.00,Management,11",
             ]
         )
         with ZipFile(path, "w") as archive:
@@ -36,8 +38,8 @@ class AnthropicCountryUsageTests(TestCase):
 
         self.assertEqual(out["soc_major_group"].tolist(), ["15", "11"])
         self.assertEqual(out.loc[0, "date_start"], "2026-05-01")
-        self.assertAlmostEqual(out.loc[out["soc_major_group"] == "11", "spain_minus_us_pct"].iloc[0], 0.06)
-        self.assertAlmostEqual(out.loc[out["soc_major_group"] == "15", "spain_minus_us_pct"].iloc[0], 2.79)
+        self.assertAlmostEqual(out.loc[out["soc_major_group"] == "11", "spain_minus_global_pct"].iloc[0], 0.01)
+        self.assertAlmostEqual(out.loc[out["soc_major_group"] == "15", "spain_minus_global_pct"].iloc[0], 0.12)
 
     def test_sort_is_descending_by_spain_usage_with_code_tie_break(self):
         path = self._tmp_zip()
@@ -45,11 +47,11 @@ class AnthropicCountryUsageTests(TestCase):
             [
                 "date_start,date_end,geo_id,geo_level,category_name,hierarchy_level,metric_id,value,node_name,node_external_id",
                 "2026-05-01,2026-06-01,ESP,country,soc_occupation,1,pct,10.0,Later,20",
-                "2026-05-01,2026-06-01,USA,country,soc_occupation,1,pct,9.0,Later,20",
+                "2026-05-01,2026-06-01,GLOBAL,global,soc_occupation,1,pct,9.0,Later,20",
                 "2026-05-01,2026-06-01,ESP,country,soc_occupation,1,pct,10.0,Earlier,10",
-                "2026-05-01,2026-06-01,USA,country,soc_occupation,1,pct,8.0,Earlier,10",
+                "2026-05-01,2026-06-01,GLOBAL,global,soc_occupation,1,pct,8.0,Earlier,10",
                 "2026-05-01,2026-06-01,ESP,country,soc_occupation,1,pct,2.0,Bottom,30",
-                "2026-05-01,2026-06-01,USA,country,soc_occupation,1,pct,3.0,Bottom,30",
+                "2026-05-01,2026-06-01,GLOBAL,global,soc_occupation,1,pct,3.0,Bottom,30",
             ]
         )
         with ZipFile(path, "w") as archive:
@@ -59,4 +61,29 @@ class AnthropicCountryUsageTests(TestCase):
 
         self.assertEqual(out["soc_major_group"].tolist(), ["10", "20", "30"])
         self.assertEqual(out["spain_usage_pct"].tolist(), [10.0, 10.0, 2.0])
+
+    def test_missing_global_group_is_not_silently_treated_as_zero(self):
+        path = self._tmp_zip()
+        csv = "\n".join([
+            "date_start,date_end,geo_id,geo_level,category_name,hierarchy_level,metric_id,value,node_name,node_external_id",
+            "2026-05-01,2026-06-01,ESP,country,soc_occupation,1,pct,5.91,Management,11",
+            "2026-05-01,2026-06-01,GLOBAL,global,soc_occupation,1,pct,5.90,Management,11",
+            "2026-05-01,2026-06-01,ESP,country,soc_occupation,1,pct,23.92,Computer and Mathematical,15",
+        ])
+        with ZipFile(path, "w") as archive:
+            archive.writestr(ECON_INDEX_CLAUDE_AI_MEMBER, csv)
+        with self.assertRaisesRegex(ValueError, "Missing Spain/global values"):
+            load_country_job_usage(path)
+
+    def test_us_rows_cannot_replace_missing_global_rows(self):
+        path = self._tmp_zip()
+        csv = "\n".join([
+            "date_start,date_end,geo_id,geo_level,category_name,hierarchy_level,metric_id,value,node_name,node_external_id",
+            "2026-05-01,2026-06-01,ESP,country,soc_occupation,1,pct,5.91,Management,11",
+            "2026-05-01,2026-06-01,USA,country,soc_occupation,1,pct,5.85,Management,11",
+        ])
+        with ZipFile(path, "w") as archive:
+            archive.writestr(ECON_INDEX_CLAUDE_AI_MEMBER, csv)
+        with self.assertRaisesRegex(ValueError, "GLOBAL"):
+            load_country_job_usage(path)
 

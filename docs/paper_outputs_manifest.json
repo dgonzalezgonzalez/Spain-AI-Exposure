@@ -3,8 +3,8 @@
   "prism_project": "Spain-AI-exposure - Prism",
   "source_of_truth": "Prism main.tex includegraphics/input references",
   "figures": [
-    {"file": "figure_anthropic_country_soc_major_group_spain_us_may2026.png", "group": "anthropic", "generator": "scripts/build_claude_country_job_usage_figure.py"},
-    {"file": "figure_ai_exposure_distribution_us_vs_spain.png", "group": "anthropic", "generator": "Prism-only source; generator reconciliation pending"},
+    {"file": "figure_anthropic_country_soc_major_group_spain_global_may2026.png", "group": "anthropic", "generator": "scripts/build_claude_country_job_usage_figure.py"},
+    {"file": "figure_ai_exposure_distribution_onet_vs_spain.png", "group": "anthropic", "generator": "analysis/paper_replication/02_Descriptives_v1.ipynb"},
     {"file": "figure_memo_v2_indexed_total_all_ln_parados.png", "group": "descriptive", "generator": "Prism-only source; generator reconciliation pending"},
     {"file": "figure_memo_v2_indexed_total_all_ln_contratos.png", "group": "descriptive", "generator": "Prism-only source; generator reconciliation pending"},
     {"file": "figure_contdid_eventstudy_total_cno4_all.png", "group": "continuous-did", "generator": "scripts/run_contdid_analysis.R"},

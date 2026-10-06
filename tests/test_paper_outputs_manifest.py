@@ -22,7 +22,7 @@ class PaperOutputsManifestTests(unittest.TestCase):
         self.assertEqual(len(figure_names), len(set(figure_names)))
         self.assertEqual(len(table_names), len(set(table_names)))
         self.assertEqual(len(labels), len(set(labels)))
-        self.assertEqual(figure_names[0], "figure_anthropic_country_soc_major_group_spain_us_may2026.png")
+        self.assertEqual(figure_names[0], "figure_anthropic_country_soc_major_group_spain_global_may2026.png")
         self.assertIn("summary_statistics.tex", table_names)
         self.assertEqual(set(labels), {"tab:contdid", "tab:sdid", "tab:twfe"})
 

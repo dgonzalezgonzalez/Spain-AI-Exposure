@@ -63,6 +63,7 @@ def download_anthropic_economic_index_release(config: PipelineConfig, refresh: b
 
 
 def load_country_job_usage(zip_path: Path, date_start: str | None = None) -> pd.DataFrame:
+    """Compare Spanish usage with the published global aggregate, not country means."""
     with ZipFile(zip_path) as archive:
         with archive.open(ECON_INDEX_CLAUDE_AI_MEMBER) as source:
             df = pd.read_csv(source, dtype={"geo_id": "string", "node_external_id": "string"})
@@ -72,42 +73,47 @@ def load_country_job_usage(zip_path: Path, date_start: str | None = None) -> pd.
         raise ValueError(f"Anthropic Economic Index file missing columns: {sorted(missing)}")
 
     sub = df[
-        (df["geo_id"].isin(["ESP", "USA"]))
-        & (df["geo_level"] == "country")
+        (
+            ((df["geo_id"] == "ESP") & (df["geo_level"] == "country"))
+            | ((df["geo_id"] == "GLOBAL") & (df["geo_level"] == "global"))
+        )
         & (df["category_name"] == "soc_occupation")
         & (df["hierarchy_level"] == 1)
         & (df["metric_id"] == "pct")
     ].copy()
     if sub.empty:
-        raise ValueError("No Spain/US SOC major-group country usage rows found.")
+        raise ValueError("No Spain/global SOC major-group usage rows found.")
 
     if date_start is None:
         date_start = str(sub["date_start"].max())
     sub = sub[sub["date_start"] == date_start].copy()
 
-    pivot = sub.pivot_table(
+    if sub.duplicated(["node_external_id", "geo_id"]).any():
+        raise ValueError(f"Duplicate SOC major-group usage rows on {date_start}.")
+    pivot = sub.pivot(
         index=["node_external_id", "node_name", "date_start", "date_end"],
         columns="geo_id",
         values="value",
-        aggfunc="first",
     ).reset_index()
     pivot.columns.name = None
-    required_geos = {"ESP", "USA"}
+    required_geos = {"ESP", "GLOBAL"}
     if not required_geos.issubset(pivot.columns):
-        raise ValueError(f"Missing country values for {sorted(required_geos.difference(pivot.columns))} on {date_start}.")
+        raise ValueError(f"Missing geography values for {sorted(required_geos.difference(pivot.columns))} on {date_start}.")
+    if pivot[["ESP", "GLOBAL"]].isna().any().any():
+        raise ValueError(f"Missing Spain/global values for one or more SOC major groups on {date_start}.")
 
     out = pivot.rename(
         columns={
             "node_external_id": "soc_major_group",
             "node_name": "job_group",
             "ESP": "spain_usage_pct",
-            "USA": "us_usage_pct",
+            "GLOBAL": "global_usage_pct",
         }
     ).copy()
-    out["spain_minus_us_pct"] = out["spain_usage_pct"] - out["us_usage_pct"]
+    out["spain_minus_global_pct"] = out["spain_usage_pct"] - out["global_usage_pct"]
     out["spain_usage_pct"] = out["spain_usage_pct"].round(2)
-    out["us_usage_pct"] = out["us_usage_pct"].round(2)
-    out["spain_minus_us_pct"] = out["spain_minus_us_pct"].round(2)
+    out["global_usage_pct"] = out["global_usage_pct"].round(2)
+    out["spain_minus_global_pct"] = out["spain_minus_global_pct"].round(2)
     return out[
         [
             "soc_major_group",
@@ -115,8 +121,8 @@ def load_country_job_usage(zip_path: Path, date_start: str | None = None) -> pd.
             "date_start",
             "date_end",
             "spain_usage_pct",
-            "us_usage_pct",
-            "spain_minus_us_pct",
+            "global_usage_pct",
+            "spain_minus_global_pct",
         ]
     ].sort_values(
         ["spain_usage_pct", "soc_major_group"],

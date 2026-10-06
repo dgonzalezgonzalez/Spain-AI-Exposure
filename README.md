@@ -516,7 +516,7 @@ AIReF-style event-study figures are split by outcome:
 
 Each figure folder contains SVG, PDF, PNG, and XLSX source-data exports for each event-study specification.
 
-Anthropic country job-group figure:
+Anthropic Spain/global job-group figure:
 
 ```powershell
 py -3 main.py --analysis-only --run-anthropic-country-figure
@@ -524,7 +524,7 @@ py -3 main.py --analysis-only --run-anthropic-country-figure
 
 Outputs:
 
-- `analysis/econometrics_outputs/Graficos/figure_anthropic_country_soc_major_group_spain_us_may2026.png`
+- `analysis/econometrics_outputs/Graficos/figure_anthropic_country_soc_major_group_spain_global_may2026.png`
 
 The figure is generated from the cached Anthropic release; generated outputs remain local and ignored.
 

@@ -35,3 +35,9 @@ and `descriptive.tex` is its descriptive validation companion. The frozen
 publication figures and table fragments are under `figuresNtables/`. Raw data,
 prepared panels, logs, and estimator intermediates stay in the ignored runtime
 because the ZIP contained more than 1 GB of generated/source data.
+
+`validation_prism.tex` preserves the corrected Section 2.2.3 from Prism's
+`main.tex`, with Prism upload paths. The usage comparison uses Spain and the
+published global Claude.ai aggregate for May 2026. The O*NET exposure histogram
+retains its original data and uses the legend `O*NET occupations`.
+See [the source and validation note](../../docs/global-usage-validation.md).
