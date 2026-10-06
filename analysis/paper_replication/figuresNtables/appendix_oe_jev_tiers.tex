@@ -30,7 +30,8 @@ The contract estimates display a similar attenuation. Column 4 reports coefficie
 
 Figures~\ref{fig:v1_jev_tiers_unemployed} and~\ref{fig:v1_jev_tiers_contracts} report the corresponding event-study estimates. The pre-treatment coefficients do not remain consistently close to zero, providing less favorable evidence for the parallel-trends assumption than would be needed for a clear causal interpretation. The unemployment path is more stable for tier 2, but the joint pre-treatment test for both tiers rejects in the preferred full sample (\(p<0.001\)). Excluding 2021 improves the unemployment diagnostics, and the joint null cannot be rejected (\(p=0.475\)), although this does not establish parallel trends. For new contracts, the joint test rejects both with and without 2021 (\(p=0.037\) and \(p=0.049\), respectively). We therefore interpret the post-release coefficients cautiously as differences in occupational adjustment that may also reflect pre-existing trends.
 
-The contrast between these negative, imprecise unemployment estimates and the positive exposure gradient in the baseline analysis is consistent with the possibility that task bundling moderates adjustment to AI \citep{garicano2026weak}. However, the two exercises use different occupational comparisons, and the tier estimates do not establish that stronger bundling protects jobs. In particular, the similar signs for tiers 1 and 2 and the pre-treatment differences limit what can be inferred about this mechanism.
+The contrast between these negative, imprecise unemployment estimates and the positive exposure gradient in the baseline analysis could be tentatively consistent with the possibility that task bundling moderates adjustment to AI \citep{garicano2026weak}. However, the two exercises use different occupational comparisons, and the estimates in Table \ref{tab:v1_jev_job_tiers} do not clearly establish that stronger bundling protects jobs. Therefore, we complement these tier comparisons with an exercise that conditions the baseline exposure gradient on job-tier dynamics. Table~\ref{tab:v1_job_tier_mediation} reproduces the preferred exposure specification and adds tier-by-year-month FE alongside CNO1d-by-year-month FE, allowing each tier its own monthly path. For registered unemployment, the adjustment- and later-period coefficients decline from 0.012 and 0.017 to 0.010 and 0.012, respectively; neither adjusted estimate is statistically significant at the 5 percent level. For new contracts, the corresponding coefficients increase from 0.014 and 0.013 to 0.019 in both periods. The adjustment-period estimate is statistically significant at the 5 percent level, whereas the later estimate is significant at the 10 percent level. These changes suggest that tier-specific labor-market dynamics may account for part of the positive unemployment gradient and may mask a positive association between AI exposure and hiring. This pattern is consistent with job bundling playing a role in occupational adjustment, although it does not identify which tier generates the change or establish that stronger bundles protect jobs. The tier classification is time-invariant, so this exercise conditions on occupational characteristics rather than identifying a post-release mediator or a causal indirect effect. Moreover, the pre-treatment joint null remains rejected after including tier-by-year-month FE for both registered unemployment (\(p=0.003\)) and new contracts (\(p=0.015\)). We therefore interpret the comparison as suggestive evidence on the role of job-tier dynamics, subject to the same concerns about differential pre-treatment trends.
+
 \input{\figdir/job_tiers_did_jev_v1.tex}
 \clearpage
 \begin{figure}[H]
@@ -70,6 +71,41 @@ The contrast between these negative, imprecise unemployment estimates and the po
 \footnotesize \emph{Notes:} Both tier paths are estimated jointly in one regression for the logarithm of new contracts. Tier 3 is the omitted control group. The specification includes CNO4 and CNO1-by-year-month FE. Coefficients are log-point differences, with no exposure scaling. October 2022 is the omitted reference month; the dashed line marks November 2022. Shaded areas are 95 percent confidence intervals with standard errors clustered by CNO4. Each graph uses its own vertical scale.
 \end{minipage}
 \end{figure}
+\clearpage
+% BEGIN GENERATED JOB TIER MEDIATION TABLE
+\begin{table}[H]
+\centering
+\caption{AI Exposure and Labor Market Outcomes: Job Tier Mediation Analysis}
+\label{tab:v1_job_tier_mediation}
+\begin{threeparttable}
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{lcccc}
+\toprule
+& \multicolumn{2}{c}{\# of registered unemployed} & \multicolumn{2}{c}{\# of new contracts} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+& (1) & (2) & (3) & (4) \\
+\midrule
+AI exposure $\times$ adjustment period & 0.012$^{**}$ & 0.010$^{*}$ & 0.014 & 0.019$^{**}$ \\
+ & (0.006) & (0.006) & (0.009) & (0.009) \\
+AI exposure $\times$ later period & 0.017 & 0.012 & 0.013 & 0.019$^{*}$ \\
+ & (0.012) & (0.011) & (0.011) & (0.011) \\
+\midrule
+CNO1 $\times$ year-month FE & Yes & Yes & Yes & Yes \\
+Tier $\times$ year-month FE & No & Yes & No & Yes \\
+$p$-value: equal phase effects & 0.486 & 0.742 & 0.807 & 0.971 \\
+Pre-treatment joint-null $p$-value & 0.003 & 0.003 & 0.032 & 0.015 \\
+Observations & 31,122 & 31,122 & 30,786 & 30,786 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item \emph{Notes:} Columns 1 and 3 reproduce the preferred specifications in columns 2 and 5 of Table~\ref{tab:v1_main_effects}. Columns 2 and 4 additionally include tier-by-year-month FE, allowing each Jev job tier its own monthly path. CNO1-by-year-month and tier-by-year-month FE enter additively. Tier 3 is the reference category for an equivalent explicit tier-interaction representation; adding all three tiers' interactions would be collinear with the time FE. Time-invariant tier indicators are absorbed by CNO4 FE. All columns use the same outcome-specific sample and include CNO4 and CNO1-by-year-month FE. The dependent variables are logarithms. The adjustment period is November 2022--November 2024 (event times 0--24), and the later period is December 2024--March 2026 (event times 25--40); all available pre-treatment months form the omitted category. Exposure is divided by 0.10, so coefficients correspond to a 10 percentage-point increase. Parenthesized standard errors are clustered by CNO4 (502 clusters). The equality row tests whether the two exposure coefficients are equal. The pre-treatment joint-null row reports the clustered Wald test that all exposure event-study coefficients at event times $-21$ through $-2$ equal zero, with October 2022 omitted, using each column's FE and sample. $^{***}p<0.01$, $^{**}p<0.05$, and $^{*}p<0.10$.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+% END GENERATED JOB TIER MEDIATION TABLE
+
 \clearpage
 \subsubsection*{Three-tier categorization prompt}
 {\singlespacing
