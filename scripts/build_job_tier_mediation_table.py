@@ -81,22 +81,12 @@ def main() -> None:
     parser.add_argument("--results-dir", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--standalone", type=Path)
-    parser.add_argument("--appendix", type=Path, help="Update the marked generated table in Appendix H")
     args = parser.parse_args()
     table = render_table(args.results_dir / "job_tier_mediation_estimates.csv", args.results_dir / "job_tier_mediation_pretrends.csv")
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(table, encoding="utf-8")
     if args.standalone:
         args.standalone.write_text(standalone(table), encoding="utf-8")
-    if args.appendix:
-        source = args.appendix.read_text(encoding="utf-8")
-        start = "% BEGIN GENERATED JOB TIER MEDIATION TABLE\n"
-        end = "% END GENERATED JOB TIER MEDIATION TABLE"
-        if source.count(start) != 1 or source.count(end) != 1:
-            raise ValueError("Appendix must contain exactly one pair of generation markers")
-        prefix, rest = source.split(start)
-        _, suffix = rest.split(end)
-        args.appendix.write_text(prefix + start + table + end + suffix, encoding="utf-8")
 
 
 if __name__ == "__main__":

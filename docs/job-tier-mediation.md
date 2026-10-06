@@ -27,21 +27,25 @@ do analysis/paper_replication/job_tier_mediation.do "path/to/est_total_cno4_jev.
 
 The output CSVs are `job_tier_mediation_estimates.csv` and
 `job_tier_mediation_pretrends.csv`. Small validated copies are tracked with the
-table inputs. To regenerate both the table fragment and its marked insertion:
+table inputs. To regenerate the separate LaTeX table file:
 
 ```powershell
-python scripts/build_job_tier_mediation_table.py --results-dir analysis/paper_replication/figuresNtables --output analysis/paper_replication/figuresNtables/job_tier_mediation_v1.tex --appendix analysis/paper_replication/figuresNtables/appendix_oe_jev_tiers.tex
+python scripts/build_job_tier_mediation_table.py --results-dir analysis/paper_replication/figuresNtables --output analysis/paper_replication/figuresNtables/job_tier_mediation_v1.tex
 ```
 
 The optional `--standalone` argument updates the existing standalone editor
 source in place. Its isolated preview supplies the external Table 2 reference;
 the manuscript uses `\ref{tab:v1_main_effects}` directly.
 
-The generated table is embedded in the existing Prism appendix file between
-generation markers to avoid requiring a new cloud file. It appears after
-Figure O.H.2 and before the unchanged classification prompt. The discussion
+The generated `job_tier_mediation_v1.tex` is uploaded to Prism's
+`uploads/figuresNtables` folder. The appendix includes it using
+`\input{\figdir/job_tier_mediation_v1.tex}` after Figure O.H.2 and before
+the unchanged classification prompt. Regeneration updates the separate file;
+the generator does not copy table rows into appendix prose. The discussion
 replaces the author's `Therefore... %COMPLETE HERE.` comment and preserves their
-preceding edits. The source patch records the exact cloud-file update.
+preceding edits. `prism-job-tier-input.patch` records the extraction of the
+previous embedded generated table into this file reference. The earlier
+`prism-job-tier-mediation.patch` records the original discussion insertion.
 
 ## Verification and interpretation
 
