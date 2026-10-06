@@ -1,0 +1,56 @@
+--- a/analysis/paper_replication/lib/job_tiers.py
++++ b/analysis/paper_replication/lib/job_tiers.py
+@@ -8,0 +9 @@
++from .terminology import normalize_latex_terminology
+@@ -64 +65 @@
+-    table.write_text("\n".join(latex) + "\n", encoding="utf-8")
++    table.write_text(normalize_latex_terminology("\n".join(latex) + "\n"), encoding="utf-8")
+--- a/analysis/paper_replication/lib/jev_robustness.py
++++ b/analysis/paper_replication/lib/jev_robustness.py
+@@ -9,0 +10,2 @@
++
++from .terminology import normalize_latex_terminology
+@@ -344 +346 @@
+-    table_path.write_text("\n".join(latex) + "\n", encoding="utf-8")
++    table_path.write_text(normalize_latex_terminology("\n".join(latex) + "\n"), encoding="utf-8")
+--- /dev/null
++++ b/analysis/paper_replication/lib/terminology.py
+@@ -0,0 +1,38 @@
++"""Consistent terminology at the paper's LaTeX rendering boundary."""
++
++from __future__ import annotations
++
++import re
++
++
++def normalize_latex_terminology(text: str) -> str:
++    """Normalize prose without changing identifiers or verbatim replication code."""
++    protected: list[str] = []
++
++    def hold(match: re.Match[str]) -> str:
++        protected.append(match.group())
++        return f"@@PAPER_LITERAL_{len(protected) - 1}@@"
++
++    text = re.sub(
++        r"\\begin\{(Verbatim|verbatim|lstlisting|minted)\}.*?\\end\{\1\}"
++        r"|\\(?:input|includegraphics|label|ref|citep|citet|url|texttt)"
++        r"(?:\[[^\]]*\])?\{[^}]*\}",
++        hold,
++        text,
++        flags=re.DOTALL,
++    )
++    text = re.sub(
++        r"\b(?:synthetic[- ](?:difference-in-differences|DID)|SDID)\b",
++        "SDiD", text, flags=re.IGNORECASE,
++    )
++    text = re.sub(
++        r"\bcontinuous[- ](?:difference-in-differences|DID)\b",
++        "CDiD", text, flags=re.IGNORECASE,
++    )
++    text = re.sub(r"\b(?:ContDID|ContDiD|cont[- ]DID|CDID|CDiD)\b", "CDiD", text)
++    text = re.sub(r"\b(?:DID|DiD|diD)\b", "DiD", text)
++    text = re.sub(r"\bUS\b", "U.S.", text)
++    text = re.sub(r"\bfixed[- ]effects\b", "FE", text, flags=re.IGNORECASE)
++    for index, literal in enumerate(protected):
++        text = text.replace(f"@@PAPER_LITERAL_{index}@@", literal)
++    return text

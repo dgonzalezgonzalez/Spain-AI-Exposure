@@ -1,0 +1,2 @@
+# Source patches must preserve whitespace in the coauthors' original lines.
+docs/*.patch -whitespace

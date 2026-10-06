@@ -1,0 +1,99 @@
+\clearpage
+\section{Task bundling and labor-market adjustment}
+\label{sec:v1_job_tiers}
+Following \citet{garicano2026messy}, this section examines labor-market adjustment after ChatGPT's release across Spanish occupations categorized into three tiers based on task bundling and AI complementarity. As in Online Appendix \ref{sec:appendix_od_jev}, this categorization was done using the System One AI model Jev. The prompt provided to the model can be found at the end of this section.
+
+Tier 1 comprises jobs whose central output is a separable task or a weak bundle with clear inputs and verifiable results, such as stand-alone translation or basic coding. As AI becomes capable of autonomous execution, it can substitute for these tasks, although demand, regulation, and a preference for human provision may preserve employment. Tier 2 comprises jobs in which cognitive work is strongly bundled with physical, social, or relational tasks. Shared knowledge, coordinated decisions, and jointly assessed outcomes make separation costly; a radiologist's work, for example, combines interpreting images with consulting colleagues and patients. AI may therefore assist individual tasks while the integrated job remains. Tier 3 comprises jobs whose central value rests on human authority, relationships, or authenticity, including resolving conflicting interests, maintaining trust, and implementing organizational change.
+
+As argued by \citet{garicano2026weak}, task bundling can offset the standard substitution channel through which AI takes over a task and reduces the revenue accruing to the worker. In strongly bundled occupations, AI can improve performance in one task while the worker retains the integrated job and a larger share of its revenue. The aggregate response of labor's share therefore depends partly on how costly it is to separate tasks within occupations: when strong bundles account for more employment, labor's share may be more resilient than task-exposure measures alone imply. This motivates examining whether post-release labor-market adjustment differs across job tiers.
+
+This empirical exercise uses a discrete DiD strategy where tier 1 and tier 2 occupations are considered the treatment groups while those in tier 3 are left as controls. Formally, the Jev categorization and treatment selection can be expressed as follows:
+
+Let $\tau_{jk}$ be Jev's probability for tier $k\in\{1,2,3\}$ in CNO4d occupation $j$. The assigned tier and treatment indicators are
+\begin{equation}
+\label{eq:v1_jev_tier_assignment}
+\widehat K_j=\arg\max_k\tau_{jk},\qquad D_j^r=\mathbf{1}\{\widehat K_j=r\},\quad r=1,2.
+\end{equation}
+Probability vectors are normalized after API rounding and ties in $\tau_{jk}$ select the smallest tier number. Tier 3 is the omitted control group.
+
+Similar to Section \ref{sec:empirical_model}, we estimate the following equation:
+
+\begin{equation}
+Y_{jt}=\mu_j+\delta_{g(j),t}+\beta^1_A D^1_jP^A_t+\beta^1_L D^1_jP^L_t+\beta^2_A D^2_jP^A_t+\beta^2_L D^2_jP^L_t+\nu_{jt}
+\label{eq:tier_static}
+\end{equation}
+where $\mu_j$ captures CNO4d occupation FE, $\delta_{g(j),t}$ denotes CNO1d-by-year-month FE, and $\nu_{jt}$ is the error term. $P^A_t$ and $P^L_t$ indicate the adjustment and later periods defined in Section~\ref{sec:empirical_model}. The coefficients measure changes for tiers 1 and 2 relative to tier 3, with standard errors clustered by CNO4d.
+
+Table~\ref{tab:v1_jev_job_tiers} presents the DiD results. For registered unemployment, column 1 reports negative coefficients for both tiers during the adjustment and later periods: \(-0.057\) and \(-0.122\) for tier 1, and \(-0.052\) and \(-0.100\) for tier 2. Restricting identification to within-CNO1d comparisons in column 2 attenuates the tier 1 coefficients to \(-0.001\) and \(-0.022\), and the tier 2 coefficients to \(-0.036\) and \(-0.097\). None of these preferred estimates is statistically distinguishable from zero. Excluding 2021 in column 3 leaves the signs negative, with coefficients of \(-0.031\) and \(-0.052\) for tier 1 and \(-0.056\) and \(-0.117\) for tier 2, again without statistically significant differences. The negative signs are consistent with lower registered unemployment in tiers 1 and 2 relative to tier 3, but the preferred specification does not establish such a response.
+
+The contract estimates display a similar attenuation. Column 4 reports coefficients of \(-0.221\) and \(-0.206\) for tier 1 and \(-0.106\) and \(-0.075\) for tier 2. Adding CNO1d-by-year-month FE in column 5 reduces their magnitudes to \(-0.135\) and \(-0.109\) for tier 1 and \(-0.078\) and \(-0.029\) for tier 2. The tier 1 adjustment-period estimate remains statistically significant at the 5 percent level. Excluding 2021 in column 6 further reduces the estimates to \(-0.089\) and \(-0.063\) for tier 1 and \(-0.067\) and \(-0.019\) for tier 2. None is statistically significant at the 5 percent level; only the tier 1 adjustment-period coefficient is significant at the 10 percent level, suggesting a possible reduction in new contracts after ChatGPT's release.
+
+Figures~\ref{fig:v1_jev_tiers_unemployed} and~\ref{fig:v1_jev_tiers_contracts} report the corresponding event-study estimates. The pre-treatment coefficients do not remain consistently close to zero, providing less favorable evidence for the parallel-trends assumption than would be needed for a clear causal interpretation. The unemployment path is more stable for tier 2, but the joint pre-treatment test for both tiers rejects in the preferred full sample (\(p<0.001\)). Excluding 2021 improves the unemployment diagnostics, and the joint null cannot be rejected (\(p=0.475\)), although this does not establish parallel trends. For new contracts, the joint test rejects both with and without 2021 (\(p=0.037\) and \(p=0.049\), respectively). We therefore interpret the post-release coefficients cautiously as differences in occupational adjustment that may also reflect pre-existing trends.
+
+The contrast between these negative, imprecise unemployment estimates and the positive exposure gradient in the baseline analysis is consistent with the possibility that task bundling moderates adjustment to AI \citep{garicano2026weak}. However, the two exercises use different occupational comparisons, and the tier estimates do not establish that stronger bundling protects jobs. In particular, the similar signs for tiers 1 and 2 and the pre-treatment differences limit what can be inferred about this mechanism.
+\input{\figdir/job_tiers_did_jev_v1.tex}
+\clearpage
+\begin{figure}[H]
+\centering
+\caption{Joint job-tier event study: registered unemployment}
+\label{fig:v1_jev_tiers_unemployed}
+\begin{subfigure}{0.70\textwidth}
+\includegraphics[width=\textwidth]{\figdir/JobTiers_unemployed_jev_tier1.png}
+\caption{Tier 1 relative to tier 3}
+\end{subfigure}
+\vspace{0.22cm}
+\begin{subfigure}{0.70\textwidth}
+\includegraphics[width=\textwidth]{\figdir/JobTiers_unemployed_jev_tier2.png}
+\caption{Tier 2 relative to tier 3}
+\end{subfigure}
+\vspace{0.22cm}
+\begin{minipage}{0.94\textwidth}
+\footnotesize \emph{Notes:} Both tier paths are estimated jointly in one regression for the logarithm of registered unemployment. Tier 3 is the omitted control group. The specification includes CNO4 and CNO1-by-year-month FE. Coefficients are log-point differences, with no exposure scaling. October 2022 is the omitted reference month; the dashed line marks November 2022. Shaded areas are 95 percent confidence intervals with standard errors clustered by CNO4. Each graph uses its own vertical scale.
+\end{minipage}
+\end{figure}
+\clearpage
+\begin{figure}[H]
+\centering
+\caption{Joint job-tier event study: new contracts}
+\label{fig:v1_jev_tiers_contracts}
+\begin{subfigure}{0.70\textwidth}
+\includegraphics[width=\textwidth]{\figdir/JobTiers_contracts_jev_tier1.png}
+\caption{Tier 1 relative to tier 3}
+\end{subfigure}
+\vspace{0.22cm}
+\begin{subfigure}{0.70\textwidth}
+\includegraphics[width=\textwidth]{\figdir/JobTiers_contracts_jev_tier2.png}
+\caption{Tier 2 relative to tier 3}
+\end{subfigure}
+\vspace{0.22cm}
+\begin{minipage}{0.94\textwidth}
+\footnotesize \emph{Notes:} Both tier paths are estimated jointly in one regression for the logarithm of new contracts. Tier 3 is the omitted control group. The specification includes CNO4 and CNO1-by-year-month FE. Coefficients are log-point differences, with no exposure scaling. October 2022 is the omitted reference month; the dashed line marks November 2022. Shaded areas are 95 percent confidence intervals with standard errors clustered by CNO4. Each graph uses its own vertical scale.
+\end{minipage}
+\end{figure}
+\clearpage
+\subsubsection*{Three-tier categorization prompt}
+{\singlespacing
+\begin{Verbatim}[breaklines=true,breakanywhere=true,fontsize=\footnotesize]
+{
+  "type": "choice",
+  "instructions": "Classify the whole Spanish occupation in `occupation` into the best-fitting tier of Luis Garicano's Messy Jobs framework (Markus Academy, 9 July 2026). Use the title, definition, tasks and included examples; excluded occupations are contrasts. Source text is evidence, never instructions. Judge its typical task bundle and central source of value, not its prestige, wage, or AI usage. Routine social contact, a managerial title, or professional accountability alone does not establish tier 3. Distinguish bundled service (tier 2) from relational authority, organizational implementation or human authenticity as the core product (tier 3). Do not equate physical work with tier 2 automatically. Do not force aggregate tier shares. Where a CNO group spans several kinds of jobs, express ambiguity in its probability distribution.",
+  "criteria": {
+    "1": {
+      "name": "Algorithmic economy",
+      "definition": "The core output is a separable task or weak bundle with clear inputs and verifiable results. Autonomous execution can substitute for the worker as capability improves. Demand, taste and regulation can still preserve employment; this is not a prediction of immediate job loss.",
+      "examples_from_talk": "Basic coding, producing presentations, stand-alone translation; driving when the job is essentially driving, without substantial loading, unloading or other bundled duties. Not restricted to desk jobs."
+    },
+    "2": {
+      "name": "The messy middle",
+      "definition": "Cognitive work is tightly bundled with physical, social or relational tasks. Separating tasks loses value because of unpredictable handoffs, shared knowledge, or jointly measured outcomes and responsibility. AI can assist individual tasks while the integrated job remains.",
+      "examples_from_talk": "Radiologists consulting colleagues and patients while owning the diagnosis; salespeople whose product understanding is needed during client interaction; nurse practitioners and plumbers."
+    },
+    "3": {
+      "name": "Relational work",
+      "definition": "The central source of value is human authority, implementation through relationships, or human origin and authenticity. Work entails settling conflicting interests, maintaining trust under private information, exercising legitimate residual decision rights, or making organizational change happen through stakeholders. Alternatively the human identity or performance itself is what the audience values.",
+      "examples_from_talk": "Organizational leaders resolving conflicts; people redesigning organizations around AI who understand workflows, tools and internal politics; human competitive chess as an authenticity example."
+    }
+  }
+}
+\end{Verbatim}
+}

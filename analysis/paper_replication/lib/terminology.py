@@ -32,6 +32,7 @@ def normalize_latex_terminology(text: str) -> str:
     text = re.sub(r"\b(?:ContDID|ContDiD|cont[- ]DID|CDID|CDiD)\b", "CDiD", text)
     text = re.sub(r"\b(?:DID|DiD|diD)\b", "DiD", text)
     text = re.sub(r"\bUS\b", "U.S.", text)
+    text = re.sub(r"\bfixed[- ]effects\b", "FE", text, flags=re.IGNORECASE)
     for index, literal in enumerate(protected):
         text = text.replace(f"@@PAPER_LITERAL_{index}@@", literal)
     return text

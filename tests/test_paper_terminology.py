@@ -24,3 +24,16 @@ class PaperTerminologyTests(TestCase):
         rendered = normalize_latex_terminology(text)
         self.assertEqual(rendered, normalize_latex_terminology(rendered))
         self.assertIn(r"\widehat{\tau}_{SDiD}", rendered)
+
+    def test_fixed_effects_in_generated_notes_preserve_literals(self):
+        text = (
+            r"CNO4 fixed effects and CNO1-by-month Fixed Effects; fixed-effects. "
+            r"\label{fixed-effects} "
+            r"\begin{Verbatim}fixed effects\end{Verbatim}"
+        )
+        self.assertEqual(
+            normalize_latex_terminology(text),
+            r"CNO4 FE and CNO1-by-month FE; FE. "
+            r"\label{fixed-effects} "
+            r"\begin{Verbatim}fixed effects\end{Verbatim}",
+        )
