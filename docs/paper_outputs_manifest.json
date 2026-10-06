@@ -21,7 +21,7 @@
   ],
   "tables": [
     {"file": "summary_statistics.tex", "group": "summary", "generator": "scripts/build_paper_tables.py"},
-    {"file": "table_top_bottom_exposure_appendix.tex", "group": "appendix", "generator": "Prism-only source; generator reconciliation pending"}
+    {"file": "table_top_bottom_exposure_appendix.tex", "group": "appendix", "generator": "analysis/paper_replication/02_Descriptives_v1.ipynb"}
   ],
   "inline_tables": [
     {"label": "tab:contdid", "generator": "scripts/build_paper_tables.py"},

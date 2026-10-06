@@ -75,7 +75,7 @@ def render_contdid(rows: list[dict[str, Any]]) -> str:
     lines = [
         r"\begin{table}[H]",
         r"\centering",
-        r"\caption{Continuous DiD results}",
+        r"\caption{CDiD results}",
         r"\label{tab:contdid}",
         r"\footnotesize",
         r"\begin{tabular}{l" + "c" * len(rows) + r"}",
@@ -100,7 +100,7 @@ def render_sdid(rows: list[dict[str, Any]]) -> str:
     lines = [
         r"\begin{table}[H]",
         r"\centering",
-        r"\caption{Synthetic DiD and synthetic-control estimates}",
+        r"\caption{SDiD and synthetic-control estimates}",
         r"\label{tab:sdid}",
         r"\footnotesize",
         r"\begin{tabular}{lccc}",
@@ -108,7 +108,7 @@ def render_sdid(rows: list[dict[str, Any]]) -> str:
         " & " + " & ".join(f"({i})" for i in range(1, len(rows) + 1)) + r" \\",
         "Outcome & " + " & ".join(latex_escape(f"{row['design']} ({row['outcome']})") for row in rows) + r" \\",
         r"\midrule",
-        "SDID ATT & " + " & ".join(format_number(row["sdid_att"]) for row in rows) + r" \\",
+        "SDiD ATT & " + " & ".join(format_number(row["sdid_att"]) for row in rows) + r" \\",
         "Synthetic-control ATT & " + " & ".join(format_number(row["sc_att"]) for row in rows) + r" \\",
         "Uniform DiD & " + " & ".join(format_number(row["uniform_did"]) for row in rows) + r" \\",
         r"\bottomrule",

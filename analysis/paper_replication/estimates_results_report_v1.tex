@@ -163,17 +163,17 @@ Table~\ref{tab:v1_feminization_median_split} reports one regression for each out
 
 This subsection asks whether the main conclusion survives estimators that construct the counterfactual differently. Both alternatives are informative, but neither reproduces the preferred within-CNO1 comparison while retaining a continuous treatment.
 
-\subsubsection{Continuous-DiD Alternative}
+\subsubsection{CDiD Alternative}
 \label{sec:v1_contdid}
 
-The public \texttt{contdid} implementation does not admit the CNO1-by-month effects used in the preferred design. We therefore report three transparent approximations instead of treating residualization as an equivalent conditional estimator. The CNO1-stratified estimator applies continuous DiD separately within families with at least 15 positive-exposure and 5 zero-exposure occupations and aggregates family-specific average causal responses using positive-exposure occupation shares. It retains CNO1 groups 1--5 and about 88 percent of positive-exposure occupations. A second estimator subtracts the change among zero-exposure occupations in each supported family before pooling. The third is the unconditional continuous-DiD comparison.
+The public \texttt{contdid} implementation does not admit the CNO1-by-month effects used in the preferred design. We therefore report three transparent approximations instead of treating residualization as an equivalent conditional estimator. The CNO1-stratified estimator applies CDiD separately within families with at least 15 positive-exposure and 5 zero-exposure occupations and aggregates family-specific average causal responses using positive-exposure occupation shares. It retains CNO1 groups 1--5 and about 88 percent of positive-exposure occupations. A second estimator subtracts the change among zero-exposure occupations in each supported family before pooling. The third is the unconditional CDiD comparison.
 
 Appendix Table~\ref{tab:v1_contdid_alternatives} reports average causal response on the treated (ACRT) estimates over the same two intervals.\footnote{For a post-treatment window \(W\), the estimand is \(\widehat{\theta}_{W}=|W|^{-1}\sum_{t\in W}\widehat{\mathrm{ACRT}}_{t}\). If \(a_W\) assigns weight \(1/|W|\) to event times in \(W\), the estimated variance is \(a_W'\widehat{\Sigma}a_W\), where \(\widehat{\Sigma}\) is the influence-function covariance matrix. Family-specific estimates are aggregated using positive-exposure occupation shares, and disjoint-family covariance matrices enter with squared aggregation weights.} The CNO1-stratified unemployment response rises from 3.4 percent during adjustment to 7.1 percent later. The contract estimates are 2.1 and 5.7 percent. These effects are larger than the TWFE estimates and reinforce the direction of the unemployment result. They remain secondary because stratification cannot absorb family-specific shocks in every month and because the full-period pre-treatment diagnostics are less favorable. Appendix Figure~\ref{fig:v1_contdid_paths} reports the dynamic paths.
 
-\subsubsection{Synthetic Difference-in-Differences}
+\subsubsection{SDiD}
 \label{sec:v1_sdid}
 
-Synthetic difference-in-differences provides a separate upper-tail design. Occupations with exposure above 0.1169 are treated, while every occupation at or below the cutoff remains eligible for the donor pool. Retaining middle-exposure occupations makes the donor pool more economically comparable than a zero-exposure-only design, but it changes the estimand from a marginal response to an upper-tail contrast.\footnote{Conceptually, \(\widehat{\tau}_{SDID}=T_1^{-1}\sum_{t>T_0}\left(\overline{Y}_{Tt}-\sum_j\widehat{\omega}_jY_{jt}\right)-\sum_{t\leq T_0}\widehat{\lambda}_t\left(\overline{Y}_{Tt}-\sum_j\widehat{\omega}_jY_{jt}\right)\), where \(\widehat{\omega}_j\) are donor weights and \(\widehat{\lambda}_t\) are pre-period time weights.}
+SDiD provides a separate upper-tail design. Occupations with exposure above 0.1169 are treated, while every occupation at or below the cutoff remains eligible for the donor pool. Retaining middle-exposure occupations makes the donor pool more economically comparable than a zero-exposure-only design, but it changes the estimand from a marginal response to an upper-tail contrast.\footnote{Conceptually, \(\widehat{\tau}_{SDiD}=T_1^{-1}\sum_{t>T_0}\left(\overline{Y}_{Tt}-\sum_j\widehat{\omega}_jY_{jt}\right)-\sum_{t\leq T_0}\widehat{\lambda}_t\left(\overline{Y}_{Tt}-\sum_j\widehat{\omega}_jY_{jt}\right)\), where \(\widehat{\omega}_j\) are donor weights and \(\widehat{\lambda}_t\) are pre-period time weights.}
 
 Unit weights reproduce the treated pre-period path, and time weights emphasize pre-treatment months that best predict post-treatment donor outcomes. The adjusted variant removes CNO1-by-month means before constructing the synthetic comparison.\footnote{Inference uses 500 placebo reassignments. The CNO1-by-month projection is computed from outcome and family-month cells and is held fixed across placebo assignments. Event-study confidence intervals use the same number of reassignments.}
 
@@ -182,7 +182,7 @@ Appendix Table~\ref{tab:v1_sdid} reports a 2.7 percent unemployment effect durin
 \subsection{Summary of Evidence}
 \label{sec:v1_synthesis}
 
-Across designs, more exposed occupations tend to experience a relative increase in registered unemployment after the release of ChatGPT. The preferred within-family TWFE estimates are economically modest and imprecise, while continuous DiD and synthetic DiD produce larger positive effects under different identifying assumptions. New contracts do not show a stable aggregate response, although younger workers exhibit more positive contract gradients. The age evidence points most clearly to workers ages 30--39 in the later period, but formal cross-group tests make this conclusion suggestive rather than definitive. The full-period pre-trend rejections and the absence of a CNO4 labor-force denominator prevent a strong causal claim. The evidence is therefore consistent with gradual AI-related labor-market adjustment, concentrated in some worker and occupation groups, but does not establish that AI penetration has raised unemployment throughout the Spanish labor market.
+Across designs, more exposed occupations tend to experience a relative increase in registered unemployment after the release of ChatGPT. The preferred within-family TWFE estimates are economically modest and imprecise, while CDiD and SDiD produce larger positive effects under different identifying assumptions. New contracts do not show a stable aggregate response, although younger workers exhibit more positive contract gradients. The age evidence points most clearly to workers ages 30--39 in the later period, but formal cross-group tests make this conclusion suggestive rather than definitive. The full-period pre-trend rejections and the absence of a CNO4 labor-force denominator prevent a strong causal claim. The evidence is therefore consistent with gradual AI-related labor-market adjustment, concentrated in some worker and occupation groups, but does not establish that AI penetration has raised unemployment throughout the Spanish labor market.
 
 \clearpage
 \appendix
@@ -563,14 +563,14 @@ Across designs, more exposed occupations tend to experience a relative increase 
     \end{minipage}
 \end{figure}
 
-\subsection{Continuous-DiD Alternative}
+\subsection{CDiD Alternative}
 \label{app:v1_contdid}
 
 \input{figuresNtables/contdid_alternatives_v1.tex}
 
 \begin{figure}[H]
     \centering
-    \caption{CNO1-stratified continuous-DiD event-study estimates}
+    \caption{CNO1-stratified CDiD event-study estimates}
     \label{fig:v1_contdid_paths}
     \begin{subfigure}{\panelwidth}
         \includegraphics[width=\textwidth]{\figdir/ContDID_panel1.png}
@@ -585,18 +585,18 @@ Across designs, more exposed occupations tend to experience a relative increase 
     \end{subfigure}
 
     \begin{minipage}{0.92\textwidth}
-    \footnotesize \emph{Notes:} The figure reports continuous-DiD estimates obtained separately within CNO1 families containing at least 15 positive-exposure and 5 zero-exposure occupations. Family-specific marginal responses are aggregated using each family's share of positive-exposure occupations. November 2022 is event time 0 and October 2022 is the reference month. Shaded areas are 95 percent confidence intervals based on the aggregated influence-function covariance matrices.
+    \footnotesize \emph{Notes:} The figure reports CDiD estimates obtained separately within CNO1 families containing at least 15 positive-exposure and 5 zero-exposure occupations. Family-specific marginal responses are aggregated using each family's share of positive-exposure occupations. November 2022 is event time 0 and October 2022 is the reference month. Shaded areas are 95 percent confidence intervals based on the aggregated influence-function covariance matrices.
     \end{minipage}
 \end{figure}
 
-\subsection{Synthetic Difference-in-Differences}
+\subsection{SDiD}
 \label{app:v1_sdid}
 
 \input{figuresNtables/sdid_estimates_v1.tex}
 
 \begin{figure}[H]
     \centering
-    \caption{CNO1-by-month-adjusted synthetic-DiD estimates}
+    \caption{CNO1-by-month-adjusted SDiD estimates}
     \label{fig:v1_sdid_projected}
     \textit{\# of registered unemployed}\par\vspace{0.10cm}
     \begin{subfigure}{0.48\textwidth}
@@ -626,7 +626,7 @@ Across designs, more exposed occupations tend to experience a relative increase 
     exposure above 0.1169, while occupations at or below the cutoff form the
     donor pool. Before constructing the synthetic comparison, outcomes are
     adjust for CNO1-by-month indicators using the projected covariate-adjustment
-    procedure implemented within synthetic DID. Panels
+    procedure implemented within SDiD. Panels
     (a) and (c) compare the treated outcome path with the weighted synthetic
     counterfactual; panels (b) and (d) report the corresponding event-study
     estimates. The counterfactual paths are reported as returned by the

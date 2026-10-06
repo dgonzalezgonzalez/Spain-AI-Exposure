@@ -9,6 +9,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
+from .terminology import normalize_latex_terminology
+
 try:
     from scipy.stats import t as student_t
 except ImportError:  # The packaged runtime may not include SciPy.
@@ -21,7 +23,7 @@ GREY = "#777777"
 
 
 def _write_tex(path: Path, lines: list[str]) -> None:
-    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    path.write_text(normalize_latex_terminology("\n".join(lines) + "\n"), encoding="utf-8")
 
 
 def _phase_pair(tables_dir: Path, specification: str, outcome: str) -> dict[str, pd.Series]:
@@ -342,7 +344,7 @@ def _sdid_phase_row(
     path = tables_dir / f"sdid_phase_{specification}_{outcome}_{phase}.csv"
     frame = pd.read_csv(path)
     if len(frame) != 1:
-        raise ValueError(f"Expected one phase-specific synthetic-DID row in {path}")
+        raise ValueError(f"Expected one phase-specific SDiD row in {path}")
     return frame.iloc[0]
 
 
@@ -388,12 +390,12 @@ def _build_sdid_phase_table(tables_dir: Path) -> None:
         }
     )
     if len(repetitions) != 1:
-        raise ValueError(f"Inconsistent synthetic-DID repetitions: {repetitions}")
+        raise ValueError(f"Inconsistent SDiD repetitions: {repetitions}")
 
     lines = [
         r"\begin{table}[H]",
         r"\centering",
-        r"\caption{Synthetic difference-in-differences estimates}",
+        r"\caption{SDiD estimates}",
         r"\label{tab:v1_sdid}",
         r"\begin{threeparttable}",
         r"\small",
@@ -686,11 +688,11 @@ def build_phase_outputs(
     _six_column_table(
         tables_dir,
         "contdid_alternatives_v1.tex",
-        "Continuous-DiD alternatives",
+        "CDiD alternatives",
         "tab:v1_contdid_alternatives",
         contdid_columns,
         "AI exposure",
-        "Entries average the monthly ACRT estimates over event times 0--24 and 25--40. Columns 1 and 4 estimate continuous DiD separately within supported CNO1 families and aggregate family-specific effects using positive-exposure occupation shares. Columns 2 and 5 subtract the zero-exposure outcome change within supported CNO1 families before estimation. Columns 3 and 6 are unconditional. Standard errors use linear combinations of the dynamic influence-function covariance matrices; disjoint-family matrices are combined using squared aggregation weights in the stratified estimator. Exposure is measured in 10 percentage-point units. These estimators do not reproduce the preferred CNO1-by-month TWFE specification. $^{***}p<0.01$, $^{**}p<0.05$, and $^{*}p<0.10$.",
+        "Entries average the monthly ACRT estimates over event times 0--24 and 25--40. Columns 1 and 4 estimate CDiD separately within supported CNO1 families and aggregate family-specific effects using positive-exposure occupation shares. Columns 2 and 5 subtract the zero-exposure outcome change within supported CNO1 families before estimation. Columns 3 and 6 are unconditional. Standard errors use linear combinations of the dynamic influence-function covariance matrices; disjoint-family matrices are combined using squared aggregation weights in the stratified estimator. Exposure is measured in 10 percentage-point units. These estimators do not reproduce the preferred CNO1-by-month TWFE specification. $^{***}p<0.01$, $^{**}p<0.05$, and $^{*}p<0.10$.",
         [
             r"CNO1-stratified & Yes & No & No & Yes & No & No \\",
             r"Control-based family-time adjustment & No & Yes & No & No & Yes & No \\",
