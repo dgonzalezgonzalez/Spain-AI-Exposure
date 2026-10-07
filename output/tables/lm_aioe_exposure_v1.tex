@@ -1,0 +1,31 @@
+\begin{table}[!htbp]
+\centering
+\caption{Robustness to LM AIOE exposure}
+\label{tab:v1_lm_aioe_exposure}
+\begin{threeparttable}
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{lcccccc}
+\toprule
+& \multicolumn{3}{c}{\# of registered unemployed} & \multicolumn{3}{c}{\# of new contracts} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}
+& (1) & (2) & (3) & (4) & (5) & (6) \\
+\midrule
+LM AIOE exposure $\times$ adjustment period & 0.011$^{***}$ & 0.011$^{***}$ & 0.010$^{***}$ & 0.024$^{***}$ & 0.007 & -0.001 \\
+ & (0.002) & (0.003) & (0.003) & (0.004) & (0.007) & (0.006) \\
+LM AIOE exposure $\times$ later period & 0.023$^{***}$ & 0.013$^{**}$ & 0.012$^{**}$ & 0.019$^{***}$ & 0.001 & -0.007 \\
+ & (0.003) & (0.006) & (0.006) & (0.006) & (0.010) & (0.009) \\
+\midrule
+CNO1 $\times$ year-month FE & No & Yes & Yes & No & Yes & Yes \\
+2021 included & Yes & Yes & No & Yes & Yes & No \\
+Pre-trend joint-null $p$-value & $<0.001$ & $<0.001$ & 0.006 & $<0.001$ & $<0.001$ & 0.004 \\
+$p$-value: equal phase effects & 0.000 & 0.608 & 0.608 & 0.118 & 0.321 & 0.324 \\
+Observations & 27,526 & 27,526 & 22,642 & 27,194 & 27,193 & 22,360 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item \emph{Notes:} LM AIOE measures occupational exposure to language-model capabilities and is mapped to CNO4 through the fixed SOC crosswalk. Coefficients correspond to a 10-percentile-point increase. The adjustment and later periods cover event times 0--24 and 25--40. Columns 1 and 4 include CNO4 and year-month FE; the remaining columns include CNO4 and CNO1-by-year-month FE. Columns 3 and 6 exclude 2021. Standard errors are clustered by CNO4. The pre-treatment row tests the joint null over all available pre-treatment event-study coefficients; the phase-equality row tests whether the adjustment- and later-period coefficients are equal. Entries are marginal effects, not ATTs. $^{***}p<0.01$, $^{**}p<0.05$, and $^{*}p<0.10$.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

@@ -16,6 +16,8 @@ output/*
 !output/figures/
 output/tables/*
 output/figures/*
+!output/tables/*.tex
+!output/figures/*.png
 !output/tables/.gitkeep
 !output/figures/.gitkeep
 logs/

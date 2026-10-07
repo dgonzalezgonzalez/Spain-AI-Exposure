@@ -19,14 +19,14 @@ data/input/               Frozen source and author-constructed inputs
 docs/                     Codebook, provenance, output map, validation report
 docs/paper/               Authoritative manuscript LaTeX snapshots
 docs/reference/           Independent manuscript assets for validation
-output/tables/            Newly computed LaTeX tables
-output/figures/           Newly computed PNG figure panels
+output/tables/            Versioned publication LaTeX tables
+output/figures/           Versioned publication PNG figure panels
 logs/                     Validation reports and stage timings
 data/work/                Internal data, estimates, rendering cache, and logs
 tests/                    Parser, probability, and replication regressions
 ```
 
-Reference assets under `docs/reference/` are comparison targets, never estimator inputs. They are retained solely for automatic validation; `output/` contains only the table and figure folders. The manuscript snapshots preserve the original upload paths for inspection; they are not a standalone typesetting project.
+All 26 publication tables and 61 figure panels are included in Git and the release ZIP, under `output/tables/` and `output/figures/`. The master recomputes and overwrites these files when the analysis runs. Reference assets under `docs/reference/` are comparison targets, never estimator inputs. They are retained solely for automatic validation; `output/` contains only the table and figure folders. The manuscript snapshots preserve the original upload paths for inspection; they are not a standalone typesetting project.
 
 ## Data Availability and Provenance Statements
 
@@ -128,7 +128,7 @@ Intermediate estimates and integrity audits under `data/work/` support the retai
 
 6. Inspect `logs/validation.json`, `logs/intext_statistics.json`, timings, and logs. Missing assets, differing printed numeric cells/significance stars, or differing figure pixels fail validation. Identical figure pixels pass despite PNG metadata differences. A maximum one-level RGB difference with mean normalized error at most 1e-8 is accepted for floating-point antialiasing; larger differences require visual review and resolution. Reviewed release comparisons are documented in `docs/validation_report.md`.
 
-For a fresh run, use a new clone/extraction with no cached results under `data/work/`, `output/tables/`, or `output/figures/`; the master creates the directories. Paths resolve relative to the master file, so invocation from another working directory also works. To rerun one stage, use `--step` with `prepare`, `descriptives`, `estimates`, `sdid`, `jev`, `mediation`, `contdid`, `tuning`, `statistics`, or `validate`, after its predecessor inputs exist. `python master.py --check-inputs` verifies/stages all inputs without estimation. Run tests with `python -m unittest discover -s tests -v`.
+For a fresh run, use a new clone/extraction with no cached intermediate results under `data/work/`. The included publication outputs are overwritten by the full run; missing publication files are recreated. Paths resolve relative to the master file, so invocation from another working directory also works. To rerun one stage, use `--step` with `prepare`, `descriptives`, `estimates`, `sdid`, `jev`, `mediation`, `contdid`, `tuning`, `statistics`, or `validate`, after its predecessor inputs exist. `python master.py --check-inputs` verifies/stages all inputs without estimation. Run tests with `python -m unittest discover -s tests -v`.
 
 Never replace `docs/reference/` with regenerated files. Shortened bootstrap/placebo runs are not publication verification.
 

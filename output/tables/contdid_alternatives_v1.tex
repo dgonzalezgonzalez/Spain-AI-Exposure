@@ -1,0 +1,35 @@
+\begin{table}[H]
+\centering
+\caption{CDiD alternatives}
+\label{tab:v1_contdid_alternatives}
+\begin{threeparttable}
+\scriptsize
+\setlength{\tabcolsep}{2.5pt}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcccccccc}
+\toprule
+& \multicolumn{4}{c}{\# of registered unemployed} & \multicolumn{4}{c}{\# of new contracts} \\
+\cmidrule(lr){2-5}\cmidrule(lr){6-9}
+& (1) & (2) & (3) & (4) & (5) & (6) & (7) & (8) \\
+\midrule
+AI exposure $\times$ adjustment period & 0.034$^{***}$ & 0.034$^{***}$ & 0.035$^{***}$ & 0.040$^{***}$ & 0.020 & 0.020 & 0.022 & 0.022 \\
+ & (0.009) & (0.009) & (0.008) & (0.007) & (0.018) & (0.018) & (0.019) & (0.015) \\
+AI exposure $\times$ later period & 0.071$^{***}$ & 0.071$^{***}$ & 0.072$^{***}$ & 0.109$^{***}$ & 0.057$^{**}$ & 0.057$^{**}$ & 0.054$^{**}$ & 0.059$^{***}$ \\
+ & (0.015) & (0.015) & (0.014) & (0.012) & (0.025) & (0.025) & (0.026) & (0.021) \\
+$p$-value: equal phase effects & 0.008 & 0.009 & 0.002 & 0.000 & 0.004 & 0.004 & 0.010 & 0.002 \\
+\midrule
+CNO1-stratified & Yes & Yes & No & No & Yes & Yes & No & No \\
+Control-based family-time adjustment & No & No & Yes & No & No & No & Yes & No \\
+Unconditional pooled comparison & No & No & No & Yes & No & No & No & Yes \\
+2021 included & Yes & No & Yes & Yes & Yes & No & Yes & Yes \\
+Pre-treatment joint-null $p$-value & 0.002 & 0.007 & $<0.001$ & $<0.001$ & $<0.001$ & 0.138 & $<0.001$ & $<0.001$ \\
+Observations & 20,727 & 16,779 & 20,727 & 31,563 & 19,530 & 15,810 & 19,530 & 30,303 \\
+\bottomrule
+\end{tabular}
+}
+\noindent\begin{minipage}{\textwidth}
+\footnotesize
+\emph{Notes:} Entries average monthly ACRTs over event times 0--24 and 25--40. Columns 1 and 5 estimate CDiD separately within CNO1 families containing at least 15 positive-exposure and 5 zero-exposure occupations and aggregate family estimates using positive-exposure occupation shares. Columns 2 and 6 repeat this estimator without 2021. Columns 3 and 7 subtract the change among zero-exposure occupations in each supported family before pooling; columns 4 and 8 are unconditional. Standard errors use linear combinations of the dynamic influence-function covariance matrices. The pre-treatment row reports a covariance-based Wald test of joint nullity over all available pre-treatment event times through $-2$. Exposure is measured in 10 percentage-point units. $^{***}p<0.01$, $^{**}p<0.05$, and $^{*}p<0.10$.
+\end{minipage}
+\end{threeparttable}
+\end{table}

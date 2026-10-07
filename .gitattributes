@@ -15,5 +15,7 @@
 # These snapshots are checksummed byte-for-byte, including original newlines.
 data/input/** -text
 docs/reference/** -text
+output/tables/** -text
+output/figures/** -text
 code/vendor/** -text
 docs/paper/** -text

@@ -17,5 +17,6 @@ explicitly requests methodological changes. Keep exploratory code on branches.
 Run `python -m unittest discover -s tests -v` for relevant changes. Compare
 numerical results and figures before releases; record actual checks, software,
 timings, and discrepancies in `docs/validation_report.md`. Do not claim untested
-platform coverage. Runtime files belong in ignored `data/work/`,
-`output/tables/` and `output/figures/`, and `dist/`. Preserve recovery tags when replacing releases.
+platform coverage. Retained publication outputs are versioned in `output/tables/`
+and `output/figures/`. Runtime caches and logs belong in ignored `data/work/`,
+`logs/`, and `dist/`. Preserve recovery tags when replacing releases.

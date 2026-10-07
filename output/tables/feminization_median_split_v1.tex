@@ -1,0 +1,38 @@
+\begin{table}[!htbp]
+\centering
+\caption{AI exposure effects by occupational feminization}
+\label{tab:v1_feminization_median_split}
+\begin{threeparttable}
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+& \multicolumn{2}{c}{\# of registered unemployed} & \multicolumn{2}{c}{\# of new contracts} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+& (1) & (2) & (3) & (4) \\
+\midrule
+\multicolumn{5}{l}{\textbf{Panel A. Adjustment period}} \\
+AI exposure $\times \mathbf{1}\{F_i < \widetilde F\}$ & 0.043$^{***}$ & 0.037$^{***}$ & 0.010 & -0.003 \\
+ & (0.009) & (0.009) & (0.010) & (0.008) \\
+AI exposure $\times \mathbf{1}\{F_i \geq \widetilde F\}$ & -0.004 & -0.002 & 0.015 & 0.006 \\
+ & (0.006) & (0.006) & (0.012) & (0.009) \\
+\addlinespace[2pt]
+\multicolumn{5}{l}{\textbf{Panel B. Later post-treatment period}} \\
+AI exposure $\times \mathbf{1}\{F_i < \widetilde F\}$ & 0.077$^{***}$ & 0.071$^{***}$ & 0.008 & -0.005 \\
+ & (0.018) & (0.020) & (0.014) & (0.013) \\
+AI exposure $\times \mathbf{1}\{F_i \geq \widetilde F\}$ & -0.013 & -0.010 & 0.012 & 0.003 \\
+ & (0.011) & (0.011) & (0.014) & (0.013) \\
+\midrule
+CNO1 $\times$ year-month FE & Yes & Yes & Yes & Yes \\
+2021 included & Yes & No & Yes & No \\
+Pre-trend joint-null $p$-value: $F_i < \widetilde F$ & 0.005 & 0.008 & 0.068 & 0.194 \\
+Pre-trend joint-null $p$-value: $F_i \geq \widetilde F$ & 0.221 & 0.868 & 0.109 & 0.417 \\
+Observations & 31,122 & 25,600 & 30,786 & 25,317 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item \emph{Notes:} Each column reports one regression. Columns 1--2 use registered unemployment and columns 3--4 use new contracts; columns 2 and 4 exclude 2021. $F_i$ is the predetermined female employment share of occupation $i$'s CNO2 group, measured from pooled EPA employment over 2017--2019, and $\widetilde F=0.303$ is its median. The rows report linear combinations of the exposure-by-period-by-group coefficients. The adjustment and later periods cover event times 0--24 and 25--40. All regressions include CNO4 and CNO1-by-year-month FE. Exposure is measured in ten-percentage-point units, and standard errors in parentheses are clustered by CNO4. Pre-trend rows test the joint null that all available event-study coefficients equal zero: event times $-21$ through $-2$ in columns 1 and 3 and $-10$ through $-2$ in columns 2 and 4; October 2022 is omitted. Entries are marginal effects, not ATTs. $^{***}p<0.01$, $^{**}p<0.05$, and $^{*}p<0.10$.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

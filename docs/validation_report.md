@@ -55,3 +55,5 @@ Other operating systems and Stata versions were not independently run. The code 
 ## Output-layout revision
 
 At the author's request, final tables now reside in `output/tables/` and figure panels in `output/figures/`. Independent reference assets were moved to `docs/reference/`; internal caches reside in `data/work/` and validation/timing reports in `logs/`. All 87 existing publication assets retained their exact pre-move SHA-256 hashes. No estimation or rendering was rerun for this directory-only revision; the cached-output comparison was rerun against the relocated references.
+
+The 87 verified publication outputs are now versioned in Git and included in the release ZIP. The initial directory revision shipped only folder placeholders; this packaging correction adds the existing output files without changing their bytes or rerunning the analysis.

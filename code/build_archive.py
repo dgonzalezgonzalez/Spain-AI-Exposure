@@ -2,6 +2,7 @@
 from pathlib import Path
 from zipfile import ZipFile, ZipInfo, ZIP_DEFLATED
 import hashlib
+import json
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -11,6 +12,13 @@ def build() -> Path:
              'requirements.txt', 'requirements-lock.txt', 'renv.lock',
              'output/tables/.gitkeep', 'output/figures/.gitkeep']
     files = [ROOT / name for name in names]
+    outputs = json.loads((ROOT / 'docs/paper_outputs.json').read_text(encoding='utf-8'))
+    for item in outputs:
+        folder = {'table': 'tables', 'figure': 'figures'}[item['kind']]
+        path = ROOT / 'output' / folder / item['file']
+        if not path.is_file():
+            raise FileNotFoundError(f'Missing publication output: {path}')
+        files.append(path)
     for folder in ['code', 'data/input', 'docs', 'tests']:
         files.extend(p for p in (ROOT / folder).rglob('*')
                      if p.is_file() and '__pycache__' not in p.parts and p.suffix != '.pyc')

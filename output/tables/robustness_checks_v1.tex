@@ -1,0 +1,56 @@
+\begin{table}[H]
+\centering
+\caption{Robustness checks: alternative outcomes and exposure measures}
+\label{tab:v1_robustness}
+\begin{threeparttable}
+\scriptsize
+\renewcommand{\arraystretch}{0.78}
+\setlength{\tabcolsep}{3.0pt}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcccccc}
+\toprule
+& \multicolumn{3}{c}{\# of registered unemployed} & \multicolumn{3}{c}{\# of new contracts} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}
+& (1) & (2) & (3) & (4) & (5) & (6) \\
+\midrule
+\multicolumn{7}{l}{\textbf{Panel A. Baseline specification}} \\
+AI exposure $\times$ adjustment period & 0.019$^{***}$ & 0.012$^{**}$ & 0.012$^{**}$ & 0.033$^{***}$ & 0.014 & 0.004 \\
+ & (0.005) & (0.006) & (0.006) & (0.008) & (0.009) & (0.007) \\
+AI exposure $\times$ later period & 0.038$^{***}$ & 0.017 & 0.016 & 0.029$^{***}$ & 0.013 & 0.003 \\
+ & (0.010) & (0.012) & (0.012) & (0.010) & (0.011) & (0.010) \\
+\addlinespace[2pt]
+Pre-treatment joint-null $p$-value & $<0.001$ & 0.003 & 0.367 & $<0.001$ & 0.032 & 0.049 \\
+$p$-value: equal phase effects & 0.001 & 0.486 & 0.486 & 0.488 & 0.807 & 0.806 \\
+Observations & 31,122 & 31,122 & 25,600 & 30,787 & 30,786 & 25,317 \\
+\addlinespace[5pt]
+\multicolumn{7}{l}{\textbf{Panel B. Alternative outcomes: log(Y+1)}} \\
+AI exposure $\times$ adjustment period & 0.019$^{***}$ & 0.012$^{**}$ & 0.011$^{**}$ & 0.030$^{***}$ & 0.011 & 0.001 \\
+ & (0.005) & (0.006) & (0.006) & (0.008) & (0.009) & (0.007) \\
+AI exposure $\times$ later period & 0.037$^{***}$ & 0.017 & 0.016 & 0.025$^{**}$ & 0.008 & -0.002 \\
+ & (0.010) & (0.012) & (0.012) & (0.011) & (0.012) & (0.011) \\
+\addlinespace[2pt]
+Pre-treatment joint-null $p$-value & $<0.001$ & 0.002 & 0.369 & $<0.001$ & 0.007 & 0.041 \\
+$p$-value: equal phase effects & 0.001 & 0.485 & 0.485 & 0.401 & 0.690 & 0.690 \\
+Observations & 31,124 & 31,124 & 25,602 & 31,124 & 31,124 & 25,602 \\
+\addlinespace[5pt]
+\multicolumn{7}{l}{\textbf{Panel C. Alternative exposure: cosine-weighted}} \\
+AI exposure $\times$ adjustment period & 0.025$^{***}$ & 0.018$^{***}$ & 0.019$^{***}$ & 0.031$^{***}$ & 0.012 & 0.003 \\
+ & (0.005) & (0.007) & (0.007) & (0.009) & (0.010) & (0.007) \\
+AI exposure $\times$ later period & 0.049$^{***}$ & 0.029$^{**}$ & 0.030$^{**}$ & 0.024$^{**}$ & 0.007 & -0.002 \\
+ & (0.011) & (0.013) & (0.013) & (0.011) & (0.012) & (0.011) \\
+\addlinespace[2pt]
+Pre-treatment joint-null $p$-value & $<0.001$ & 0.002 & 0.166 & $<0.001$ & 0.008 & 0.020 \\
+$p$-value: equal phase effects & 0.000 & 0.177 & 0.177 & 0.258 & 0.491 & 0.491 \\
+Observations & 31,122 & 31,122 & 25,600 & 30,787 & 30,786 & 25,317 \\
+\midrule
+CNO1 $\times$ year-month FE & No & Yes & Yes & No & Yes & Yes \\
+2021 included & Yes & Yes & No & Yes & Yes & No \\
+\bottomrule
+\end{tabular}
+}
+\begin{minipage}{\textwidth}
+\footnotesize
+\emph{Notes:} Each panel reports marginal effects for the adjustment period (event times 0--24) and the later period (event times 25--40), relative to all pre-treatment months. Panel A reproduces the baseline specification. Panel B replaces the logarithmic outcomes with $\log(Y+1)$. Panel C uses the cosine-weighted exposure measure. Columns 1 and 4 include CNO4 and year-month FE; the remaining columns include CNO4 and CNO1-by-year-month FE. Columns 3 and 6 exclude 2021. Exposure measures are divided by 0.10, so each coefficient corresponds to a 10 percentage-point increase in the indicated score. Standard errors are clustered by CNO4. Pre-treatment entries test the joint null that all available event-study coefficients equal zero: event times $-21$ through $-2$ when 2021 is included and $-10$ through $-2$ otherwise. Equality rows test whether adjustment- and later-period effects are equal. $^{***}p<0.01$, $^{**}p<0.05$, and $^{*}p<0.10$.
+\end{minipage}
+\end{threeparttable}
+\end{table}

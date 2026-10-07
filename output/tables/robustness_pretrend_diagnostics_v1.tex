@@ -1,0 +1,54 @@
+\begingroup
+\scriptsize
+\renewcommand{\arraystretch}{0.88}
+\setlength{\tabcolsep}{2.0pt}
+\begin{longtable}{@{}lcccccc@{}}
+\caption{Pre-treatment diagnostics for alternative outcomes and exposure measures}\label{tab:v1_robustness_pretrends}\\
+\toprule
+& \multicolumn{3}{c}{\# of registered unemployed} & \multicolumn{3}{c}{\# of new contracts} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}
+& (1) & (2) & (3) & (4) & (5) & (6) \\
+\midrule
+\endfirsthead
+\multicolumn{7}{c}{\tablename\ \thetable{} -- continued} \\
+\toprule
+& \multicolumn{3}{c}{\# of registered unemployed} & \multicolumn{3}{c}{\# of new contracts} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}
+& (1) & (2) & (3) & (4) & (5) & (6) \\
+\midrule
+\endhead
+\multicolumn{7}{l}{\textbf{Panel A. Baseline specification}} \\
+Full available: Joint nullity & $<0.001$ & 0.003 & 0.367 & $<0.001$ & 0.032 & 0.049 \\
+Full available: Equal coefficients & $<0.001$ & 0.003 & 0.280 & $<0.001$ & 0.045 & 0.036 \\
+Early: -21 to -10: Joint nullity & $<0.001$ & 0.027 & -- & $<0.001$ & 0.307 & -- \\
+Early: -21 to -10: Equal coefficients & $<0.001$ & 0.021 & -- & $<0.001$ & 0.252 & -- \\
+Recent: -10 to -2: Joint nullity & $<0.001$ & 0.367 & 0.367 & $<0.001$ & 0.049 & 0.049 \\
+Recent: -10 to -2: Equal coefficients & $<0.001$ & 0.280 & 0.280 & $<0.001$ & 0.035 & 0.036 \\
+\addlinespace[5pt]
+\multicolumn{7}{l}{\textbf{Panel B. Alternative outcomes: log(Y+1)}} \\
+Full available: Joint nullity & $<0.001$ & 0.002 & 0.369 & $<0.001$ & 0.007 & 0.041 \\
+Full available: Equal coefficients & $<0.001$ & 0.003 & 0.282 & $<0.001$ & 0.009 & 0.026 \\
+Early: -21 to -10: Joint nullity & $<0.001$ & 0.024 & -- & $<0.001$ & 0.028 & -- \\
+Early: -21 to -10: Equal coefficients & $<0.001$ & 0.019 & -- & $<0.001$ & 0.018 & -- \\
+Recent: -10 to -2: Joint nullity & $<0.001$ & 0.369 & 0.369 & $<0.001$ & 0.041 & 0.041 \\
+Recent: -10 to -2: Equal coefficients & $<0.001$ & 0.282 & 0.282 & $<0.001$ & 0.026 & 0.026 \\
+\addlinespace[5pt]
+\multicolumn{7}{l}{\textbf{Panel C. Alternative exposure: cosine-weighted}} \\
+Full available: Joint nullity & $<0.001$ & 0.002 & 0.166 & $<0.001$ & 0.008 & 0.020 \\
+Full available: Equal coefficients & $<0.001$ & 0.004 & 0.126 & $<0.001$ & 0.005 & 0.012 \\
+Early: -21 to -10: Joint nullity & $<0.001$ & 0.010 & -- & $<0.001$ & 0.110 & -- \\
+Early: -21 to -10: Equal coefficients & $<0.001$ & 0.010 & -- & $<0.001$ & 0.102 & -- \\
+Recent: -10 to -2: Joint nullity & $<0.001$ & 0.165 & 0.166 & $<0.001$ & 0.019 & 0.020 \\
+Recent: -10 to -2: Equal coefficients & $<0.001$ & 0.126 & 0.126 & $<0.001$ & 0.011 & 0.012 \\
+\midrule
+CNO1 $\times$ year-month FE & No & Yes & Yes & No & Yes & Yes \\
+2021 included & Yes & Yes & No & Yes & Yes & No \\
+\bottomrule
+\end{longtable}
+\begin{center}
+\begin{minipage}{0.68\linewidth}
+\footnotesize
+\emph{Notes:} Entries are $p$-values from Wald tests of pre-treatment event-study coefficients. Joint nullity tests whether all coefficients in the indicated window equal zero; the equality test allows a common nonzero level. Columns 1 and 4 are the benchmark with CNO4 and year-month FE. Columns 2 and 5 add CNO1-by-year-month FE. Columns 3 and 6 use the latter specification but exclude 2021. The full available window is event times $-21$ through $-2$ when 2021 is included and $-10$ through $-2$ otherwise; the early window is consequently unavailable in columns 3 and 6. October 2022 (event time $-1$) is omitted. Standard errors are clustered by CNO4.
+\end{minipage}
+\end{center}
+\endgroup
