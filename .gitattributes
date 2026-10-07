@@ -14,6 +14,6 @@
 *.pdf binary
 # These snapshots are checksummed byte-for-byte, including original newlines.
 data/input/** -text
-output/reference/** -text
+docs/reference/** -text
 code/vendor/** -text
 docs/paper/** -text

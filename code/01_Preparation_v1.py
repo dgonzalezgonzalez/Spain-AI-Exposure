@@ -16,7 +16,7 @@ if not (PROJECT_ROOT / "data").is_dir():
 RAW_DIR = PROJECT_ROOT / "data" / "raw"
 PREPARED_DIR = PROJECT_ROOT / "data" / "prepared"
 INTERMEDIATE_DIR = PROJECT_ROOT / "intermediate"
-FINAL_DIR = PROJECT_ROOT / "uploads" / "figuresNtables"
+FINAL_DIR = PROJECT_ROOT / "rendered"
 LOGS_DIR = PROJECT_ROOT / "logs"
 
 for directory in [PREPARED_DIR, INTERMEDIATE_DIR, FINAL_DIR, LOGS_DIR]:

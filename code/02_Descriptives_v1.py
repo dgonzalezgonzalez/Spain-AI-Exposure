@@ -12,8 +12,8 @@ while PROJECT_ROOT != PROJECT_ROOT.parent and not (PROJECT_ROOT / "data").is_dir
 if not (PROJECT_ROOT / "data").is_dir():
     raise FileNotFoundError("Could not locate the package directory containing data/.")
 RAW_DIR = PROJECT_ROOT / "data" / "raw"
-TABLES_DIR = PROJECT_ROOT / "uploads" / "figuresNtables"
-FIGURES_DIR = PROJECT_ROOT / "uploads" / "figuresNtables"
+TABLES_DIR = PROJECT_ROOT / "rendered"
+FIGURES_DIR = PROJECT_ROOT / "rendered"
 
 SEPE_PATH = RAW_DIR / "sepe_cno4_monthly_ai_exposure.csv"
 EPA_PATH = RAW_DIR / "epa_unemployment_microdata_weights.csv"
@@ -165,7 +165,7 @@ while PROJECT_ROOT != PROJECT_ROOT.parent and not (PROJECT_ROOT / "data").is_dir
     PROJECT_ROOT = PROJECT_ROOT.parent
 if not (PROJECT_ROOT / "data").is_dir():
     raise FileNotFoundError("Could not locate the package directory containing data/.")
-FIGURES_DIR = PROJECT_ROOT / "uploads" / "figuresNtables"
+FIGURES_DIR = PROJECT_ROOT / "rendered"
 FIGURES_DIR.mkdir(parents=True, exist_ok=True)
 
 FIGURE_PATH = FIGURES_DIR / "figure_ai_exposure_distribution_onet_vs_spain.png"
@@ -235,7 +235,7 @@ while PROJECT_ROOT != PROJECT_ROOT.parent and not (PROJECT_ROOT / "data").is_dir
 if not (PROJECT_ROOT / "data").is_dir():
     raise FileNotFoundError("Could not locate the package directory containing data/.")
 RAW_DIR = PROJECT_ROOT / "data" / "raw"
-TABLES_DIR = PROJECT_ROOT / "uploads" / "figuresNtables"
+TABLES_DIR = PROJECT_ROOT / "rendered"
 TABLES_DIR.mkdir(parents=True, exist_ok=True)
 
 US_PATH = RAW_DIR / "anthropic_job_exposure_onet.csv"
@@ -409,7 +409,7 @@ while PROJECT_ROOT != PROJECT_ROOT.parent and not (PROJECT_ROOT / "data").is_dir
 if not (PROJECT_ROOT / "data").is_dir():
     raise FileNotFoundError("Could not locate the package directory containing data/.")
 RAW_DIR = PROJECT_ROOT / "data" / "raw"
-TABLES_DIR = PROJECT_ROOT / "uploads" / "figuresNtables"
+TABLES_DIR = PROJECT_ROOT / "rendered"
 TABLES_DIR.mkdir(parents=True, exist_ok=True)
 
 SEPE_PATH = RAW_DIR / "sepe_cno4_monthly_ai_exposure.csv"
@@ -557,7 +557,7 @@ if not (PROJECT_ROOT / "data").is_dir():
 
 SEPE_PATH = PROJECT_ROOT / "data" / "raw" / "sepe_cno4_monthly_ai_exposure.csv"
 PDF_PATH = PROJECT_ROOT / "data" / "raw" / "cno11_notas.pdf"
-OUT_PATH = PROJECT_ROOT / "uploads" / "figuresNtables" / "table_cno4_pdf_vs_sepe_codes.csv"
+OUT_PATH = PROJECT_ROOT / "rendered" / "table_cno4_pdf_vs_sepe_codes.csv"
 
 OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
 
@@ -657,8 +657,8 @@ while PROJECT_ROOT != PROJECT_ROOT.parent and not (PROJECT_ROOT / "data").is_dir
 if not (PROJECT_ROOT / "data").is_dir():
     raise FileNotFoundError("Could not locate the package directory containing data/.")
 RAW_DIR = PROJECT_ROOT / "data" / "raw"
-TABLES_DIR = PROJECT_ROOT / "uploads" / "figuresNtables"
-FIGURES_DIR = PROJECT_ROOT / "uploads" / "figuresNtables"
+TABLES_DIR = PROJECT_ROOT / "rendered"
+FIGURES_DIR = PROJECT_ROOT / "rendered"
 
 RAW_DIR.mkdir(parents=True, exist_ok=True)
 TABLES_DIR.mkdir(parents=True, exist_ok=True)
@@ -760,7 +760,7 @@ print("Created figure_ai_adoption_timing_panelA and panelB (PNG).")
 # Source cell 24
 
 descriptive_outputs = sorted(
-    path for path in (PROJECT_ROOT / "uploads" / "figuresNtables").iterdir()
+    path for path in (PROJECT_ROOT / "rendered").iterdir()
     if path.is_file() and (
         path.name.startswith("figure_")
         or path.name in {"summary_statistics.tex", "table_top_bottom_exposure_appendix.tex"}

@@ -2,7 +2,7 @@
 
 ## Scope and outcome
 
-The manuscript snapshot is dated 7 October 2026. All **87 retained assets** pass comparison with independently downloaded Prism assets: **26 LaTeX tables and 61 PNG panels**. The complete per-file results are in [validation_results.json](validation_results.json). The master produces only those 87 publication assets in `output/generated/`; logs, source checks, and estimator CSVs stay under `output/work/`.
+The manuscript snapshot is dated 7 October 2026. All **87 retained assets** pass comparison with independently downloaded Prism assets: **26 LaTeX tables and 61 PNG panels**. The complete per-file results are in [validation_results.json](validation_results.json). The master produces only those 87 publication assets in `output/tables/` and `output/figures/`; logs, source checks, and estimator CSVs stay under `data/work/`.
 
 Printed numeric table cells, sample counts, and significance stars match. Table whitespace, layout commands, comments, and terminology are normalized for comparison. Table statuses: {'exact': 14, 'numbers_match': 12}. Figure statuses: {'exact': 58, 'pixels_match': 2, 'pixels_match_with_rounding': 1}. Sixty panels have identical decoded RGB pixels; the adjusted SDID contracts event panel differs at four pixels, in six RGB channel values, each by one level out of 255. Its mean normalized pixel error is 3.390108152586327e-9. The validator accepts only same-size images with maximum channel difference at most one and mean normalized error at most 1e-8; substantive line, label, or geometry differences fail.
 
@@ -51,3 +51,7 @@ Native projected strict SDID is substantially more expensive than the baseline p
 R analysis used an existing library whose 64 package versions and required GitHub source SHAs match `renv.lock`; the package-local setup validator succeeded. A complete R dependency restoration from an empty Windows library was not verified because the required Rtools45 compiler was unavailable. Install the documented compiler before such a restore. No R library or proprietary Stata executable is bundled.
 
 Other operating systems and Stata versions were not independently run. The code resolves paths from the package, uses cached inputs offline, and was tested in a clean extraction, but that does not establish identical results on untested platforms. Changing software, data vintages, API responses, or repetition counts can change inference and will be caught by the comparison checks.
+
+## Output-layout revision
+
+At the author's request, final tables now reside in `output/tables/` and figure panels in `output/figures/`. Independent reference assets were moved to `docs/reference/`; internal caches reside in `data/work/` and validation/timing reports in `logs/`. All 87 existing publication assets retained their exact pre-move SHA-256 hashes. No estimation or rendering was rerun for this directory-only revision; the cached-output comparison was rerun against the relocated references.

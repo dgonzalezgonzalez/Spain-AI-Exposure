@@ -12,7 +12,13 @@ test_artifacts/
 data/*
 !data/input/
 output/*
-!output/reference/
+!output/tables/
+!output/figures/
+output/tables/*
+output/figures/*
+!output/tables/.gitkeep
+!output/figures/.gitkeep
+logs/
 dist/
 *.log
 

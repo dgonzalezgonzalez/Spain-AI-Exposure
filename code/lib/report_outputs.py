@@ -853,7 +853,7 @@ def build_phase_outputs(
     figures_dir = (
         Path(output_dir)
         if output_dir is not None
-        else project_root / "uploads" / "figuresNtables"
+        else project_root / "rendered"
     )
     figures_dir.mkdir(parents=True, exist_ok=True)
 

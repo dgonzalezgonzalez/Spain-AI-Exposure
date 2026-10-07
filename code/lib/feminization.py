@@ -323,7 +323,7 @@ def build_feminization_outputs(
     figures_dir = (
         Path(output_dir)
         if output_dir is not None
-        else root / "uploads" / "figuresNtables"
+        else root / "rendered"
     )
     figures_dir.mkdir(parents=True, exist_ok=True)
 

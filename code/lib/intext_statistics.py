@@ -40,5 +40,5 @@ def build(work: Path, destination: Path) -> dict:
               'interpretation': 'Calibration removes the estimated occupational exposure gradient; it does not identify an aggregate causal effect.'}
     destination.write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8')
     if not all(item['matches_printed_precision'] for item in checks.values()):
-        raise ValueError('An in-text statistic differs from the manuscript; inspect output/intext_statistics.json.')
+        raise ValueError('An in-text statistic differs from the manuscript; inspect logs/intext_statistics.json.')
     return report

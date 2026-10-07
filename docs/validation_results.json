@@ -9,6 +9,7 @@
     "caption": "Robustness checks: alternative exposure measures",
     "estimation_program": "code/03_Jev.do",
     "rendering_program": "code/lib/jev_robustness.py",
+    "output_path": "output/tables/robustness_checks_jev_v1.tex",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -22,6 +23,7 @@
     "caption": "Event-study estimates using Jev: registered unemployment",
     "estimation_program": "code/03_Jev.do",
     "rendering_program": "code/lib/jev_robustness.py",
+    "output_path": "output/figures/Robustness_unemployed_jev_nearest.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -35,6 +37,7 @@
     "caption": "Event-study estimates using Jev: registered unemployment",
     "estimation_program": "code/03_Jev.do",
     "rendering_program": "code/lib/jev_robustness.py",
+    "output_path": "output/figures/Robustness_unemployed_jev_weighted.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -48,6 +51,7 @@
     "caption": "Event-study estimates using Jev: registered unemployment",
     "estimation_program": "code/03_Jev.do",
     "rendering_program": "code/lib/jev_robustness.py",
+    "output_path": "output/figures/Robustness_unemployed_jev_direct.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -61,6 +65,7 @@
     "caption": "Event-study estimates using Jev: new contracts",
     "estimation_program": "code/03_Jev.do",
     "rendering_program": "code/lib/jev_robustness.py",
+    "output_path": "output/figures/Robustness_contracts_jev_nearest.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -74,6 +79,7 @@
     "caption": "Event-study estimates using Jev: new contracts",
     "estimation_program": "code/03_Jev.do",
     "rendering_program": "code/lib/jev_robustness.py",
+    "output_path": "output/figures/Robustness_contracts_jev_weighted.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -87,6 +93,7 @@
     "caption": "Event-study estimates using Jev: new contracts",
     "estimation_program": "code/03_Jev.do",
     "rendering_program": "code/lib/jev_robustness.py",
+    "output_path": "output/figures/Robustness_contracts_jev_direct.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -100,6 +107,7 @@
     "caption": "Correlations across occupational exposure measures",
     "estimation_program": "code/03_Jev.do",
     "rendering_program": "code/lib/jev_robustness.py",
+    "output_path": "output/figures/Exposure_correlation_matrix.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -113,6 +121,7 @@
     "caption": "Difference-in-differences by job tier",
     "estimation_program": "code/03_Jev.do",
     "rendering_program": "code/lib/job_tiers.py",
+    "output_path": "output/tables/job_tiers_did_jev_v1.tex",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -126,6 +135,7 @@
     "caption": "Joint job-tier event study: registered unemployment",
     "estimation_program": "code/03_Jev.do",
     "rendering_program": "code/lib/job_tiers.py",
+    "output_path": "output/figures/JobTiers_unemployed_jev_tier1.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -139,6 +149,7 @@
     "caption": "Joint job-tier event study: registered unemployment",
     "estimation_program": "code/03_Jev.do",
     "rendering_program": "code/lib/job_tiers.py",
+    "output_path": "output/figures/JobTiers_unemployed_jev_tier2.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -152,6 +163,7 @@
     "caption": "Joint job-tier event study: new contracts",
     "estimation_program": "code/03_Jev.do",
     "rendering_program": "code/lib/job_tiers.py",
+    "output_path": "output/figures/JobTiers_contracts_jev_tier1.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -165,6 +177,7 @@
     "caption": "Joint job-tier event study: new contracts",
     "estimation_program": "code/03_Jev.do",
     "rendering_program": "code/lib/job_tiers.py",
+    "output_path": "output/figures/JobTiers_contracts_jev_tier2.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -178,6 +191,7 @@
     "caption": "AI Exposure and Labor Market Outcomes: Job Tier Mediation Analysis",
     "estimation_program": "code/job_tier_mediation.do",
     "rendering_program": "code/lib/job_tier_mediation.py",
+    "output_path": "output/tables/job_tier_mediation_v1.tex",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -191,6 +205,7 @@
     "caption": "Distribution of Claude usage by major occupational group: Spain and the global average",
     "estimation_program": "code/01_Preparation_v1.py",
     "rendering_program": "code/02_Descriptives_v1.py",
+    "output_path": "output/figures/figure_anthropic_country_soc_major_group_spain_global_may2026.png",
     "status": "pixels_match",
     "detail": "mean pixel error=0.0; maximum channel difference=0; same dimensions=True"
   },
@@ -204,6 +219,7 @@
     "caption": "Distribution of AI exposure before and after mapping",
     "estimation_program": "code/01_Preparation_v1.py",
     "rendering_program": "code/02_Descriptives_v1.py",
+    "output_path": "output/figures/figure_ai_exposure_distribution_onet_vs_spain.png",
     "status": "pixels_match",
     "detail": "mean pixel error=0.0; maximum channel difference=0; same dimensions=True"
   },
@@ -217,6 +233,7 @@
     "caption": "AI adoption and generative-AI use in Spain",
     "estimation_program": "code/01_Preparation_v1.py",
     "rendering_program": "code/02_Descriptives_v1.py",
+    "output_path": "output/figures/figure_ai_adoption_timing_panelA.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -230,6 +247,7 @@
     "caption": "AI adoption and generative-AI use in Spain",
     "estimation_program": "code/01_Preparation_v1.py",
     "rendering_program": "code/02_Descriptives_v1.py",
+    "output_path": "output/figures/figure_ai_adoption_timing_panelB.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -243,6 +261,7 @@
     "caption": "Summary statistics for SEPE occupation-level variables and AI exposure indices",
     "estimation_program": "code/01_Preparation_v1.py",
     "rendering_program": "code/02_Descriptives_v1.py",
+    "output_path": "output/tables/summary_statistics.tex",
     "status": "numbers_match",
     "detail": "printed numeric cells and significance stars compared"
   },
@@ -256,6 +275,7 @@
     "caption": "Descriptive patterns by AI exposure group",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/figures/Figure1_panelA.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -269,6 +289,7 @@
     "caption": "Descriptive patterns by AI exposure group",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/figures/Figure1_panelB.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -282,6 +303,7 @@
     "caption": "AI exposure and labor market outcomes. Event-study estimates.",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/figures/Figure2_panelA.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -295,6 +317,7 @@
     "caption": "AI exposure and labor market outcomes. Event-study estimates.",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/figures/Figure2_panelB.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -308,6 +331,7 @@
     "caption": "AI exposure and labor market outcomes",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/tables/table2_main_effects_v1.tex",
     "status": "numbers_match",
     "detail": "printed numeric cells and significance stars compared"
   },
@@ -321,6 +345,7 @@
     "caption": "Heterogeneity in AI exposure estimates",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/tables/heterogeneity_v1.tex",
     "status": "numbers_match",
     "detail": "printed numeric cells and significance stars compared"
   },
@@ -334,6 +359,7 @@
     "caption": "Within-family variation in AI exposure",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/figures/Support_panelA.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -347,6 +373,7 @@
     "caption": "Within-family variation in AI exposure",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/figures/Support_panelB.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -360,6 +387,7 @@
     "caption": "Within-family variation in AI exposure",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/tables/family_support_v1.tex",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -373,6 +401,7 @@
     "caption": "Pre-treatment coefficient tests across baseline specifications",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/tables/pretrend_diagnostics_v1.tex",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -386,6 +415,7 @@
     "caption": "Pre-treatment diagnostics for heterogeneity estimates}\\label{tab:v1_heterogeneity_pretrends}\\\\",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/tables/heterogeneity_pretrend_diagnostics_v1.tex",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -399,6 +429,7 @@
     "caption": "Formal tests of age-group heterogeneity",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/tables/age_cross_group_tests_v1.tex",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -412,6 +443,7 @@
     "caption": "Heterogeneity in registered unemployment",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/figures/Heterogeneity_unemployed_panel1.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -425,6 +457,7 @@
     "caption": "Heterogeneity in registered unemployment",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/figures/Heterogeneity_unemployed_panel2.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -438,6 +471,7 @@
     "caption": "Heterogeneity in registered unemployment",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/figures/Heterogeneity_unemployed_panel3.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -451,6 +485,7 @@
     "caption": "Heterogeneity in registered unemployment",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/figures/Heterogeneity_unemployed_panel4.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -464,6 +499,7 @@
     "caption": "Heterogeneity in registered unemployment",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/figures/Heterogeneity_unemployed_panel5.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -477,6 +513,7 @@
     "caption": "Heterogeneity in new contracts",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/figures/Heterogeneity_contracts_panel1.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -490,6 +527,7 @@
     "caption": "Heterogeneity in new contracts",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/figures/Heterogeneity_contracts_panel2.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -503,6 +541,7 @@
     "caption": "Heterogeneity in new contracts",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/figures/Heterogeneity_contracts_panel3.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -516,6 +555,7 @@
     "caption": "Heterogeneity in new contracts",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/figures/Heterogeneity_contracts_panel4.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -529,6 +569,7 @@
     "caption": "Heterogeneity in new contracts",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/figures/Heterogeneity_contracts_panel5.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -542,6 +583,7 @@
     "caption": "Aggregate Unemployment in SEPE and EPA Data",
     "estimation_program": "code/01_Preparation_v1.py",
     "rendering_program": "code/02_Descriptives_v1.py",
+    "output_path": "output/figures/epa_vs_sepe_unemployment_quarterly.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -555,6 +597,7 @@
     "caption": "Top and bottom 10 AI-exposure occupations in Spain and the global average",
     "estimation_program": "code/01_Preparation_v1.py",
     "rendering_program": "code/02_Descriptives_v1.py",
+    "output_path": "output/tables/table_top_bottom_exposure_appendix.tex",
     "status": "numbers_match",
     "detail": "printed numeric cells and significance stars compared"
   },
@@ -568,6 +611,7 @@
     "caption": "Binary-treatment robustness checks",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/tables/binary_treatment_v1.tex",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -581,6 +625,7 @@
     "caption": "Pre-treatment diagnostics for the binary-treatment design",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/tables/binary_pretrend_diagnostics_v1.tex",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -594,6 +639,7 @@
     "caption": "Event-study estimates under the binary treatment definition",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/figures/Binary_event_unemployed.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -607,6 +653,7 @@
     "caption": "Event-study estimates under the binary treatment definition",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/figures/Binary_event_contracts.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -620,6 +667,7 @@
     "caption": "Robustness checks: alternative outcomes and exposure measures",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/tables/robustness_checks_v1.tex",
     "status": "numbers_match",
     "detail": "printed numeric cells and significance stars compared"
   },
@@ -633,6 +681,7 @@
     "caption": "Pre-treatment diagnostics for alternative outcomes and exposure measures}\\label{tab:v1_robustness_pretrends}\\\\",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/tables/robustness_pretrend_diagnostics_v1.tex",
     "status": "numbers_match",
     "detail": "printed numeric cells and significance stars compared"
   },
@@ -646,6 +695,7 @@
     "caption": "Robustness event studies: registered unemployment",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/figures/Robustness_unemployed_panel1.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -659,6 +709,7 @@
     "caption": "Robustness event studies: registered unemployment",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/figures/Robustness_unemployed_panel2.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -672,6 +723,7 @@
     "caption": "Robustness event studies: registered unemployment",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/figures/Robustness_unemployed_panel3.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -685,6 +737,7 @@
     "caption": "Robustness event studies: new contracts",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/figures/Robustness_contracts_panel1.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -698,6 +751,7 @@
     "caption": "Robustness event studies: new contracts",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/figures/Robustness_contracts_panel2.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -711,6 +765,7 @@
     "caption": "Robustness event studies: new contracts",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/figures/Robustness_contracts_panel3.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -724,6 +779,7 @@
     "caption": "Leave-one-CNO1-out sensitivity",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/figures/LeaveOneCNO1_unemployed.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -737,6 +793,7 @@
     "caption": "Leave-one-CNO1-out sensitivity",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/figures/LeaveOneCNO1_contracts.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -750,6 +807,7 @@
     "caption": "Robustness check: trailing 12-month contract registrations",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/tables/trailing12_contracts_v1.tex",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -763,6 +821,7 @@
     "caption": "Event-study estimates for trailing 12-month contract registrations",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/figures/Trailing12_contracts_event.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -776,6 +835,7 @@
     "caption": "Alternative AI exposure measures: mapping and rank correlation",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/tables/alternative_exposure_validation_v1.tex",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -789,6 +849,7 @@
     "caption": "Robustness to BLS categorical AI exposure",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/tables/bls_categorical_exposure_v1.tex",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -802,6 +863,7 @@
     "caption": "Event-study estimates using BLS exposure categories",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/figures/BLSExposure_unemployed.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -815,6 +877,7 @@
     "caption": "Event-study estimates using BLS exposure categories",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/figures/BLSExposure_contracts.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -828,6 +891,7 @@
     "caption": "Robustness to language-model AIOE exposure",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/tables/lm_aioe_exposure_v1.tex",
     "status": "numbers_match",
     "detail": "printed numeric cells and significance stars compared"
   },
@@ -841,6 +905,7 @@
     "caption": "Event-study estimates using capability-based AI exposure",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/figures/CapabilityExposure_unemployed.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -854,6 +919,7 @@
     "caption": "Event-study estimates using capability-based AI exposure",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/figures/CapabilityExposure_contracts.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -867,6 +933,7 @@
     "caption": "AI exposure estimates by occupational feminization",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/tables/feminization_median_split_v1.tex",
     "status": "numbers_match",
     "detail": "printed numeric cells and significance stars compared"
   },
@@ -880,6 +947,7 @@
     "caption": "Heterogeneity by occupational feminization: registered unemployment",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/figures/Feminization_median_unemployed.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -893,6 +961,7 @@
     "caption": "Heterogeneity by occupational feminization: registered unemployment",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/figures/Feminization_median_detrended_unemployed.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -906,6 +975,7 @@
     "caption": "Heterogeneity by occupational feminization: new contracts",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/figures/Feminization_median_contracts.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -919,6 +989,7 @@
     "caption": "Heterogeneity by occupational feminization: new contracts",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/figures/Feminization_median_detrended_contracts.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -932,6 +1003,7 @@
     "caption": "AI exposure effects across occupational-feminization groups",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/tables/feminization_three_group_v1.tex",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -945,6 +1017,7 @@
     "caption": "AI exposure effects across occupational-feminization groups",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/figures/Feminization_three_group_unemployed.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -958,6 +1031,7 @@
     "caption": "AI exposure effects across occupational-feminization groups",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/figures/Feminization_three_group_contracts.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -971,6 +1045,7 @@
     "caption": "Geographic heterogeneity in AI exposure estimates",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/tables/main_provinces_v1.tex",
     "status": "numbers_match",
     "detail": "printed numeric cells and significance stars compared"
   },
@@ -984,6 +1059,7 @@
     "caption": "Geographic heterogeneity in AI exposure effects",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/figures/MainProvince_comparison_unemployed.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -997,6 +1073,7 @@
     "caption": "Geographic heterogeneity in AI exposure effects",
     "estimation_program": "code/03_Estimates.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/figures/MainProvince_comparison_contracts.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -1010,6 +1087,7 @@
     "caption": "CNO1-stratified CDiD event-study estimates",
     "estimation_program": "code/04_Estimates_contDID_v1.R",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py",
+    "output_path": "output/figures/ContDID_panel1.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -1023,6 +1101,7 @@
     "caption": "CNO1-stratified CDiD event-study estimates",
     "estimation_program": "code/04_Estimates_contDID_v1.R",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py",
+    "output_path": "output/figures/ContDID_panel2.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -1036,6 +1115,7 @@
     "caption": "CDiD alternatives",
     "estimation_program": "code/04_Estimates_contDID_v1.R",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py",
+    "output_path": "output/tables/contdid_alternatives_v1.tex",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -1049,6 +1129,7 @@
     "caption": "SDiD estimates",
     "estimation_program": "code/03_SDID.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/tables/sdid_estimates_v1.tex",
     "status": "numbers_match",
     "detail": "printed numeric cells and significance stars compared"
   },
@@ -1062,6 +1143,7 @@
     "caption": "CNO1-by-month-adjusted SDiD estimates",
     "estimation_program": "code/03_SDID.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/figures/SDID_adjusted_path_unemployed.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -1075,6 +1157,7 @@
     "caption": "CNO1-by-month-adjusted SDiD estimates",
     "estimation_program": "code/03_SDID.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/figures/SDID_adjusted_event_unemployed.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -1088,6 +1171,7 @@
     "caption": "CNO1-by-month-adjusted SDiD estimates",
     "estimation_program": "code/03_SDID.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/figures/SDID_adjusted_path_contracts.png",
     "status": "exact",
     "detail": "identical SHA-256"
   },
@@ -1101,6 +1185,7 @@
     "caption": "CNO1-by-month-adjusted SDiD estimates",
     "estimation_program": "code/03_SDID.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/figures/SDID_adjusted_event_contracts.png",
     "status": "pixels_match_with_rounding",
     "detail": "mean pixel error=3.390108152586327e-09; maximum channel difference=1; same dimensions=True"
   },
@@ -1114,6 +1199,7 @@
     "caption": "SDiD donor and time weight diagnostics",
     "estimation_program": "code/03_SDID.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/tables/sdid_weight_diagnostics_v1.tex",
     "status": "numbers_match",
     "detail": "printed numeric cells and significance stars compared"
   },
@@ -1127,6 +1213,7 @@
     "caption": "Treated occupations and positive-weight SDiD donors}\\label{tab:v1_sdid_donors}\\\\",
     "estimation_program": "code/03_SDID.do",
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
+    "output_path": "output/tables/sdid_donor_weights_v1.tex",
     "status": "numbers_match",
     "detail": "printed numeric cells and significance stars compared"
   }

@@ -44,4 +44,4 @@ if __name__ == '__main__':
     parser.add_argument('--archive-dir', type=Path, required=True,
                         help='Archives organized as QUARTER/filename.zip; URLs are in docs/epa_microdata_sources.json.')
     args = parser.parse_args()
-    extract(args.archive_dir, ROOT / 'output/work/source_checks/epa_unemployment_microdata_weights.csv.gz')
+    extract(args.archive_dir, ROOT / 'data/work/source_checks/epa_unemployment_microdata_weights.csv.gz')

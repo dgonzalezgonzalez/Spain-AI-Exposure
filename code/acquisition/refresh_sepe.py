@@ -14,7 +14,7 @@ from acquisition.sepe import (make_sepe_session, discover_sepe_report_links,
 def main():
     root = Path(__file__).resolve().parents[2]
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--cache', type=Path, default=root / 'output/work/acquisition')
+    parser.add_argument('--cache', type=Path, default=root / 'data/work/acquisition')
     parser.add_argument('--cno4', nargs='+', help='Optional occupation subset for a retrieval check.')
     args = parser.parse_args()
     occupations = pd.read_csv(root / 'data/input/jev/spanish_inputs.csv', dtype={'CNO4': str})

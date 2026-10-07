@@ -20,7 +20,7 @@ RAW_DIR = PROJECT_ROOT / "data" / "raw"
 PROCESSED_DIR = RAW_DIR
 INPUT_DIR = PROJECT_ROOT / "data" / "prepared"
 INTERMEDIATE_DIR = PROJECT_ROOT / "intermediate"
-FINAL_DIR = PROJECT_ROOT / "uploads" / "figuresNtables"
+FINAL_DIR = PROJECT_ROOT / "rendered"
 LOGS_DIR = PROJECT_ROOT / "logs"
 
 TABLES_DIR = INTERMEDIATE_DIR

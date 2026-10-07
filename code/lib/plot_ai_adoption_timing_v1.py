@@ -11,7 +11,7 @@ import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_FILE = ROOT / "data" / "raw" / "spain_ai_adoption_timing_sources.csv"
-OUTPUT_DIR = ROOT / "uploads" / "figuresNtables"
+OUTPUT_DIR = ROOT / "rendered"
 
 BLUE = "#0B5AA5"
 SKY_BLUE = "#8EC9EE"

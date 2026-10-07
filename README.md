@@ -18,13 +18,15 @@ code/vendor/              Frozen Stata dependencies and software notices
 data/input/               Frozen source and author-constructed inputs
 docs/                     Codebook, provenance, output map, validation report
 docs/paper/               Authoritative manuscript LaTeX snapshots
-output/reference/         Assets downloaded from the manuscript
-output/generated/         Newly computed publication assets
-output/work/              Intermediate data, estimates, audits, and logs
+docs/reference/           Independent manuscript assets for validation
+output/tables/            Newly computed LaTeX tables
+output/figures/           Newly computed PNG figure panels
+logs/                     Validation reports and stage timings
+data/work/                Internal data, estimates, rendering cache, and logs
 tests/                    Parser, probability, and replication regressions
 ```
 
-Reference assets are comparison targets, never estimator inputs. The manuscript snapshots preserve the original upload paths for inspection; they are not a standalone typesetting project.
+Reference assets under `docs/reference/` are comparison targets, never estimator inputs. They are retained solely for automatic validation; `output/` contains only the table and figure folders. The manuscript snapshots preserve the original upload paths for inspection; they are not a standalone typesetting project.
 
 ## Data Availability and Provenance Statements
 
@@ -71,7 +73,7 @@ Stata uses seed `20260728`, reset within estimators, and **500 SDID placebo repl
 
 ### Memory, runtime, and storage
 
-The verification host is Windows x64, Intel Core i7-1165G7 (4 cores, 8 logical processors), 16 GB RAM. Plan for at least 16 GB RAM and 10 GB free disk space, plus software and R build tools. The SEPE input decompresses to approximately 452 MB. Province estimation and SDID dominate runtime. Actual timings and verification limits are in [docs/validation_report.md](docs/validation_report.md). The master writes environment information and stage timings to `output/run_environment.json`; individual reruns have separate timing files.
+The verification host is Windows x64, Intel Core i7-1165G7 (4 cores, 8 logical processors), 16 GB RAM. Plan for at least 16 GB RAM and 10 GB free disk space, plus software and R build tools. The SEPE input decompresses to approximately 452 MB. Province estimation and SDID dominate runtime. Actual timings and verification limits are in [docs/validation_report.md](docs/validation_report.md). The master writes environment information and stage timings to `logs/run_environment.json`; individual reruns have separate timing files.
 
 ## Description of programs/code
 
@@ -90,7 +92,7 @@ The verification host is Windows x64, Intel Core i7-1165G7 (4 cores, 8 logical p
 | `code/setup.R` | R dependency installation/restoration before analysis |
 | `code/acquisition/refresh_sepe.py` | Optional resumable public-report retrieval; outside the default frozen run |
 
-Intermediate estimates and integrity audits under `output/work/` support the retained results. Only the 87 mapped publication assets are exported to `output/generated/`. Logs remain under `output/work/logs/`.
+Intermediate estimates and integrity audits under `data/work/` support the retained results. Internal rendering is staged under `data/work/rendered/`. Only the 87 mapped publication assets are exported to `output/tables/` and `output/figures/`. Logs remain under `data/work/logs/`.
 
 ## Instructions to Replicators
 
@@ -124,11 +126,11 @@ Intermediate estimates and integrity audits under `output/work/` support the ret
    python master.py --stata-exe "C:\Program Files\StataNow19\StataMP-64.exe" --rscript "C:\Program Files\R\R-4.5.2\bin\Rscript.exe"
    ```
 
-6. Inspect `output/validation.json`, `output/intext_statistics.json`, timings, and logs. Missing assets, differing printed numeric cells/significance stars, or differing figure pixels fail validation. Identical figure pixels pass despite PNG metadata differences. A maximum one-level RGB difference with mean normalized error at most 1e-8 is accepted for floating-point antialiasing; larger differences require visual review and resolution. Reviewed release comparisons are documented in `docs/validation_report.md`.
+6. Inspect `logs/validation.json`, `logs/intext_statistics.json`, timings, and logs. Missing assets, differing printed numeric cells/significance stars, or differing figure pixels fail validation. Identical figure pixels pass despite PNG metadata differences. A maximum one-level RGB difference with mean normalized error at most 1e-8 is accepted for floating-point antialiasing; larger differences require visual review and resolution. Reviewed release comparisons are documented in `docs/validation_report.md`.
 
-For a fresh run, use a new clone/extraction without `output/work/` or `output/generated/`; the master creates them. Paths resolve relative to the master file, so invocation from another working directory also works. To rerun one stage, use `--step` with `prepare`, `descriptives`, `estimates`, `sdid`, `jev`, `mediation`, `contdid`, `tuning`, `statistics`, or `validate`, after its predecessor inputs exist. `python master.py --check-inputs` verifies/stages all inputs without estimation. Run tests with `python -m unittest discover -s tests -v`.
+For a fresh run, use a new clone/extraction with no cached results under `data/work/`, `output/tables/`, or `output/figures/`; the master creates the directories. Paths resolve relative to the master file, so invocation from another working directory also works. To rerun one stage, use `--step` with `prepare`, `descriptives`, `estimates`, `sdid`, `jev`, `mediation`, `contdid`, `tuning`, `statistics`, or `validate`, after its predecessor inputs exist. `python master.py --check-inputs` verifies/stages all inputs without estimation. Run tests with `python -m unittest discover -s tests -v`.
 
-Never replace `output/reference/` with regenerated files. Shortened bootstrap/placebo runs are not publication verification.
+Never replace `docs/reference/` with regenerated files. Shortened bootstrap/placebo runs are not publication verification.
 
 ## List of tables and programs
 

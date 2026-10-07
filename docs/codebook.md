@@ -23,7 +23,7 @@ The inherited raw archive may contain fields beyond those used in the manuscript
 
 ## Prepared analysis panels
 
-Created under `output/work/data/prepared/` by `01_Preparation_v1.py`:
+Created under `data/work/data/prepared/` by `01_Preparation_v1.py`:
 
 - `est_total_cno4.csv`: one row per CNO4-month, 502 occupations × 63 months = 31,626 rows.
 - `est_age3_cno4.csv`: one row per CNO4-month-age group: under 30, ages 30–39, ages 40+. A group aggregate remains missing when an underlying required cell is unresolved.
@@ -58,7 +58,7 @@ There are two zero-unemployment cells and 342 zero-contract cells in the complet
 
 ## May 2024 missing subgroup cells
 
-The two backcast files retain the occupation/category identifiers, reconstructed counts, reported June counts and percentage changes, and reconstruction/audit status. A rounded growth rate can imply several possible May integers. The reconstruction retains only an unambiguous feasible integer (or a value consistent with the documented provider totals); ambiguous cases remain missing. `code/lib/sepe_age_backcast.py` and `sepe_province_backcast.py` preserve the reconstruction rules and diagnostics. Full audit files are written under `output/work/intermediate/`; these are not new estimated paper results.
+The two backcast files retain the occupation/category identifiers, reconstructed counts, reported June counts and percentage changes, and reconstruction/audit status. A rounded growth rate can imply several possible May integers. The reconstruction retains only an unambiguous feasible integer (or a value consistent with the documented provider totals); ambiguous cases remain missing. `code/lib/sepe_age_backcast.py` and `sepe_province_backcast.py` preserve the reconstruction rules and diagnostics. Full audit files are written under `data/work/intermediate/`; these are not new estimated paper results.
 
 ## Frozen cosine mapping
 
@@ -90,7 +90,7 @@ INE CSVs preserve their provider's labels for sex, period, unit and occupation; 
 
 ## Results and validation
 
-Estimator CSVs under `output/work/intermediate/` contain specification, outcome, event time or phase, estimates, standard errors, intervals, observations and diagnostic tests. Table/figure notes define their scale. Tables are generated from those estimates; stored reference tables never supply coefficients. `output/intext_statistics.json` includes the sample facts and partial-equilibrium calibration, computed using unrounded preferred coefficients, with explicit checks at the manuscript's displayed precision.
+Estimator CSVs under `data/work/intermediate/` contain specification, outcome, event time or phase, estimates, standard errors, intervals, observations and diagnostic tests. Table/figure notes define their scale. Tables are generated from those estimates; stored reference tables never supply coefficients. `logs/intext_statistics.json` includes the sample facts and partial-equilibrium calibration, computed using unrounded preferred coefficients, with explicit checks at the manuscript's displayed precision.
 
 ## EPA unemployment source check
 

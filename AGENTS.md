@@ -2,7 +2,7 @@
 
 This branch is the frozen replication release for `docs/paper/`. The entry point
 is `master.py`; active programs live in `code/`. Inputs are versioned under
-`data/input/`, independent paper targets under `output/reference/`. Never replace
+`data/input/`, independent paper targets under `docs/reference/`. Never replace
 reference files with generated results.
 
 Keep changes limited to retained manuscript results. Update `docs/output_map.csv`
@@ -17,5 +17,5 @@ explicitly requests methodological changes. Keep exploratory code on branches.
 Run `python -m unittest discover -s tests -v` for relevant changes. Compare
 numerical results and figures before releases; record actual checks, software,
 timings, and discrepancies in `docs/validation_report.md`. Do not claim untested
-platform coverage. Runtime files belong in ignored `output/work/`,
-`output/generated/`, and `dist/`. Preserve recovery tags when replacing releases.
+platform coverage. Runtime files belong in ignored `data/work/`,
+`output/tables/` and `output/figures/`, and `dist/`. Preserve recovery tags when replacing releases.

@@ -18,8 +18,14 @@ import time
 from zipfile import ZipFile
 
 ROOT = Path(__file__).resolve().parent
-WORK = ROOT / 'output/work'
+WORK = ROOT / 'data/work'
+LOGS = ROOT / 'logs'
 STEPS = ('prepare', 'descriptives', 'estimates', 'sdid', 'jev', 'mediation', 'contdid', 'tuning', 'statistics', 'validate')
+
+
+def publication_path(item: dict) -> Path:
+    folder = {'table': 'tables', 'figure': 'figures'}[item['kind']]
+    return ROOT / 'output' / folder / item['file']
 
 
 def sha256(path: Path) -> str:
@@ -81,8 +87,11 @@ def stage_inputs() -> None:
     adoption = ROOT / 'data/input/spain_ai_adoption_timing_sources.csv'
     if adoption.exists():
         shutil.copy2(adoption, raw / adoption.name)
-    for folder in ['logs', 'intermediate', 'uploads/figuresNtables', 'data/prepared']:
+    for folder in ['logs', 'intermediate', 'rendered', 'data/prepared']:
         (WORK / folder).mkdir(parents=True, exist_ok=True)
+    LOGS.mkdir(parents=True, exist_ok=True)
+    for folder in ['tables', 'figures']:
+        (ROOT / 'output' / folder).mkdir(parents=True, exist_ok=True)
 
 
 @contextmanager
@@ -173,7 +182,7 @@ def run_stata(args, jev: bool = False, mediation: bool = False, sdid: bool = Fal
     command = [stata, '/e', 'do', str(wrapper)] if os.name == 'nt' else [stata, '-b', 'do', str(wrapper)]
     run_process(command, marker.stem + '_process.log', env)
     if not marker.exists():
-        raise RuntimeError(f'Stata stopped before completing {marker.stem}; inspect output/work/logs/.')
+        raise RuntimeError(f'Stata stopped before completing {marker.stem}; inspect data/work/logs/.')
 
 
 def run_r(args) -> None:
@@ -211,7 +220,7 @@ def finish_outputs() -> None:
         from lib.job_tiers import build_job_tier_outputs
         from lib.job_tier_mediation import render_table
         from lib.terminology import normalize_latex_terminology
-        final = WORK / 'uploads/figuresNtables'
+        final = WORK / 'rendered'
         tables = WORK / 'intermediate'
         # These appendix figures were authored in a separate Python process.
         # Isolate their original defaults from the numbered notebook's style.
@@ -225,35 +234,35 @@ def finish_outputs() -> None:
             encoding='utf-8')
         for source in tables.glob('*.tex'):
             shutil.copy2(source, final / source.name)
-        generated = ROOT / 'output/generated'
-        generated.mkdir(parents=True, exist_ok=True)
         items = json.loads((ROOT / 'docs/paper_outputs.json').read_text(encoding='utf-8'))
         for item in items:
             source = final / item['file']
             if not source.exists():
                 raise FileNotFoundError(f'Missing manuscript output: {item["file"]}')
-            destination = generated / source.name
+            destination = publication_path(item)
+            destination.parent.mkdir(parents=True, exist_ok=True)
             if source.suffix == '.tex':
                 destination.write_text(normalize_latex_terminology(source.read_text(encoding='utf-8')), encoding='utf-8')
             else:
                 shutil.copy2(source, destination)
-        allowed = {item['file'] for item in items}
-        unexpected = {p.name for p in generated.iterdir()} - allowed
-        if unexpected:
-            raise ValueError(f'Unexpected publication outputs: {sorted(unexpected)}')
+        for kind, folder in [('table', 'tables'), ('figure', 'figures')]:
+            allowed = {item['file'] for item in items if item['kind'] == kind}
+            unexpected = {p.name for p in (ROOT / 'output' / folder).iterdir() if p.name != '.gitkeep'} - allowed
+            if unexpected:
+                raise ValueError(f'Unexpected publication outputs in {folder}: {sorted(unexpected)}')
 
 
 def validate_outputs() -> None:
     from PIL import Image, ImageChops, ImageStat
     targets = json.loads((ROOT / 'docs/reference_manifest.json').read_text(encoding='utf-8'))
     for target in targets:
-        path = ROOT / 'output/reference' / target['file']
+        path = ROOT / 'docs/reference' / target['file']
         if sha256(path) != target['sha256']:
             raise ValueError(f'Independent paper reference checksum differs: {target["file"]}')
     results = []
     items = json.loads((ROOT / 'docs/paper_outputs.json').read_text(encoding='utf-8'))
     for item in items:
-        generated, reference = ROOT / 'output/generated' / item['file'], ROOT / 'output/reference' / item['file']
+        generated, reference = publication_path(item), ROOT / 'docs/reference' / item['file']
         if not generated.exists() or not reference.exists():
             results.append({**item, 'status': 'missing', 'detail': 'generated or paper reference missing'})
             continue
@@ -279,7 +288,8 @@ def validate_outputs() -> None:
             status = 'pixels_match' if error == 0 else 'pixels_match_with_rounding' if rounding_only else 'visual_review'
             results.append({**item, 'status': status,
                             'detail': f'mean pixel error={error}; maximum channel difference={maximum}; same dimensions={size_same}'})
-    destination = ROOT / 'output/validation.json'
+    LOGS.mkdir(parents=True, exist_ok=True)
+    destination = LOGS / 'validation.json'
     destination.write_text(json.dumps(results, indent=2) + '\n', encoding='utf-8')
     failures = [r for r in results if r['status'] in {'missing', 'numbers_differ', 'visual_review'}]
     print(f'{len(items)} manuscript assets checked; {len(failures)} unresolved discrepancies.', flush=True)
@@ -326,7 +336,7 @@ def main() -> int:
         print('All frozen input checksums verified.')
         return 0
     selected = STEPS if args.step == 'all' else (args.step,)
-    timing_file = ROOT / 'output' / ('run_environment.json' if args.step == 'all' else f'run_{args.step}.json')
+    timing_file = LOGS / ('run_environment.json' if args.step == 'all' else f'run_{args.step}.json')
     timing = {'platform': platform.platform(), 'python': sys.version, 'sdid_reps': args.sdid_reps,
               'contdid_reps': args.contdid_reps, 'steps': []}
     for step in selected:
@@ -352,7 +362,7 @@ def main() -> int:
             elif step == 'statistics':
                 with working_directory(WORK):
                     from lib.intext_statistics import build
-                    build(WORK, ROOT / 'output/intext_statistics.json')
+                    build(WORK, LOGS / 'intext_statistics.json')
             elif step == 'validate':
                 validate_outputs()
         except Exception as error:
