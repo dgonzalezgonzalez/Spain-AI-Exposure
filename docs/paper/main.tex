@@ -1,0 +1,1137 @@
+\documentclass[11pt]{article}
+
+\usepackage[utf8]{inputenc}
+%\usepackage[T1]{fontenc}
+%\usepackage{tgschola}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{booktabs}
+\usepackage{threeparttable}
+\usepackage{graphicx}
+\usepackage{fvextra}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{adjustbox}
+\usepackage{amsmath,amssymb}
+\usepackage{natbib}
+\usepackage{url}
+\usepackage{xcolor}
+\usepackage{pdflscape}   % for the landscape environment
+\usepackage{array}       % for p{} columns with \raggedright
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage{longtable}
+\usepackage{placeins}
+
+% Avoid infinite-shrink glue when the current longtable output routine is
+% split across pages; stretch-only glue provides the same footer alignment.
+\makeatletter
+\patchcmd{\LT@output}{\copy\LT@foot\vss}{\copy\LT@foot\vfil}{}{}
+\patchcmd{\LT@output}{\copy\LT@foot\vss}{\copy\LT@foot\vfil}{}{}
+\makeatother
+
+%set-up
+\captionsetup{font=small, labelfont=bf}
+\subcaptionsetup{font=small, labelfont=bf, justification=centering}
+\setlength{\parskip}{0.45em}
+\setlength{\parindent}{0pt}
+\setlength{\emergencystretch}{2em}
+\hbadness=10000
+
+% newcommands
+\newcommand{\tabdir}{.}
+\newcommand{\panelwidth}{0.70\textwidth}
+\newcommand{\descriptivepanelwidth}{0.66\textwidth}
+\newcommand{\smallpanelwidth}{0.48\textwidth}
+\newcommand{\figdir}{uploads/figuresNtables}
+
+\geometry{margin=1in}
+\onehalfspacing
+\raggedbottom
+\graphicspath{{uploads/prism-uploads/}}
+
+\title{AI Exposure and Registered Unemployment in Spain:\\Early Evidence from Occupation-Level Administrative Data}%\thanks{Vázquez-Grenno acknowledges financial support from the Spanish Ministry of Science and Innovation (PID2025-168703NB-I00).}
+%}
+
+\author{
+Diego Gonz\'alez-Gonz\'alez\thanks{Loyola University. Email: \href{mailto:d.gonzalezgonzalez1999@gmail.com}{d.gonzalezgonzalez1999@gmail.com}.% Website: \url{https://dgonzalezgonzalez.github.io/}.
+}
+\and
+Nicol\'as Gonz\'alez-Pampill\'on\thanks{Institut d'Economia de Barcelona (IEB). Email: \href{mailto:ngpampillon@gmail.com}{ngpampillon@gmail.com}. %Website: \url{https://sites.google.com/view/nicolasgonzalez-pampillon/home}.
+}
+\and
+H\'ector Jim\'enez Portilla\thanks{Comisi\'on Nacional de los Mercados y la Competencia (CNMC). Email: \href{mailto:hectorjportilla@gmail.com}{hectorjportilla@gmail.com}.}
+\and
+Javier V\'azquez-Grenno\thanks{Universitat de Barcelona \& Institut d'Economia de Barcelona (IEB). Email: \href{mailto:jvazquezgrenno@ub.edu}{jvazquezgrenno@ub.edu}.% Website: \url{https://sites.google.com/site/jvazquezgrenno/}.
+}
+}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This paper provides early occupation-level evidence on whether labor-market outcomes in Spain have begun to diverge according to exposure to generative AI. We combine administrative records for 502 four-digit occupations through March 2026 with an exposure measure based on observed AI use. A continuous-treatment difference-in-differences (DiD) design compares occupations within broad occupational families in each month following ChatGPT's November 2022 release. A 10 percentage-point increase in exposure is associated with 1.2 percent more registered unemployment during the first 25 months and 1.7 percent thereafter, although the later estimate is imprecise. The unemployment gradient emerges gradually rather than as an immediate post-release break, while new contracts show no persistent response. These patterns provide early evidence of differential labor-market adjustment across occupations with different exposure to generative AI.
+\end{abstract}
+
+\noindent \textbf{Keywords:} generative AI, unemployment, hiring, occupations, Spain,\linebreak
+continuous-treatment difference-in-differences.
+
+\noindent \textbf{JEL Classification:} J23, J24, J63, J64, O33.
+
+\section{Introduction}
+\label{sec:introduction}
+
+The rapid diffusion of generative AI has renewed a classic labor-market question: do new automation technologies displace workers, or do they reorganize tasks and increase demand for complementary labor? The question is especially difficult in the first years after a technology shock. Adoption is uneven, exposed occupations differ from unexposed occupations before the shock, and early labor-market effects may appear as churn, hiring changes, or occupational reallocation rather than immediate net job destruction. These concerns are particularly salient for younger workers. In its 2026 report on global youth employment, the International Labour Organization (ILO) estimates that 6.1 percent of jobs held by young people aged 15--29 fall within the occupational categories most exposed to AI. Many of these jobs overlap with middle-skilled clerical and administrative occupations in which youth employment has declined since 2023 \citep{ilo_youth_2026}. Whether this exposure has begun to translate into adverse labor-market outcomes remains an open empirical question.
+
+This paper provides early occupation-level evidence from Spain on whether labor-market outcomes have begun to diverge according to exposure to generative AI following the public release of ChatGPT in November 2022 and the subsequent diffusion of generative AI tools. Rather than asking whether generative AI has raised aggregate unemployment, the analysis focuses on whether registered unemployment and hiring have evolved differently across occupations with different exposure to the technology. We combine monthly administrative records on registered unemployment and newly registered contracts by four-digit occupation (CNO4) from the Spanish Public Employment Service (\textit{Servicio P\'ublico de Empleo Estatal}, SEPE) with an occupation-level AI exposure measure adapted to the Spanish National Classification of Occupations. The resulting panel covers 502 CNO4 occupations from January 2021 through March 2026. Registered unemployment is a stock measured at the end of each month, whereas newly registered contracts are a monthly flow. Examining both outcomes provides evidence on the accumulation of unemployment and the evolution of hiring activity.
+
+The empirical design combines a common change in technological availability---the public release of ChatGPT---with cross-occupational variation in potential exposure to generative AI. Our time-invariant exposure measure builds on the measure developed by Anthropic for O*NET occupations \citep{massenkoff_mccrory_2026} and is mapped to Spanish CNO4 occupations. We implement a continuous-treatment DiD design that compares changes in labor-market outcomes before and after November 2022 across occupations with different exposure intensities. Our preferred specifications interact AI exposure with indicators defined relative to ChatGPT's release and absorb CNO4 fixed effects (FE) and CNO1d-by-month FE.\footnote{The dynamic specification interacts AI exposure with separate event-time indicators, with October 2022 omitted as the reference month. The static specification distinguishes an adjustment period (event times 0--24, November 2022 through November 2024) from a later period (event times 25--40, December 2024 through March 2026). Both are estimated using two-way FE (TWFE) regressions, with standard errors clustered at the four-digit occupation level.} Identification therefore comes from comparisons among differently exposed four-digit occupations within the same broad occupational family and month. The family-by-month effects absorb shocks common to related occupations, including family-specific demand conditions and differences in their post-pandemic recovery. The choice of CNO1d balances comparability against identifying variation: finer CNO2d-by-month comparisons are potentially more homogeneous but provide substantially less within-family variation in AI exposure.
+
+The dynamic estimates for registered unemployment remain close to zero around ChatGPT's release and become positive only gradually. Confidence intervals are wide and generally include zero. This delayed response is more consistent with gradual organizational adjustment than with an immediate displacement shock. Its timing also coincides with the continued diffusion of generative AI and the introduction of more capable agentic tools, including Claude Code and Codex in 2025, although the design cannot isolate the effects of individual products. Because registered unemployment is observed as a monthly stock, the data cannot determine whether its relative accumulation reflects greater inflows into unemployment, slower exits from the register, or both.
+
+Motivated by this gradual dynamic path, we summarize the post-release estimates over an adjustment period and a later period. A 10 percentage-point increase in AI exposure is associated with a 1.2 percent larger stock of registered unemployment from November 2022 through November 2024 and a 1.7 percent larger stock from December 2024 through March 2026. Only the adjustment-period estimate is statistically distinguishable from zero, and equality between the two period effects cannot be rejected. The corresponding estimates for new contracts are 1.4 and 1.3 percent, neither of which is statistically significant.
+
+The age-specific estimates suggest heterogeneity in labor-market responses. Among individuals aged 30--39, a 10 percentage-point increase in AI exposure is associated with 1.7 percent more registered unemployment during the adjustment period and 3.4 percent more thereafter; the later estimate is statistically significant at the 5 percent level. The corresponding estimates are 1.5 and 2.2 percent for individuals under 30 and 0.9 and 1.2 percent for those aged 40 or older. The under-30 estimates are statistically indistinguishable from those for ages 30--39 in both periods (\(p=0.897\) and \(p=0.320\), respectively). In the later period, however, the estimate for ages 30--39 differs from that for ages 40 or older (\(p=0.035\)). Equality across all three groups cannot be rejected at conventional levels (\(p=0.105\)). The point estimates are largest for individuals aged 30–39, but the formal cross-group tests do not establish a sharp age threshold. This pattern does not appear to be explained by the concentration of this group in more exposed occupations.\footnote{Weighting CNO4d exposure by each occupation's average pre-treatment registered unemployment yields mean scores of 0.113, 0.119, and 0.118 for individuals under 30, aged 30--39, and aged 40 or older, respectively.}
+
+The contract estimates also vary by age. A 10 percentage-point increase in AI exposure is associated with 2.2 percent more new contracts for individuals under 30 during the adjustment period and 2.6 percent more thereafter; both estimates are statistically significant. The corresponding effects are 1.3 and 1.7 percent for individuals aged 30--39 and 0.3 and \(-0.1\) percent for those aged 40 or older, none of which are individually significant. In a specification pooling the two younger groups, equality with individuals aged 40 or older is rejected during both the adjustment (\(p=0.008\)) and later (\(p=0.002\)) periods. The contract results therefore provide clearer evidence of a younger-versus-older distinction than the unemployment estimates. Because contracts are measured as monthly flows, however, these positive responses may reflect greater labor-market turnover rather than more stable employment.
+
+The preferred estimates show no clear heterogeneity by individual gender. For registered unemployment, a 10 percentage-point increase in exposure is associated with increases of 0.8 and 1.6 percent for men and 1.0 percent in both periods for women. The corresponding contract estimates are 1.4 and 1.6 percent for men and 1.1 and 0.9 percent for women. None of these estimates is individually statistically significant, and their similar magnitudes provide no clear indication of differential adjustment by gender.
+
+%Occupational feminization produces a sharper, although less robust, pattern. Among occupations below the median pre-treatment female employment share, a 10 percentage-point increase in exposure is associated with 4.3 percent more registered unemployment during the adjustment period and 7.7 percent more thereafter; both estimates are statistically significant. The corresponding estimates for occupations at or above the median are \(-0.4\) and \(-1.3\) percent and are imprecisely estimated. Contract responses are small in both groups. This contrast may reflect differences in task content or employment adjustment across occupations, but the subgroup pre-treatment diagnostics are less favorable and detrending materially changes the dynamic paths. We therefore treat this evidence as suggestive rather than as establishing a mechanism.
+
+Additional heterogeneity analyses suggest a stronger unemployment gradient in less-feminized occupations and in Madrid and Barcelona, although these patterns are accompanied by less favorable pre-treatment diagnostics and are therefore treated as suggestive.
+
+Finally, we assess whether alternative estimators yield the same qualitative result. Both alternatives produce larger positive unemployment estimates. For a 10 percentage-point increase in exposure, the CNO1d-stratified continuous difference-in-differences (CDiD) estimator implies increases of 3.4 percent during the adjustment period and 7.1 percent thereafter. Synthetic difference-in-differences (SDiD) yields upper-tail effects of 2.7 and 4.1 percent, respectively. The estimates for new contracts are more method-dependent and generally less precise. Because CDiD aggregates marginal responses differently from TWFE, while SDiD estimates a binary high-versus-lower-exposure contrast, agreement in direction is more informative than differences in magnitude.
+
+% literature and contribution
+This paper is most directly related to the emerging empirical literature on the labor-market effects of generative AI, which has focused primarily on the United States and the Nordic countries. Using U.S. payroll data, \citet{brynjolfsson_chandar_chen_2025} document relative employment declines among workers aged 22--25 in highly exposed occupations, whereas \citet{massenkoff_mccrory_2026} find no systematic unemployment response and only tentative evidence of slower hiring among younger workers. Nordic evidence is similarly mixed. \citet{humlum_vestergaard_2025} document rapid chatbot adoption and extensive task reorganization in Denmark but find precise null effects on earnings and hours. \citet{facius_iacono_2026} find no robust displacement in Norwegian administrative data and show that backdated synthetic comparisons can generate apparent effects before ChatGPT. \citet{lodefalk_et_al_2026} document an age gradient in Swedish hiring, while online labor markets exhibit sharper short-run reductions in demand for directly exposed freelance services \citep{hui_reshef_zhou_2024}. Using task-level exposure measures that vary across firms, occupations, and time, \citet{hampole_et_al_2025} find that more AI-exposed tasks experience lower subsequent labor demand, although aggregate employment effects are more modest because substitution is partly offset by productivity-driven increases in labor demand at adopting firms. Taken together, this evidence suggests that the early labor-market effects of generative AI depend on adoption, task content, workers' career stage, and the particular adjustment margin being measured.
+
+
+Second, the paper builds on the task-based literature on technological change and occupational exposure. \citet{autor_levy_murnane_2003} and \citet{acemoglu_restrepo_2019} emphasize that automation reallocates tasks between labor and capital and can generate displacement and reinstatement simultaneously. Exposure measures developed by \citet{felten_raj_seamans_2021}, \citet{felten_raj_seamans_2023}, and \citet{eloundou_manning_mishkin_rock_2024} translate technological capabilities into occupation-level measures. \citet{massenkoff_mccrory_2026} extend this approach by combining theoretical capabilities with observed work-related AI use.
+
+Exposure nevertheless remains distinct from adoption. Using nationally representative worker survey data linked to detailed occupations and tasks, \citet{bick_et_al_2026} show that standard occupational exposure measures explain only part of the variation in realized GenAI adoption and that usage measures based on platform chat logs differ conceptually from worker-level adoption measures. Using firm websites across four European countries, \citet{garbers_gregory_2026} show that realized adoption depends strongly on firms' human capital and digital capabilities. Linked Danish survey and administrative data in \citet{pulito_et_al_2026} similarly show that common occupational exposure measures differ in their ability to predict actual use.
+
+
+Third, the paper relates to the literature on productivity, task reorganization, and worker complementarity. Experimental evidence shows that generative AI can improve performance in writing and problem-solving tasks \citep{noy_zhang_2023}. \citet{cruces_et_al_2026} find larger gains for workers with less formal education in a randomized business problem-solving exercise. \citet{freund_mann_2026} show theoretically and quantitatively that automation can generate heterogeneous wage effects within the same occupation by changing the relative importance of the tasks that remain. Evidence for Germany based on patent-based measures of AI advances that predate generative AI shows that AI-related task changes occur mostly within detailed occupations, and that workers respond mainly by changing employers rather than occupations, with modest employment losses and earnings losses concentrated among low-skilled workers \citep{gathmann2024ai}. These findings imply that occupational exposure need not translate one-for-one into job loss: the same technology may displace workers specializing in automatable tasks while increasing demand for complementary skills. At the aggregate level, \citet{acemoglu_2025} similarly emphasizes that the macroeconomic consequences of AI depend on the share of tasks affected, task-level productivity gains, and the balance between automation and complementary uses, implying that potentially large occupational exposure need not translate into equally large aggregate employment effects.
+
+This paper contributes to these literatures by providing early, high-frequency evidence on how labor-market outcomes have evolved across occupations with different exposure to generative AI. First, it uses administrative data for Spain at the four-digit occupation level, a level of detail unavailable in standard labor-force survey estimates, to track registered unemployment and hiring at monthly frequency. Second, it adapts an observed-use exposure measure to Spanish occupations and exploits comparisons among differently exposed occupations within broad occupational families and months. Third, it documents whether the emerging occupational divergence differs across worker and occupation characteristics and relates its timing to independent evidence on the diffusion of generative AI in Spain. The contribution is deliberately reduced-form and occupation-level: the paper documents differential labor-market adjustment by AI exposure rather than estimating the aggregate employment effect of generative AI, firm-level adoption effects, or individual worker transitions.
+
+The remainder of the paper proceeds as follows. Section~\ref{sec:data} describes the administrative data, exposure measure, and evidence on AI adoption in Spain. Section~\ref{sec:empirical_strategy} presents the empirical strategy. Section~\ref{sec:results} reports the baseline estimates, heterogeneity analyses, and robustness checks, and Section~\ref{sec:conclusion} concludes. Appendix Sections~\ref{app:v1_support} and~\ref{app:v1_heterogeneity} report the principal identification diagnostics and supporting age and gender results, while additional validation exercises, heterogeneity analyses, robustness checks, estimator comparisons, and the aggregate calibration appear in Online Appendix Sections~\ref{app:sepe_epa}--\ref{app:v1_aggregate_calibration}.
+
+\section{Data}
+\label{sec:data}
+
+This section describes the data used in the empirical analysis. We first introduce the administrative labor-market data from the Spanish Public Employment Service (\textit{Servicio P\'ublico de Empleo Estatal}, SEPE). We then describe the construction of the occupation-level AI exposure measure, which maps Anthropic/O*NET occupations to four-digit occupations in the Spanish National Classification of Occupations 2011 (CNO-11, hereafter CNO4d). Finally, we explain how these data sources are combined to construct the estimation panel, define the outcome variables, and present summary statistics.
+
+
+\subsection{Administrative labor-market data}
+
+The main labor-market data come from SEPE, which publishes monthly statistics on registered unemployment and registered contracts through the Registered Labor Market Activity (Movimiento Laboral Registrado, MLR) system \citep{sepe_stats}.\footnote{Information is available through the SEPE website (\url{https://www.sepe.es/HomeSepe/que-es-observatorio/informacion-mt-por-ocupacion.html}), which provides a search interface for occupation-specific statistics. To construct a machine-readable dataset, we scraped the information for all occupations at the four-digit level.} Monthly statistics by four-digit occupations (CNO4d) are available from January 2021 through March 2026, and occupation codes are defined according to the Spanish National Classification of Occupations 2011 (CNO-11).\footnote{Historical data are available at \url{https://www.sepe.es/HomeSepe/que-es-observatorio/informacion-mt-por-ocupacion/historico-informacion-mt-por-ocupacion.html}. However, these statistics are reported only at the two-digit occupation level and follow the earlier CNO-94 classification.} %footnote needs to be checked
+
+The data span the period from January 2021 through March 2026, allowing us to construct a monthly occupation-level panel that tracks changes in registered unemployment and hiring flows before and after the public launch of ChatGPT in November 2022. The analysis relies exclusively on SEPE administrative statistics and does not use Social Security records, which contain information on unemployment insurance and unemployment assistance receipt. Consequently, the registered unemployment counts include both individuals who receive unemployment benefits and those who do not.
+% Last sentence: needs to be checked
+
+Registered unemployment (\textit{parados}) is defined as the stock of unemployed workers registered with SEPE at the end of each month.\footnote{According to the official SEPE methodology, registered unemployment corresponds to active employment demands registered with the Public Employment Services on the last working day of the month that satisfy the statistical criteria for registered unemployment. These criteria exclude employed jobseekers, workers without immediate availability, and other categories established by the Ministerial Order of 11 March 1985. See \citet{mites_mlr_methodology}.} It should therefore be interpreted as an administrative measure of formal unemployment registration rather than as a measure of total unemployment. The broader population measure of unemployment is provided by the Labor Force Survey (Encuesta de Poblaci\'on Activa, EPA). As a validation exercise, Online Appendix Figure~\ref{fig:epa_vs_sepe_unemployment_quarterly} compares aggregate unemployment in the SEPE data with the corresponding EPA series. The two series closely track each other and exhibit very similar trends throughout the sample period. Registered contracts (\textit{contratos}) correspond to new employment contracts registered during the month and therefore measure the monthly flow of new hires.
+
+The main panel contains 502 CNO4d occupations observed over 63 months, yielding a perfectly balanced panel with 31,626 occupation-month observations. We also construct separate panels disaggregated by province, gender, and age. These dimensions are published by SEPE as separate tabulations rather than as a single joint cross-tabulation, so cells combining multiple dimensions (e.g., province $\times$ age or gender $\times$ age) cannot be recovered. For the age analysis, we aggregate the published age categories into three groups: workers younger than 30, workers aged 30--39, and workers aged 40 and older.
+
+
+\subsection{AI exposure measure \label{sec:mapping}}
+
+\subsubsection{Anthropic measure}
+
+Our occupation-level measure of AI exposure is based on the observed exposure index developed by \citet{massenkoff_mccrory_2026}. The index combines three sources of information: (i) occupation task descriptions from O*NET, (ii) task-level measures of the theoretical capabilities of large language models (LLMs) developed by \citet{eloundou_manning_mishkin_rock_2024}, and (iii) observed usage patterns from the Anthropic Economic Index, which records how Claude is used in real-world settings.\footnote{The Anthropic methodology first identifies tasks that are theoretically feasible for large language models, then measures whether these tasks are actually observed in work-related Claude interactions. Tasks involving automated use receive greater weight than augmentative uses, and occupation-level exposure is obtained as a time-weighted average across tasks. The index is estimated using Claude.ai usage data collected during 2025 and released as part of the 2026 Anthropic Economic Index. See the online appendix of \citet{massenkoff_mccrory_2026} for a detailed description of the methodology.} The resulting measure captures the extent to which occupations perform tasks that are both technically feasible for generative AI and already observed in professional AI use. The analysis also documents a substantial gap between the theoretical capabilities of LLMs and their observed use in professional settings, suggesting that AI adoption remains well below its technological frontier.
+
+Unlike earlier exposure measures based solely on task descriptions or expert assessments, the Anthropic AI index incorporates observed AI usage in addition to technological capability. Because the index is based on observed Claude interactions, it captures realized platform use, although such chat-log-based measures should not be interpreted as direct measures of worker- or firm-level adoption \citep{bick_et_al_2026}. The measure is published as a single cross-sectional occupation-level index, which we treat as time-invariant over our sample period. By construction, the exposure score is bounded between zero and one,\footnote{The index can be interpreted as the share of occupation-specific work time associated with tasks exhibiting observed AI usage, after applying the weighting procedure described by \citet{massenkoff_mccrory_2026}.} with higher values indicating greater observed exposure to generative AI. The original Anthropic index is reported for 756 occupations defined using the O*NET classification.\footnote{The data are available at \url{https://huggingface.co/datasets/Anthropic/EconomicIndex/tree/main/labor_market_impacts}.} We therefore map these occupations to four-digit occupations in the Spanish National Classification of Occupations 2011 (CNO4d), as described in the next subsection.
+
+\subsubsection{Mapping to Spanish occupations}
+\label{sec:mapping}
+
+The Anthropic AI exposure index is reported for 756 occupations defined under the O*NET classification, whereas the Spanish labor-market data are organized using 502 four-digit occupations in the Spanish National Classification of Occupations 2011 (CNO4d). We therefore construct a semantic mapping between the two occupational classifications using multilingual text embeddings, allowing occupations from both systems to be represented in a common semantic space.
+
+Let $i=1,\ldots,N$ index Anthropic/O*NET occupations and $j=1,\ldots,J$ index Spanish CNO4d occupations. For each Anthropic/O*NET occupation $i$, we embed the occupation title and O*NET description, yielding an embedding vector $x_i\in\mathbb{R}^d$, where $d$ denotes the embedding dimension. The corresponding observed AI exposure score provided by Anthropic is denoted by $y_i$. For each Spanish CNO4d occupation $j$, we embed a structured semantic record containing the occupation code, title, definition, typical tasks, included examples, and related or excluded occupations, yielding an embedding vector $x_j\in\mathbb{R}^d$. Both sets of embeddings are generated using Qwen3-Embedding-4B.\footnote{Qwen3-Embedding-4B is a multilingual embedding model with approximately two thousand dimensions. Its multilingual design is particularly important in this application because the source texts are written in different languages: Spanish for CNO4d occupations and English for Anthropic/O*NET occupations.}
+
+Similarity between Anthropic/O*NET and CNO4d occupations is measured using cosine similarity:
+\[
+c_{ji}=\frac{x_j^\top x_i}{\lVert x_j\rVert\,\lVert x_i\rVert},
+\]
+where $c_{ji}$ denotes the cosine similarity between Spanish occupation $j$ and Anthropic/O*NET occupation $i$.\footnote{As a robustness check, we consider one alternative mapping. A cosine-weighted measure assigns Anthropic/O*NET occupations to their nearest CNO4d occupation and computes, for each CNO4d occupation, a similarity-weighted average of the assigned Anthropic exposure scores,
+\[
+\widehat{y}^{CW}_j=
+\frac{\sum_{i\in A_j}c_{ji}y_i}
+{\sum_{i\in A_j}c_{ji}},
+\]
+where $A_j$ is the set of Anthropic/O*NET occupations assigned to CNO4d occupation $j$. If $A_j$ is empty, the nearest-neighbor exposure is used instead.}
+
+% We also estimate a Random Forest model that predicts exposure directly from all the CNO4d embedding dimensions,
+%\[
+%\widehat{y}^{RF}_j=f_{RF}(x_j),
+%\]
+%using Anthropic/O*NET embeddings and observed exposure scores as the training sample.}
+
+For each Spanish occupation, we identify the Anthropic/O*NET occupation with the highest cosine similarity:
+\[
+i^*(j)=\arg\max_i c_{ji}.
+\]
+The baseline AI exposure assigned to Spanish occupation $j$ is then given by
+\[
+\widehat{y}_j=y_{i^*(j)},
+\]
+that is, the observed Anthropic exposure score of its nearest Anthropic/O*NET occupation. The resulting $\widehat{y}_j$ constitutes our baseline occupation-level AI exposure measure.
+
+
+\subsubsection{Validation}
+
+The construction of the Spanish AI exposure measure relies on the assumption that occupational AI adoption patterns are sufficiently similar across countries for the Anthropic exposure measure to provide an informative ranking of AI exposure in Spain. The observed exposure measure uses global Claude usage classified under the U.S. O*NET taxonomy, rather than usage restricted to the U.S. labor market \citep{massenkoff_mccrory_2026}. We assess the validity of the resulting exposure measure through three complementary exercises: external validation, distributional validation, and face validity.
+
+Our first validation exercise examines whether occupational AI usage patterns are similar in Spain and globally. Figure~\ref{fig:claude_usage_spain_global} compares the distribution of Claude usage across broad occupational groups using the latest Anthropic Economic Index. The two distributions are remarkably similar. Computer and mathematical occupations account for the largest share of Claude usage in both distributions, with education, arts and media, sales, business occupations, and office support also accounting for substantial shares. Differences between Spain and the global average are generally small, suggesting that occupational AI usage follows similar patterns in Spain and globally. This evidence supports the external validity of applying the Anthropic exposure ranking to the Spanish labor market. A similar occupation-level imputation strategy is also adopted by recent European evidence on generative AI and labor markets, including \citet{facius_iacono_2026}.
+
+\begin{figure}[H]
+\centering
+\caption{Distribution of Claude usage by major occupational group: Spain and the global average}
+\label{fig:claude_usage_spain_global}
+\begin{threeparttable}
+\includegraphics[width=0.9\linewidth]{uploads/prism-uploads/figure_anthropic_country_soc_major_group_spain_global_may2026.png}
+\vspace{0.15cm}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item Notes: The figure reports the percentage of Claude usage accounted for by each major occupational group according to the Anthropic Economic Index. Spain refers to Claude interactions originating in Spain; the global average refers to pooled worldwide Claude usage, rather than an unweighted average across countries.\newline
+Source: Anthropic Economic Index (May 2026).
+\end{tablenotes}
+\end{threeparttable}
+\end{figure}
+
+Our second validation exercise evaluates whether the semantic mapping preserves the overall distribution of AI exposure when transferring the measure from the O*NET occupational classification to Spanish CNO4d occupations. Figure~\ref{fig:exposure_distribution_onet_spain} compares the distribution of exposure scores for the original Anthropic/O*NET occupations and the mapped Spanish occupations. The mapped distribution closely reproduces both the concentration of occupations with very low AI exposure and the upper tail of highly exposed occupations observed in the original O*NET data. This close correspondence indicates that the semantic mapping preserves the overall distribution of AI exposure despite the differences between the two occupational classifications.
+
+\begin{figure}[H]
+\centering
+\caption{Distribution of AI exposure before and after mapping}
+\label{fig:exposure_distribution_onet_spain}
+\begin{threeparttable}
+\includegraphics[width=0.7\linewidth]{uploads/prism-uploads/figure_ai_exposure_distribution_onet_vs_spain.png}
+\vspace{0.15cm}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item Notes: The figure compares the distribution of the original Anthropic AI exposure scores for O*NET occupations with the distribution obtained after mapping the exposure measure to Spanish CNO4d occupations using the nearest-neighbor semantic matching procedure.
+\end{tablenotes}
+\end{threeparttable}
+\end{figure}
+
+Finally, we assess the face validity of the mapped exposure measure by examining the occupations with the highest and lowest exposure levels. Online Appendix Table~\ref{tab:top_bottom_exposure_comparison} reports the ten occupations with the highest and lowest AI exposure after mapping the Anthropic measure to Spanish CNO4d occupations. The ranking is economically intuitive. Computer programmers, software specialists, financial analysts, and data-entry clerks appear among the most exposed occupations, whereas occupations involving predominantly manual or physical tasks are concentrated among the least exposed. The close correspondence between the ranking and prior expectations provides additional reassurance that the semantic mapping preserves economically meaningful relationships across occupational classifications.
+
+\subsubsection{Timing of adoption}
+\label{sec:adoption_timing}
+
+The release of ChatGPT marks a sharp change in access to generative AI, but not a common date of adoption by Spanish firms. Survey evidence instead points to a gradual and uneven diffusion. In the harmonized survey of enterprises with at least ten employees, the share of Spanish firms using at least one covered AI technology was 7.7 percent in 2021, 11.8 percent in 2022, 9.6 percent in 2023, and 11.3 percent in 2024 \citep{ontsi_ai_bigdata_2023,ontsi_ai_indicators_2024,bde_ai_adoption_2025}. These annual observations do not form a smooth monotonic series, partly because the survey captures a broad set of AI technologies and their measurement evolved as the technology diffused.
+
+A separate survey carried out by the Bank of Spain and conducted in November 2024 found that 19.9 percent of responding firms used predictive or generative AI and that 18.1 percent used generative AI specifically \citep{bde_ai_adoption_2025}. Most adoption was still shallow: about 60 percent of AI-using firms described their use as experimental or pilot use. At the individual level, the share of Spanish residents aged 18--75 reporting frequent ChatGPT use rose from 4 percent in 2023 to 14 percent in 2024 and 28 percent in 2025 \citep{funcas_ai_survey_2026}. The firm and individual series measure different populations and concepts, so their levels should not be compared directly. Together, however, they show that effective exposure expanded over several years rather than appearing fully in November 2022.
+
+Figure~\ref{fig:ai_adoption_timing} summarizes this evidence and relates it to the empirical windows. We interpret event times 0--24 as an adjustment period in which firms experimented with the technology and reorganized tasks. Event times 25--40 constitute a later period in which adoption had more time to affect hiring and unemployment. These windows do not assume that adoption stopped after 24 months, nor are the survey indicators used as treatment variables. They provide institutional support for allowing the exposure gradient to evolve gradually after the common availability shock.
+
+\begin{figure}[ht!]
+    \centering
+    \caption{AI adoption and generative-AI use in Spain}
+    \label{fig:ai_adoption_timing}
+    \begin{subfigure}{0.65\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{\figdir/figure_ai_adoption_timing_panelA.png}
+        \caption{Firms using AI}
+    \end{subfigure}
+
+    \vspace{0.025cm}
+
+    \begin{subfigure}{0.65\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{\figdir/figure_ai_adoption_timing_panelB.png}
+        \caption{Frequent ChatGPT use among adults}
+    \end{subfigure}
+
+    \begin{minipage}{0.96\textwidth}
+    \footnotesize \emph{Notes:} Panel (a) reports the share of Spanish enterprises with at least 10 employees using at least one AI technology covered by the harmonized ICT survey. The gray diamond reports the broader Banco de Espa\~na (BdeE) EBAE estimate for Nov. 2024, which includes experimental use and is not directly comparable to the annual ICT series. Panel (b) reports the share of Spanish residents aged 18--75 who use ChatGPT frequently. The dashed vertical line marks the public release of ChatGPT in Nov. 2022. Shading identifies the adjustment period (Nov. 2022--Nov. 2024) and later period (Dec. 2024--March 2026) used in the regressions. Sources: ONTSI, BdeE, and Funcas \citep{ontsi_ai_bigdata_2023,ontsi_ai_indicators_2024,bde_ai_adoption_2025,funcas_ai_survey_2026}.
+    \end{minipage}
+\end{figure}
+
+\subsection{Panel construction and summary statistics}
+
+We construct the estimation panel by merging the monthly SEPE occupation panel with the occupation-level AI exposure measure described in the previous subsection, using the four-digit occupation code (CNO4d) as the matching key. Since the Anthropic AI exposure index is cross-sectional, the resulting exposure measure is time-invariant, while the labor-market outcomes are observed monthly. The final estimation sample is a balanced panel of 502 occupations observed over 63 consecutive months, yielding 31,626 occupation-month observations.
+
+The main outcome variables are the logarithm of the number of registered unemployed workers (denoted by $U$) and the logarithm of the number of newly registered contracts (denoted by $C$).\footnote{The baseline specification uses $\log(U)$ and $\log(C)$, excluding occupation-month observations with zero counts. There are two occupation-month observations (0.006\% of the sample) with zero registered unemployed workers and 342 observations (1.08\% of the sample) with zero newly registered contracts. As a robustness check, we re-estimate all specifications using the transformations $\log(U+1)$ and $\log(C+1)$, thereby retaining the full estimation sample. The results are quantitatively very similar to the baseline estimates.} These are the outcome variables considered in the empirical analysis. 
+
+Table~\ref{tab:summary_statistics} reports summary statistics for the estimation sample. The table shows substantial variation in labor-market outcomes across occupation-month observations. It also indicates that the two AI exposure measures have very similar distribution.
+
+\clearpage
+\input{uploads/prism-uploads/summary_statistics.tex}
+
+
+\section{Empirical strategy}
+\label{sec:empirical_strategy}
+
+The empirical strategy exploits the public release of ChatGPT in November 2022 and the subsequent diffusion of generative AI to estimate whether labor-market outcomes evolved differently across occupations with different exposure. Because AI became broadly available at essentially the same time for all occupations, identification comes from cross-occupation differences in AI exposure rather than from staggered treatment timing. Furthermore, the evidence on the timing of adoption summarized above motivates a design that allows the response to emerge gradually rather than imposing an immediate constant effect.
+
+The analysis uses monthly panel data for four-digit occupations (CNO4d), comparing changes within occupations over time. Throughout the paper, the baseline measure of AI exposure is the cosine-nearest exposure measure developed in Section~\ref{sec:mapping}. This measure is fixed over time and assigns each occupation a predicted AI exposure score based on the mapping between Anthropic/O*NET and Spanish CNO4d occupations.
+
+\subsection{Empirical model}
+\label{sec:empirical_model}
+
+The baseline specification relates occupation-level labor-market outcomes to the interaction between AI exposure---a time-invariant measure of treatment intensity---and a full set of monthly event-time indicators pre- and post-Chat GPT release to capture the dynamic effects:
+
+\begin{equation}
+Y_{jt}=\alpha_j+\lambda_{g(j),t}+\sum_{k\in\mathcal{K},\,k\neq-1}\beta_k D_j\mathbf{1}\{e_t=k\}+\varepsilon_{jt},
+\label{eq:baseline_dynamic}
+\end{equation}
+
+where $Y_{jt}$ is alternatively the logarithm of registered unemployed workers---i.e., $\log(U)$---or the logarithm of newly registered contracts---i.e., $\log(C)$---for CNO4d occupation $j$ in year-month $t$.\footnote{The baseline specification excludes occupation-month observations with zero counts when taking logarithms. There are two occupation-month observations (0.006\% of the sample) with zero registered unemployed workers and 342 observations (1.08\% of the sample) with zero newly registered contracts. As a robustness check, we re-estimate all specifications using the logarithm of each labor market outcome plus one, thereby retaining the full estimation sample. The results are quantitatively very similar to the baseline estimates.} Occupation FE \(\alpha_j\) absorb permanent differences across CNO4d occupations, including the level effect of the time-invariant dose. The FE \(\lambda_{g(j),t}\) subsume common year-month effects and absorb any shock shared by occupations in CNO1d family \(g\) in month \(t\). \(A_j\in[0,1]\) is the baseline AI exposure score and define \(D_j=A_j/0.10\), so one unit of \(D_j\) corresponds to a 10 percentage-point increase in exposure. 
+
+\(\mathbf{1}\{e_t=k\}\) is the set of event-time dummies, with \(\mathcal{K}=\{-21,\ldots,40\}\). Event time \(e_t=0\) is November 2022 and October 2022 (\(e_t=-1\)) is the omitted reference month. Each \(\beta_k\), our coefficients of interest, measures the change in the within-CNO1d exposure gradient at event time \(k\), relative to October 2022, the omitted reference month. The within-family interpretation follows from the inclusion of CNO1d-by-year-month FE.\footnote{This comparison is more demanding than not including family group times monthly dummies but less restrictive than CNO2-by-month effects, for which within-family exposure support is limited.} The event study serves two purposes. First, it shows whether the response appears immediately or accumulates as firms adopt the technology, which is better than imposing a constant post-treatment effect. In addition, it provides diagnostics for differential trends before ChatGPT's release---i.e., testing whether the pre-treatment coefficients are jointly equal to zero and statistically indistinguishable from one another---.\footnote{We report two Wald diagnostics over the full, early, and recent pre-treatment windows. The joint-nullity test evaluates whether the selected \(\beta_k\) coefficients are jointly zero. The flatness test evaluates whether they are equal to one another while allowing their common level to differ from zero. The latter is informative when normalization to October 2022 shifts the entire pre-period path without producing a differential slope.}
+
+Baseline standard errors allow arbitrary serial correlation and heteroskedasticity within CNO4 occupations. Because exposure is assigned at the CNO4 level, this is the natural primary clustering level. We also cluster by CNO3 to allow correlated shocks across more closely related four-digit occupations. Point estimates are unchanged under this alternative, while the number of independent clusters falls from 502 to 170.
+
+For reporting purposes, we define \(P^A_t=\mathbf{1}\{0\leq e_t\leq24\}\), which covers the adjustment period during which firms were beginning to adopt AI, and \(P^L_t=\mathbf{1}\{25\leq e_t\leq40\}\), which covers the later period, when AI tools were more widely used by firms and workers. We then estimate the following equation:
+
+\begin{equation}
+Y_{jt}=\alpha_j+\lambda_{g(j),t}+\beta_A D_jP^A_t+\beta_L D_jP^L_t+\varepsilon_{jt}
+\label{eq:baseline_static}
+\end{equation}
+
+Again the coefficients, \(\beta_A\) and \(\beta_L\) are identified from differences in exposure among CNO4d occupations inside the same broad family and year-month. In this log-outcome specification, \(100\beta_p\) is the approximate percentage change associated with a 10 percentage-point increase in exposure during phase \(p\in\{A,L\}\); the exact transformation is \(100[\exp(\beta_p)-1]\). The coefficients are marginal exposure gradients, not average treatment effects from a binary design.
+
+% this part needs to be edited -> mention the back-of-the envelop calculations -> the RB check is not possible
+Because publicly available administrative data do not provide monthly labor-force denominators by occupation, the baseline analysis uses the logarithm of occupation-level unemployment counts rather than occupation-specific unemployment rates. Consequently, changes in $U_{ot}$ should be interpreted as approximately percentage changes in the number of registered unemployed workers within an occupation rather than changes in the occupation-specific unemployment rate.
+
+%As a robustness check, we combine SEPE and Labor Force Survey (EPA) data to construct unemployment rates at the two-digit occupation level. Although this aggregation necessarily averages AI exposure across occupations within each two-digit occupation group, thereby reducing cross-sectional variation in treatment intensity, it allows us to assess whether the main findings are sensitive to using occupation-level unemployment counts rather than occupation-specific unemployment rates.\footnote{The EPA sample is not sufficiently large to produce reliable monthly unemployment rates at the four-digit occupation level. Consequently, the robustness analysis is conducted at the two-digit occupation level.}
+
+\subsection{Identification and interpretation}
+\label{sec:identification}
+
+The preferred specification identifies the exposure gradient from differences across CNO4 occupations within the same CNO1 family. Then, identification relies on conditional parallel trends: absent the diffusion of generative AI after November 2022, differently exposed occupations within a family group would have experienced similar changes in labor-market outcomes. By allowing each broad occupational family to follow an unrestricted monthly path, CNO1d-by-month FE make these comparisons more local and absorb shocks common to the family. As mentioned above, we use event-study diagnostics to assess whether differential trends were already present before treatment. We use CNO1d rather than CNO2d to balance comparability and identifying variation: CNO2d-by-month effects yield narrower comparisons but leave too little within-family exposure variation for precise estimation.
+
+Because AI exposure is continuous, the causal parameters of interest differ from the average treatment effect on the treated (ATT) in a binary design, as discussed by \citet{callaway_goodmanbacon_santanna_2024}. A dose-specific ATT measures the effect of exposure level \(d\), relative to zero exposure, among occupations observed at that dose. The average causal response on the treated, or ACRT, instead measures the effect of a marginal increase in exposure around \(d\) for those occupations.\footnote{Following \citet{callaway_goodmanbacon_santanna_2024}, define \(ATT_t(\ell\mid d,g)\equiv\mathbb{E}[Y_{jt}(\ell)-Y_{jt}(0)\mid D_j=d,g(j)=g]\) and \(ACRT_t(d\mid d,g)\equiv\left.\partial ATT_t(\ell\mid d,g)/\partial\ell\right|_{\ell=d}\). The ATT is a level effect relative to zero exposure, whereas the ACRT is the slope of the dose-response function at \(d\).} In our linear specification, \(\beta_A\) and \(\beta_L\) are period-specific within-family exposure gradients. They capture whether labor-market outcomes changed more in occupations with greater AI exposure during the adjustment and later periods, respectively. Interpreting these gradients as ACRTs requires the stronger assumptions discussed below.
+
+%Standard conditional parallel trends restricts untreated potential outcomes and identifies dose-specific effects relative to zero exposure. 
+The standard conditional parallel-trends assumption restricts untreated potential outcomes and identifies dose-specific effects relative to zero exposure. Interpreting differences across exposure levels as ACRTs requires strong parallel trends \citep{callaway_goodmanbacon_santanna_2024}, which additionally assumes that, within each CNO1d family, occupations receiving different exposure levels would experience the same average outcome path if assigned the same dose.\footnote{Let \(\Delta Y_{jt}(d)\equiv Y_{jt}(d)-Y_{j,-1}(0)\). Formally, strong parallel trends requires \(\mathbb{E}[\Delta Y_{jt}(d)\mid D_j>0,g(j)=g]=\mathbb{E}[\Delta Y_{jt}(d)\mid D_j=d,g(j)=g]\) for every relevant dose \(d\), CNO1d family \(g\), and post-treatment month \(t\).} This assumption rules out systematic selection into exposure intensity based on dose-specific effects. Importantly, standard and strong parallel trends produce the same observable estimands and have identical implications for pre-treatment coefficients. Event-study tests therefore cannot distinguish between them: favorable pre-treatment evidence is consistent with standard parallel trends but may or may not provide supportive evidence on the stronger assumption required to interpret the exposure gradients as ACRTs.
+
+\section{Results}
+\label{sec:results}
+
+\subsection{Baseline results}
+
+Figure \ref{fig:descriptive_patterns} places the analysis in the context of Spain's post-pandemic labor-market recovery. Registered unemployment declines markedly across occupations over most of the sample period, with the steepest decline occurring in 2021 as labor-market conditions normalized following the COVID-19 shock. Prior to the public release of ChatGPT, occupations with different levels of AI exposure follow broadly similar downward trends, although some differential movement is visible during this early recovery period.\footnote{The year 2021 represents an unusually transitional period for the Spanish labor market. The post-pandemic recovery proceeded unevenly across activities and occupations, while extraordinary employment-retention measures, including the COVID-related ERTE schemes, remained in place. Because the incidence of these shocks and policies may have differed systematically across occupations, we report a complementary specification that excludes 2021.} The similar pre-release paths are reassuring, but they are not sufficient for identification because exposure groups may differ in their recovery from the pandemic and in other occupation-specific shocks. After late 2022, however, the decline becomes noticeably slower among highly exposed occupations, leading to a gradual divergence in unemployment trajectories. Middle-exposure occupations also begin to separate from the zero-exposure group, although the pattern is less pronounced than for highly exposed occupations. In contrast, newly registered contracts---a monthly flow measure---exhibit substantially greater month-to-month variation than registered unemployment and show no comparable post-2022 divergence across exposure groups. Overall, the descriptive evidence suggests that labor-market outcomes began to diverge across occupations with different levels of AI exposure after the public release of ChatGPT, particularly for registered unemployment.
+
+\begin{figure}[!t]
+    \centering
+    \caption{Descriptive patterns by AI exposure group}
+    \label{fig:descriptive_patterns}
+
+    \begin{subfigure}{0.65\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{\figdir/Figure1_panelA.png}
+        \caption{Number of registered unemployed}
+    \end{subfigure}
+
+    \vspace{0.030cm}
+
+    \begin{subfigure}{0.65\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{\figdir/Figure1_panelB.png}
+        \caption{Number of new contracts}
+    \end{subfigure}
+
+    \begin{minipage}{0.92\textwidth}
+    \footnotesize \emph{Notes:} The figure plots monthly averages of the outcomes across occupations within each AI exposure group. Panel A reports the evolution of the average number of registered unemployed workers, while Panel B reports the average number of newly registered contracts. Each series is indexed to November 2022 = 100. Occupations are grouped into three categories based on their AI exposure: zero-exposure occupations, middle-exposure occupations, and high-exposure occupations. The middle-exposure group includes occupations with AI exposure greater than zero but below the seventy-fifth percentile, while the high-exposure group includes occupations with AI exposure above the seventy-fifth percentile (0.1169). The vertical dashed line marks November 2022, the month of the public release of ChatGPT.
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[!t]
+    \centering
+    \caption{AI exposure and labor market outcomes. Event-study estimates.}
+    \label{fig:eventstudy_contdid_twfe}
+    
+    \begin{subfigure}{0.65\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{\figdir/Figure2_panelA.png}
+        \caption{Number of registered unemployed}
+    \end{subfigure}
+
+    \vspace{0.030cm}
+
+    \begin{subfigure}{0.65\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{\figdir/Figure2_panelB.png}
+        \caption{Number of new contracts}
+    \end{subfigure}
+
+
+    \begin{minipage}{0.92\textwidth}
+    \footnotesize \emph{Notes:} The figure reports estimates of the preferred event-study specification for the total CNO4d occupation panel. The dependent variables are the logarithm of registered unemployed workers in panel (a) and the logarithm of new contracts in panel (b). Each marker is the marginal effect of a 10 percentage-point increase in AI exposure at the indicated event month. October 2022 (event time \(-1\)) is the omitted reference month; the vertical dashed line marks November 2022, the public release of ChatGPT. All regressions include CNO4d, and CNO1d-by-year-month FE. Shaded areas report 95 percent confidence intervals based on standard errors clustered by CNO4d.
+    \end{minipage}
+\end{figure}
+
+Figure~\ref{fig:eventstudy_contdid_twfe} reports the preferred dynamic estimates.\footnote{Online Appendix~\ref{app:v1_binary} reports results from using a binary-treatment that classifies occupations with AI exposure above the 75th-percentile cutoff of 0.1169 as treated and all remaining occupations as controls.} The preferred specification asks whether outcomes diverged after ChatGPT's release across occupations with different exposure, while comparing occupations within the same broad CNO1d family in every month. This restriction is economically important: it removes shocks shared by related occupations, such as changes in sectoral demand or the pace of the post-pandemic recovery, without requiring those shocks to follow a parametric trend.\footnote{For CNO4 occupation \(j\), CNO1 family \(g(j)\), and event time \(k\), the event-study regression is \(Y_{jt}=\alpha_j+\lambda_{g(j),t}+\sum_{k\neq -1}\beta_k(A_j/0.10)\mathbf{1}\{t-T_0=k\}+\varepsilon_{jt}\). The event window runs from \(-21\) to \(40\), November 2022 is \(T_0\), and October 2022 is omitted. Occupation FE absorb permanent differences across CNO4 occupations, CNO1-by-month FE absorb shocks common to occupations in the same broad family, and standard errors are clustered by CNO4.} For ease of interpretation, coefficients are reported for a 10 percentage-point increase in AI exposure relative to October 2022, the omitted reference month.
+
+In panel (a), the unemployment gradient is close to zero around the release date and becomes positive only after several months. A 10 percentage-point increase in exposure is associated with roughly 1--2 percent more registered unemployment over much of the post-treatment period. The estimates remain positive near the end of the sample, but their confidence intervals widen and frequently include zero. One possible explanation is heterogeneity in the timing and intensity of AI adoption across occupations. A gradual diffusion of the technology would imply that average effects accumulate over time while remaining relatively imprecisely estimated. As shown below, the estimated responses also vary across some demographic and geographic subgroups, which may contribute to the observed imprecision. Panel (b) shows no comparable persistence in new contracts: the coefficients fluctuate around zero and are imprecisely estimated. Overall, the panels are consistent with a gradual increase in the stock of registered unemployment that is more pronounced in occupations with higher AI exposure, rather than with a discrete contraction in the monthly flow of new hiring. These aggregate patterns alone cannot determine whether the increase in registered unemployment is driven by more workers losing their jobs or by unemployed workers taking longer to find employment.
+
+The estimated pre-treatment coefficients fluctuate around zero and display no clear monotonic pattern or systematic drift before the public release of ChatGPT. Despite the absence of a clear visual pattern, formal tests of the joint significance and flatness of the pre-treatment coefficients reject over some event windows. For registered unemployment, the joint-nullity and flatness tests reject over event times \(-21\) through \(-2\) (both \(p=0.003\)), but not over the more recent window \(-10\) through \(-2\) (\(p=0.367\) and \(0.280\)). The full-period rejection is therefore driven by the earlier part of the pre-treatment period, which largely overlaps with the exceptional post-pandemic adjustment in 2021 discussed above. This motivates the complementary specification in Table~\ref{tab:v1_main_effects} that excludes 2021. Importantly, excluding 2021 does not materially change the estimated post-release unemployment gradient, indicating that the magnitude of the post-release estimates is not particularly sensitive to the inclusion of the unusual labor-market adjustment observed during the first year of the sample. For new contracts, the corresponding tests reject over the full window (\(p=0.032\) and \(0.045\)) and remain borderline over the recent window (\(p=0.049\) and \(0.035\)).\footnote{Appendix Table~\ref{tab:v1_pretrends} reports pre-treatment diagnostics for alternative event windows corresponding to the specifications reported in Table~\ref{tab:v1_main_effects}.}
+
+
+
+
+Overall, the event-study evidence is consistent with a relative increase in registered unemployment among more AI-exposed occupations following the public release of ChatGPT. At the same time, the rejection of the joint pre-treatment tests over the full pre-treatment period suggests that this interpretation should be viewed with some caution, even though the estimated pre-treatment coefficients display no clear systematic pattern and the more recent pre-treatment window does not reject for registered unemployment. As shown below, several of the age- and gender-specific estimates exhibit more stable pre-treatment dynamics, suggesting that part of the irregularity in the aggregate estimates may reflect the pooling of groups with heterogeneous labor-market adjustment.
+
+
+
+\setcounter{table}{1}
+\input{\figdir/table2_main_effects_v1.tex}
+
+Table~\ref{tab:v1_main_effects} summarizes the post-treatment path in two periods. The adjustment period covers November 2022 through November 2024, when firms were learning about and beginning to deploy generative AI. The later period covers December 2024 through March 2026, when adoption had more time to affect staffing and job search.\footnote{The table estimates \(Y_{jt}=\alpha_j+\lambda_{t}+\theta_{g(j),t}+\beta_A(A_j/0.10)\mathbf{1}\{0\leq e_t\leq24\}+\beta_L(A_j/0.10)\mathbf{1}\{25\leq e_t\leq40\}+\varepsilon_{jt}\), with and without \(\theta_{g(j),t}\) CNO1d-by-month effects.}
+
+
+Estimates in column 1, which only includes CNO4d FE and year-month FE, imply 1.9 percent more registered unemployment during the adjustment period and 3.8 percent more in the later period for a 10 percentage-point increase in exposure. Restricting identification to within-CNO1d comparisons attenuates the estimates to 1.2 and 1.7 percent in column 2. The adjustment-period coefficient is statistically significant at the 5 percent level; the later coefficient is positive but less precisely estimated. The hypothesis of equal effects across the two periods cannot be rejected (\(p=0.486\)). Column 3 excludes 2021, when the uneven recovery from the pandemic, employment-retention policies, and unusually high telework intensity may have generated occupational trends unrelated to generative AI. The unemployment estimates remain similar, at 1.2 and 1.6 percent. The attenuation after adding CNO1d-by-month effects is economically informative: part of the unconditional relationship reflects shocks shared by broad occupational families rather than variation between comparable CNO4d occupations.
+
+The contract estimates display a similar attenuation. Coefficients in column 4 are 3.3 and 2.9 percent, while the preferred estimates in column 5 are 1.4 and 1.3 percent. Neither preferred estimate is statistically distinguishable from zero, and the two periods are nearly identical (\(p=0.807\)). Excluding 2021 in column 6 reduces the estimates to 0.4 and 0.3 percent, providing no evidence of a persistent contract response. 
+
+AI exposure appears to be associated with an accumulation of registered unemployment without a corresponding broad contraction in hiring flows. Taken together, these results point toward adjustment through unemployment inflows, exits, or duration, although the available data do not allow us to distinguish among these margins. In particular, the absence of a persistent contract response does not imply unchanged exits from unemployment, since contract registrations are not linked to individual unemployment spells and are not a one-to-one measure of exits from registered unemployment.
+
+% We need to do the effect on unemployment rate. Possible alternative: consider unemployment rate from EPA at CNO2d - merge with CNO4d panel data -. Delta uenmployment rate = average unemployment rate pre treatment * (exp*beta_hat - 1) x 100 to have the magnitud in pp -> the implicit assumption is that labor force does not change with the policy
+
+
+\subsection{Heterogeneity by age and gender}
+\label{sec:v1_heterogeneity}
+
+
+Table~\ref{tab:v1_heterogeneity} examines heterogeneity by age. In the preferred specification, a 10 percentage-point increase in AI exposure is associated with 1.7 percent more registered unemployment among workers aged 30--39 during the adjustment period and 3.4 percent more thereafter. Only the later-period estimate is statistically significant. The corresponding estimates are 1.5 and 2.2 percent for workers under age 30 and 0.9 and 1.2 percent for workers aged 40 or older; none is individually distinguishable from zero. Although the point estimates are largest for workers aged 30--39, the formal cross-group tests provide only suggestive evidence of age heterogeneity. Appendix Table~\ref{tab:v1_age_cross_group_tests} does not reject equality across all three age groups in the later period (\(p=0.105\)). Pairwise tests reject equality between workers aged 30--39 and those aged 40 or older (\(p=0.035\)), but not between workers aged 30--39 and workers under age 30 (\(p=0.320\)). Thus, the estimates support a larger response among workers aged 30--39 relative to older workers, but not the stronger conclusion that the response is uniquely concentrated in this age group.
+
+\input{\figdir/heterogeneity_v1.tex}
+
+
+The results for new contracts exhibit a different age profile. For workers under age 30, the preferred estimates imply increases of 2.2 percent during the adjustment period and 2.6 percent thereafter, both statistically significant. The corresponding estimates are 1.3 and 1.7 percent for workers aged 30--39 and close to zero for workers aged 40 or older. When the two younger groups are pooled, the estimated AI-exposure gradient differs significantly between workers under 40 and those aged 40 or older in both periods. These estimates indicate that exposure is associated with greater contracting activity among younger workers, especially those under age 30. They should not, however, be interpreted directly as evidence of net job creation or employment stability. The SEPE variable counts contracts rather than workers or employment spells, so an increase may reflect additional hiring, repeated short contracts, or greater labor-market churn. The churn interpretation is consistent with German evidence that AI exposure raises employer-to-employer mobility without increasing occupational switching \citep{gathmann2024ai}, although that evidence refers to pre-generative AI and to worker-level data. Similarly, the joint increase in contracts and registered unemployment cannot distinguish increased unemployment inflows from slower exits out of unemployment.
+% It would be ideal to have evidence on the why effects are observed for workers between 30 and 39
+
+A pre-treatment composition exercise does not support the hypothesis that the 30--39 result arises because these workers are disproportionately concentrated in more exposed occupations. Each age panel contains the same 502 CNO4 occupations, making the unweighted exposure distribution identical across age groups. Weighting occupations by pre-treatment registered unemployment produces mean exposure scores of 0.113 for workers under age 30, 0.119 for workers aged 30--39, and 0.118 for workers aged 40 or older. When occupations are weighted by new contracts, the corresponding means are 0.075, 0.066, and 0.051. The effective regression samples also have nearly identical mean exposure across age groups. Taken together, the estimates are suggestive of different labor-market responses across age groups within similarly exposed occupations, rather than simply reflecting differential sorting into exposed occupations. Spain's comparatively protracted school-to-work transition offers one possible interpretation: workers in their thirties may remain relatively early in their career progression and possess less tenure or employment protection than older workers. This interpretation remains provisional because the data do not observe tenure, contract type, AI adoption, unemployment inflows, or unemployment duration. The subgroup pre-treatment diagnostics and dynamic estimates are reported in Appendix Table~\ref{tab:v1_heterogeneity_pretrends} and Figures~\ref{fig:v1_heterogeneity_u}--\ref{fig:v1_heterogeneity_c}.\footnote{SEPE omits its CNO4-by-age breakdown for May 2024. We recover uniquely identified integer cells by inverting each June level and the corresponding June-over-May percentage change, with the observed May CNO4 total used as an adding-up validation. Cells that are not uniquely identified remain missing.} 
+
+The gender-specific estimates show substantially less heterogeneity. In the preferred specification, the registered-unemployment gradients are 0.8 and 1.6 percent for men and 1.0 percent in both periods for women. The corresponding contract estimates are also similar across genders, and none is individually statistically significant. We therefore find no clear evidence of differential adjustment by gender.
+
+We also examine heterogeneity by occupational feminization and geography. The unemployment gradient is stronger among less-feminized occupations and in Madrid and Barcelona, but these patterns are accompanied by less favorable pre-treatment diagnostics. We therefore treat these results as suggestive and report the full analyses in Sections \ref{sec:v1_feminization} and \ref{sec:v1_geographic} of the Online Appendix.
+
+
+\subsection{Robustness and additional analyses}
+\label{sec:v1_robustness}
+
+% reason why cosine-wegithed exposure has larger effects?
+Online Appendix Table~\ref{tab:v1_robustness} examines whether the baseline result is an artifact of outcome coding or exposure construction. Replacing \(\log(Y)\) with \(\log(Y+1)\) leaves the preferred unemployment estimates almost unchanged: 1.2 percent in the adjustment period and 1.7 percent later. Cosine-weighted exposure produces somewhat larger estimates of 1.8 and 2.9 percent. %The RF-relative score produces much larger coefficients, 7.9 and 13.6 percent, but it is less dispersed and reorders occupations more substantially, as shown in Online Appendix Figure~\ref{fig:v1_exposure_correlations}. Its scale is therefore not directly comparable to the nearest-neighbor measure, which is used in the baseline results.
+Online Appendix Table~\ref{tab:v1_robustness_pretrends} and Figures~\ref{fig:v1_robust_u}--\ref{fig:v1_robust_c} show that the identifying diagnostics remain the principal limitation across measures.%, mainly for the RF-relative AI exposure measure.
+
+% this exercise is not adding that much as identifying variation stills comes from variation at the CNO4d level
+%Appendix Table~\ref{tab:v1_province} reports a robustness exercise based on a province--occupation--month panel. The purpose of this exercise is to assess whether the baseline findings are robust to disaggregating the outcome and absorbing province-specific monthly shocks, rather than to provide additional identifying variation. Since AI exposure is measured at the CNO4d occupation level and does not vary across provinces, identification still come from differential exposure across occupations, with comparisons made within CNO1d occupation groups in our preferred specification. The preferred unemployment estimates are 0.9 percent during the adjustment period and 1.0 percent thereafter, although only the former is marginally distinguishable from zero. Contract estimates are approximately 0.9 percent in both periods and are imprecisely estimated. The estimated effects are somewhat smaller and less precisely estimated than in the baseline specification, consistent with the additional sampling variability introduced by disaggregating outcomes to the province level, while preserving the positive relationship between AI exposure and labor market outcomes. Appendix Figure~\ref{fig:v1_province_event} reports the corresponding event-study estimates.
+
+No single CNO1 family drives the result: the leave-one-family-out estimates in Online Appendix Figure~\ref{fig:v1_leave_one_out} remain positive and close to the full-sample estimate. As a final outcome check, Online Appendix Table~\ref{tab:v1_trailing_contracts} replaces monthly contracts with registrations accumulated over the current and preceding 11 months. The preferred estimates imply increases of 1.5 percent during the adjustment period and 0.9 percent later, but neither is statistically distinguishable from zero. Online Appendix Figure~\ref{fig:v1_trailing_contracts} similarly shows no persistent post-treatment divergence in the cumulative flow. The trailing measure reduces high-frequency volatility but mechanically smooths and delays changes because adjacent observations share 11 component months. It remains a cumulative hiring flow, rather than a stock of active contracts, and is therefore best interpreted as a robustness check on the contract results.
+
+Additional exposure checks assess whether the baseline result depends on Anthropic's observed-use score. The first uses the BLS classification, which assigns occupations to low, moderate, high, or very high AI-exposure categories.\footnote{The BLS measure combines evidence on the potential use of AI with observed use and is mapped from detailed U.S. occupations to Spanish CNO4 occupations through the fixed crosswalk.} Online Appendix Table~\ref{tab:v1_alternative_exposure_validation} shows that this classification is related to, but not identical to, the baseline ranking. Online Appendix Table~\ref{tab:v1_bls_exposure} provides mixed evidence: relative to low-exposure occupations, the unemployment response is concentrated in the very-high category rather than increasing monotonically across all four groups. The associated pre-treatment diagnostics also remain less favorable than in the preferred baseline (see Online Appendix Figure~\ref{fig:v1_bls_exposure}).
+
+The second check uses the language-model AIOE score in \citet{felten_raj_seamans_2021} and \citet{felten_raj_seamans_2023}, a capability-based measure whose occupational coverage is narrower than that of the Anthropic score.\footnote{LM AIOE measures the overlap between occupational tasks and language-model capabilities. We map it through the same SOC-to-CNO4 crosswalk and express it as a percentile rank among matched occupations.} Online Appendix Table~\ref{tab:v1_lm_aioe_exposure} replaces Anthropic exposure with LM AIOE. The capability-based estimates retain a positive unemployment gradient and small contract responses, broadly matching the direction of the preferred baseline, although their magnitudes are not mechanically comparable because the scores use different scales. Online Appendix Figure \ref{fig:v1_capability_exposure} reports the corresponding dynamics.
+
+
+Online Appendix Table~\ref{tab:v1_jev_robustness} further considers Jev-based occupation mappings and a direct model prediction of observed exposure.\footnote{Jev is a System One AI model that makes fast, structured probabilistic decisions over predefined categories, making it particularly well suited to scalable classification tasks.} These results are qualitatively consistent with our baseline specification, although they are generally larger in magnitude. For a 10 percentage-point increase in exposure, the preferred unemployment estimates are 1.8 and 3.0 percent under the highest-probability mapping and 2.2 and 3.7 percent under probability weighting, during the adjustment and later periods, respectively. Direct observed exposure imputation by Jev produces larger estimates of 4.0 and 8.2 percent. These patterns persist when 2021 is excluded, while preferred contract estimates are statistically indistinguishable from zero across all three alternative measures. Online Appendix Figures~\ref{fig:v1_jev_exposure_unemployed}--\ref{fig:v1_jev_exposure_contracts} report the corresponding dynamics. The full-sample unemployment pre-trend tests reject the joint null under all three measures, so the positive post-treatment gradients remain subject to the baseline identification concern.
+
+\FloatBarrier
+\paragraph{Alternative estimators, task bundling, and aggregate calibration.} To conserve space, we also defer three additional exercises to the Online Appendix. First, Online Appendix~\ref{app:v1_further} reports CDiD and SDiD estimates that construct the counterfactual differently from the preferred within-CNO1 TWFE specification. Both alternatives point to a positive unemployment response, although the estimated magnitudes are larger and the estimands and identifying assumptions differ from the baseline; the contract results are more method-dependent and generally less precise. We therefore treat these estimators as complementary robustness exercises rather than replacements for the preferred design.
+
+Second, Online Appendix~\ref{sec:v1_job_tiers} examines labor-market adjustment across three job tiers that distinguish separable tasks, strongly bundled jobs, and relational work. The preferred within-CNO1 estimates show negative but statistically insignificant unemployment differences for tiers 1 and 2 relative to tier 3. Contract estimates are also attenuated by family-by-month FE and by excluding 2021, leaving no statistically significant differences at the 5 percent level in the restricted sample. The event studies provide less favorable evidence on parallel trends, so we interpret these results as suggestive evidence on occupational adjustment rather than as identifying a protective effect of task bundling.
+
+Third, Online Appendix~\ref{app:v1_aggregate_calibration} presents an illustrative partial-equilibrium calibration that translates the occupation-level estimates into an aggregate unemployment magnitude. The calculation is intended only to provide an order of magnitude: it applies the estimated exposure gradient across occupations and abstracts from spillovers, general-equilibrium adjustment, and any common effect of AI that does not vary with occupational exposure. For these reasons, we do not interpret the exercise as identifying the aggregate causal effect of generative AI on unemployment in Spain.
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+This paper provides early evidence on whether labor-market outcomes in Spain have begun to diverge across occupations according to their exposure to generative AI. The preferred design compares differently exposed CNO4 occupations within the same CNO1 family and month following ChatGPT's public release. A 10 percentage-point increase in exposure is associated with 1.2 percent more registered unemployment during the adjustment period and 1.7 percent more thereafter. The later estimate is imprecise, the two period effects are not statistically different, and new contracts show no precise persistent response. AI exposure appears to be associated with an accumulation of registered unemployment without a corresponding negative exposure gradient in new contract registrations. Taken together, these outcomes point toward adjustment through unemployment inflows, exits, or duration, although the available data do not allow us to distinguish among these margins.
+
+The age-specific estimates provide suggestive evidence of heterogeneity. Individuals aged 30--39 exhibit the largest later-period unemployment gradient, while those under 30 show a more positive contract response, although the cross-group tests do not support a sharp distinction across all age categories. Spain's relatively late labor-market entry and prolonged early-career adjustment offer one possible interpretation. The under-30 category combines established workers with individuals still entering employment, whereas the 30--39 group may better capture workers who are already attached to an occupation but remain relatively mobile and have accumulated less tenure than older workers.\footnote{\citet{quintini_martin_2014}, using primarily 2011 labor-force data, estimate that the age at which 50 percent of young people are employed and no longer enrolled in education was 26.7 in Spain, higher than in the other seven advanced economies in their sample. More recent OECD evidence continues to document comparatively low youth employment and participation rates and difficult school-to-work transitions in Spain \citep{oecd_spain_2023}.} This interpretation remains suggestive because the data do not observe labor-market entry, tenure, or worker transitions, and the cross-group tests do not establish a sharp age threshold.
+
+The results also illustrate why occupational exposure and realized adoption should be distinguished. November 2022 created broad access to generative AI, but Spanish evidence indicates that firm adoption remained limited and often experimental well into 2024, while frequent individual use continued to increase through 2025. The gradual post-release divergence in registered unemployment is consistent with this diffusion path, but it does not establish that firm adoption caused the occupational differences. The exposure score is time-invariant and external to the Spanish labor-market outcomes, but it is derived partly from observed AI use in the Anthropic data rather than from adoption by individual Spanish firms.
+
+The preferred estimates point to a gradual relative accumulation of registered unemployment in more AI-exposed occupations following the public release of ChatGPT. This pattern is robust to excluding the unusual labor-market adjustment of 2021 and is qualitatively consistent with alternative estimators. At the same time, the rejection of the pre-treatment diagnostics over the full pre-period remains an important limitation of the identifying design. The results therefore speak most directly to differential labor-market adjustment across occupations with different AI exposure, rather than to the aggregate effect of generative AI on Spain's unemployment rate. Linking occupational exposure to firm adoption, worker transitions, unemployment duration, and an occupation-level labor-force denominator is the most important next step for distinguishing displacement from slower unemployment exits and broader labor-market reallocation.
+
+\clearpage
+\bibliographystyle{apalike}
+\bibliography{uploads/references}
+
+\appendix
+
+\setcounter{figure}{0}
+\setcounter{table}{0}
+\renewcommand{\thefigure}{\Alph{section}.\arabic{figure}}
+\renewcommand{\thetable}{\Alph{section}.\arabic{table}}
+\renewcommand{\theHfigure}{\Alph{section}.\arabic{figure}}
+\renewcommand{\theHtable}{\Alph{section}.\arabic{table}}
+\makeatletter
+\@addtoreset{figure}{section}
+\@addtoreset{table}{section}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\section*{Appendix}
+\section{Identification support and pre-trend diagnostics}
+\label{app:v1_support}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{figure}[H]
+    \centering
+    \caption{Within-family variation in AI exposure}
+    \label{fig:v1_support}
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{\figdir/Support_panelA.png}
+        \caption{Within-CNO1 variation}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{\figdir/Support_panelB.png}
+        \caption{Within-CNO2 variation}
+    \end{subfigure}
+    \begin{minipage}{0.94\textwidth}
+    \footnotesize \emph{Notes:} The histograms report the distribution of the within-family standard deviation of nearest-neighbor AI exposure. Panel (a) groups CNO4 occupations by CNO1 family and panel (b) groups them by CNO2 family. The vertical dashed line marks the median family. Values near zero indicate limited identifying variation after the corresponding family-by-month FE are absorbed.
+    \end{minipage}
+\end{figure}
+
+\input{\figdir/family_support_v1.tex}
+\input{\figdir/pretrend_diagnostics_v1.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\section{Heterogeneity by age and gender}
+\label{app:v1_heterogeneity}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{\figdir/heterogeneity_pretrend_diagnostics_v1.tex}
+\input{\figdir/age_cross_group_tests_v1.tex}
+
+\clearpage
+\begin{figure}[H]
+    \centering
+    \caption{Heterogeneity in registered unemployment}
+    \label{fig:v1_heterogeneity_u}
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/Heterogeneity_unemployed_panel1.png}
+        \caption{Under 30}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/Heterogeneity_unemployed_panel2.png}
+        \caption{Ages 30--39}
+    \end{subfigure}
+    \vspace{0.20cm}
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/Heterogeneity_unemployed_panel3.png}
+        \caption{Aged 40 or older}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/Heterogeneity_unemployed_panel4.png}
+        \caption{Men}
+    \end{subfigure}
+    \vspace{0.20cm}
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/Heterogeneity_unemployed_panel5.png}
+        \caption{Women}
+    \end{subfigure}
+    \begin{minipage}{0.94\textwidth}
+    \footnotesize \emph{Notes:} The figure reports subgroup-specific estimates from the preferred continuous-treatment specification, which includes CNO4 and CNO1-by-year-month FE. Each marker is the marginal effect of a 10 percentage-point increase in exposure at the indicated event month. October 2022 is the omitted reference month and the vertical dashed line marks November 2022. Shaded areas are 95 percent confidence intervals based on standard errors clustered by CNO4. All panels use the same vertical scale. SEPE omits the age breakdown for May 2024; the age panels recover uniquely implied integer cells from June levels and the published June-over-May changes. Of 6,024 original age-outcome cells, 55 remain unresolved and missing.
+    \end{minipage}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]
+    \centering
+    \caption{Heterogeneity in new contracts}
+    \label{fig:v1_heterogeneity_c}
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/Heterogeneity_contracts_panel1.png}
+        \caption{Under 30}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/Heterogeneity_contracts_panel2.png}
+        \caption{Ages 30--39}
+    \end{subfigure}
+    \vspace{0.20cm}
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/Heterogeneity_contracts_panel3.png}
+        \caption{Aged 40 or older}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/Heterogeneity_contracts_panel4.png}
+        \caption{Men}
+    \end{subfigure}
+    \vspace{0.20cm}
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/Heterogeneity_contracts_panel5.png}
+        \caption{Women}
+    \end{subfigure}
+    \begin{minipage}{0.94\textwidth}
+    \footnotesize \emph{Notes:} The figure reports the same subgroup specifications and confidence intervals as Figure~\ref{fig:v1_heterogeneity_u}, using the logarithm of newly registered contracts as the dependent variable. All panels use the same vertical scale.
+    \end{minipage}
+\end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ONLINE APPENDIX
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\thispagestyle{empty}
+\begin{center}
+    \vspace*{0.17\textheight}
+    {\LARGE\bfseries Online Appendix\par}
+    \vspace{1.2cm}
+    {\Large AI Exposure and Registered Unemployment in Spain:\\
+    Early Evidence from Occupation-Level Administrative Data\par}
+    \vspace{1.5cm}
+    {\large Diego Gonz\'alez-Gonz\'alez \quad Nicol\'as Gonz\'alez-Pampill\'on\par}
+    \vspace{0.25cm}
+    {\large H\'ector Jim\'enez Portilla \quad Javier V\'azquez-Grenno\par}
+\end{center}
+
+\clearpage
+\setcounter{section}{0}
+\setcounter{figure}{0}
+\setcounter{table}{0}
+\renewcommand{\thesection}{O.\Alph{section}}
+\renewcommand{\thefigure}{O.\Alph{section}.\arabic{figure}}
+\renewcommand{\thetable}{O.\Alph{section}.\arabic{table}}
+\renewcommand{\theHsection}{online.\Alph{section}}
+\renewcommand{\theHfigure}{online.\Alph{section}.\arabic{figure}}
+\renewcommand{\theHtable}{online.\Alph{section}.\arabic{table}}
+
+\clearpage
+\section{SEPE and EPA comparison}
+\label{app:sepe_epa}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.82\textwidth]{epa_vs_sepe_unemployment_quarterly.png}
+\caption{Aggregate Unemployment in SEPE and EPA Data}
+\label{fig:epa_vs_sepe_unemployment_quarterly}
+\end{figure}
+
+\clearpage
+%\begin{landscape}
+\section{Face validity of the AI exposure mapping}
+\label{app:face_validity}
+\input{uploads/prism-uploads/table_top_bottom_exposure_appendix.tex}
+%\end{landscape}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\section{Binary treatment}
+\label{app:v1_binary}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+As an alternative to the continuous-treatment design, we classify occupations with AI exposure above 0.1169, the 75th percentile of the exposure distribution, as treated and retain occupations at or below the cutoff as controls. This specification assesses whether the baseline relationship is concentrated in the upper tail of the exposure distribution. It uses the same adjustment and later periods as the baseline analysis and reports the benchmark and preferred FE specifications under the alternative treatment definition.
+
+\input{\figdir/binary_treatment_v1.tex}
+\FloatBarrier
+\input{\figdir/binary_pretrend_diagnostics_v1.tex}
+
+\clearpage
+\begin{figure}[H]
+    \centering
+    \caption{Event-study estimates under the binary treatment definition}
+    \label{fig:v1_binary_event}
+    \begin{subfigure}{\panelwidth}
+        \centering
+        \includegraphics[width=\textwidth]{\figdir/Binary_event_unemployed.png}
+        \caption{Number of registered unemployed}
+    \end{subfigure}
+
+    \vspace{0.30cm}
+
+    \begin{subfigure}{\panelwidth}
+        \centering
+        \includegraphics[width=\textwidth]{\figdir/Binary_event_contracts.png}
+        \caption{Number of new contracts}
+    \end{subfigure}
+
+    \begin{minipage}{0.92\textwidth}
+    \footnotesize \emph{Notes:} The figure reports the preferred TWFE
+    event-study specification under the binary treatment definition. Treatment equals one for occupations with exposure above 0.1169 and zero otherwise, so middle-exposure occupations remain in the control group. All specifications include CNO4 and CNO1-by-year-month FE, with October 2022 as the omitted month. Shaded areas are 95 percent confidence intervals based on standard errors clustered by CNO4.
+    \end{minipage}
+\end{figure}
+
+Table~\ref{tab:v1_binary_treatment} reports larger unemployment coefficients than the continuous-treatment specification. In the preferred model, treated occupations experience 3.9 percent more registered unemployment during the adjustment period and 5.8 percent more in the later period relative to occupations at or below the cutoff. The later estimate is imprecise, and equality between the two period effects cannot be rejected. The corresponding contract estimates remain close to zero. Table~\ref{tab:v1_binary_pretrends} and Figure~\ref{fig:v1_binary_event} report the pre-treatment diagnostics and dynamic estimates. The binary results are consistent with a response concentrated in the upper exposure tail, but discretizing exposure discards variation in treatment intensity and changes the estimand from a marginal exposure gradient to a high-versus-lower-exposure contrast.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\section{Robustness checks}
+\label{app:v1_twfe}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{\figdir/robustness_checks_v1.tex}
+\input{\figdir/robustness_pretrend_diagnostics_v1.tex}
+
+%\begin{figure}[H]
+%    \centering
+%    \caption{Comparison of alternative AI exposure measures}
+%    \label{fig:v1_exposure_correlations}
+%    \begin{subfigure}{0.48\textwidth}
+%        \includegraphics[width=\textwidth]{\figdir/Exposure_correlation_panelA.png}
+%        \caption{Cosine-weighted exposure}
+%    \end{subfigure}
+%    \hfill
+%    \begin{subfigure}{0.48\textwidth}
+%        \includegraphics[width=\textwidth]{\figdir/Exposure_correlation_panelB.png}
+%        \caption{RF-relative exposure}
+%    \end{subfigure}
+%    \begin{minipage}{0.94\textwidth}
+%    \footnotesize \emph{Notes:} Each marker represents one CNO4 occupation.
+%The horizontal axis reports the nearest-neighbor AI exposure score, while the vertical axis reports the alternative measure indicated by the panel caption. Solid lines are least-squares fits. The Pearson correlation with nearest-neighbor exposure is 0.905 for the cosine-weighted score. The corresponding standard deviations are 0.136 and 0.128 for the nearest-neighbor and cosine-weighted scores, respectively.
+%    \end{minipage}
+%\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \caption{Robustness event studies: registered unemployment}
+    \label{fig:v1_robust_u}
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/Robustness_unemployed_panel1.png}
+        \caption{Baseline}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/Robustness_unemployed_panel2.png}
+        \caption{\(\log(Y+1)\)}
+    \end{subfigure}
+    \vspace{0.22cm}
+    \begin{center}
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/Robustness_unemployed_panel3.png}
+        \caption{Cosine-weighted exposure}
+    \end{subfigure}
+    \end{center}
+%    \hfill
+%    \begin{subfigure}{0.48\textwidth}
+%        \includegraphics[width=\textwidth]{\figdir/Robustness_unemployed_panel4.png}
+%        \caption{RF-relative exposure}
+%    \end{subfigure}
+    \begin{minipage}{0.94\textwidth}
+    \footnotesize \emph{Notes:} The figure reports event-study estimates corresponding to Panels A--C of Table~\ref{tab:v1_robustness}. Panel (a) reproduces the preferred specification; panel (b) replaces the dependent variable with \(\log(Y+1)\); panel (c) replace the nearest-neighbor exposure score with the cosine-weighted measure. Each regression includes CNO4 and CNO1-by-year-month FE. October 2022 is the omitted reference month, and the vertical dashed line marks November 2022. Shaded areas are 95 percent confidence intervals based on standard errors clustered by CNO4.
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \caption{Robustness event studies: new contracts}
+    \label{fig:v1_robust_c}
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/Robustness_contracts_panel1.png}
+        \caption{Baseline}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/Robustness_contracts_panel2.png}
+        \caption{\(\log(Y+1)\)}
+    \end{subfigure}
+    \vspace{0.22cm}
+    \begin{center}
+    
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/Robustness_contracts_panel3.png}
+        \caption{Cosine-weighted exposure}
+    \end{subfigure}
+    \end{center}
+%    \hfill
+%    \begin{subfigure}{0.48\textwidth}
+%        \includegraphics[width=\textwidth]{\figdir/Robustness_contracts_panel4.png}
+%        \caption{RF-relative exposure}
+%    \end{subfigure}
+    \begin{minipage}{0.94\textwidth}
+    \footnotesize \emph{Notes:} The figure reports the same specifications and confidence intervals as Figure~\ref{fig:v1_robust_u}, using the logarithm of newly registered contracts as the dependent variable.
+    \end{minipage}
+\end{figure}
+
+\clearpage
+\begin{figure}[H]
+    \centering
+    \caption{Leave-one-CNO1-out sensitivity}
+    \label{fig:v1_leave_one_out}
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{\figdir/LeaveOneCNO1_unemployed.png}
+        \caption{Number of registered unemployed}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{\figdir/LeaveOneCNO1_contracts.png}
+        \caption{Number of new contracts}
+    \end{subfigure}
+    \begin{minipage}{0.94\textwidth}
+    \footnotesize \emph{Notes:} Each marker reports the November 2022--November 2025 long-difference estimate after omitting the indicated CNO1 family. The regressions absorb CNO1 FE in the differenced equation and therefore compare occupations within the remaining CNO1 families. Vertical bars are 95 percent confidence intervals based on standard errors clustered by CNO4.
+    \end{minipage}
+\end{figure}
+
+\input{\figdir/trailing12_contracts_v1.tex}
+
+\begin{figure}[H]
+    \centering
+    \caption{Event-study estimates for trailing 12-month contract registrations}
+    \label{fig:v1_trailing_contracts}
+    \begin{subfigure}{\panelwidth}
+        \centering
+        \includegraphics[width=\textwidth]{\figdir/Trailing12_contracts_event.png}
+        \caption{Number of new contracts accumulated over 12 months}
+    \end{subfigure}
+    \begin{minipage}{0.92\textwidth}
+    \footnotesize \emph{Notes:} The dependent variable is the logarithm of
+    newly registered contracts accumulated over the current and preceding 11 months. The specification includes CNO4 and CNO1-by-year-month FE. October 2022 is the omitted event-study month, and the vertical dashed line marks November 2022. Each marker is the marginal effect of a 10 percentage-point increase in AI exposure; shaded areas are 95 percent confidence intervals based on standard errors clustered by CNO4. Because a complete trailing window is first available in December 2021, the graph has 11 pre-treatment months. Adjacent outcomes share 11 component months, so the transformation mechanically smooths and delays the response. The measure is a cumulative hiring flow, not a stock of active contracts.
+    \end{minipage}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\subsection*{Alternative external exposure measures}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The first external measure is the AI-exposure classification developed by the U.S. Bureau of Labor Statistics (BLS). The BLS places detailed occupations into four categories---low, moderate, high, and very high relative exposure---using five external measures. Three inputs capture the potential correspondence between AI capabilities and occupational work, while two incorporate observed AI use mapped to occupational tasks or activities. After converting each input to an occupational percentile rank, the BLS summarizes the theoretical and observed-use dimensions and applies a clustering algorithm to obtain the four categories. The classification is therefore a hybrid measure of relative exposure, not an estimate of adoption, displacement, productivity, or employment growth. We map the BLS categories from detailed U.S. occupations to Spanish CNO4 occupations using the fixed SOC crosswalk.\footnote{The classification, downloadable data, and complete methodology are available from the U.S. Bureau of Labor Statistics at \url{https://www.bls.gov/emp/publications/ai-exposure-categories.htm}.}
+
+The second external measure is the language-modeling AI Occupational Exposure index (LM AIOE) developed by \citet{felten_raj_seamans_2021} and \citet{felten_raj_seamans_2023}. LM AIOE is a capability-based measure: it relates advances in language modeling to the workplace abilities required by each occupation and aggregates those links using O*NET occupational information. Unlike the Anthropic measure, it does not use observed model interactions and should be interpreted as potential exposure to language-model capabilities rather than realized adoption or use. We map LM AIOE from SOC occupations to CNO4 and express it as a percentile rank among matched occupations.\footnote{The paper and accompanying data are available at \url{https://arxiv.org/abs/2303.01157} and \url{https://github.com/AIOE-Data/AIOE}, respectively.}
+
+Table~\ref{tab:v1_alternative_exposure_validation} reports coverage and rank correlations with the baseline Anthropic measure. Table~\ref{tab:v1_bls_exposure} and Figure~\ref{fig:v1_bls_exposure} use the BLS categories. Table~\ref{tab:v1_lm_aioe_exposure} uses the LM AIOE exposure measure. Figure~\ref{fig:v1_capability_exposure} reports the corresponding LM AIOE event-study estimates.
+
+\input{\figdir/alternative_exposure_validation_v1.tex}
+\FloatBarrier
+\input{\figdir/bls_categorical_exposure_v1.tex}
+
+\begin{figure}[H]
+    \centering
+    \caption{Event-study estimates using BLS exposure categories}
+    \label{fig:v1_bls_exposure}
+    \begin{subfigure}{\panelwidth}
+        \includegraphics[width=\textwidth]{\figdir/BLSExposure_unemployed.png}
+        \caption{Number of registered unemployed}
+    \end{subfigure}
+
+    \vspace{0.25cm}
+    \begin{subfigure}{\panelwidth}
+        \includegraphics[width=\textwidth]{\figdir/BLSExposure_contracts.png}
+        \caption{Number of new contracts}
+    \end{subfigure}
+
+    \begin{minipage}{0.92\textwidth}
+    \footnotesize \emph{Notes:} The figure reports differences relative to
+    occupations in the BLS low-exposure category. The BLS classification is
+    mapped to Spanish CNO4 occupations through the fixed SOC crosswalk. All
+    regressions include CNO4 and CNO1-by-year-month FE. October 2022 is the omitted month; the vertical dashed line marks November 2022.
+    Shaded areas are 95 percent confidence intervals based on standard errors clustered by CNO4.
+    \end{minipage}
+\end{figure}
+
+
+\FloatBarrier
+\input{\figdir/lm_aioe_exposure_v1.tex}
+
+\clearpage
+\begin{figure}[H]
+    \centering
+    \caption{Event-study estimates using capability-based AI exposure}
+    \label{fig:v1_capability_exposure}
+    \begin{subfigure}{\panelwidth}
+        \includegraphics[width=\textwidth]{\figdir/CapabilityExposure_unemployed.png}
+        \caption{Number of registered unemployed}
+    \end{subfigure}
+
+    \vspace{0.25cm}
+    \begin{subfigure}{\panelwidth}
+        \includegraphics[width=\textwidth]{\figdir/CapabilityExposure_contracts.png}
+        \caption{Number of new contracts}
+    \end{subfigure}
+
+    \begin{minipage}{0.92\textwidth}
+    \footnotesize \emph{Notes:} The figure uses the language-model AIOE
+    capability score of Felten, Raj, and Seamans, expressed in percentile
+    ranks among matched occupations. Each marker is the marginal effect of a
+    10-percentile-point increase in the score. The specification includes CNO4 and CNO1-by-year-month FE, and standard errors are clustered by CNO4. October 2022 is the omitted month.
+    \end{minipage}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+%\section{Further heterogeneity: occupational feminization and geography}
+%\label{sec:v1_further_heterogeneity}
+
+
+\input{\figdir/appendix_od_jev.tex}
+\clearpage
+
+\section{Occupational feminization}
+\label{sec:v1_feminization}
+
+The occupational-feminization analysis examines whether the relationship between AI exposure and labor-market outcomes varies with occupations' historical gender composition. We define \(F_j\) as the female share of employment in occupation \(j\)'s CNO2d group, calculated from pooled EPA employment over 2017--2019. Because this measure predates ChatGPT's release, it is not affected by post-treatment labor-market adjustment. We divide occupations at the median female-employment share, \(\widetilde F=0.303\), and allow the AI exposure gradient to differ between occupations below and at or above this threshold.\footnote{The estimating equation is \(\ln Y_{jt}=\alpha_j+\theta_{g(j),t}+\sum_{p\in\{A,L\}}\sum_{h\in\{B,H\}}\beta_{ph}(A_j/0.10)\mathbf{1}\{e_t\in p\}\mathbf{1}\{F_j\in h\}+\varepsilon_{jt}\), where \(A\) and \(L\) denote the adjustment and later periods and \(B\) and \(H\) denote occupations below and at or above the median feminization index. The pre-treatment period is omitted, and standard errors are clustered by CNO4d.} This is an occupation-level heterogeneity exercise: it does not estimate separate effects for individual men and women or identify a causal effect of occupational feminization.
+
+\input{\figdir/feminization_median_split_v1.tex}
+
+Table~\ref{tab:v1_feminization_median_split} shows a marked difference in the unemployment gradient across the two groups. Among occupations below the median feminization index, a 10 percentage-point increase in AI exposure is associated with 4.3 percent more registered unemployment during the adjustment period and 7.7 percent more thereafter. Both estimates are statistically significant at the 1 percent level. Excluding 2021 produces similar estimates of 3.7 and 7.1 percent. By contrast, the unemployment gradients for occupations at or above the median are small, negative, and statistically indistinguishable from zero in both periods. The contract estimates are also small and imprecise for both groups. The results therefore associate greater AI exposure with a relative accumulation of registered unemployment in less-feminized occupations, without a corresponding aggregate increase in contract registrations.
+
+This pattern should nevertheless be interpreted cautiously. The joint null of no differential pre-treatment trends is rejected for registered unemployment among below-median occupations both in the full sample (\(p=0.005\)) and after excluding 2021 (\(p=0.008\)). The corresponding tests do not reject for occupations at or above the median. The identifying concern is therefore concentrated in the group for which the estimated post-treatment unemployment gradient is largest. Figures~\ref{fig:v1_feminization_u} and \ref{fig:v1_feminization_c} present the dynamic paths using the original and pre-trended outcomes. Detrending attenuates some pre-treatment movements but does not eliminate the diagnostic concerns.
+
+Table~\ref{tab:v1_feminization_three_group} and Figure~\ref{fig:v1_feminization_three_group} examine a more flexible classification that separates occupations below the 25th percentile, between the 25th and 75th percentiles, and above the 75th percentile of the feminization index. The positive unemployment gradient is concentrated in the least-feminized group: the estimates are 4.7 percent during adjustment and 9.2 percent later, compared with smaller positive estimates in the middle group and negative, imprecise estimates in the most-feminized group. These conclusions are largely unchanged when 2021 is excluded. For contracts, the least-feminized group instead exhibits a negative later-period gradient, while the middle and upper groups show no comparable persistent decline. The three-group specification thus reinforces the concentration of the unemployment result among less-feminized occupations, but it does not resolve the pre-treatment evidence or establish occupational feminization as the underlying mechanism.
+
+%\section{Occupational feminization}
+%\label{app:v1_feminization}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\input{\figdir/occupational_feminization_main_v1.tex}
+%\input{\figdir/feminization_pretrends_v1.tex}
+
+\begin{figure}[H]
+    \centering
+    \caption{Heterogeneity by occupational feminization: registered unemployment}
+    \label{fig:v1_feminization_u}
+    \begin{subfigure}{\panelwidth}
+        \includegraphics[width=\textwidth]{\figdir/Feminization_median_unemployed.png}
+        \caption{Levels}
+    \end{subfigure}
+    \vspace{0.25cm}
+    \begin{subfigure}{\panelwidth}
+        \includegraphics[width=\textwidth]{\figdir/Feminization_median_detrended_unemployed.png}
+        \caption{Pre-trended outcomes}
+    \end{subfigure}
+    \begin{minipage}{0.92\textwidth}
+    \footnotesize \emph{Notes:} The figure reports marginal effects of a 10 percentage-point increase in AI exposure separately for occupations below and at or above the median CNO2 feminization index. The specifications include CNO4 FE and CNO1-by-year-month effects; October 2022 is the omitted month and November 2022 is event time zero. Shaded areas are 95 percent confidence intervals based on standard errors clustered by CNO4. The lower panel repeats the exercise after subtracting fitted pre-treatment common month effects and CNO4-specific linear trends; it is a diagnostic for differential pre-trends rather than the preferred specification.
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \caption{Heterogeneity by occupational feminization: new contracts}
+    \label{fig:v1_feminization_c}
+    \begin{subfigure}{\panelwidth}
+        \includegraphics[width=\textwidth]{\figdir/Feminization_median_contracts.png}
+        \caption{Levels}
+    \end{subfigure}
+    \vspace{0.25cm}
+    \begin{subfigure}{\panelwidth}
+        \includegraphics[width=\textwidth]{\figdir/Feminization_median_detrended_contracts.png}
+        \caption{Pre-trended outcomes}
+    \end{subfigure}
+    \begin{minipage}{0.92\textwidth}
+    \footnotesize \emph{Notes:} The figure reports the corresponding marginal effects for the logarithm of newly registered contracts. All specifications, event-time conventions, confidence intervals, and the interpretation of the lower panel are the same as in Figure~\ref{fig:v1_feminization_u}.
+    \end{minipage}
+\end{figure}
+
+\input{\figdir/feminization_three_group_v1.tex}
+
+\begin{figure}[H]
+    \centering
+    \caption{AI exposure effects across occupational-feminization groups}
+    \label{fig:v1_feminization_three_group}
+    \begin{subfigure}{\panelwidth}
+        \includegraphics[width=\textwidth]{\figdir/Feminization_three_group_unemployed.png}
+        \caption{Number of registered unemployed}
+    \end{subfigure}
+
+    \vspace{0.25cm}
+    \begin{subfigure}{\panelwidth}
+        \includegraphics[width=\textwidth]{\figdir/Feminization_three_group_contracts.png}
+        \caption{Number of new contracts}
+    \end{subfigure}
+
+    \begin{minipage}{0.92\textwidth}
+    \footnotesize \emph{Notes:} The figure reports marginal effects of a 10 percentage-point increase in AI exposure for occupations below the 25th percentile, between the 25th and 75th percentiles, and above the 75th percentile of the predetermined CNO2 female-employment share. All regressions include CNO4 and CNO1-by-year-month FE. October 2022 is the omitted month; shaded areas are 95 percent confidence intervals based on standard errors clustered by CNO4.
+    \end{minipage}
+\end{figure}
+
+
+
+\section{Geographic heterogeneity}
+\label{sec:v1_geographic}
+
+We next examine whether the exposure gradient differs between Spain's two largest urban labor markets and the rest of the country. The province-by-CNO4 panel pools Madrid and Barcelona into one group and compares it with all other provinces. The regressions allow the exposure gradient to differ across the two geographic groups and between the adjustment and later periods. Province-by-CNO4 FE absorb permanent differences in occupation size across provinces, province-by-month FE absorb local aggregate shocks, and CNO1-by-month FE retain the preferred within-family comparison.
+
+\input{\figdir/main_provinces_v1.tex}
+
+Table~\ref{tab:v1_main_provinces} indicates a larger unemployment gradient in Madrid and Barcelona. In the full sample, a 10 percentage-point increase in AI exposure is associated with 1.7 percent more registered unemployment during the adjustment period and 2.5 percent more thereafter, compared with 0.9 percent in both periods across the remaining provinces. Equality between the geographic effects is rejected during adjustment (\(p=0.045\)) and in the later period (\(p=0.012\)). Excluding 2021 yields corresponding estimates of 1.4 and 2.2 percent for Madrid and Barcelona and 0.8 percent in both periods elsewhere. Under this restriction, equality is not rejected during adjustment (\(p=0.139\)) but remains rejected later (\(p=0.035\)). The later divergence is therefore less sensitive to the pandemic-recovery year than the adjustment-period difference.
+
+The contract gradients move in the opposite direction across the two groups but are individually imprecise. In the full sample, the estimates for Madrid and Barcelona are \(-0.4\) percent during adjustment and \(-0.6\) percent later, compared with 1.0 percent in both periods for the rest of Spain. Excluding 2021 makes the contrast larger: the estimates are \(-1.2\) and \(-1.3\) percent in Madrid and Barcelona and 0.5 percent in both periods elsewhere. The geographic-equality tests reject under the restricted sample, but the absence of individually precise contract responses argues against interpreting these differences as evidence of a clear hiring mechanism.
+
+Figure~\ref{fig:v1_main_provinces} reports the corresponding dynamic estimates. The geographic results should be interpreted cautiously because the pre-treatment joint null is rejected in several specifications, particularly for the rest of Spain. Pooling Madrid and Barcelona may also capture differences in sectoral composition, occupational mobility, local demand, or adoption intensity rather than a distinct metropolitan causal effect. The exercise therefore documents where the aggregate exposure gradient is strongest, but does not identify why it differs geographically.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\clearpage
+%\section{Geographic heterogeneity}
+%\label{app:v1_geographic}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{figure}[H]
+    \centering
+    \caption{Geographic heterogeneity in AI exposure effects}
+    \label{fig:v1_main_provinces}
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/MainProvince_comparison_unemployed.png}
+        \caption{Number of registered unemployed}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/MainProvince_comparison_contracts.png}
+        \caption{Number of new contracts}
+    \end{subfigure}
+    \begin{minipage}{0.94\textwidth}
+    \footnotesize \emph{Notes:} The figure reports event-study estimates from the province-by-CNO4 panel for Madrid and Barcelona pooled together and for the remaining Spanish provinces. Each regression includes province-by-CNO4, province-by-year-month, and CNO1-by-year-month FE. October 2022 is the omitted month, and the vertical dashed line marks November 2022. Shaded areas are 95 percent confidence intervals based on standard errors clustered by CNO4.
+    \end{minipage}
+\end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\section{Alternative estimators}
+\label{app:v1_further}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\subsection{CDiD alternative}
+\label{app:v1_contdid}
+
+This subsection asks whether the main conclusion survives estimators that construct the counterfactual differently. Both alternatives are informative, but neither reproduces the preferred within-CNO1d comparison while retaining a continuous treatment.
+
+
+
+Under the strong parallel-trends assumption, each TWFE coefficient can be interpreted as a regression-weighted average of average causal responses (ACRs) across AI exposure levels \citep{callaway_goodmanbacon_santanna_2024}. With common treatment timing, as in our setting, these weights are positive, avoiding the negative-weight problem associated with staggered adoption. Nevertheless, these regression-implied weights tend to place greater weight on causal responses at intermediate exposure levels than on responses in the tails of the exposure distribution.\footnote{The empirical relevance of this weighting depends on the degree of heterogeneity in causal responses across AI exposure levels. If the dose-response relationship is approximately linear, or causal responses vary little across exposure levels, TWFE and CDiD estimators are expected to deliver similar estimates. Larger differences are expected when causal responses vary substantially over the AI exposure distribution \citep{callaway_goodmanbacon_santanna_2024}.}
+
+For this reason, we also apply the CDiD estimator proposed by \citet{callaway_goodmanbacon_santanna_2024}. Rather than imposing the regression-derived weighting scheme of TWFE, this estimator directly estimates the causal response at different AI exposure levels under the strong parallel-trends assumption.\footnote{We implement the estimator using the R package \texttt{contdid}. The package provides event-study estimates, which trace causal responses around the public release of ChatGPT, and dose-response functions, which show how treatment effects vary across the AI exposure distribution.} The main limitation of this estimator in our application is that it cannot directly incorporate the CNO1d-by-month FE used in the preferred design. We therefore report three alternative implementations, together with a specification that excludes 2021.
+
+Table~\ref{tab:v1_contdid_alternatives} reports average causal responses on the treated (ACRTs) over the adjustment and later periods.\footnote{We construct separate averages for the adjustment period, \(W_A=\{0,\ldots,24\}\), and the later period, \(W_L=\{25,\ldots,40\}\), where event time 0 denotes November 2022. For either window \(W\), the estimated response is \(\widehat{\theta}_{W}=|W|^{-1}\sum_{t\in W}\widehat{\mathrm{ACRT}}_{t}\). If \(a_W\) assigns weight \(1/|W|\) to each event time in \(W\), its estimated variance is \(a_W^{\prime}\widehat{\Sigma}a_W\), where \(\widehat{\Sigma}\) is the influence-function covariance matrix. Family-specific estimates are aggregated using each family's share of positive-exposure occupations, with the corresponding covariance matrices entering with squared aggregation weights.} Columns 1 and 5 present our preferred CNO1d-stratified estimator. We estimate CDiD separately within families containing at least 15 positive-exposure and 5 zero-exposure occupations and aggregate the resulting family-specific responses using positive-exposure occupation shares.\footnote{At each event time, we aggregate the family-specific causal responses using each family's share of positive-exposure CNO4d occupations among all retained families. We then average these monthly estimates over event times 0--24 and 25--40.} This restriction retains CNO1d groups 1--5 and covers 87.6 percent of positive-exposure occupations in the unemployment sample and 82.3 percent in the contract sample. A 10 percentage-point increase in AI exposure is associated with 3.4 percent more registered unemployment during the adjustment period and 7.1 percent more thereafter. The corresponding contract estimates are 2.0 and 5.7 percent, with only the later-period effect statistically significant. The later-period responses are also statistically different from their adjustment-period counterparts. Columns 2 and 6 repeat the CNO1d-stratified estimator after excluding 2021 and produce nearly identical point estimates.
+
+Columns 3 and 7 report a control-based family adjustment. Before pooling the data, this approach subtracts from each occupation's outcome change the corresponding change among zero-exposure occupations in the same supported CNO1d family.\footnote{For each supported CNO1d family and month, we calculate the mean outcome among zero-exposure occupations and its change relative to October 2022. We subtract this change from the outcome of every occupation in the same family and apply CDiD to the pooled adjusted sample. This procedure measures each occupation's evolution relative to zero-exposure occupations in its family, but it is not equivalent to absorbing CNO1d-by-month FE.} The resulting estimates closely track the stratified results: the unemployment responses are 3.5 percent during adjustment and 7.2 percent later, while the contract responses are 2.2 and 5.4 percent. Columns 4 and 8 report the unconditional CDiD estimator. Its later-period unemployment estimate rises to 10.9 percent, suggesting that comparisons across broad occupational families contribute to the larger pooled response; the corresponding contract estimate is 5.9 percent.
+
+The CDiD estimates are larger than their TWFE counterparts but reinforce the positive direction of the unemployment result. Their identifying diagnostics remain less favorable, however. The pre-treatment joint null is rejected for unemployment in every specification. For contracts, it is rejected in the full-sample stratified, control-adjusted, and unconditional specifications, but not when the stratified estimator excludes 2021 (\(p=0.138\)). We therefore interpret CDiD as complementary evidence rather than as a replacement for the preferred within-family TWFE design. Figure~\ref{fig:v1_contdid_paths} reports the dynamic estimates from the preferred CNO1d-stratified specification.
+
+
+
+\begin{figure}[H]
+    \centering
+    \caption{CNO1-stratified CDiD event-study estimates}
+    \label{fig:v1_contdid_paths}
+    \begin{subfigure}{\panelwidth}
+        \includegraphics[width=\textwidth]{\figdir/ContDID_panel1.png}
+        \caption{Number of registered unemployed}
+    \end{subfigure}
+    \vspace{0.30cm}
+    \begin{subfigure}{\panelwidth}
+        \includegraphics[width=\textwidth]{\figdir/ContDID_panel2.png}
+        \caption{Number of new contracts}
+    \end{subfigure}
+    \begin{minipage}{0.92\textwidth}
+    \footnotesize \emph{Notes:} The figure reports CDiD estimates obtained separately within CNO1 families containing at least 15 positive-exposure and 5 zero-exposure occupations. Family-specific marginal responses are aggregated using each family's share of positive-exposure occupations. November 2022 is event time 0 and October 2022 is the reference month. Shaded areas are 95 percent confidence intervals based on the aggregated influence-function covariance matrices.
+    \end{minipage}
+\end{figure}
+
+\input{\figdir/contdid_alternatives_v1.tex}
+%\input{\figdir/contdid_pretrend_diagnostics_v1.tex}
+
+
+\clearpage
+\subsection{SDiD}
+\label{app:v1_sdid}
+
+SDiD provides a complementary methodological approach. Continuous TWFE and SDiD differ along three core dimensions: weighting, estimand, and identification. In the continuous TWFE specification, the event-study coefficients are obtained from a single ordinary least squares (OLS) projection with FE. As such, the relevant weights are implicit residual-variation weights rather than transparent donor or time weights. By contrast, SDiD explicitly learns unit weights over donor occupations and time weights over pre-treatment months to construct a synthetic counterfactual\footnote{Conceptually, \(\widehat{\tau}_{SDiD}=T_1^{-1}\sum_{t>T_0}\left(\overline{Y}_{Tt}-\sum_j\widehat{\omega}_jY_{jt}\right)-\sum_{t\leq T_0}\widehat{\lambda}_t\left(\overline{Y}_{Tt}-\sum_j\widehat{\omega}_jY_{jt}\right)\), where \(\widehat{\omega}_j\) are donor weights and \(\widehat{\lambda}_t\) are pre-period time weights.}. This difference also maps into the estimand: the continuous TWFE coefficients are best interpreted as average causal response parameters, that is, the marginal effect of a higher exposure dose, rather than as a standard ATT. Conversely, the SDiD exercises in our design use a binary treated-versus-donor definition and therefore target an ATT for the exposed group relative to its synthetic control. Finally, their identifying assumptions are related but not identical. Continuous TWFE relies on a dose-based parallel trends restriction, together with strong functional-form discipline such as linearity in exposure and limited heterogeneity in marginal effects. SDiD relies on the existence of a convex donor combination that closely reproduces treated pre-trends and remains a valid counterfactual after treatment.
+
+The baseline SDiD specification defines treatment as occupations with AI exposure above 0.1169, corresponding to the 75th percentile of the CNO4 exposure distribution, and therefore identifies the effect of being highly exposed relative to less exposed occupations. Allowing occupations with intermediate exposure to remain in the donor pool improves economic comparability, as these occupations are more likely to share latent determinants of counterfactual unemployment dynamics with the treated group, including related task content or differential scope for telework. As a complementary robustness exercise, we also estimate a sharper binary design in which treated occupations are those with AI exposure above 0.2, while the donor pool is restricted to occupations with zero exposure. This alternative specification is more stringent in ruling out AI exposure among controls and therefore yields an ATT that can be interpreted more directly as the effect of high exposure relative to no exposure. In both cases, we implement the SDiD estimator with projected covariates that residualize the outcome with respect to CNO1-by-month components before constructing the synthetic comparison, thereby purging occupation-family-specific dynamics and common monthly shocks from the variation used for identification.\footnote{Inference uses 500 placebo reassignments. The CNO1-by-month projection is computed from outcome and family-month cells and is held fixed across placebo assignments. Event-study confidence intervals use the same number of reassignments.}
+
+Table~\ref{tab:v1_sdid} reports the SDiD estimates under the two treatment definitions. Under the baseline design, registered unemployment increases by 2.7 percent during the adjustment period and by 4.1 percent in the later period, while the corresponding contract effects remain close to zero and statistically imprecise. Under the more dichotomous design, which compares occupations with exposure above 0.2 to zero-exposure occupations, the unemployment effect is 2.9 percent during the adjustment period, whereas the 1.9 percent later-period estimate is not statistically significant. Contract effects again remain statistically imprecise.
+
+Figure \ref{fig:v1_sdid_projected} reports the corresponding average outcome paths and event-study estimates for the baseline SDiD design. Relative to the continuous TWFE estimates, the synthetic weighting produces a closer pre-treatment match and again points to a positive unemployment response. This improved pre-treatment fit comes at the cost of imposing an ad hoc binary treatment definition and estimating a different parameter.
+
+Table \ref{tab:v1_sdid_weight_diagnostics} provides additional diagnostics for the donor and time weights from the baseline expanded-donor specification estimated over the full post-treatment period. Donor weights are broadly dispersed across occupations for both outcomes. Time weights, however, are substantially more concentrated for registered unemployment, with essentially all weight placed on a single pre-treatment month. We therefore interpret the SDiD estimates as complementary evidence rather than as a preferred alternative to the baseline specification. Table \ref{tab:v1_sdid_donors} reports the treated occupations and the positive-weight donor occupations underlying this exercise.
+
+
+%Table~\ref{tab:v1_sdid} shows that, under the baseline SDiD design, unemployment rises by 2.7 percent during the adjustment period and by 4.1 percent in the later period, while the corresponding contract effects remain close to zero. Under the more dichotomous robustness design that compares occupations with exposure above 0.2 to zero-exposure occupations, the unemployment effect is 2.9 percent during the adjustment period, whereas the 1.9 percent later-period estimate is not statistically significant; contract effects again remain small and statistically imprecise. Compared to the continuous TWFE results, the synthetic weighting improves pre-treatment fit and again points to a positive unemployment response (Figure~\ref{fig:v1_sdid_projected}). Its stronger fit comes at the cost of imposing an ad hoc binary treatment and estimating a different parameter. Online Appendix~\ref{app:v1_sdid} reports the average outcome paths for the treated and synthetic control groups, along with the donor and time weights and accompanying diagnostics on weight concentration.
+
+
+\input{\figdir/sdid_estimates_v1.tex}
+
+\begin{figure}[H]
+    \centering
+    \caption{CNO1-by-month-adjusted SDiD estimates}
+    \label{fig:v1_sdid_projected}
+    \textit{\# of registered unemployed}\par\vspace{0.10cm}
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/SDID_adjusted_path_unemployed.png}
+        \caption{Evolution}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/SDID_adjusted_event_unemployed.png}
+        \caption{Event study}
+    \end{subfigure}
+    \vspace{0.25cm}
+    \textit{\# of new contracts}\par\vspace{0.10cm}
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/SDID_adjusted_path_contracts.png}
+        \caption{Evolution}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{\figdir/SDID_adjusted_event_contracts.png}
+        \caption{Event study}
+    \end{subfigure}
+    \begin{minipage}{0.94\textwidth}
+    \footnotesize \emph{Notes:} Treated occupations have nearest-neighbor AI
+    exposure above 0.1169, while occupations at or below the cutoff form the
+    donor pool. Before constructing the synthetic comparison, outcomes are adjusted for CNO1-by-month indicators using the projected covariate-adjustment procedure implemented within SDiD. Panels (a) and (c) compare the treated outcome path with the weighted synthetic counterfactual; panels (b) and (d) report the corresponding event-study estimates. The counterfactual paths are reported as returned by the estimator, without an additional graphical level shift. Unit weights minimize pre-treatment discrepancies between the treated and donor paths, and time weights emphasize pre-treatment months that best predict post-treatment donor outcomes. Event-study confidence intervals use placebo inference with 500 repetitions.
+    \end{minipage}
+\end{figure}
+
+\clearpage
+\input{\figdir/sdid_weight_diagnostics_v1.tex}
+\input{\figdir/sdid_donor_weights_v1.tex}
+
+\input{\figdir/appendix_oe_jev_tiers.tex}
+
+\clearpage
+\section{Illustrative aggregate calibration}
+\label{app:v1_aggregate_calibration}
+
+%Overall, the empirical results point to a positive and statistically significant relationship between AI exposure and subsequent registered unemployment in the preferred specification. In the preferred continuous two-way FE (TWFE) specification, a 10 percentage-point increase in AI exposure is associated with an average increase of 1.2 percent in monthly registered unemployment during the adjustment period, defined as months 0 to 24 following the public release of ChatGPT on November 30, 2022, and with an average increase of 1.7 percent during the subsequent period, defined as months 25 to 40.
+
+Overall, the preferred specification points to a positive relationship between AI exposure and subsequent registered unemployment. A 10 percentage-point increase in AI exposure is associated with an average increase of 1.2 percent in monthly registered unemployment during the adjustment period, from November 2022 to November 2024, and 1.7 percent during the later period, from December 2024 to March 2026. The adjustment-period estimate is statistically significant, whereas the later-period estimate is imprecisely estimated.
+
+This final section presents a simple calibration exercise aimed at translating the estimated coefficients into an order-of-magnitude assessment of the aggregate magnitude implied by the occupation-level exposure gradient. Specifically, the counterfactual unemployment stock for each occupation-month is constructed by removing the component implied by the estimated exposure gradient from the observed unemployment stock at the CNO4 level over the post-treatment period.
+
+As emphasized by \citet{acemoglu_2025}, translating task- or occupation-level exposure into aggregate effects requires assumptions about productivity gains, complementarities, and equilibrium adjustment. With this caveat in mind, we construct the counterfactual unemployment stock as:
+
+\begin{equation}
+U^{cf}_{ot}
+=
+U^{obs}_{ot}
+\exp\left(
+-
+\left[
+\hat{\beta}_{A}\left(\frac{AI_o}{0.10}\right)\mathbf{1}\{t \in A\}
++
+\hat{\beta}_{L}\left(\frac{AI_o}{0.10}\right)\mathbf{1}\{t \in L\}
+\right]
+\right)
+\end{equation}
+
+where $U^{cf}_{ot}$ denotes the counterfactual unemployment stock for occupation $o$ in month $t$, $U^{obs}_{ot}$ is the corresponding observed unemployment stock, $AI_o$ is the AI exposure measure for occupation $o$, and $\hat{\beta}_{A}$ and $\hat{\beta}_{L}$ are the estimated coefficients for the adjustment and later periods, respectively. The indicator functions $\mathbf{1}\{t \in A\}$ and $\mathbf{1}\{t \in L\}$ take the value one when month $t$ belongs to the adjustment period or the later period, respectively, and zero otherwise.
+
+The occupation-month AI-attributable unemployment gap is then defined as:
+\begin{equation}
+\Delta U_{ot} = U^{obs}_{ot} - U^{cf}_{ot}
+\end{equation}
+
+These gaps are subsequently aggregated across occupations and months within each post-treatment subperiod and normalized by total observed unemployed person-months:
+\begin{equation}
+\text{Impact}_{P}
+=
+\frac{\sum_{t \in P}\sum_{o}\Delta U_{ot}}
+{\sum_{t \in P}\sum_{o}U^{obs}_{ot}}
+\end{equation}
+where $P \in \{A,L\}$ denotes the adjustment period or the later period. An analogous expression is used for the full post-treatment window.
+
+Under the assumptions of this exercise, the component of the unemployment stock associated with the estimated occupational exposure gradient corresponds to 1.42 percent of observed unemployment during the adjustment period and 2.01 percent during the later period. Over the full post-treatment period, the corresponding illustrative magnitude is 1.64 percent. These figures should not be interpreted as estimates of how much lower aggregate unemployment in Spain would have been in the absence of generative AI.
+
+This calibration should be interpreted strictly as a back-of-the-envelope exercise designed to provide an informative sense of the aggregate magnitude implied by the estimated gradient. It should not be regarded as a precise estimate, as it relies on strong assumptions inherent to its partial-equilibrium nature. First, the exercise applies the average estimated coefficient within each period uniformly across CNO4 occupations, conditional only on differences in exposure intensity. Second, it abstracts from potential spillover effects across occupations, which may either amplify or attenuate the aggregate magnitude.
+
+\end{document} 

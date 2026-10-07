@@ -1,677 +1,152 @@
-# Spanish Employment AI Exposure Pipeline
+# Data and Code for: AI Exposure and Registered Unemployment in Spain: Early Evidence from Occupation-Level Administrative Data
 
-This project builds Spanish labor-market AI exposure estimates from Anthropic's occupation-level `observed_exposure` data.
+Diego González-González (Loyola University), Nicolás González-Pampillón (Institut d'Economia de Barcelona), Héctor Jiménez Portilla (Comisión Nacional de los Mercados y la Competencia), and Javier Vázquez-Grenno (Universitat de Barcelona and Institut d'Economia de Barcelona).
 
-Current `main` branch scope: EPA only. The Census implementation lives on branch `census-ai-exposure`.
+## Overview
 
-## Current Status
+This package reproduces the empirical results retained in the manuscript snapshot of 7 October 2026: **87 assets, comprising 26 LaTeX tables and 61 figure panels**, plus standalone sample and calibration statistics. The main sample covers 502 Spanish four-digit occupations over January 2021–March 2026. Registered unemployment is a monthly stock; registered contracts are a monthly flow.
 
-The current EPA pipeline no longer uses Ridge Regression or Ensemble outputs. Active exposure methods are:
-
-- `rf`: Random Forest on embedding vectors.
-- `cosine_weighted`: assignment-based cosine weighted average.
-- `cosine_nearest`: nearest Anthropic occupation by cosine similarity.
-
-The default occupation representation is now taxonomy-aware:
-
-1. Anthropic occupations use O*NET title plus O*NET description.
-2. Spanish occupations use parsed CNO-2011 4-digit occupation records from INE's CNO-2011 explanatory PDF.
-3. Each CNO4 occupation is embedded as one structured semantic unit.
-4. Exposure is predicted at CNO4.
-5. CNO4 predictions are aggregated to EPA `OCUP1`.
-6. EPA worker records are merged on `OCUP1`.
-7. Industry-quarter exposure is aggregated by `ACT1` plus quarter.
-
-The dated implementation log is in `docs/2026-05-29-cno4-cosine-update.md`.
-
-## Data Sources
-
-- Anthropic Economic Index `job_exposure.csv`
-  - Local path: `data/raw/anthropic/job_exposure.csv`
-  - URL: <https://huggingface.co/datasets/Anthropic/EconomicIndex/tree/main/labor_market_impacts>
-  - Required columns: `occ_code`, `title`, `observed_exposure`
-
-- Anthropic Economic Index country usage release
-  - Local path: `data/raw/anthropic/release-2026-06-26.zip`
-  - URL used by code: <https://economic-research.anthropic.com/releases/econ-index/release-2026-06-26.zip>
-  - Used file: `aei_claude_ai_2026-06-26.csv`
-  - Filter for the Spain-US job-group table: `geo_id in {ESP, USA}`, `category_name == soc_occupation`, `hierarchy_level == 1`, `metric_id == pct`, latest `date_start`.
-
-- O*NET 30.3 Occupation Data
-  - Local path: `data/raw/anthropic/Occupation_Data_30_3.xlsx`
-  - URL used by code: <https://www.onetcenter.org/dl_files/database/db_30_3_excel/Occupation%20Data.xlsx>
-  - Used columns: `O*NET-SOC Code`, `Title`, `Description`
-  - Join rule: strip trailing `.00` from O*NET codes before merging to Anthropic `occ_code`.
-
-- INE CNO-2011 explanatory PDF
-  - Local path: `data/raw/ine/cno11_notas.pdf`
-  - URL used by code: <https://ine.es/daco/daco42/clasificaciones/cno11_notas.pdf>
-  - Used to parse 4-digit CNO primary occupation groups.
-
-- INE EPA table 65134 for CNO2 employment weights
-  - Local path: `data/raw/ine/epa_65134_cno2_weights.csv`
-  - URL used by code: <https://www.ine.es/jaxiT3/files/t/csv_bdsc/65134.csv>
-  - Filter: `Sexo == Ambos sexos`, `Unidad == Valor absoluto`, latest period in the downloaded table.
-  - Current latest parsed period during run: `2026T1`.
-
-- INE EPA microdata
-  - Manifest: `ine_manifest.csv`
-  - Core variables: `OCUP1` for major occupation, `ACT1` for industry, `FACTOREL` when present for weights.
-  - Metadata workbook: used to parse `OCUP1` labels and `ACT1` industry names.
-
-## Exact Method
-
-### 1. Anthropic side
-
-1. Download or reuse `job_exposure.csv`.
-2. Load rows with non-missing `occ_code`, `title`, and `observed_exposure`.
-3. Download or reuse O*NET Occupation Data.
-4. Normalize O*NET codes by removing a trailing `.00`.
-5. Merge O*NET descriptions onto Anthropic rows by `occ_code`.
-6. Build Anthropic embedding text:
+After installing dependencies, run `python master.py`. It prepares the panels, replays frozen cosine and Jev calculations, estimates every retained specification, renders the publication assets, computes in-text statistics, and compares results with independently downloaded paper assets. The complete map is [docs/output_map.csv](docs/output_map.csv).
 
 ```text
-O*NET occupation: <Anthropic title>. Description: <O*NET description>
+master.py                 Single entry point
+requirements*.txt         Python dependencies and version locks
+renv.lock                 R dependencies and source commit pins
+code/                     Numbered analysis programs and reusable helpers
+code/acquisition/         Optional public SEPE retrieval and parsing
+code/vendor/              Frozen Stata dependencies and software notices
+data/input/               Frozen source and author-constructed inputs
+docs/                     Codebook, provenance, output map, validation report
+docs/paper/               Authoritative manuscript LaTeX snapshots
+output/reference/         Assets downloaded from the manuscript
+output/generated/         Newly computed publication assets
+output/work/              Intermediate data, estimates, audits, and logs
+tests/                    Parser, probability, and replication regressions
 ```
 
-If O*NET description is missing, the code falls back to the cleaned Anthropic title only.
+Reference assets are comparison targets, never estimator inputs. The manuscript snapshots preserve the original upload paths for inspection; they are not a standalone typesetting project.
 
-### 2. Spanish CNO side
+## Data Availability and Provenance Statements
 
-1. Download or reuse INE `cno11_notas.pdf`.
-2. Parse PDF text with `pypdf`.
-3. Start after introductory pages.
-4. Detect 4-digit headings such as `1111 Miembros del poder ejecutivo...`.
-5. Treat each 4-digit CNO group as exactly one occupation record.
-6. Extract structured fields where possible:
-   - `CNO4`
-   - `CNO2`
-   - `OCUP1`
-   - Spanish title
-   - definition text
-   - typical tasks after `Entre sus tareas se incluyen:`
-   - included examples
-   - related or excluded occupations
-7. Build CNO embedding text:
+### Statement about rights
 
-```text
-CNO occupation: <code> <title>. Definition: ... Typical tasks: ... Examples included: ... Related or excluded occupations: ...
-```
+The package contains public aggregate tabulations, public survey weighting records, published occupational measures, and author-created crosswalks and model outputs. It contains no administrative microdata, personal identifiers, private API credentials, or licensed Stata binaries. Provider data retain their original reuse conditions and must be attributed. [docs/data_sources.md](docs/data_sources.md) supplies source links, versions, citations, transformations, and reuse information. Third-party software notices are under `code/vendor/licenses/`.
 
-No generic chunks are used. No arbitrary chunk averaging is used.
+Author-written code and package documentation are released under the [MIT License](LICENSE). Source datasets, manuscript materials, and third-party software retain their separate terms; the MIT license does not replace those conditions. Cite the authors and preserve source notices when reusing the materials.
 
-Spanish CNO text is not translated before embedding. Decision: `qwen3-embedding:4b` is multilingual, and translating long PDF descriptions would add another undocumented transformation layer. Anthropic text remains English because O*NET is English.
+### Availability and provenance
 
-### 3. Embeddings
+All 23 inputs needed for the frozen analysis are included in `data/input/`. Running the analysis requires no network access, restricted-data application, model server, or API key. Dependency installation requires internet access or an existing package cache. File hashes identify the exact snapshots in [docs/input_manifest.json](docs/input_manifest.json); the Economic Index member hash is in [docs/archive_members.json](docs/archive_members.json).
 
-Embeddings are generated through local Ollama and cached in `data/cache/embeddings.sqlite`.
+Original download dates were not consistently recorded in the inherited archive; unverified dates are not supplied. Provider versions, release identifiers, report URLs, and hashes identify the source materials used here. The adoption-timing CSV was reconstructed from the paper's published percentages and linked primary sources because its original source CSV was absent.
 
-Cache key includes:
+### Dataset list
 
-- embedding model name
-- cleaned/normalized text
+| Dataset | Included files | Source and use |
+|---|---|---|
+| SEPE aggregate occupation statistics | `sepe_cno4_monthly_ai_exposure.csv.gz` | [Monthly occupation reports](https://www.sepe.es/HomeSepe/que-es-observatorio/informacion-mt-por-ocupacion.html), January 2021–March 2026; total and separately published subgroup tabulations |
+| INE classification and EPA statistics | `cno11_notas.pdf`, `ine_epa_ocupados_65134.csv`, `epa_unemployment_microdata_weights.csv.gz` | CNO-2011 definitions, sex-by-occupation employment, and public survey weights for the unemployment source check |
+| Anthropic occupational exposure and geographic usage | `anthropic_job_exposure_onet.csv`, `release-2026-06-26.zip` | [Labor market impacts](https://www.anthropic.com/research/labor-market-impacts); June 2026 Economic Index release, selecting May 2026 Spain and pooled worldwide usage |
+| External occupational exposure | `bls_ai_exposure_categories_2025_35.xlsx`, `felten_raj_seamans_language_modeling_aioe.xlsx` | BLS categories and Felten–Raj–Seamans language-modeling AIOE |
+| Spanish AI-adoption percentages | `spain_ai_adoption_timing_sources.csv` | Published ONTSI, Banco de España, and Funcas aggregate observations; source links and plotting-date conventions in the CSV |
+| Semantic mapping and labels | `cosine_embeddings.npz`, `spanish_occupation_matches_cosine_nearest.csv`, `cno4_english_titles.csv` | Author constructions using `qwen3-embedding:4b`; exact vectors permit offline replay |
+| May 2024 reconstructions | `sepe_cno4_age_may2024_backcast_from_june.csv`, `sepe_cno4_province_may2024_backcast_from_june.csv.gz` | Author calculations from published June-over-May changes; ambiguous cells remain missing |
+| Jev scores, tier assignments, and provenance | Nine files in `data/input/jev/` | Exact Spanish/O*NET inputs, questions, raw responses, probability vectors, estimates, audit, and original manifest for `jev-1.13.0` |
 
-Current tracked outputs were generated with:
+The analysis starts from the assembled SEPE aggregate-data snapshot, which preserves report URLs. Full original HTML caches are not shipped. `code/acquisition/refresh_sepe.py` preserves retrieval and parsing for independent source checks; current provider pages may differ from the frozen archive. Refreshes never silently replace paper inputs. Data definitions and missing-value conventions are in [docs/codebook.md](docs/codebook.md).
 
-```text
-qwen3-embedding:4b
-```
+## Computational requirements
 
-Current embedding dimension from run metadata: `2560`.
+### Software requirements
 
-### 4. Exposure model bundle
+- **Python 3.12**: direct dependencies in `requirements.txt`, complete tested environment in `requirements-lock.txt`. Jupyter is unnecessary.
+- **Licensed StataNow 19 MP / Stata 19**: verified on Windows. Do-files specify language version 17, but other versions/platforms have not been independently verified. Bundled `reghdfe` 6.13.1, `ftools` 2.50.0, `sdid`, `sdid_event`, and their dependencies are selected through a package-local ado path. Do not update these before replication. Exact files are identified in `docs/stata_manifest.json`; the SDID header is incomplete, so hashes are authoritative.
+- **R 4.5.2**: versions in `renv.lock`, including exact commits for `contdid`, `BMisc`, and `ptetools`. `code/setup.R` restores packages into `.r_libs/`. Installing archived compiled packages on Windows requires [Rtools45](https://cran.r-project.org/bin/windows/Rtools/rtools45/rtools.html); Linux/macOS require R package build tools.
 
-`src/model.py` builds an `ExposureModelBundle` containing:
+No GPU, Ollama installation, TypeSafe account, or API key is needed. Archived Jev responses are replayed without live calls; new model responses need not reproduce those probability vectors.
 
-- optional fitted Random Forest
-- Anthropic embedding matrix
-- Anthropic exposure vector
-- Anthropic titles and occupation codes for diagnostics
-- metrics dictionary
+### Controlled randomness
 
-Valid methods:
+Stata uses seed `20260728`, reset within estimators, and **500 SDID placebo replications**. R uses seed `20260728` and **1,000 bootstrap repetitions**; the no-2021 appendix run resets the same seed. Embeddings and Jev responses are frozen. Changing repetition counts is for development and changes inference.
 
-```text
-rf, cosine_weighted, cosine_nearest
-```
+### Memory, runtime, and storage
 
-`--methods cosine_weighted,cosine_nearest` runs without fitting or requiring RF. This was added so cosine-only runs do not pay the RF runtime cost.
+The verification host is Windows x64, Intel Core i7-1165G7 (4 cores, 8 logical processors), 16 GB RAM. Plan for at least 16 GB RAM and 10 GB free disk space, plus software and R build tools. The SEPE input decompresses to approximately 452 MB. Province estimation and SDID dominate runtime. Actual timings and verification limits are in [docs/validation_report.md](docs/validation_report.md). The master writes environment information and stage timings to `output/run_environment.json`; individual reruns have separate timing files.
 
-### 5. Random Forest
+## Description of programs/code
 
-RF method:
+| Program | Purpose |
+|---|---|
+| `master.py` | Input checks, staging, all estimation/rendering, in-text statistics, paper comparisons |
+| `code/01_Preparation_v1.py` | Backcasts, total/age/gender/province panels, feminization, external measures, transformations |
+| `code/lib/cosine_replay.py`, `code/lib/jev_replay.py` | Rebuild occupation measures from archived vectors/responses and check frozen scores |
+| `code/02_Descriptives_v1.py` | Summary statistics, distributions, rankings, adoption timing, worldwide usage and EPA comparisons |
+| `code/03_Estimates.do` | TWFE, binary treatment, heterogeneity and cross-group tests, geography, feminization, retained robustness |
+| `code/03_SDID.do` | Adjusted SDID paths, events, weights, phase effects, strict exposure-above-0.2 versus zero robustness |
+| `code/03_Jev.do`, `code/lib/job_tiers.do` | Three Jev measures and joint tier regressions |
+| `code/job_tier_mediation.do` | Exposure gradients with and without tier-by-month effects |
+| `code/04_Estimates_contDID_v1.R` | Stratified, control-adjusted, unconditional continuous DiD and no-2021 diagnostics |
+| `code/05_Output_tuning_v1.py`, `code/lib/` | Publication rendering, diagnostics, terminology, and calibration |
+| `code/setup.R` | R dependency installation/restoration before analysis |
+| `code/acquisition/refresh_sepe.py` | Optional resumable public-report retrieval; outside the default frozen run |
 
-```text
-observed_exposure_rf
-```
+Intermediate estimates and integrity audits under `output/work/` support the retained results. Only the 87 mapped publication assets are exported to `output/generated/`. Logs remain under `output/work/logs/`.
 
-Let Anthropic occupation $i = 1,\dots,N$ have embedding $x_i \in \mathbb{R}^d$ and observed exposure $y_i$. Let Spanish CNO4 occupation $j$ have embedding $z_j \in \mathbb{R}^d$. The Random Forest estimates:
+## Instructions to Replicators
 
-$$
-\widehat{y}^{\mathrm{RF}}_j = f_{\mathrm{RF}}(z_j)
-$$
+1. Clone or extract the complete package. Preserve its directory structure. Spaces and accented characters in directory paths are supported.
+2. Install Python 3.12, R 4.5.2 and required package build tools, and licensed Stata.
+3. Create a Python environment and install locked dependencies. Windows example:
 
-Implementation:
+   ```powershell
+   python -m venv .venv
+   .venv\Scripts\Activate.ps1
+   python -m pip install -r requirements-lock.txt
+   ```
 
-- `sklearn.ensemble.RandomForestRegressor`
-- default trees: `AI_EXPOSURE_RF_TREES`, default `500`
-- default seed: `AI_EXPOSURE_RANDOM_SEED`, default `20260527`
-- `min_samples_leaf = 2`
-- `n_jobs = 1`
-- diagnostics: 80/20 holdout and 5-fold cross-validation
-- final RF: fit on all 756 Anthropic rows
+   On macOS/Linux, activate with `source .venv/bin/activate`.
 
-### 6. Cosine nearest
+4. Restore R dependencies:
 
-For Spanish CNO4 target vector $z_j$ and Anthropic vector $x_i$:
+   ```text
+   Rscript --vanilla code/setup.R
+   ```
 
-$$
-c_{ji} =
-\frac{z_j^\top x_i}{\lVert z_j \rVert \lVert x_i \rVert}
-$$
+5. Run everything from the package root:
 
-Nearest method:
+   ```text
+   python master.py
+   ```
 
-$$
-i^\*(j) = \arg\max_i c_{ji}
-$$
+   Executables can be specified with `--stata-exe` and `--rscript`, or environment variables `STATA_EXE` and `R_SCRIPT`. Standard Windows locations are detected. Example:
 
-$$
-\widehat{y}^{\mathrm{NN}}_j = y_{i^\*(j)}
-$$
+   ```powershell
+   python master.py --stata-exe "C:\Program Files\StataNow19\StataMP-64.exe" --rscript "C:\Program Files\R\R-4.5.2\bin\Rscript.exe"
+   ```
 
-### 7. Cosine weighted
+6. Inspect `output/validation.json`, `output/intext_statistics.json`, timings, and logs. Missing assets, differing printed numeric cells/significance stars, or differing figure pixels fail validation. Identical figure pixels pass despite PNG metadata differences. A maximum one-level RGB difference with mean normalized error at most 1e-8 is accepted for floating-point antialiasing; larger differences require visual review and resolution. Reviewed release comparisons are documented in `docs/validation_report.md`.
 
-For every Anthropic occupation, find the nearest Spanish CNO4 target. Then for each Spanish CNO4, average all Anthropic exposures assigned to it, weighted by cosine similarity.
+For a fresh run, use a new clone/extraction without `output/work/` or `output/generated/`; the master creates them. Paths resolve relative to the master file, so invocation from another working directory also works. To rerun one stage, use `--step` with `prepare`, `descriptives`, `estimates`, `sdid`, `jev`, `mediation`, `contdid`, `tuning`, `statistics`, or `validate`, after its predecessor inputs exist. `python master.py --check-inputs` verifies/stages all inputs without estimation. Run tests with `python -m unittest discover -s tests -v`.
 
-$$
-j^\*(i) = \arg\max_j c_{ji}
-$$
+Never replace `output/reference/` with regenerated files. Shortened bootstrap/placebo runs are not publication verification.
 
-$$
-A_j = \{i : j^\*(i) = j\}
-$$
+## List of tables and programs
 
-$$
-\widehat{y}^{\mathrm{CW}}_j =
-\frac{\sum_{i \in A_j} c_{ji} y_i}{\sum_{i \in A_j} c_{ji}}
-$$
+[docs/output_map.csv](docs/output_map.csv) and [docs/paper_outputs.json](docs/paper_outputs.json) map every asset to its figure/table number, label, source-document line, estimation program, and rendering program. Multiple panels share a figure number.
 
-If no Anthropic occupation is assigned to a Spanish CNO4 target, the code falls back to cosine nearest for that target. This is explicit and prevents missing CNO4 predictions.
+| Results | Programs |
+|---|---|
+| Main figures and Tables 1–3 | Preparation, descriptives, TWFE, rendering |
+| Appendices A–B: support, pre-trends, age tests and subgroup paths | TWFE, continuous-DiD support, rendering |
+| Online Appendices A–C: EPA, rankings, binary treatment | Descriptives, TWFE, rendering |
+| Online Appendix D: robustness, external measures, Jev | TWFE, Jev, rendering |
+| Online Appendices E–F: feminization, geography | Preparation, TWFE, rendering |
+| Online Appendix G: continuous and synthetic DiD | R, SDID, rendering |
+| Online Appendix H: tiers and conditioning on tier dynamics | Jev, mediation, rendering |
+| Online Appendix I: aggregate calibration | `code/lib/intext_statistics.py`, through the master |
 
-### 8. CNO4 to OCUP1 aggregation
+The calibration uses unrounded coefficients and reproduces **1.42%, 2.01%, and 1.64%** at the manuscript's precision. It is an illustrative partial-equilibrium calculation, not an identified aggregate causal effect. Sample counts, zero cells, and tier counts are checked explicitly. Other estimates discussed in the prose appear in the mapped tables; outside-study facts are source citations rather than estimates from this package.
 
-EPA public table 65134 gives usable occupation employment counts down to CNO2, not CNO4.
+## References
 
-Therefore EPA aggregation is:
-
-```text
-CNO4 -> CNO2: equal average within each CNO2
-CNO2 -> OCUP1: weighted average using INE EPA table 65134 employment weights
-```
-
-For CNO2 group $g$, CNO4 occupations $J_g$, method $m$:
-
-$$
-\widehat{y}^{m}_{g} =
-\frac{1}{|J_g|}
-\sum_{j \in J_g} \widehat{y}^{m}_{j}
-$$
-
-For OCUP1 group $h$, CNO2 groups $G_h$, and EPA CNO2 employment weights $w_g$ from INE table 65134:
-
-$$
-\widehat{y}^{m}_{h} =
-\frac{\sum_{g \in G_h} w_g \widehat{y}^{m}_{g}}
-{\sum_{g \in G_h} w_g}
-$$
-
-If an `OCUP1` group has no matching CNO2 public weight, fallback is equal CNO4 weights for that group. The output records the source in `aggregation_weight_source`.
-
-### 9. EPA industry-quarter aggregation
-
-EPA microdata are merged on `OCUP1`.
-
-For industry `ACT1`, quarter, and method:
-
-Let person or record $r$ have industry $a(r)$, occupation $o(r)$, quarter $q(r)$, and survey weight $W_r$. For industry $k$, quarter $t$, and method $m$:
-
-$$
-\widehat{Y}^{m}_{kt} =
-\frac{
-\sum_{r: a(r)=k,\;q(r)=t} W_r \widehat{y}^{m}_{o(r)}
-}{
-\sum_{r: a(r)=k,\;q(r)=t,\;\widehat{y}^{m}_{o(r)}\;\mathrm{observed}} W_r
-}
-$$
-
-Coverage is:
-
-$$
-\text{coverage share}_{kt} =
-\frac{\text{covered weight}_{kt}}{\text{total weight}_{kt}}
-$$
-
-Weight source:
-
-- use `FACTOREL` if present
-- otherwise use record count `1.0`
-
-Outputs include:
-
-- `total_weight`
-- `covered_weight`
-- `coverage_share`
-- `occupation_count`
-- `industry_name`
-
-## Match Diagnostics
-
-Two diagnostic outputs show exactly which Anthropic occupations were matched to Spanish CNO4 occupations:
-
-- `data/processed/spanish_occupation_matches_cosine_weighted.csv`
-- `data/processed/spanish_occupation_matches_cosine_nearest.csv`
-
-Columns include:
-
-- `method`
-- `spanish_code`
-- `spanish_title`
-- `spanish_embedding_text`
-- `anthropic_occ_code`
-- `anthropic_title`
-- `anthropic_observed_exposure`
-- `cosine_similarity`
-- `CNO4`
-- `CNO2`
-- `OCUP1`
-
-Weighted diagnostics have one row per Anthropic occupation assigned to a Spanish CNO4 target, plus fallback nearest rows for targets with no assignments. Nearest diagnostics have one row per CNO4 target.
-
-## Commands Actually Run
-
-Cosine-only EPA run:
-
-```powershell
-py -3 main.py --embedding-model qwen3-embedding:4b --ine-manifest ine_manifest.csv --methods cosine_weighted,cosine_nearest
-```
-
-RF-inclusive EPA run:
-
-```powershell
-py -3 main.py --embedding-model qwen3-embedding:4b --ine-manifest ine_manifest.csv --methods rf,cosine_weighted,cosine_nearest
-```
-
-Both command wrappers reported timeout after final output had already printed. Files were inspected afterward and committed only after expected outputs existed.
-
-Tests:
-
-```powershell
-py -3 -m unittest discover -s tests -v
-```
-
-Result after cosine-only EPA implementation: 16 tests passed.
-
-Result after RF-inclusive EPA run: 16 tests passed.
-
-## RF Diagnostics From Current EPA RF Run
-
-Model file:
-
-```text
-models/exposure_model_qwen3-embedding_4b_rf_cosine_weighted_cosine_nearest.joblib
-```
-
-Model SHA256:
-
-```text
-832de72489b2f2318a54b0b0b47b78fe6fad17a4a17e9c5ca8f419cf9cec0e1d
-```
-
-Holdout RF diagnostics:
-
-- MAE: `0.0645711039940907`
-- RMSE: `0.09334295237351001`
-- R2: `0.42746290775471074`
-
-5-fold cross-validation:
-
-- global mean MAE: `0.09735047482001576`
-- Random Forest MAE: `0.06917329313943038`
-- cosine weighted MAE: `0.057537667569887326`
-- cosine nearest MAE: `0.06683253968253969`
-
-## Current EPA Outputs
-
-Generated tracked outputs:
-
-- `data/processed/spanish_occupation_exposure.csv`
-  - rows: 10
-  - columns:
-    - `OCUP1`
-    - `occupation_title`
-    - `cno4_count`
-    - `cno2_count`
-    - `aggregation_weight_source`
-    - `observed_exposure_rf`
-    - `observed_exposure_cosine_weighted`
-    - `observed_exposure_cosine_nearest`
-
-- `data/processed/spanish_industry_quarter_exposure.csv`
-  - rows: 610
-  - columns:
-    - `cnae`
-    - `industry_name`
-    - `quarter`
-    - `observed_exposure_cnae_rf`
-    - `observed_exposure_cnae_cosine_weighted`
-    - `observed_exposure_cnae_cosine_nearest`
-    - `total_weight`
-    - `covered_weight`
-    - `coverage_share`
-    - `occupation_count`
-
-- `data/processed/spanish_occupation_matches_cosine_weighted.csv`
-  - rows after cosine-only run: 913
-
-- `data/processed/spanish_occupation_matches_cosine_nearest.csv`
-  - rows after cosine-only run: 502
-
-- `data/processed/run_metadata.json`
-
-- `data/processed/spanish_ai_exposure.sqlite`
-
-Ridge and Ensemble columns are intentionally absent.
-
-## SEPE CNO4 Monthly Dashboard Scrape
-
-SEPE's occupation page exposes monthly CNO4 dashboard reports through HTML report pages rather than a documented bulk
-download. This repo now includes a resumable scraper/parser for those reports:
-
-```powershell
-py -3 scripts/build_sepe_occupation_dataset.py --embedding-model qwen3-embedding:4b
-```
-
-If `data/raw/sepe/reports/` already contains the cached report HTML files, rebuild the processed dataset without
-touching the SEPE website:
-
-```powershell
-py -3 scripts/build_sepe_occupation_dataset.py --embedding-model qwen3-embedding:4b --from-cache --workers 8
-```
-
-Smoke-test options:
-
-```powershell
-py -3 scripts/build_sepe_occupation_dataset.py --embedding-model qwen3-embedding:4b --max-occupations 1 --max-reports 1
-```
-
-Outputs:
-
-- `data/processed/sepe_cno4_monthly_ai_exposure.csv`
-
-This generated CSV is intentionally ignored by git because the full processed file is larger than GitHub's normal
-single-file limit.
-
-The output is compact long-by-disaggregation format with:
-
-- `period`: monthly period as `YYYY-MM`
-- `cno4`
-- `occupation_title`
-- `dimension`: `total`, `gender`, `age`, `province`, or `geographic_mobility`
-- `category`: e.g. `Total`, `Hombre`, `Mujer`, age band, province, `Permanecen`, `Se mueven`
-- `gender`: `Total` unless the row is gender-disaggregated
-- `contratos`, `parados`, `personas`: level columns; monthly and annual variation columns are intentionally ignored
-- `exposure_occupation_title`: CNO4 title from the exposure model source, kept separate from the SEPE title
-- `observed_exposure_rf`, `observed_exposure_cosine_weighted`, `observed_exposure_cosine_nearest`
-
-`Total` is written once per CNO4-month as `dimension == total` and `category == Total`; duplicate totals from gender,
-age, province, or mobility subtables are dropped.
-
-Raw report HTML is cached under `data/raw/sepe/reports/`, so interrupted runs can resume without re-fetching completed
-report pages. The script reads the existing model bundle and embedding cache to reconstruct CNO4 exposure measures; it
-does not retrain the exposure model.
-
-## SEPE CNO4 Econometric Analysis
-
-The paper-clean output allowlist is recorded in `docs/paper_outputs_manifest.json`. The deterministic renderer `scripts/build_paper_tables.py` formats the frozen Prism values without re-estimating any model; generated artifacts under `analysis/econometrics_outputs/` are ignored.
-
-The SEPE econometric analysis is run from one script:
-
-```powershell
-py -3 scripts/run_ai_exposure_econometrics.py
-```
-
-It can also be launched from the main pipeline entry point:
-
-```powershell
-py -3 main.py --analysis-only --run-sepe-econometrics
-```
-
-Run all SEPE analysis modules from `main.py`:
-
-```powershell
-py -3 main.py --analysis-only --run-all-analyses --rscript "C:\Users\dgonzalez\AppData\Local\Programs\R\R-4.5.2\bin\Rscript.exe"
-```
-
-Available analysis flags:
-
-- `--run-anthropic-country-figure`: generate Spain-US Anthropic usage by SOC major job group figure.
-- `--run-sepe-econometrics`: OLS and TWFE event studies.
-- `--run-sdid`: Stata synthetic difference-in-differences estimates and diagnostic figures using `sdid` and `sdid_event`.
-- `--run-contdid`: continuous-treatment `contdid` event-study and dose-aggregation estimates.
-- `--run-unemployment-source-check`: generate a quarterly data-quality figure comparing EPA unemployed persons with scraped SEPE registered unemployment. Requires `--ine-manifest`.
-- `--run-all-analyses`: run all analysis/table modules plus the unemployment source check when `--ine-manifest` is provided.
-- `--analysis-only`: skip the exposure build and run only requested analysis modules. With no specific analysis flag, this runs all analysis modules.
-- `--stata-exe`: optional path to StataMP for `--run-sdid`. Defaults to `STATA_EXE`, `PATH`, or common StataNow install paths.
-- `--sdid-reps`: bootstrap replications for Stata `sdid` and `sdid_event`; default is `100`.
-
-Without `--analysis-only`, these flags run after the regular exposure pipeline completes.
-
-Input:
-
-- `data/processed/sepe_cno4_monthly_ai_exposure.csv`
-
-The script uses only aggregate CNO4-month rows:
-
-```text
-dimension == total
-category == Total
-gender == Total
-```
-
-OLS output:
-
-- Unit of analysis: CNO4 occupation.
-- Outcome: average monthly log growth in registered unemployed (`parados`) from `2021-01` to `2026-01`, in percentage points.
-- Regressors: `observed_exposure_rf`, `observed_exposure_cosine_weighted`, and `observed_exposure_cosine_nearest`.
-- Outputs:
-  - `analysis/econometrics_outputs/tables/ols_growth_regressions.tex`
-  - `analysis/econometrics_outputs/tables/ols_growth_regressions_document.pdf`
-  - `analysis/econometrics_outputs/tables/ols_growth_regressions.csv`
-
-Event-study output:
-
-- Intervention period: `2022-09`, preserving the requested dating in the analysis.
-- Estimator: TWFE OLS with CNO4 and period fixed effects.
-- Standard errors: clustered by CNO4 occupation.
-- Baseline event month: `-1`.
-- Outcomes:
-  - unemployment: `log1p(parados)`
-  - contracts: `contratos` in levels, with no log transform because many observations are zero
-- Specifications for each outcome:
-  - continuous treatment using each of the three AI exposure measures
-  - top exposure quartile vs zero exposure, for cosine weighted and cosine nearest
-  - top exposure quartile vs bottom exposure quartile, for all three AI exposure measures
-
-Event-study outputs are split by outcome:
-
-- `analysis/econometrics_outputs/event_studies/unemployment/`
-- `analysis/econometrics_outputs/event_studies/contracts/`
-- combined outcome file: `analysis/econometrics_outputs/event_studies/event_study_coefficients_all_outcomes.csv`
-
-AIReF-style event-study figures are split by outcome:
-
-- `analysis/econometrics_outputs/Graficos/unemployment/`
-- `analysis/econometrics_outputs/Graficos/contracts/`
-
-Each figure folder contains SVG, PDF, PNG, and XLSX source-data exports for each event-study specification.
-
-Anthropic Spain/global job-group figure:
-
-```powershell
-py -3 main.py --analysis-only --run-anthropic-country-figure
-```
-
-Outputs:
-
-- `analysis/econometrics_outputs/Graficos/figure_anthropic_country_soc_major_group_spain_global_may2026.png`
-
-The figure is generated from the cached Anthropic release; generated outputs remain local and ignored.
-
-Additional DiD outputs:
-
-- `analysis/econometrics_outputs/sdid/`: Stata `sdid` synthetic DiD estimates, `sdid_event` event-study figures, and `sdid` treated-vs-synthetic level figures. Event-study figures use `t=-1` as the reference period with estimate zero and no confidence interval. AIReF-formatted figures are exported as SVG, PDF, PNG, GPH, and XLSX workbooks with source data.
-- `analysis/econometrics_outputs/contdid/`: continuous-treatment `contdid` estimates using RF, cosine weighted, and cosine nearest AI exposure as dose variables. This folder contains event-study ACRT plots plus dose-aggregation `ATT(d)` and `ACRT(d)` plots following Case 1 of the `contdid` README.
-
-`contdid` is run through R. If `Rscript` is not on `PATH`, pass `--rscript` or set `R_SCRIPT`.
-SDID is run through StataMP. If Stata is not on `PATH`, pass `--stata-exe` or set `STATA_EXE`. The wrapper prepends the Stata executable directory to the subprocess `PATH` for reproducibility.
-
-Current committed SDID and `contdid` outputs use 100 bootstrap replications.
-### EPA vs SEPE unemployment source check
-
-The source-check diagnostic can be run from `main.py` without rebuilding exposure estimates:
-
-```powershell
-py -3 main.py --analysis-only --run-unemployment-source-check --ine-manifest ine_manifest.csv
-```
-
-It aggregates both sources to quarterly frequency, using EPA quarterly survey-weighted unemployed persons (`AOI` codes `05` and `06`) and the quarterly average of monthly scraped SEPE registered unemployed totals. Outputs:
-
-- `analysis/econometrics_outputs/Graficos/data_quality/epa_vs_sepe_unemployment_quarterly.csv`
-- `analysis/econometrics_outputs/Graficos/data_quality/epa_vs_sepe_unemployment_quarterly.xlsx`
-- `analysis/econometrics_outputs/Graficos/data_quality/epa_vs_sepe_unemployment_quarterly.svg`
-- `analysis/econometrics_outputs/Graficos/data_quality/epa_vs_sepe_unemployment_quarterly.pdf`
-- `analysis/econometrics_outputs/Graficos/data_quality/epa_vs_sepe_unemployment_quarterly.png`
-
-## Install
-
-```powershell
-py -3 -m pip install -r requirements.txt
-```
-
-Required Python packages:
-
-- `pandas`
-- `scikit-learn`
-- `requests`
-- `joblib`
-- `openpyxl`
-- `pypdf`
-- `beautifulsoup4`
-- `matplotlib`
-- `scipy`
-
-Install and start Ollama separately:
-
-```powershell
-ollama pull qwen3-embedding:4b
-```
-
-## Run Options
-
-Important options:
-
-- `--methods cosine_weighted,cosine_nearest`: cosine-only, no RF fit.
-- `--methods rf,cosine_weighted,cosine_nearest`: all active methods.
-- `--occupation-detail cno4`: default taxonomy-aware CNO4 pipeline.
-- `--occupation-detail metadata`: legacy metadata-title path.
-- `--refresh`: re-download source files.
-- `--max-quarters 1`: quick manifest check.
-- `--allow-code-labels`: allow fallback labels if metadata labels are missing. Not recommended for final outputs.
-
-## SQLite Tables
-
-### `occupation_exposure`
-
-- `ocup1`
-- `occupation_title`
-- `occupation_title_en`
-- `embedding_model`
-- `translation_model`
-- `model_sha256`
-- `observed_exposure_rf`
-- `observed_exposure_cosine_weighted`
-- `observed_exposure_cosine_nearest`
-- `generated_at`
-
-The RF column allows nulls so cosine-only runs can be stored.
-
-### `industry_quarter_exposure`
-
-- `cnae`
-- `industry_name`
-- `quarter`
-- `total_weight`
-- `covered_weight`
-- `coverage_share`
-- `occupation_count`
-- `embedding_model`
-- `translation_model`
-- `model_sha256`
-- `observed_exposure_cnae_rf`
-- `observed_exposure_cnae_cosine_weighted`
-- `observed_exposure_cnae_cosine_nearest`
-- `generated_at`
-
-## What Was Removed
-
-Removed from active code/output:
-
-- `observed_exposure_ridge`
-- `observed_exposure_ensemble`
-- `observed_exposure_cnae_ridge`
-- `observed_exposure_cnae_ensemble`
-
-Older SQLite files may still contain historical dropped columns only if opened before rebuild logic runs. Current active writes do not populate them.
-
-## Known Caveats
-
-- Anthropic labels are US occupation semantics, so outputs are semantic-transfer estimates, not validated Spanish causal measures.
-- EPA still merges final predictions at `OCUP1`, so final EPA panel has 10 occupation groups.
-- CNO4 aggregation uses equal CNO4 weights within CNO2 because public EPA table 65134 does not expose CNO4 counts.
-- CNO PDF parsing is rule-based. It uses 4-digit headings and section markers; it does not use an LLM to interpret the PDF.
-- Some PDF text includes extraction artifacts from line breaks or hyphenation. The parser applies light cleanup only.
-- CNO descriptions remain Spanish by design.
-- Final results depend on `qwen3-embedding:4b`.
-
-## Commit History For This Update
-
-- `4a697fe`: CNO4 cosine pipeline, cosine-only EPA outputs, docs note.
-- `05595af`: RF-inclusive EPA outputs and RF documentation.
-
-## Nico's V1 Paper Replication Package
-
-The latest paper-analysis bundle received from Nico is tracked under
-`analysis/paper_replication/`. It includes the preparation and descriptive
-notebooks, Stata TWFE/SDID/HonestDiD code, the R ContDID script, output tuning,
-publication figures/tables, and the current LaTeX reports. Large raw,
-prepared, and intermediate runtime files remain outside Git.
-
-Run the complete five-step package after the SEPE monthly dataset has been
-built:
-
-```powershell
-py -3 main.py --analysis-only --run-paper-replication `
-  --stata-exe "C:\Program Files\StataNow19\StataMP-64.exe" `
-  --rscript "C:\Users\dgonzalez\AppData\Local\Programs\R\R-4.5.2\bin\Rscript.exe"
-```
-
-The `main.py` wrapper stages shared inputs into an ignored runtime directory,
-then runs preparation, descriptives, estimates, ContDID, and output tuning in
-that order. Use `--replication-step prepare` (or another named step) for a
-partial run. Set `--replication-sdid-reps` and `--replication-contdid-reps`
-only for smoke tests; the defaults match Nico's production settings.
-
-The latest manuscript sources are
-`analysis/paper_replication/estimates_results_report_v1.tex` and
-`analysis/paper_replication/descriptive.tex`.
+Complete dataset and software references, URLs, release identifiers, and reuse notices are supplied in [docs/data_sources.md](docs/data_sources.md) and `code/vendor/licenses/`. Cite this paper when using its constructed measures, classifications, or code. The supplied archive identifies the exact source versions; live upstream releases may have changed.

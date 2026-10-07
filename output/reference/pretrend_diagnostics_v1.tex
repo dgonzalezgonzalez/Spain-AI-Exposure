@@ -1,0 +1,31 @@
+\begin{table}[H]
+\centering
+\caption{Pre-treatment coefficient tests across baseline specifications}
+\label{tab:v1_pretrends}
+\begin{threeparttable}
+\scriptsize
+\renewcommand{\arraystretch}{0.90}
+\setlength{\tabcolsep}{2.0pt}
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+& \multicolumn{3}{c}{\# of registered unemployed} & \multicolumn{3}{c}{\# of new contracts} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}
+& (1) & (2) & (3) & (4) & (5) & (6) \\
+\midrule
+Full available: Joint nullity & $<0.001$ & 0.003 & 0.367 & $<0.001$ & 0.032 & 0.049 \\
+Full available: Equal coefficients & $<0.001$ & 0.003 & 0.280 & $<0.001$ & 0.045 & 0.036 \\
+Early: -21 to -10: Joint nullity & $<0.001$ & 0.027 & -- & $<0.001$ & 0.307 & -- \\
+Early: -21 to -10: Equal coefficients & $<0.001$ & 0.021 & -- & $<0.001$ & 0.252 & -- \\
+Recent: -10 to -2: Joint nullity & $<0.001$ & 0.367 & 0.367 & $<0.001$ & 0.049 & 0.049 \\
+Recent: -10 to -2: Equal coefficients & $<0.001$ & 0.280 & 0.280 & $<0.001$ & 0.035 & 0.036 \\
+\midrule
+CNO1 $\times$ year-month FE & No & Yes & Yes & No & Yes & Yes \\
+2021 included & Yes & Yes & No & Yes & Yes & No \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item \emph{Notes:} Entries are $p$-values from Wald tests of pre-treatment event-study coefficients. Joint nullity tests whether all coefficients in the indicated window equal zero; the equality test allows a common nonzero level. Columns 1 and 4 are the benchmark with CNO4 and year-month FE. Columns 2 and 5 add CNO1-by-year-month FE. Columns 3 and 6 use the latter specification but exclude 2021. The full available window is event times $-21$ through $-2$ when 2021 is included and $-10$ through $-2$ otherwise; the early window is consequently unavailable in columns 3 and 6. October 2022 (event time $-1$) is omitted. Standard errors are clustered by CNO4.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

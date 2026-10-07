@@ -1,0 +1,49 @@
+\begin{table}[!t]
+\centering
+\caption{Geographic heterogeneity in AI exposure estimates}
+\label{tab:v1_main_provinces}
+\begin{threeparttable}
+\small
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\multicolumn{5}{l}{\textbf{Panel A. Number of registered unemployed}} \\
+ & (1) & (2) & (3) & (4) \\
+\midrule
+AI exposure $\times$ adjustment period & 0.017$^{***}$ & 0.009$^{*}$ & 0.014$^{**}$ & 0.008 \\
+ & (0.006) & (0.005) & (0.006) & (0.005) \\
+AI exposure $\times$ later period & 0.025$^{**}$ & 0.009 & 0.022$^{*}$ & 0.008 \\
+ & (0.011) & (0.011) & (0.012) & (0.011) \\
+\midrule
+Geographic sample & MAD \& BCN & Rest & MAD \& BCN & Rest \\
+2021 included & Yes & Yes & No & No \\
+Pre-treatment joint-null $p$-value & 0.027 & 0.004 & 0.701 & 0.016 \\
+$p$-value: equal phase effects & 0.285 & 0.924 & 0.285 & 0.914 \\
+$p$-value: equal geography, adjustment & \multicolumn{2}{c}{0.045} & \multicolumn{2}{c}{0.139} \\
+$p$-value: equal geography, later & \multicolumn{2}{c}{0.012} & \multicolumn{2}{c}{0.035} \\
+Observations & 61,328 & 1,268,611 & 50,480 & 1,039,618 \\
+\addlinespace[6pt]
+\midrule
+\multicolumn{5}{l}{\textbf{Panel B. Number of new contracts}} \\
+ & (5) & (6) & (7) & (8) \\
+\midrule
+AI exposure $\times$ adjustment period & -0.004 & 0.010 & -0.012 & 0.005 \\
+ & (0.010) & (0.007) & (0.007) & (0.005) \\
+AI exposure $\times$ later period & -0.006 & 0.010 & -0.013 & 0.005 \\
+ & (0.011) & (0.009) & (0.010) & (0.007) \\
+\midrule
+Geographic sample & MAD \& BCN & Rest & MAD \& BCN & Rest \\
+2021 included & Yes & Yes & No & No \\
+Pre-treatment joint-null $p$-value & 0.070 & 0.032 & 0.044 & 0.038 \\
+$p$-value: equal phase effects & 0.778 & 0.919 & 0.761 & 0.928 \\
+$p$-value: equal geography, adjustment & \multicolumn{2}{c}{0.050} & \multicolumn{2}{c}{0.013} \\
+$p$-value: equal geography, later & \multicolumn{2}{c}{0.085} & \multicolumn{2}{c}{0.039} \\
+Observations & 58,058 & 976,195 & 47,733 & 800,421 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item \emph{Notes:} The table reports marginal effects from a pooled province-by-CNO4 panel. MAD \& BCN denotes Madrid and Barcelona pooled together; Rest denotes all other Spanish provinces. Columns 1--2 and 5--6 use the full sample; columns 3--4 and 7--8 exclude 2021. The adjustment and later periods cover event times 0--24 and 25--40. Regressions include province-by-CNO4, province-by-year-month, and CNO1-by-year-month FE. Exposure is divided by 0.10, and standard errors are clustered by CNO4. Pre-treatment entries test the joint null over all available pre-treatment coefficients. The geographic-equality rows test whether the two group-specific exposure gradients are equal within each period. $^{***}p<0.01$, $^{**}p<0.05$, and $^{*}p<0.10$.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

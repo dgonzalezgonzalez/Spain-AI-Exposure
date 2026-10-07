@@ -1,0 +1,9 @@
+series_id,date,value_percent,reference_year,source_url,date_convention
+firm_ict,2021-07-01,7.7,2021,https://www.ontsi.es/es/node/15664,Annual observation plotted at July 1; not a survey fieldwork date
+firm_ict,2022-07-01,11.8,2022,https://www.ontsi.es/es/node/15664,Annual observation plotted at July 1; not a survey fieldwork date
+firm_ict,2023-07-01,9.6,2023,https://www.ontsi.es/es/node/15664,Annual observation plotted at July 1; not a survey fieldwork date
+firm_ict,2024-07-01,11.3,2024,https://www.ontsi.es/es/node/15664,Annual observation plotted at July 1; not a survey fieldwork date
+firm_ebae,2024-11-18,19.9,2024,https://www.bde.es/wbe/es/publicaciones/analisis-economico-investigacion/boletin-economico/2025t2-articulo-06-la-adopcion-de-la-inteligencia-artificial-en-las-empresas-espanolas-un-primer-analisis-basado-en-la-ebae.html,November survey plotted at November 18; day is a plotting convention
+chatgpt_frequent,2023-12-15,4,2023,https://www.funcas.es/prensa/el-uso-frecuente-de-chatgpt-en-espana-sube-del-4-al-28-entre-2023-y-2025/,Annual December survey plotted at December 15; day is a plotting convention
+chatgpt_frequent,2024-12-15,14,2024,https://www.funcas.es/prensa/el-uso-frecuente-de-chatgpt-en-espana-sube-del-4-al-28-entre-2023-y-2025/,Annual December survey plotted at December 15; day is a plotting convention
+chatgpt_frequent,2025-12-15,28,2025,https://www.funcas.es/prensa/el-uso-frecuente-de-chatgpt-en-espana-sube-del-4-al-28-entre-2023-y-2025/,Annual December survey plotted at December 15; day is a plotting convention

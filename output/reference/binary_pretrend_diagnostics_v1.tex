@@ -1,0 +1,31 @@
+\begin{table}[H]
+\centering
+\caption{Pre-treatment diagnostics for the binary-treatment design}
+\label{tab:v1_binary_pretrends}
+\begin{threeparttable}
+\scriptsize
+\renewcommand{\arraystretch}{0.90}
+\setlength{\tabcolsep}{2.0pt}
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+& \multicolumn{3}{c}{\# of registered unemployed} & \multicolumn{3}{c}{\# of new contracts} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}
+& (1) & (2) & (3) & (4) & (5) & (6) \\
+\midrule
+Full available: Joint nullity & $<0.001$ & 0.019 & 0.847 & $<0.001$ & 0.256 & 0.382 \\
+Full available: Equal coefficients & $<0.001$ & 0.018 & 0.786 & $<0.001$ & 0.211 & 0.299 \\
+Early: -21 to -10: Joint nullity & $<0.001$ & 0.085 & -- & $<0.001$ & 0.690 & -- \\
+Early: -21 to -10: Equal coefficients & $<0.001$ & 0.060 & -- & 0.005 & 0.662 & -- \\
+Recent: -10 to -2: Joint nullity & 0.018 & 0.847 & 0.847 & 0.072 & 0.368 & 0.382 \\
+Recent: -10 to -2: Equal coefficients & 0.148 & 0.786 & 0.786 & 0.064 & 0.285 & 0.299 \\
+\midrule
+CNO1 $\times$ year-month FE & No & Yes & Yes & No & Yes & Yes \\
+2021 included & Yes & Yes & No & Yes & Yes & No \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item \emph{Notes:} Entries are $p$-values from Wald tests of pre-treatment event-study coefficients in the binary-treatment design. Treatment equals one for occupations with nearest-neighbor exposure above 0.1169 and zero otherwise. The nullity test evaluates whether all coefficients in the indicated window equal zero; the equality test evaluates whether they equal one another while allowing their common value to differ from zero. The benchmark includes CNO4 and year-month FE. The remaining specifications include CNO4 and CNO1-by-year-month FE and differ by sample period as indicated. The full available window is event times $-21$ through $-2$ when 2021 is included and $-10$ through $-2$ when it is excluded. The early window is therefore unavailable for the no-2021 specification. October 2022 (event time $-1$) is omitted.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

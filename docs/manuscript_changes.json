@@ -1,0 +1,10 @@
+[
+  {
+    "date": "2026-10-07",
+    "file": "epa_vs_sepe_unemployment_quarterly.png",
+    "reason": "Author requested title-free formatting and manuscript blue palette; plotted data and quarterly timing unchanged.",
+    "original_sha256": "123f62d531607dc342d741d25442d9b68eec5a7a30a79417683f618477b914ac",
+    "updated_sha256": "ae2090f829e8a36eab270926a7ceee035d9d97849cdcbe16ba6e79d4f49ffdb4",
+    "verification": "Independently downloaded from Prism uploads/prism-uploads after replacing the manuscript filename; identical SHA-256 to the generated PNG."
+  }
+]

@@ -1,1 +1,0 @@
-"""Spanish AI exposure pipeline."""

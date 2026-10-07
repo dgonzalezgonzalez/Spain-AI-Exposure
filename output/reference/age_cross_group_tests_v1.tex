@@ -1,0 +1,28 @@
+\begin{table}[!htbp]
+\centering
+\caption{Formal tests of age-group heterogeneity}
+\label{tab:v1_age_cross_group_tests}
+\begin{threeparttable}
+\small
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{lcccc}
+\toprule
+& \multicolumn{2}{c}{\# of registered unemployed} & \multicolumn{2}{c}{\# of new contracts} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+& Adjustment & Later & Adjustment & Later \\
+\midrule
+All age-group effects equal & 0.450 & 0.105 & 0.025 & 0.010 \\
+Ages 30--39 = under 30 & 0.897 & 0.320 & 0.102 & 0.274 \\
+Ages 30--39 = age 40 or older & 0.232 & 0.035 & 0.050 & 0.007 \\
+Under 30 = age 40 or older & 0.405 & 0.474 & 0.007 & 0.006 \\
+Pooled under 40 = age 40 or older & 0.233 & 0.118 & 0.008 & 0.002 \\
+\midrule
+Observations & \multicolumn{2}{c}{92,368} & \multicolumn{2}{c}{90,829} \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item \emph{Notes:} Entries are $p$-values from Wald tests in the pooled age-by-CNO4 panel. The first four rows come from a regression that permits separate exposure gradients for workers under 30, ages 30--39, and age 40 or older in each post-treatment period. The final row comes from a companion regression that constrains the two younger groups to share a phase-specific gradient and tests that common under-40 gradient against the gradient for age 40 or older. Both regressions include age-by-CNO4 and age-by-CNO1-by-year-month FE. Standard errors allow arbitrary correlation across age groups within each of 502 CNO4 occupations.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

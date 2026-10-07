@@ -1,0 +1,163 @@
+[
+  {
+    "file": "data/input/anthropic_job_exposure_onet.csv",
+    "staged_name": "anthropic_job_exposure_onet.csv",
+    "sha256": "4f0a3adf5feeb2ec5f5d02ab18cc5e851a2a4b8470bde84c0c9335017be12d68",
+    "uncompressed_sha256": "4f0a3adf5feeb2ec5f5d02ab18cc5e851a2a4b8470bde84c0c9335017be12d68",
+    "bytes": 37176
+  },
+  {
+    "file": "data/input/bls_ai_exposure_categories_2025_35.xlsx",
+    "staged_name": "bls_ai_exposure_categories_2025_35.xlsx",
+    "sha256": "51f5779feea35b89d9c688970ebb9d2e03fca514b39a5100b66faa88abffb52b",
+    "uncompressed_sha256": "51f5779feea35b89d9c688970ebb9d2e03fca514b39a5100b66faa88abffb52b",
+    "bytes": 98102
+  },
+  {
+    "file": "data/input/cno11_notas.pdf",
+    "staged_name": "cno11_notas.pdf",
+    "sha256": "614faa32dc755c14fa426f3a0217b22614cbefb948bc9fa02d500f5440fcfb65",
+    "uncompressed_sha256": "614faa32dc755c14fa426f3a0217b22614cbefb948bc9fa02d500f5440fcfb65",
+    "bytes": 1807920
+  },
+  {
+    "file": "data/input/cno4_english_titles.csv",
+    "staged_name": "cno4_english_titles.csv",
+    "sha256": "d54f8627e25e7ab823566ad82c1f94f9c8e0f7bcdc4a67194f303053c890e752",
+    "uncompressed_sha256": "d54f8627e25e7ab823566ad82c1f94f9c8e0f7bcdc4a67194f303053c890e752",
+    "bytes": 46863
+  },
+  {
+    "file": "data/input/cosine_embeddings.npz",
+    "staged_name": "cosine_embeddings.npz",
+    "sha256": "ffa28643c9e0d82737d8ced49343ead424b2c520e4620159ca43381338ae4e97",
+    "uncompressed_sha256": "ffa28643c9e0d82737d8ced49343ead424b2c520e4620159ca43381338ae4e97",
+    "bytes": 24637597
+  },
+  {
+    "file": "data/input/epa_unemployment_microdata_weights.csv.gz",
+    "staged_name": "epa_unemployment_microdata_weights.csv",
+    "sha256": "6dd9ee060efecaac05819f6816766bc43a33a67f6fcb697b54881ba751f1c472",
+    "uncompressed_sha256": "06077a38a72f3f84f78953a0e365449601b409d6e8ba8be908ca94bcec63ef8d",
+    "bytes": 466422
+  },
+  {
+    "file": "data/input/felten_raj_seamans_language_modeling_aioe.xlsx",
+    "staged_name": "felten_raj_seamans_language_modeling_aioe.xlsx",
+    "sha256": "ccdd1fb916dfa404914367eafde7c00b7148ea86f18fe616240bc85cf6131c8b",
+    "uncompressed_sha256": "ccdd1fb916dfa404914367eafde7c00b7148ea86f18fe616240bc85cf6131c8b",
+    "bytes": 55714
+  },
+  {
+    "file": "data/input/ine_epa_ocupados_65134.csv",
+    "staged_name": "ine_epa_ocupados_65134.csv",
+    "sha256": "fc9b1d9a0fca907ef162ce1f001587516d5b9aeab773c1079791c5bbc3e0c8dc",
+    "uncompressed_sha256": "fc9b1d9a0fca907ef162ce1f001587516d5b9aeab773c1079791c5bbc3e0c8dc",
+    "bytes": 3290164
+  },
+  {
+    "file": "data/input/jev/direct_score_probabilities.csv",
+    "staged_name": "jev_direct_score_probabilities.csv",
+    "sha256": "b293369b0b6d59171b2ba9db2b6295c486e143d7f3db042c3672daa09c3b8866",
+    "uncompressed_sha256": "b293369b0b6d59171b2ba9db2b6295c486e143d7f3db042c3672daa09c3b8866",
+    "bytes": 28748
+  },
+  {
+    "file": "data/input/jev/jev_response_cache.zip",
+    "staged_name": "jev_jev_response_cache.zip",
+    "sha256": "3d4cf339f2c93fdfbc86541ef1fd4aa936f4a142d8d36e2459e0e5ebbc2df473",
+    "uncompressed_sha256": "3d4cf339f2c93fdfbc86541ef1fd4aa936f4a142d8d36e2459e0e5ebbc2df473",
+    "bytes": 3727839
+  },
+  {
+    "file": "data/input/jev/manifest.json",
+    "staged_name": "jev_manifest.json",
+    "sha256": "97e11b90cf01d2a8c842e267f56a2109de65198a9fcd3837107249bd028ebb5f",
+    "uncompressed_sha256": "97e11b90cf01d2a8c842e267f56a2109de65198a9fcd3837107249bd028ebb5f",
+    "bytes": 4548
+  },
+  {
+    "file": "data/input/jev/occupation_estimates.csv",
+    "staged_name": "jev_occupation_estimates.csv",
+    "sha256": "d6a01c9a013d87d136854a71756c5f6d467367f32592167144adb4a3d81a721c",
+    "uncompressed_sha256": "d6a01c9a013d87d136854a71756c5f6d467367f32592167144adb4a3d81a721c",
+    "bytes": 185278
+  },
+  {
+    "file": "data/input/jev/occupation_probabilities.csv.gz",
+    "staged_name": "jev_occupation_probabilities.csv",
+    "sha256": "798fb4c68f79629b7cb295008cc35b17c302ff98fe1fc481ff33beecdd8b714a",
+    "uncompressed_sha256": "aacb39411261b061aaed1c6412382452ea78d64dd19b0b81f3662d5ec470e803",
+    "bytes": 34732
+  },
+  {
+    "file": "data/input/jev/questions.json",
+    "staged_name": "jev_questions.json",
+    "sha256": "603c69eb48b9f85b39218d0873ca87f003c9badf3c8c6b5edacd3c7042400e23",
+    "uncompressed_sha256": "603c69eb48b9f85b39218d0873ca87f003c9badf3c8c6b5edacd3c7042400e23",
+    "bytes": 279509
+  },
+  {
+    "file": "data/input/jev/request_audit.json",
+    "staged_name": "jev_request_audit.json",
+    "sha256": "51b3c9505801bf4ccd744fc4fb1894d11824218c64997d8a2b67732d5285dc1e",
+    "uncompressed_sha256": "51b3c9505801bf4ccd744fc4fb1894d11824218c64997d8a2b67732d5285dc1e",
+    "bytes": 1506436
+  },
+  {
+    "file": "data/input/jev/spanish_inputs.csv",
+    "staged_name": "jev_spanish_inputs.csv",
+    "sha256": "644f0ab99be69d5a40fc76d82a49f4678c573a9b989992a698310458121a46cc",
+    "uncompressed_sha256": "644f0ab99be69d5a40fc76d82a49f4678c573a9b989992a698310458121a46cc",
+    "bytes": 776112
+  },
+  {
+    "file": "data/input/jev/us_catalogue.csv",
+    "staged_name": "jev_us_catalogue.csv",
+    "sha256": "57628f322f26908b20780caf2078c0fb3eec922152b8783867adae6b168e5dc8",
+    "uncompressed_sha256": "57628f322f26908b20780caf2078c0fb3eec922152b8783867adae6b168e5dc8",
+    "bytes": 205826
+  },
+  {
+    "file": "data/input/release-2026-06-26.zip",
+    "staged_name": "release-2026-06-26.zip",
+    "sha256": "9be20dd451b91e4d59bd605528a8d5e55f6a182c1d280172f303f871553236da",
+    "uncompressed_sha256": "9be20dd451b91e4d59bd605528a8d5e55f6a182c1d280172f303f871553236da",
+    "bytes": 30774114
+  },
+  {
+    "file": "data/input/sepe_cno4_age_may2024_backcast_from_june.csv",
+    "staged_name": "sepe_cno4_age_may2024_backcast_from_june.csv",
+    "sha256": "d40975fcb6c8102d612fe05f821e354c2bff71882016d5bb55720a7a3be4bcfc",
+    "uncompressed_sha256": "d40975fcb6c8102d612fe05f821e354c2bff71882016d5bb55720a7a3be4bcfc",
+    "bytes": 1671300
+  },
+  {
+    "file": "data/input/sepe_cno4_monthly_ai_exposure.csv.gz",
+    "staged_name": "sepe_cno4_monthly_ai_exposure.csv",
+    "sha256": "c36ffaec9ab1ad019f4d766acfdb9ffd4fc790332dd4541f7a4ba88650bbba26",
+    "uncompressed_sha256": "47ce6d91882fc502ed948bb2ab0536b36713491214bb1249f3a130d7e70e3eb6",
+    "bytes": 16758935
+  },
+  {
+    "file": "data/input/sepe_cno4_province_may2024_backcast_from_june.csv.gz",
+    "staged_name": "sepe_cno4_province_may2024_backcast_from_june.csv",
+    "sha256": "806a6a887e346de710cfb19e64c68faa30972c699ab4229064919eb9f3dc29e5",
+    "uncompressed_sha256": "0ed773397bb034c1acaabeda718a05d6b4301239b844132d2b6b0210213c5c3e",
+    "bytes": 501995
+  },
+  {
+    "file": "data/input/spain_ai_adoption_timing_sources.csv",
+    "staged_name": "spain_ai_adoption_timing_sources.csv",
+    "sha256": "1dc67b3cfce7d40b67d97d184c831f74aca34ec655bce0d01c2747a6321d6442",
+    "uncompressed_sha256": "1dc67b3cfce7d40b67d97d184c831f74aca34ec655bce0d01c2747a6321d6442",
+    "bytes": 1566
+  },
+  {
+    "file": "data/input/spanish_occupation_matches_cosine_nearest.csv",
+    "staged_name": "spanish_occupation_matches_cosine_nearest.csv",
+    "sha256": "d912f43fb2bd00d66d7cda0c3696d9f83382a28236cbb4074d5c5e9708a9b1a7",
+    "uncompressed_sha256": "d912f43fb2bd00d66d7cda0c3696d9f83382a28236cbb4074d5c5e9708a9b1a7",
+    "bytes": 822141
+  }
+]

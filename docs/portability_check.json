@@ -1,0 +1,8 @@
+{
+  "python_staging": "passed",
+  "stata_projected_point_fit": "passed",
+  "stata_development_repetitions": 2,
+  "r_package_loading_and_panel_read": "passed",
+  "seconds": 56.51600000006147,
+  "scope": "Accented-path interoperability check only; production inference is independently verified with 500 repetitions."
+}

@@ -1,0 +1,42 @@
+\begin{table}[H]
+\centering
+\caption{AI exposure effects across occupational-feminization groups}
+\label{tab:v1_feminization_three_group}
+\begin{threeparttable}
+\small
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{lcccc}
+\toprule
+& \multicolumn{2}{c}{\# of registered unemployed} & \multicolumn{2}{c}{\# of new contracts} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+& (1) & (2) & (3) & (4) \\
+\midrule
+\multicolumn{5}{l}{\textbf{$F_j<p_{25}$}} \\
+AI exposure $\times$ adjustment period & 0.047$^{***}$ & 0.045$^{***}$ & -0.011 & -0.021$^{**}$ \\
+ & (0.012) & (0.011) & (0.011) & (0.009) \\
+AI exposure $\times$ later period & 0.092$^{***}$ & 0.090$^{***}$ & -0.045$^{***}$ & -0.054$^{***}$ \\
+ & (0.019) & (0.019) & (0.012) & (0.012) \\
+\addlinespace[4pt]
+\multicolumn{5}{l}{\textbf{$p_{25}\leq F_j\leq p_{75}$}} \\
+AI exposure $\times$ adjustment period & 0.018$^{**}$ & 0.014$^{*}$ & 0.021$^{*}$ & 0.010 \\
+ & (0.008) & (0.008) & (0.012) & (0.009) \\
+AI exposure $\times$ later period & 0.017 & 0.013 & 0.030$^{**}$ & 0.019 \\
+ & (0.015) & (0.015) & (0.015) & (0.014) \\
+\addlinespace[4pt]
+\multicolumn{5}{l}{\textbf{$F_j>p_{75}$}} \\
+AI exposure $\times$ adjustment period & -0.011 & -0.006 & 0.014 & 0.008 \\
+ & (0.007) & (0.007) & (0.014) & (0.011) \\
+AI exposure $\times$ later period & -0.015 & -0.010 & 0.011 & 0.005 \\
+ & (0.013) & (0.014) & (0.017) & (0.015) \\
+\addlinespace[4pt]
+\midrule
+2021 included & Yes & No & Yes & No \\
+Observations & 31,122 & 25,600 & 30,786 & 25,317 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item \emph{Notes:} Occupations are grouped using the 25th and 75th percentiles of the predetermined CNO2 female-employment share. Each column reports one regression with group-specific exposure gradients. Columns 1 and 3 use the full sample; columns 2 and 4 exclude 2021. All specifications include CNO4 and CNO1-by-year-month FE and cluster standard errors by CNO4. The adjustment and later periods cover event times 0--24 and 25--40. Entries are marginal effects of a 10 percentage-point increase in exposure, not ATTs. $^{***}p<0.01$, $^{**}p<0.05$, and $^{*}p<0.10$.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

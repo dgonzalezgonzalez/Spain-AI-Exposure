@@ -1,0 +1,357 @@
+[
+  {
+    "file": "code/vendor/stata/f/fcollapse.ado",
+    "sha256": "287b9df2ca95e84d3b880b8d6b3315bc0158905c5592bf5f323dab97891fe21f",
+    "bytes": 7506
+  },
+  {
+    "file": "code/vendor/stata/f/fcollapse.sthlp",
+    "sha256": "b2f0985e21cfdd9c452c725adb70deacec097509de751c10026dc0f8bd3d7a1d",
+    "bytes": 8135
+  },
+  {
+    "file": "code/vendor/stata/f/fcollapse_functions.mata",
+    "sha256": "9c08a3db3c096d1a911b7cedad904ea2724f090c8549ac13ade32d422c4ee829",
+    "bytes": 8736
+  },
+  {
+    "file": "code/vendor/stata/f/fcollapse_main.mata",
+    "sha256": "cd927740a4943084fa812cb7cfb3efe66b4be673f2510765fdfb1dc81a94f22c",
+    "bytes": 8700
+  },
+  {
+    "file": "code/vendor/stata/f/fegen.ado",
+    "sha256": "91924b4e3645f69b3e5413f7bb2485a8f129a247b3c7197bb231015f44d9b89d",
+    "bytes": 1935
+  },
+  {
+    "file": "code/vendor/stata/f/fegen.sthlp",
+    "sha256": "182aff345ea074e57a504df7de096ab5021b43d3ffef2e3a88935ad18839d96b",
+    "bytes": 2469
+  },
+  {
+    "file": "code/vendor/stata/f/fegen_group.ado",
+    "sha256": "d0bd6fcc844763b1801c7d094f0930cdeac90ad449e3a63ba56a620406314f90",
+    "bytes": 3304
+  },
+  {
+    "file": "code/vendor/stata/f/fisid.ado",
+    "sha256": "711a8e5f583944f346f0717c0486deb621c3d942a98bd427850a2c72c0af7ad4",
+    "bytes": 1171
+  },
+  {
+    "file": "code/vendor/stata/f/fisid.sthlp",
+    "sha256": "b614630ff48965b5feb89d4b84563837a5a4fbecd34b8435fd8a21c5b4689d95",
+    "bytes": 1055
+  },
+  {
+    "file": "code/vendor/stata/f/flevelsof.ado",
+    "sha256": "2d35016fb353db4c8f1f73dee60591df13c17312dae3e3d82ea1ad9afdd7572c",
+    "bytes": 3264
+  },
+  {
+    "file": "code/vendor/stata/f/flevelsof.sthlp",
+    "sha256": "550b97123fa5bba678cf676e608714f8f08cb623c17f810275a2fd729037e6e6",
+    "bytes": 4920
+  },
+  {
+    "file": "code/vendor/stata/f/fmerge.ado",
+    "sha256": "81209ba91049c80bf676eb0e8b03c77ee1af7bdf3318a279a1219a48155133be",
+    "bytes": 2478
+  },
+  {
+    "file": "code/vendor/stata/f/fmerge.sthlp",
+    "sha256": "79888bd6e186b1718a9917113cb9e0bc06e7f4a1706d4ae58a869f4ab04e30c0",
+    "bytes": 2940
+  },
+  {
+    "file": "code/vendor/stata/f/fsort.ado",
+    "sha256": "993fa04fa45f030e13b58b3646df29379e30d90cf87db96e189bfa484def7624",
+    "bytes": 1549
+  },
+  {
+    "file": "code/vendor/stata/f/fsort.sthlp",
+    "sha256": "8abdb39b5d4977709fd61d4aa142a6940c2c7b1a39b0bae189dfdf6a0230affc",
+    "bytes": 1698
+  },
+  {
+    "file": "code/vendor/stata/f/ftab.ado",
+    "sha256": "4857e34f02f55e0b687f3e86365a37d32856f22695413a3abc884a44e8a61bf0",
+    "bytes": 5060
+  },
+  {
+    "file": "code/vendor/stata/f/ftools.ado",
+    "sha256": "459666a26fdcc67b798b0a38eab3dcefa6714c4e679745f99eca945f41b3cd88",
+    "bytes": 1472
+  },
+  {
+    "file": "code/vendor/stata/f/ftools.mata",
+    "sha256": "36e86495e6974e7f56e6a1293fd4e9c22b178a27d54f21589cb67d2fde8b09d7",
+    "bytes": 2045
+  },
+  {
+    "file": "code/vendor/stata/f/ftools.sthlp",
+    "sha256": "5e85a3df332382887ceafb75c29d8a5565e441003c275f5bcb7f4077956bb501",
+    "bytes": 21813
+  },
+  {
+    "file": "code/vendor/stata/f/ftools_common.mata",
+    "sha256": "121cbff8d082b428adbb1a6e8e01a594c21eada656cb56a09768dd140d98b6f0",
+    "bytes": 5489
+  },
+  {
+    "file": "code/vendor/stata/f/ftools_hash1.mata",
+    "sha256": "c98d958022050de983800c65a669fc021c206920a2b46ec0b1a4bea716db4e21",
+    "bytes": 3443
+  },
+  {
+    "file": "code/vendor/stata/f/ftools_main.mata",
+    "sha256": "ff3ffdf1f2954c109cf9a9cf5c940b40771c631c28bddc1efcbf3ac1e1b67557",
+    "bytes": 27707
+  },
+  {
+    "file": "code/vendor/stata/f/ftools_plugin.mata",
+    "sha256": "f286330ea23c49a9b9f4f55f21df787899063ea3b6b4df39d463d5270fcfcbd0",
+    "bytes": 2110
+  },
+  {
+    "file": "code/vendor/stata/f/ftools_type_aliases.mata",
+    "sha256": "112ebae5335c453b5a218517e9bf37b84e3edb9c714f10276a11cf278d06eef3",
+    "bytes": 2284
+  },
+  {
+    "file": "code/vendor/stata/j/join.ado",
+    "sha256": "9fbe1711c2dfef150af6b85b6afa9786efeee6128e5bd18c3b83fddd4dca8b40",
+    "bytes": 19120
+  },
+  {
+    "file": "code/vendor/stata/j/join.sthlp",
+    "sha256": "c8063609313fe1b9ee2fc974e6ac9e0fb6d7131ebcff755058379b91ecd3082a",
+    "bytes": 9648
+  },
+  {
+    "file": "code/vendor/stata/l/lftools.mlib",
+    "sha256": "37e676509aa4158c14f9eee729f3ede4bbe27a126b723021a4f753db4dd6c57e",
+    "bytes": 379392
+  },
+  {
+    "file": "code/vendor/stata/l/local_inlist.ado",
+    "sha256": "eced38ed8499011099869cfc5c1522d4c85213346c94d94c8a52f71e418f4f96",
+    "bytes": 1744
+  },
+  {
+    "file": "code/vendor/stata/l/local_inlist.sthlp",
+    "sha256": "0c73f74d2d2b45d5ef0ebb54376dfba64b01e0e873f300112f6ca6dc9ae0b614",
+    "bytes": 1212
+  },
+  {
+    "file": "code/vendor/stata/m/ms_add_comma.ado",
+    "sha256": "862c2525d6646b67165aae02076302864576e91195a72e1945be517987097061",
+    "bytes": 723
+  },
+  {
+    "file": "code/vendor/stata/m/ms_compile_mata.ado",
+    "sha256": "eb7c9a3f1f032d75ae2f7c51c848d3957c5eb2bbcccf55cbde7c650ce4d2a38a",
+    "bytes": 7040
+  },
+  {
+    "file": "code/vendor/stata/m/ms_expand_varlist.ado",
+    "sha256": "d18d7740fe08be3b9b1d0685946349e5b74d05891890b69c0101bf21fc6e0110",
+    "bytes": 1682
+  },
+  {
+    "file": "code/vendor/stata/m/ms_fvstrip.ado",
+    "sha256": "d99b59eb5f0452822cae513c056018e5f1d3dc655ae707f3f729391293718297",
+    "bytes": 5390
+  },
+  {
+    "file": "code/vendor/stata/m/ms_fvstrip.sthlp",
+    "sha256": "8fc299265833cd4e0f11c39b77b27c5dfb0944fb95f722f385955e0bdc0376b2",
+    "bytes": 3477
+  },
+  {
+    "file": "code/vendor/stata/m/ms_fvunab.ado",
+    "sha256": "4b8a9b7bd8dc4629884cc1ea6c0647a016cb2e5ad0a5df0a15292562e3aecd54",
+    "bytes": 1180
+  },
+  {
+    "file": "code/vendor/stata/m/ms_get_version.ado",
+    "sha256": "7fcc87202af015095bc0c69571056a03932688fca39bc0ec6fccdb46e47ef537",
+    "bytes": 1941
+  },
+  {
+    "file": "code/vendor/stata/m/ms_parse_absvars.ado",
+    "sha256": "f8d0bed6b12d2e7560f4a79bf4190c82a0e66f69e0dc1706d2689b8ffd73a411",
+    "bytes": 9691
+  },
+  {
+    "file": "code/vendor/stata/m/ms_parse_varlist.ado",
+    "sha256": "86eed812e95f8a841810f64ac9246803cd4f5f541c0f2a8a2f34a2a2f2669b09",
+    "bytes": 755
+  },
+  {
+    "file": "code/vendor/stata/m/ms_parse_vce.ado",
+    "sha256": "b2faab38f1bb44113b1954147d7fc0086ec05a7cca1847208dbca0db5a179b76",
+    "bytes": 3067
+  },
+  {
+    "file": "code/vendor/stata/p/parallel_map.ado",
+    "sha256": "39d7c1d67acffe2a001075cdeb2c40d5ce321ec8c732874b033ebad266ce8267",
+    "bytes": 14159
+  },
+  {
+    "file": "code/vendor/stata/p/parallel_map.sthlp",
+    "sha256": "a11a85006f465cdf998ab05fa4bcc1065fe9108a470c753bdc30d9d88b501c28",
+    "bytes": 3065
+  },
+  {
+    "file": "code/vendor/stata/p/parallel_map_template.do.ado",
+    "sha256": "4c89df6edd0dba71de9fcc2f93b0b8d6109f62b19d74d151d6a9e7b212a11340",
+    "bytes": 2470
+  },
+  {
+    "file": "code/vendor/stata/r/reghdfe.ado",
+    "sha256": "f9462bb7364055b138b223a495d4b0fd4b3c5e3bedc1fc886b75bf1546f9d66a",
+    "bytes": 31860
+  },
+  {
+    "file": "code/vendor/stata/r/reghdfe.mata",
+    "sha256": "0c142d581cee6556e3542fa8bb36cd33d6efdcbc6e3e1b4abff58f371ac13b9c",
+    "bytes": 205955
+  },
+  {
+    "file": "code/vendor/stata/r/reghdfe.sthlp",
+    "sha256": "6cbd6128f1b2feece3efa4ca43d92e72b4769d3e4bb8138df5e8c64fc8f1800a",
+    "bytes": 49272
+  },
+  {
+    "file": "code/vendor/stata/r/reghdfe3.ado",
+    "sha256": "a1bf203caff1d4fe7fb1082e48e40c4e8f79c13b91a3d31a55bd735d70f6e259",
+    "bytes": 175861
+  },
+  {
+    "file": "code/vendor/stata/r/reghdfe3.sthlp",
+    "sha256": "a5e30b2f59633966a70005fd40747aedc2285e326b45cd73e031add0914414a2",
+    "bytes": 48196
+  },
+  {
+    "file": "code/vendor/stata/r/reghdfe3_estat.ado",
+    "sha256": "1102974639c6ef8da1da2ac2fa71dac55b03a884aa50f2a0c4c357b3c96e22f7",
+    "bytes": 794
+  },
+  {
+    "file": "code/vendor/stata/r/reghdfe3_footnote.ado",
+    "sha256": "09e4b9d99350ea52de8b9ec5c43891a74e20597e8c4a35a73eb5d28d68a1019d",
+    "bytes": 3715
+  },
+  {
+    "file": "code/vendor/stata/r/reghdfe3_p.ado",
+    "sha256": "dd76e854d59dde1be1669b99809387b5013559edd2a1b839b809825f3d2ef9a4",
+    "bytes": 2826
+  },
+  {
+    "file": "code/vendor/stata/r/reghdfe5.ado",
+    "sha256": "fab6a4af5a10fcfeddf78f442843bd0444a74b843430e9f17fd9e32f82ebdcc1",
+    "bytes": 15464
+  },
+  {
+    "file": "code/vendor/stata/r/reghdfe5.mata",
+    "sha256": "cd11248ed61604b99d04ce95108c1ac48fb67401adcb773e87472539b0c18fc7",
+    "bytes": 131762
+  },
+  {
+    "file": "code/vendor/stata/r/reghdfe5.sthlp",
+    "sha256": "32c5c874d38d597c257fd3a6970db9104d8c1f6684c4aa386400165fe8464742",
+    "bytes": 43015
+  },
+  {
+    "file": "code/vendor/stata/r/reghdfe5_estat.ado",
+    "sha256": "9ac8c78d17dd6506e402167adcf5ad6d4f3fcf1c6c638b9b32fb18e0f3a03c9a",
+    "bytes": 921
+  },
+  {
+    "file": "code/vendor/stata/r/reghdfe5_footnote.ado",
+    "sha256": "75fd247953ee50a7b6b6245c6fad5c59116cdc57518cf789c5b1cfc7a53e623a",
+    "bytes": 1786
+  },
+  {
+    "file": "code/vendor/stata/r/reghdfe5_header.ado",
+    "sha256": "d08d8984b4419621a7cbd759581c147c6a15166927b181f4c55cb13388af97be",
+    "bytes": 5156
+  },
+  {
+    "file": "code/vendor/stata/r/reghdfe5_p.ado",
+    "sha256": "d08ea85da163496b2c253877579844cce32be22a0bfec8e07c6e8454c96b80cc",
+    "bytes": 2431
+  },
+  {
+    "file": "code/vendor/stata/r/reghdfe5_parse.ado",
+    "sha256": "189bef1b20d392e0485605ebadef202e414bc86d61a74eeff3b057fd4f7f411d",
+    "bytes": 4657
+  },
+  {
+    "file": "code/vendor/stata/r/reghdfe_estat.ado",
+    "sha256": "e0b3902c9ee1397fe2fbe0c2238106629f61d8c369b2afa541fa527ad8ac7ac6",
+    "bytes": 920
+  },
+  {
+    "file": "code/vendor/stata/r/reghdfe_footnote.ado",
+    "sha256": "2f8500b26c7a74ec92d8b4f3d91017421f5167d4dc0824a69ae80e0b21260b4f",
+    "bytes": 1785
+  },
+  {
+    "file": "code/vendor/stata/r/reghdfe_header.ado",
+    "sha256": "d492be06599cefdd749df0947dd9f4e14ad1df736f4f843d2daaa6366b2814e8",
+    "bytes": 5324
+  },
+  {
+    "file": "code/vendor/stata/r/reghdfe_p.ado",
+    "sha256": "39351fce610f4c479e622d9b4e887a6b1c1894fac00b80d8958bc1ab6fbc7a29",
+    "bytes": 2430
+  },
+  {
+    "file": "code/vendor/stata/r/reghdfe_programming.sthlp",
+    "sha256": "2a269db3f3aebe107bbc2ccec8f5d04b835c40b96845b6dcc8fd2b395873fe40",
+    "bytes": 15923
+  },
+  {
+    "file": "code/vendor/stata/r/require.ado",
+    "sha256": "31422eec5fdbea49b2830abab1c971cf8f08b1cc901f18916bd7686dcac5145b",
+    "bytes": 35375
+  },
+  {
+    "file": "code/vendor/stata/r/require.sthlp",
+    "sha256": "feb27a290810ac8709ad5ba465c6e95334bab1ad6981fe1b9be7124734ccac09",
+    "bytes": 7903
+  },
+  {
+    "file": "code/vendor/stata/s/sdid.ado",
+    "sha256": "9bab78ec6bf6732002dddcf13575371b48b94b72388617c0ea224faac7d70645",
+    "bytes": 48252
+  },
+  {
+    "file": "code/vendor/stata/s/sdid.sthlp",
+    "sha256": "9541a9f94f0f75ec6782538af3710c54bc357118d8cd35c88ba5df947cb2d660",
+    "bytes": 21993
+  },
+  {
+    "file": "code/vendor/stata/s/sdid_event.ado",
+    "sha256": "09750e7700dd15c36bbce58758843c585de2451ce4ba49f25cb1e5a9e681cc78",
+    "bytes": 12627
+  },
+  {
+    "file": "code/vendor/stata/s/sdid_event.sthlp",
+    "sha256": "18adacb97b5d73e33d3da66051d2ed0b2da7ddb2c743456f7b166ea84e4547d4",
+    "bytes": 6261
+  },
+  {
+    "file": "code/vendor/stata/u/unique.ado",
+    "sha256": "bda3566e980163c7cd938a4f88d7c8cb827264ef3335a2293de7019a2618584e",
+    "bytes": 1492
+  },
+  {
+    "file": "code/vendor/stata/u/unique.sthlp",
+    "sha256": "ac9f27df60970a4039785978a2b82f6d0d33939bdd8db366a63c299c0156695d",
+    "bytes": 2569
+  }
+]

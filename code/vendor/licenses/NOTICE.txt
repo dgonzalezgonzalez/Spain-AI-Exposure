@@ -1,0 +1,28 @@
+Third-party Stata software
+
+ftools and supporting Mata/ado helpers: Sergio Correia.
+Source: https://github.com/sergiocorreia/ftools
+Bundled header version: 2.50.0, 09 January 2026. MIT license supplied.
+
+reghdfe and supporting/compatibility routines: Sergio Correia.
+Source: https://github.com/sergiocorreia/reghdfe
+Bundled version: 6.13.1, 10 January 2026. MIT license supplied.
+
+sdid: Daniel Pailanir and Damian Clarke; related event-study implementation
+associated with Diego Ciccia.
+Sources: https://github.com/Daniel-Pailanir/sdid
+         https://github.com/Daniel-Pailanir/sdid/tree/main/sdid_event
+GPL license supplied. Exact author-installed source snapshots are preserved;
+the sdid header says 2.0.2 but its body supports projected covariates.
+Checksums identify the supplied implementation, without upgrading the code.
+
+unique: Michael Hills and Tony Brady. Bundled header: 1.2.4, 17 June 2020.
+Distribution: https://ideas.repec.org/c/boc/bocode/s354701.html
+Preserved ado/help files and original author notices; consult its distributor
+for applicable package-specific reuse terms.
+
+All shipped Mata implementations and source helpers remain with the routines.
+No proprietary Stata executable or proprietary Stata library is redistributed.
+Package binaries and upstream sources retain their original licenses.
+The supplied license texts apply to their named third-party components, not
+as a blanket license over source datasets or author manuscript materials.

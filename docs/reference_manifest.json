@@ -1,0 +1,698 @@
+[
+  {
+    "file": "robustness_checks_jev_v1.tex",
+    "kind": "table",
+    "source_document": "appendix_od_jev.tex",
+    "source_line": 22,
+    "sha256": "f4e1f5482d2ee7ba8419469aff54e236701cce0e9a122778dd86e024a9689c0c",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "Robustness_unemployed_jev_nearest.png",
+    "kind": "figure",
+    "source_document": "appendix_od_jev.tex",
+    "source_line": 29,
+    "sha256": "722f017007540c51c0f84b73a3565e3ec050e2453c3a88e358e5bb3123100ed7",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "Robustness_unemployed_jev_weighted.png",
+    "kind": "figure",
+    "source_document": "appendix_od_jev.tex",
+    "source_line": 34,
+    "sha256": "8d30813fd94cf9cf40ae4001afb820bfe12caa31d31da9d3471dccfa01566975",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "Robustness_unemployed_jev_direct.png",
+    "kind": "figure",
+    "source_document": "appendix_od_jev.tex",
+    "source_line": 40,
+    "sha256": "10031a1c5edb5109e9ebf03d1809d1c6330b0986e7fb1753d2f52e61c15be24d",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "Robustness_contracts_jev_nearest.png",
+    "kind": "figure",
+    "source_document": "appendix_od_jev.tex",
+    "source_line": 54,
+    "sha256": "7c2901fe005c17f76702b30eb35d2fa4c7356eb24c86afcb94c6fabf3b54d0da",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "Robustness_contracts_jev_weighted.png",
+    "kind": "figure",
+    "source_document": "appendix_od_jev.tex",
+    "source_line": 59,
+    "sha256": "1fb749338bf3125c0b66c2d385c406ac2d82ceaad7cf17fe427b90c055040612",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "Robustness_contracts_jev_direct.png",
+    "kind": "figure",
+    "source_document": "appendix_od_jev.tex",
+    "source_line": 65,
+    "sha256": "a25000f44d3524520f982bf6a461a117ad97ef04e1522e91046b0a1aa1b3e416",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "Exposure_correlation_matrix.png",
+    "kind": "figure",
+    "source_document": "appendix_od_jev.tex",
+    "source_line": 78,
+    "sha256": "633652f3650da7521042fee2ae590db21581a3f4d17922576e4d1663a628738e",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "job_tiers_did_jev_v1.tex",
+    "kind": "table",
+    "source_document": "appendix_oe_jev_tiers.tex",
+    "source_line": 35,
+    "sha256": "9b127fae12e59bfbb025a8ad0fe0be4aec81633718386c9e067b405b928dcd14",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "JobTiers_unemployed_jev_tier1.png",
+    "kind": "figure",
+    "source_document": "appendix_oe_jev_tiers.tex",
+    "source_line": 42,
+    "sha256": "232024dc2b8a5792447b78967eaa9f294cba32fdfc6ec0e8a5260691ef4d709e",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "JobTiers_unemployed_jev_tier2.png",
+    "kind": "figure",
+    "source_document": "appendix_oe_jev_tiers.tex",
+    "source_line": 47,
+    "sha256": "0bea8d0b37a5ec4f2e2d39fe584d77180e9f3fd4e208060492b3d2e80e3b3ee8",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "JobTiers_contracts_jev_tier1.png",
+    "kind": "figure",
+    "source_document": "appendix_oe_jev_tiers.tex",
+    "source_line": 61,
+    "sha256": "eb28e2a66c66c88015f7944e48aeb702f71931374a1ae98c6c679662517deec1",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "JobTiers_contracts_jev_tier2.png",
+    "kind": "figure",
+    "source_document": "appendix_oe_jev_tiers.tex",
+    "source_line": 66,
+    "sha256": "4e13474a0ec539409a92b927ea7f629be5a4d8ff7c84dbc184b6bec57428c51b",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "job_tier_mediation_v1.tex",
+    "kind": "table",
+    "source_document": "appendix_oe_jev_tiers.tex",
+    "source_line": 75,
+    "sha256": "127d639bf2f3fc3713e39530e22739b1cd34163e49a4b4d180bb236f1ecebaf9",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "figure_anthropic_country_soc_major_group_spain_global_may2026.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 195,
+    "sha256": "0618e6c63fafd7de524d8e088ad0fa62b4d760a17aaa7871f07e555d5316fafc",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "figure_ai_exposure_distribution_onet_vs_spain.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 212,
+    "sha256": "5691062d8e5bdfcae2e3a892d9b81b4f15a4cd66ecb265d3484a7fb275beafef",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "figure_ai_adoption_timing_panelA.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 238,
+    "sha256": "41a4d8f281551730fc57acbd021249a73f6e6bf5b4a2f2b7d7804fbf0978eace",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "figure_ai_adoption_timing_panelB.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 246,
+    "sha256": "27706cf0b632f62c6ee4836df7dd56eb66a3b5cb7e1d2da4936c443e4d2e4d8b",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "summary_statistics.tex",
+    "kind": "table",
+    "source_document": "main.tex",
+    "source_line": 264,
+    "sha256": "fffd7a12feffc94582ddade6cf862f52021603e38056e9b2b235fd6a60dfa69c",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "Figure1_panelA.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 328,
+    "sha256": "04aa73c130d12ea5458f2918d21766e91194f72677c4fe788b14998514f5d904",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "Figure1_panelB.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 336,
+    "sha256": "cc884fa3bf2e39c6449e2bf99ab4faaafcf07630e1d1768ae57214806b1709a4",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "Figure2_panelA.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 352,
+    "sha256": "de2d66446f557e7cb793bb177dfb362b5734701e7af0aee47913ddc679e4d8ae",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "Figure2_panelB.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 360,
+    "sha256": "69c4f2bb075520f66b494783a98d77738876537064a6bf54d1b522d79ecbd42a",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "table2_main_effects_v1.tex",
+    "kind": "table",
+    "source_document": "main.tex",
+    "source_line": 384,
+    "sha256": "d681923d45e0300347b3a2c4ed63e2e1d3d5620476a9875c5297eb9f40b2d416",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "heterogeneity_v1.tex",
+    "kind": "table",
+    "source_document": "main.tex",
+    "source_line": 404,
+    "sha256": "f3e521c554bfd1a618547000003c0c0a58d02aa0a95770a620826c480bc10d8e",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "Support_panelA.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 484,
+    "sha256": "1a7f7030acc5cbf64b7876b4ca1f3aeff1f0259b08065d3b0651c08adcf0af19",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "Support_panelB.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 490,
+    "sha256": "8b8b0577b57e24e4dc41a2e163e4187fd84ddce93967e5936b103e5b77d48ce8",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "family_support_v1.tex",
+    "kind": "table",
+    "source_document": "main.tex",
+    "source_line": 498,
+    "sha256": "ec28a6bb039c4c63431e7f55c85538c2053cbf54d7ebe103838eb8d95d90f0e8",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "pretrend_diagnostics_v1.tex",
+    "kind": "table",
+    "source_document": "main.tex",
+    "source_line": 499,
+    "sha256": "8602998d3a1dc551fcc0c0493dc5509b5807cd20596904a115ea9f37eb204d19",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "heterogeneity_pretrend_diagnostics_v1.tex",
+    "kind": "table",
+    "source_document": "main.tex",
+    "source_line": 507,
+    "sha256": "115145ad680f1e1e0aec52396a0677c3967ed0ab0ed9410db8b6e83539031f97",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "age_cross_group_tests_v1.tex",
+    "kind": "table",
+    "source_document": "main.tex",
+    "source_line": 508,
+    "sha256": "255011709c95ae5726ac04d4a928e47d450f5df5f3e3e7e5f5632674dadbb37f",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "Heterogeneity_unemployed_panel1.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 516,
+    "sha256": "b4015756454c0607ab2b12da0a4811b9befb45c34821703e08d751b2657a5d2a",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "Heterogeneity_unemployed_panel2.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 521,
+    "sha256": "164a3e24a79078ea669b772ae41dbe7ff1f3479846f2403b08e85ad65921c19a",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "Heterogeneity_unemployed_panel3.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 526,
+    "sha256": "61ab6130c023a860c88477782092d6b1a101c08dc673ff3ec6c327a158dbe826",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "Heterogeneity_unemployed_panel4.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 531,
+    "sha256": "6bb744b41ef7f3165bc260f328c0d78b2155b6b3ad6c93d6cfd2dd60f7299bb5",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "Heterogeneity_unemployed_panel5.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 536,
+    "sha256": "701aebb3457319a3ffa188f1f601e8e2d52b1cf82334eff7e77af8b1209ed0c0",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "Heterogeneity_contracts_panel1.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 550,
+    "sha256": "8337a18aca481a343609b2797e1b78c64d85d2d7749f4817f9c662f6715df707",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "Heterogeneity_contracts_panel2.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 555,
+    "sha256": "6ce799d501b1d71aa2e456814d24a64fb296ba235d8ba2198b6cd549f1a4a643",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "Heterogeneity_contracts_panel3.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 560,
+    "sha256": "71676f867d4ebf9c8dc352406861ef95b69b633e7215a27140af18911d705e26",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "Heterogeneity_contracts_panel4.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 565,
+    "sha256": "7b49225a07c65f75c9188fa24eb2eeb0d84eb3be2750f53740d19c07606fd283",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "Heterogeneity_contracts_panel5.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 570,
+    "sha256": "68e4a3bd9215d7bdc1ae3e135fa61af663c25261c27580c7979aa6d71ac55482",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "epa_vs_sepe_unemployment_quarterly.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 612,
+    "sha256": "ae2090f829e8a36eab270926a7ceee035d9d97849cdcbe16ba6e79d4f49ffdb4",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "table_top_bottom_exposure_appendix.tex",
+    "kind": "table",
+    "source_document": "main.tex",
+    "source_line": 621,
+    "sha256": "0004e36418ba085fcfc0c02e3e0ee2c452200b87c2c6f0775dc9561b1196224b",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "binary_treatment_v1.tex",
+    "kind": "table",
+    "source_document": "main.tex",
+    "source_line": 632,
+    "sha256": "84f30d160ead20a47f08ef803b5d0350ff5c0ae92b2b69b4ca5c64ca0f624952",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "binary_pretrend_diagnostics_v1.tex",
+    "kind": "table",
+    "source_document": "main.tex",
+    "source_line": 634,
+    "sha256": "20ea3a0b953b6f29a3d2a2e34a7d9c25665fe05e90a16c0b59952ed1653215be",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "Binary_event_unemployed.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 643,
+    "sha256": "41d49069acd006eca3480a362515707a3d64cbe2d287e1073856b0b845aba26e",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "Binary_event_contracts.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 651,
+    "sha256": "c47535084a45fbcc5db21486f7496425773c2cc95b365532d58e0ba31e9c5fdb",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "robustness_checks_v1.tex",
+    "kind": "table",
+    "source_document": "main.tex",
+    "source_line": 669,
+    "sha256": "5a43bfa54b98b5e49a136364e567ad4d9faaf47fa17be7af34289e03c7f872cc",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "robustness_pretrend_diagnostics_v1.tex",
+    "kind": "table",
+    "source_document": "main.tex",
+    "source_line": 670,
+    "sha256": "a01dd1a810fe89dff2d57b6f597b2ace6052f05e2694306c177df91d8c46fed2",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "Robustness_unemployed_panel1.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 696,
+    "sha256": "de2d66446f557e7cb793bb177dfb362b5734701e7af0aee47913ddc679e4d8ae",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "Robustness_unemployed_panel2.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 701,
+    "sha256": "3621ed78856a744b59762d9627aba23a142547d25b5121caf6b62eac98894379",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "Robustness_unemployed_panel3.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 707,
+    "sha256": "f36dd5cf1e461779f80040fa925cf0568770ed7ef1d9f1fa1a79194ab6dcad8b",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "Robustness_contracts_panel1.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 726,
+    "sha256": "01d8660986a9ccf6b5806ec3d3a7e32a8f6cafa2a6fa9fa7336fea3039aefd7e",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "Robustness_contracts_panel2.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 731,
+    "sha256": "011a8c72683ae7f8e707830b373f55511c9302f9861120b456d3b76d50b6a848",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "Robustness_contracts_panel3.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 738,
+    "sha256": "43e647a2954ca2290203ef00c91dcf14cfdf3935cd73c9efc3641553b5894b08",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "LeaveOneCNO1_unemployed.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 759,
+    "sha256": "1af2ce1c5bb53808709afd80ef56c2f24c1bf94fa071a41d3814624ff40f7b05",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "LeaveOneCNO1_contracts.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 765,
+    "sha256": "be24b7ac888fabdc9dd4a2e910f5cb635502c05672345502f46a1cad80115198",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "trailing12_contracts_v1.tex",
+    "kind": "table",
+    "source_document": "main.tex",
+    "source_line": 773,
+    "sha256": "d0306f620d9d3213a895b201838e761d34f75951af819730e025b98f0d5a8797",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "Trailing12_contracts_event.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 781,
+    "sha256": "bc7d85ae8f72257b7dd113610ef17789e689122eaea24091888a7178e815c9fb",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "alternative_exposure_validation_v1.tex",
+    "kind": "table",
+    "source_document": "main.tex",
+    "source_line": 800,
+    "sha256": "8bac4e5466e16c8a2af9582256988404b04faba2ade89c6449af33b34fa8fc7b",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "bls_categorical_exposure_v1.tex",
+    "kind": "table",
+    "source_document": "main.tex",
+    "source_line": 802,
+    "sha256": "3aff7ac002d45819d31b912265880cf91266fe624ab0ecfcdb0b1a685e83df8e",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "BLSExposure_unemployed.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 809,
+    "sha256": "52d7b4f1f473a216182fdb546d95bd504b8f097e9735284cc67212e2933fcc5e",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "BLSExposure_contracts.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 815,
+    "sha256": "8b2772bc72eb40d74f2e30739f078aaca29e00f90caf212bcb3d155244ce420c",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "lm_aioe_exposure_v1.tex",
+    "kind": "table",
+    "source_document": "main.tex",
+    "source_line": 830,
+    "sha256": "b94cb99e6b8fad78d2f8bae0f81a6d6119fc8a15274cab637508940a57b3f8fc",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "CapabilityExposure_unemployed.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 838,
+    "sha256": "4fc69eb942c0c3d6b8aa78177c3fba7deafb42881420fe211fdf8a72eb77c351",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "CapabilityExposure_contracts.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 844,
+    "sha256": "47e4251ff0fd2314a33899660840dcd65c6a5c337ae5ab46aa47732f0b268079",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "feminization_median_split_v1.tex",
+    "kind": "table",
+    "source_document": "main.tex",
+    "source_line": 870,
+    "sha256": "62300b53d4ad45bda7d48ff3b7f5861cbfafe0b51796248d8ceafee3a04893ac",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "Feminization_median_unemployed.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 890,
+    "sha256": "a7c973cca541c9fd77d7af0e324b5718211f08ce4f24ef842818523afc735456",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "Feminization_median_detrended_unemployed.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 895,
+    "sha256": "dcd4057d83c40e25e0a9215c8a0dc5c8b192d71e582ef71fdc0864e479136936",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "Feminization_median_contracts.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 908,
+    "sha256": "b542532250a1de189a75dd7464dcda17f5a54a07ca08eaa0f763b025f0c87348",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "Feminization_median_detrended_contracts.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 913,
+    "sha256": "d8a5bcaf73506d1b8ede4673d13b5477a2666a6c8dfd96d5909cb77f9be7b987",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "feminization_three_group_v1.tex",
+    "kind": "table",
+    "source_document": "main.tex",
+    "source_line": 921,
+    "sha256": "4ef2fafe9012112cd47ddfddc0f0e3659c4c8110e9d2881bfb905344e66c5891",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "Feminization_three_group_unemployed.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 928,
+    "sha256": "85c89ed8c2f45aa6c170c44c6abae98a0306309743fdb7bf006988663dc98f1f",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "Feminization_three_group_contracts.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 934,
+    "sha256": "e01d4fc392d0cc54b71bdebeb87908c63a8db8fdff22352e260e9db836cb58d8",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "main_provinces_v1.tex",
+    "kind": "table",
+    "source_document": "main.tex",
+    "source_line": 950,
+    "sha256": "0c34dd510097d88086c0de7c09e7ade33b4f8ee3d4c080cd71e1959a7e57cb0d",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "MainProvince_comparison_unemployed.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 971,
+    "sha256": "a679b649b36f77c78c737d31614c2b023215487846be2c76fa0567dd63bb7d8b",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "MainProvince_comparison_contracts.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 976,
+    "sha256": "b4ada9050725ae65da7bbcbdff0e753d2f193baccbcbdd2dd46d7b2da3a3e88e",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "ContDID_panel1.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 1016,
+    "sha256": "c7534964af7910e9c702b811b9a50d4131200d21213c617608e92dd1f3677098",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "ContDID_panel2.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 1021,
+    "sha256": "795a2455a82caee5b1d06ad0056b8c39e167072bf9bb6ed9adfef3c9597b81ba",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "contdid_alternatives_v1.tex",
+    "kind": "table",
+    "source_document": "main.tex",
+    "source_line": 1029,
+    "sha256": "a76f186e5d00bc2755999ff63e3dda672528d3427abf82b6abf998db11396627",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "sdid_estimates_v1.tex",
+    "kind": "table",
+    "source_document": "main.tex",
+    "source_line": 1051,
+    "sha256": "acd3129535529b690ac739016ea23efc328bb6e2ba7db0fda6058170e1fca3ce",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "SDID_adjusted_path_unemployed.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 1059,
+    "sha256": "b3cc72b43f5e7957b163d827432322d8c43a757274e2f8d953dcc3b28b72a524",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "SDID_adjusted_event_unemployed.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 1064,
+    "sha256": "35767f225f4efb3d138f83ce5df62ab453ca72a9ce217cf64428d4ef3f800e91",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "SDID_adjusted_path_contracts.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 1070,
+    "sha256": "61fc0fea0c8376b1fcab8576ce53d57ab4f4cc4fcb65f58e7f853fcfa6eacacc",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "SDID_adjusted_event_contracts.png",
+    "kind": "figure",
+    "source_document": "main.tex",
+    "source_line": 1075,
+    "sha256": "07b5b5107402db75623ddc8f8c89cb636fa02773bf2080237ec872c00504228a",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "sdid_weight_diagnostics_v1.tex",
+    "kind": "table",
+    "source_document": "main.tex",
+    "source_line": 1086,
+    "sha256": "87a2c678dd387d73fa27546aaff047bff8b73fd312d9baeccc540a57278242e2",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "sdid_donor_weights_v1.tex",
+    "kind": "table",
+    "source_document": "main.tex",
+    "source_line": 1087,
+    "sha256": "033ebc275c88f7c86176b0623bb247c2fd934b18bbfa9c20b86839f1236de59e",
+    "source": "Prism manuscript asset downloaded 2026-10-07"
+  }
+]

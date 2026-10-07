@@ -1,0 +1,80 @@
+{
+  "statistics": {
+    "occupations": 502,
+    "months": 63,
+    "occupation_months": 31626,
+    "zero_unemployment_cells": 2,
+    "zero_contract_cells": 342,
+    "zero_unemployment_percent": 0.006323910706380826,
+    "zero_contract_percent": 1.0813887307911212,
+    "calibration_adjustment_percent": 1.4196484640937992,
+    "calibration_later_percent": 2.0115812719730806,
+    "calibration_full_post_percent": 1.6374911299199273,
+    "unemployment_adjustment_coefficient": 0.012061944129354,
+    "unemployment_adjustment_exact_percent": 1.2134982744593685,
+    "unemployment_later_coefficient": 0.0168132599278554,
+    "unemployment_later_exact_percent": 1.695539826813617,
+    "tier_1_occupations": 232,
+    "tier_2_occupations": 207,
+    "tier_3_occupations": 63
+  },
+  "paper_checks": {
+    "occupations": {
+      "paper": 502,
+      "generated": 502,
+      "matches_printed_precision": true
+    },
+    "months": {
+      "paper": 63,
+      "generated": 63,
+      "matches_printed_precision": true
+    },
+    "occupation_months": {
+      "paper": 31626,
+      "generated": 31626,
+      "matches_printed_precision": true
+    },
+    "zero_unemployment_cells": {
+      "paper": 2,
+      "generated": 2,
+      "matches_printed_precision": true
+    },
+    "zero_contract_cells": {
+      "paper": 342,
+      "generated": 342,
+      "matches_printed_precision": true
+    },
+    "calibration_adjustment_percent": {
+      "paper": 1.42,
+      "generated": 1.4196484640937992,
+      "matches_printed_precision": true
+    },
+    "calibration_later_percent": {
+      "paper": 2.01,
+      "generated": 2.0115812719730806,
+      "matches_printed_precision": true
+    },
+    "calibration_full_post_percent": {
+      "paper": 1.64,
+      "generated": 1.6374911299199273,
+      "matches_printed_precision": true
+    },
+    "tier_1_occupations": {
+      "paper": 232,
+      "generated": 232,
+      "matches_printed_precision": true
+    },
+    "tier_2_occupations": {
+      "paper": 207,
+      "generated": 207,
+      "matches_printed_precision": true
+    },
+    "tier_3_occupations": {
+      "paper": 63,
+      "generated": 63,
+      "matches_printed_precision": true
+    }
+  },
+  "source": "Main manuscript panel construction and aggregate-calibration appendix; frozen Jev tier assignment.",
+  "interpretation": "Calibration removes the estimated occupational exposure gradient; it does not identify an aggregate causal effect."
+}

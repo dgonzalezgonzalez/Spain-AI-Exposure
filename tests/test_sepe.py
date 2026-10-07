@@ -1,8 +1,11 @@
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "code"))
 from unittest import TestCase
 
 import pandas as pd
 
-from src.sepe import parse_report_links_from_listing, parse_sepe_report_html, sepe_long_to_compact_wide
+from acquisition.sepe import parse_report_links_from_listing, parse_sepe_report_html, sepe_long_to_compact_wide
 
 
 REPORT_HTML = """

@@ -1,2 +1,19 @@
-# Source patches must preserve whitespace in the coauthors' original lines.
-docs/*.patch -whitespace
+* text=auto
+*.py text eol=lf
+*.R text eol=lf
+*.do text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.tex text eol=lf
+*.csv text eol=lf
+*.gz binary
+*.zip binary
+*.npz binary
+*.png binary
+*.xlsx binary
+*.pdf binary
+# These snapshots are checksummed byte-for-byte, including original newlines.
+data/input/** -text
+output/reference/** -text
+code/vendor/** -text
+docs/paper/** -text

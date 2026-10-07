@@ -1,0 +1,479 @@
+{
+  "R": {
+    "Version": "4.5.2",
+    "Repositories": [
+      {
+        "Name": "CRAN",
+        "URL": "https://cloud.r-project.org"
+      }
+    ]
+  },
+  "Packages": {
+    "backports": {
+      "Package": "backports",
+      "Version": "1.5.1",
+      "Repository": "CRAN",
+      "License": "GPL-2 | GPL-3",
+      "Source": "Repository"
+    },
+    "BH": {
+      "Package": "BH",
+      "Version": "1.90.0-1",
+      "Repository": "CRAN",
+      "License": "BSL-1.0",
+      "Source": "Repository"
+    },
+    "bigmemory": {
+      "Package": "bigmemory",
+      "Version": "4.6.4",
+      "Repository": "CRAN",
+      "License": "LGPL-3 | Apache License 2.0",
+      "Source": "Repository"
+    },
+    "bigmemory.sri": {
+      "Package": "bigmemory.sri",
+      "Version": "0.1.8",
+      "Repository": "CRAN",
+      "License": "LGPL-3 | Apache License 2.0",
+      "Source": "Repository"
+    },
+    "bit": {
+      "Package": "bit",
+      "Version": "4.6.0",
+      "Repository": "CRAN",
+      "License": "GPL-2 | GPL-3",
+      "Source": "Repository"
+    },
+    "bit64": {
+      "Package": "bit64",
+      "Version": "4.8.2",
+      "Repository": "CRAN",
+      "License": "GPL-2 | GPL-3",
+      "Source": "Repository"
+    },
+    "BMisc": {
+      "Package": "BMisc",
+      "Version": "1.4.9",
+      "Repository": "https://bcallaway11.r-universe.dev",
+      "RemoteRef": "eb5164b7030bc8a53a0bed91425959cb75f41f97",
+      "RemoteSha": "eb5164b7030bc8a53a0bed91425959cb75f41f97",
+      "License": "GPL-3",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "bcallaway11",
+      "RemoteRepo": "bmisc"
+    },
+    "checkmate": {
+      "Package": "checkmate",
+      "Version": "2.3.4",
+      "Repository": "CRAN",
+      "License": "BSD_3_clause + file LICENSE",
+      "Source": "Repository"
+    },
+    "cli": {
+      "Package": "cli",
+      "Version": "3.6.6",
+      "Repository": "CRAN",
+      "License": "MIT + file LICENSE",
+      "Source": "Repository"
+    },
+    "clipr": {
+      "Package": "clipr",
+      "Version": "0.8.1",
+      "Repository": "CRAN",
+      "License": "GPL-3",
+      "Source": "Repository"
+    },
+    "contdid": {
+      "Package": "contdid",
+      "Version": "0.1.0",
+      "Repository": "https://bcallaway11.r-universe.dev",
+      "RemoteRef": "443c1c12f013bdaf19503d9d0a4f7a494e9eb22f",
+      "RemoteSha": "443c1c12f013bdaf19503d9d0a4f7a494e9eb22f",
+      "License": "GPL-3",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "bcallaway11",
+      "RemoteRepo": "contdid"
+    },
+    "cpp11": {
+      "Package": "cpp11",
+      "Version": "0.5.5",
+      "Repository": "CRAN",
+      "License": "MIT + file LICENSE",
+      "Source": "Repository"
+    },
+    "crayon": {
+      "Package": "crayon",
+      "Version": "1.5.3",
+      "Repository": "CRAN",
+      "License": "MIT + file LICENSE",
+      "Source": "Repository"
+    },
+    "data.table": {
+      "Package": "data.table",
+      "Version": "1.18.2.1",
+      "Repository": "CRAN",
+      "License": "MPL-2.0 | file LICENSE",
+      "Source": "Repository"
+    },
+    "dplyr": {
+      "Package": "dplyr",
+      "Version": "1.2.0",
+      "Repository": "CRAN",
+      "License": "MIT + file LICENSE",
+      "Source": "Repository"
+    },
+    "DRDID": {
+      "Package": "DRDID",
+      "Version": "1.2.3",
+      "Repository": "CRAN",
+      "License": "GPL-3",
+      "Source": "Repository"
+    },
+    "farver": {
+      "Package": "farver",
+      "Version": "2.1.2",
+      "Repository": "CRAN",
+      "License": "MIT + file LICENSE",
+      "Source": "Repository"
+    },
+    "fastglm": {
+      "Package": "fastglm",
+      "Version": "0.1.0",
+      "Repository": "CRAN",
+      "License": "GPL (>= 2)",
+      "Source": "Repository"
+    },
+    "Formula": {
+      "Package": "Formula",
+      "Version": "1.2-5",
+      "Repository": "CRAN",
+      "License": "GPL-2 | GPL-3",
+      "Source": "Repository"
+    },
+    "generics": {
+      "Package": "generics",
+      "Version": "0.1.4",
+      "Repository": "CRAN",
+      "License": "MIT + file LICENSE",
+      "Source": "Repository"
+    },
+    "ggplot2": {
+      "Package": "ggplot2",
+      "Version": "4.0.2",
+      "Repository": "CRAN",
+      "License": "MIT + file LICENSE",
+      "Source": "Repository"
+    },
+    "glue": {
+      "Package": "glue",
+      "Version": "1.8.0",
+      "Repository": "CRAN",
+      "License": "MIT + file LICENSE",
+      "Source": "Repository"
+    },
+    "gtable": {
+      "Package": "gtable",
+      "Version": "0.3.6",
+      "Repository": "CRAN",
+      "License": "MIT + file LICENSE",
+      "Source": "Repository"
+    },
+    "hms": {
+      "Package": "hms",
+      "Version": "1.1.4",
+      "Repository": "CRAN",
+      "License": "MIT + file LICENSE",
+      "Source": "Repository"
+    },
+    "isoband": {
+      "Package": "isoband",
+      "Version": "0.3.0",
+      "Repository": "CRAN",
+      "License": "MIT + file LICENSE",
+      "Source": "Repository"
+    },
+    "labeling": {
+      "Package": "labeling",
+      "Version": "0.4.3",
+      "Repository": "CRAN",
+      "License": "MIT + file LICENSE | Unlimited",
+      "Source": "Repository"
+    },
+    "lattice": {
+      "Package": "lattice",
+      "Version": "0.22-7",
+      "Repository": "CRAN",
+      "License": "GPL (>= 2)",
+      "Source": "Repository"
+    },
+    "lifecycle": {
+      "Package": "lifecycle",
+      "Version": "1.0.5",
+      "Repository": "CRAN",
+      "License": "MIT + file LICENSE",
+      "Source": "Repository"
+    },
+    "magrittr": {
+      "Package": "magrittr",
+      "Version": "2.0.4",
+      "Repository": "CRAN",
+      "License": "MIT + file LICENSE",
+      "Source": "Repository"
+    },
+    "MASS": {
+      "Package": "MASS",
+      "Version": "7.3-65",
+      "Repository": "CRAN",
+      "License": "GPL-2 | GPL-3",
+      "Source": "Repository"
+    },
+    "Matrix": {
+      "Package": "Matrix",
+      "Version": "1.7-4",
+      "Repository": "CRAN",
+      "License": "GPL (>= 2) | file LICENCE",
+      "Source": "Repository"
+    },
+    "npiv": {
+      "Package": "npiv",
+      "Version": "0.1.3",
+      "Repository": "CRAN",
+      "License": "GPL (>= 3)",
+      "Source": "Repository"
+    },
+    "pbapply": {
+      "Package": "pbapply",
+      "Version": "1.7-4",
+      "Repository": "CRAN",
+      "License": "GPL (>= 2)",
+      "Source": "Repository"
+    },
+    "pillar": {
+      "Package": "pillar",
+      "Version": "1.11.1",
+      "Repository": "CRAN",
+      "License": "MIT + file LICENSE",
+      "Source": "Repository"
+    },
+    "pkgconfig": {
+      "Package": "pkgconfig",
+      "Version": "2.0.3",
+      "Repository": "CRAN",
+      "License": "MIT + file LICENSE",
+      "Source": "Repository"
+    },
+    "prettyunits": {
+      "Package": "prettyunits",
+      "Version": "1.2.0",
+      "Repository": "CRAN",
+      "License": "MIT + file LICENSE",
+      "Source": "Repository"
+    },
+    "progress": {
+      "Package": "progress",
+      "Version": "1.2.3",
+      "Repository": "CRAN",
+      "License": "MIT + file LICENSE",
+      "Source": "Repository"
+    },
+    "ptetools": {
+      "Package": "ptetools",
+      "Version": "1.0.1",
+      "Repository": "https://bcallaway11.r-universe.dev",
+      "RemoteRef": "915cc31099cf2df158f09375f8e639379d99c9a0",
+      "RemoteSha": "915cc31099cf2df158f09375f8e639379d99c9a0",
+      "License": "GPL-3",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "bcallaway11",
+      "RemoteRepo": "ptetools"
+    },
+    "purrr": {
+      "Package": "purrr",
+      "Version": "1.2.1",
+      "Repository": "CRAN",
+      "License": "MIT + file LICENSE",
+      "Source": "Repository"
+    },
+    "R6": {
+      "Package": "R6",
+      "Version": "2.6.1",
+      "Repository": "CRAN",
+      "License": "MIT + file LICENSE",
+      "Source": "Repository"
+    },
+    "RColorBrewer": {
+      "Package": "RColorBrewer",
+      "Version": "1.1-3",
+      "Repository": "CRAN",
+      "License": "Apache License 2.0",
+      "Source": "Repository"
+    },
+    "Rcpp": {
+      "Package": "Rcpp",
+      "Version": "1.1.1",
+      "Repository": "CRAN",
+      "License": "GPL (>= 2)",
+      "Source": "Repository"
+    },
+    "RcppArmadillo": {
+      "Package": "RcppArmadillo",
+      "Version": "15.2.7-1",
+      "Repository": "CRAN",
+      "License": "GPL (>= 2)",
+      "Source": "Repository"
+    },
+    "RcppEigen": {
+      "Package": "RcppEigen",
+      "Version": "0.3.4.0.2",
+      "Repository": "CRAN",
+      "License": "GPL (>= 2) | file LICENSE",
+      "Source": "Repository"
+    },
+    "readr": {
+      "Package": "readr",
+      "Version": "2.2.0",
+      "Repository": "CRAN",
+      "License": "MIT + file LICENSE",
+      "Source": "Repository"
+    },
+    "rlang": {
+      "Package": "rlang",
+      "Version": "1.3.0",
+      "Repository": "CRAN",
+      "License": "MIT + file LICENSE",
+      "Source": "Repository"
+    },
+    "S7": {
+      "Package": "S7",
+      "Version": "0.2.1",
+      "Repository": "CRAN",
+      "License": "MIT + file LICENSE",
+      "Source": "Repository"
+    },
+    "sandwich": {
+      "Package": "sandwich",
+      "Version": "3.1-1",
+      "Repository": "CRAN",
+      "License": "GPL-2 | GPL-3",
+      "Source": "Repository"
+    },
+    "scales": {
+      "Package": "scales",
+      "Version": "1.4.0",
+      "Repository": "CRAN",
+      "License": "MIT + file LICENSE",
+      "Source": "Repository"
+    },
+    "splines2": {
+      "Package": "splines2",
+      "Version": "0.5.4",
+      "Repository": "CRAN",
+      "License": "GPL (>= 3)",
+      "Source": "Repository"
+    },
+    "stringi": {
+      "Package": "stringi",
+      "Version": "1.8.7",
+      "Repository": "CRAN",
+      "License": "file LICENSE",
+      "Source": "Repository"
+    },
+    "stringr": {
+      "Package": "stringr",
+      "Version": "1.6.0",
+      "Repository": "CRAN",
+      "License": "MIT + file LICENSE",
+      "Source": "Repository"
+    },
+    "tibble": {
+      "Package": "tibble",
+      "Version": "3.3.1",
+      "Repository": "CRAN",
+      "License": "MIT + file LICENSE",
+      "Source": "Repository"
+    },
+    "tidyr": {
+      "Package": "tidyr",
+      "Version": "1.3.2",
+      "Repository": "CRAN",
+      "License": "MIT + file LICENSE",
+      "Source": "Repository"
+    },
+    "tidyselect": {
+      "Package": "tidyselect",
+      "Version": "1.2.1",
+      "Repository": "CRAN",
+      "License": "MIT + file LICENSE",
+      "Source": "Repository"
+    },
+    "trust": {
+      "Package": "trust",
+      "Version": "0.1-9",
+      "Repository": "CRAN",
+      "License": "MIT + file LICENSE",
+      "Source": "Repository"
+    },
+    "tzdb": {
+      "Package": "tzdb",
+      "Version": "0.5.0",
+      "Repository": "CRAN",
+      "License": "MIT + file LICENSE",
+      "Source": "Repository"
+    },
+    "utf8": {
+      "Package": "utf8",
+      "Version": "1.2.6",
+      "Repository": "CRAN",
+      "License": "Apache License (== 2.0) | file LICENSE",
+      "Source": "Repository"
+    },
+    "uuid": {
+      "Package": "uuid",
+      "Version": "1.2-2",
+      "Repository": "CRAN",
+      "License": "MIT + file LICENSE",
+      "Source": "Repository"
+    },
+    "vctrs": {
+      "Package": "vctrs",
+      "Version": "0.7.1",
+      "Repository": "CRAN",
+      "License": "MIT + file LICENSE",
+      "Source": "Repository"
+    },
+    "viridisLite": {
+      "Package": "viridisLite",
+      "Version": "0.4.3",
+      "Repository": "CRAN",
+      "License": "MIT + file LICENSE",
+      "Source": "Repository"
+    },
+    "vroom": {
+      "Package": "vroom",
+      "Version": "1.7.1",
+      "Repository": "CRAN",
+      "License": "MIT + file LICENSE",
+      "Source": "Repository"
+    },
+    "withr": {
+      "Package": "withr",
+      "Version": "3.0.2",
+      "Repository": "CRAN",
+      "License": "MIT + file LICENSE",
+      "Source": "Repository"
+    },
+    "zoo": {
+      "Package": "zoo",
+      "Version": "1.8-15",
+      "Repository": "CRAN",
+      "License": "GPL-2 | GPL-3",
+      "Source": "Repository"
+    }
+  }
+}

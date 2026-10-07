@@ -1,0 +1,31 @@
+\begin{table}[!htbp]
+\centering
+\caption{Binary-treatment robustness checks}
+\label{tab:v1_binary_treatment}
+\begin{threeparttable}
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{lcccccc}
+\toprule
+& \multicolumn{3}{c}{\# of registered unemployed} & \multicolumn{3}{c}{\# of new contracts} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}
+& (1) & (2) & (3) & (4) & (5) & (6) \\
+\midrule
+$\mathbf{1}\{A_j>A_{75}\}$ $\times$ adjustment period & 0.064$^{***}$ & 0.039$^{**}$ & 0.038$^{**}$ & 0.092$^{***}$ & 0.021 & 0.006 \\
+ & (0.015) & (0.017) & (0.016) & (0.025) & (0.025) & (0.023) \\
+$\mathbf{1}\{A_j>A_{75}\}$ $\times$ later period & 0.124$^{***}$ & 0.058$^{*}$ & 0.057$^{*}$ & 0.081$^{**}$ & 0.013 & -0.003 \\
+ & (0.027) & (0.031) & (0.031) & (0.033) & (0.034) & (0.033) \\
+\midrule
+CNO1 $\times$ year-month FE & No & Yes & Yes & No & Yes & Yes \\
+2021 included & Yes & Yes & No & Yes & Yes & No \\
+$p$-value: equal phase effects & 0.000 & 0.307 & 0.307 & 0.571 & 0.691 & 0.692 \\
+Pre-treatment joint-null $p$-value & $<0.001$ & 0.019 & 0.847 & $<0.001$ & 0.256 & 0.382 \\
+Observations & 31,122 & 31,122 & 25,600 & 30,787 & 30,786 & 25,317 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item \emph{Notes:} Treatment equals one for occupations with nearest-neighbor exposure above $A_{75}$ and zero for occupations at or below it, where $A_{75}=0.1169$ is the 75th percentile of AI exposure. The adjustment and later periods cover event times 0--24 and 25--40, respectively; all pre-treatment months form the omitted category. Columns 1 and 4 include CNO4 and year-month FE; the remaining columns include CNO4 and CNO1-by-year-month FE. Columns 3 and 6 exclude 2021. Standard errors are clustered by CNO4. The phase-equality row tests whether the adjustment- and later-period coefficients are equal. The pre-treatment joint-null row tests whether all available pre-treatment event-study coefficients equal zero: event times $-21$ through $-2$ when 2021 is included and $-10$ through $-2$ otherwise. October 2022 is omitted. $^{***}p<0.01$, $^{**}p<0.05$, and $^{*}p<0.10$.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

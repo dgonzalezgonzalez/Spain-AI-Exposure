@@ -1,0 +1,31 @@
+\begin{table}[!t]
+\centering
+\caption{AI exposure and labor market outcomes}
+\label{tab:v1_main_effects}
+\begin{threeparttable}
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{lcccccc}
+\toprule
+& \multicolumn{3}{c}{\# of registered unemployed} & \multicolumn{3}{c}{\# of new contracts} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}
+& (1) & (2) & (3) & (4) & (5) & (6) \\
+\midrule
+AI exposure $\times$ adjustment period & 0.019$^{***}$ & 0.012$^{**}$ & 0.012$^{**}$ & 0.033$^{***}$ & 0.014 & 0.004 \\
+ & (0.005) & (0.006) & (0.006) & (0.008) & (0.009) & (0.007) \\
+AI exposure $\times$ later period & 0.038$^{***}$ & 0.017 & 0.016 & 0.029$^{***}$ & 0.013 & 0.003 \\
+ & (0.010) & (0.012) & (0.012) & (0.010) & (0.011) & (0.010) \\
+\midrule
+CNO1 $\times$ year-month FE & No & Yes & Yes & No & Yes & Yes \\
+2021 included & Yes & Yes & No & Yes & Yes & No \\
+$p$-value: equal phase effects & 0.001 & 0.486 & 0.486 & 0.488 & 0.807 & 0.806 \\
+Pre-treatment joint-null $p$-value & $<0.001$ & 0.003 & 0.367 & $<0.001$ & 0.032 & 0.049 \\
+Observations & 31,122 & 31,122 & 25,600 & 30,787 & 30,786 & 25,317 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item \emph{Notes:} Entries are marginal effects from occupation-month regressions. The adjustment period covers November 2022 through November 2024 (event times 0--24); the later period covers December 2024 through March 2026 (event times 25--40). All available pre-treatment months form the omitted category. The dependent variables are logarithms. Columns 1 and 4 include CNO4 and year-month FE; the remaining columns include CNO4 and CNO1-by-year-month FE. Columns 3 and 6 exclude 2021, when pandemic recovery, employment-retention policies, and unusually high telework intensity may have generated differential occupational trends. Exposure is divided by 0.10, so each coefficient corresponds to a 10 percentage-point increase and can be interpreted approximately as a proportional change in the outcome. Standard errors are clustered by CNO4. The phase-equality row tests whether the adjustment- and later-period coefficients are equal. The pre-treatment joint-null row tests whether all available pre-treatment event-study coefficients equal zero: event times $-21$ through $-2$ in columns that include 2021 and event times $-10$ through $-2$ in columns 3 and 6. October 2022 is omitted. These are marginal effects, not ATTs. $^{***}p<0.01$, $^{**}p<0.05$, and $^{*}p<0.10$.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

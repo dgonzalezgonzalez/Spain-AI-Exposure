@@ -1,0 +1,149 @@
+[
+  {
+    "quarter": "2021Q1",
+    "url": "https://ine.es/ftp/microdatos/epa/datos_1t21.zip",
+    "archive_sha256": "4815c8ca9565e41803e944b0571205a45dadc390a9a16caf7eec36007be03806",
+    "member": "CSV/EPA_2021T1.csv",
+    "retained_records": 9690
+  },
+  {
+    "quarter": "2021Q2",
+    "url": "https://ine.es/ftp/microdatos/epa/datos_2t21.zip",
+    "archive_sha256": "db44725f142557e1c77f930e33f561d852b2586810dd7f7b0a5ec555aa32cb93",
+    "member": "CSV/EPA_2021T2.csv",
+    "retained_records": 9059
+  },
+  {
+    "quarter": "2021Q3",
+    "url": "https://ine.es/ftp/microdatos/epa/datos_3t21.zip",
+    "archive_sha256": "6b040a31afd3e5248c9a95c7a83a010629bfb519080039109668ccd8629f2418",
+    "member": "CSV/EPA_2021T3.csv",
+    "retained_records": 8250
+  },
+  {
+    "quarter": "2021Q4",
+    "url": "https://ine.es/ftp/microdatos/epa/datos_4t21.zip",
+    "archive_sha256": "4da863784af63544b8b2b03b5fa0d358bec7515c649e9920b4a02fb57a450c93",
+    "member": "CSV/EPA_2021T4.csv",
+    "retained_records": 7663
+  },
+  {
+    "quarter": "2022Q1",
+    "url": "https://ine.es/ftp/microdatos/epa/datos_1t22.zip",
+    "archive_sha256": "e2960818f6d15994d7ffc2abda63ae3a3d911690398fd70238383070ff5f3ca1",
+    "member": "CSV/EPA_2022T1.csv",
+    "retained_records": 7868
+  },
+  {
+    "quarter": "2022Q2",
+    "url": "https://ine.es/ftp/microdatos/epa/datos_2t22.zip",
+    "archive_sha256": "1a4821e634f8e5814d2aff78a098b4e37b1b4f0bda8680cca0d55b6da31b9450",
+    "member": "CSV/EPA_2022T2.csv",
+    "retained_records": 7314
+  },
+  {
+    "quarter": "2022Q3",
+    "url": "https://ine.es/ftp/microdatos/epa/datos_3t22.zip",
+    "archive_sha256": "ea5d739258505a88414a4f7214797567bb657da8990fb74c697c778f79154567",
+    "member": "CSV/EPA_2022T3.csv",
+    "retained_records": 7163
+  },
+  {
+    "quarter": "2022Q4",
+    "url": "https://ine.es/ftp/microdatos/epa/datos_4t22.zip",
+    "archive_sha256": "22fa826874653452a15a8cf1363e7b47f78f7333e28a04db9f974e12e7c0aa61",
+    "member": "CSV/EPA_2022T4.csv",
+    "retained_records": 7191
+  },
+  {
+    "quarter": "2023Q1",
+    "url": "https://ine.es/ftp/microdatos/epa/datos_1t23.zip",
+    "archive_sha256": "3940b1b83eaa8259282324daf20eb0df5466204871a771596675c156447bfa5b",
+    "member": "CSV/EPA_2023T1.csv",
+    "retained_records": 7745
+  },
+  {
+    "quarter": "2023Q2",
+    "url": "https://ine.es/ftp/microdatos/epa/datos_2t23.zip",
+    "archive_sha256": "de9fc15bc560775b820b50c15e236eaa423a49e7632fbafdd33a78a693354ee4",
+    "member": "CSV/EPA_2023T2.tab",
+    "retained_records": 6666
+  },
+  {
+    "quarter": "2023Q3",
+    "url": "https://ine.es/ftp/microdatos/epa/datos_3t23.zip",
+    "archive_sha256": "8dc6d12e89b64476e61a7bf5505835b3aea0d25b9d6b1142cf58309b190ce25b",
+    "member": "CSV/EPA_2023T3.tab",
+    "retained_records": 6574
+  },
+  {
+    "quarter": "2023Q4",
+    "url": "https://ine.es/ftp/microdatos/epa/datos_4t23.zip",
+    "archive_sha256": "c4cea7d5fde121c6f4dc81e73c63d837610e62b9b58c1ca8ca85bb29bec1f404",
+    "member": "CSV/EPA_2023T4.tab",
+    "retained_records": 6400
+  },
+  {
+    "quarter": "2024Q1",
+    "url": "https://ine.es/ftp/microdatos/epa/datos_1t24.zip",
+    "archive_sha256": "d648a766b3679abc029219747af1eb4722c8dec0b590ec1fd593fb4d2aa5f10b",
+    "member": "CSV/EPA_2024T1.tab",
+    "retained_records": 6830
+  },
+  {
+    "quarter": "2024Q2",
+    "url": "https://ine.es/ftp/microdatos/epa/datos_2t24.zip",
+    "archive_sha256": "39fd367780607792b95f51d3fc9254dd81fd11876b42431cbcf834fb1994e3b4",
+    "member": "CSV/EPA_2024T2.tab",
+    "retained_records": 6196
+  },
+  {
+    "quarter": "2024Q3",
+    "url": "https://ine.es/ftp/microdatos/epa/datos_3t24.zip",
+    "archive_sha256": "0eae8aedd62659bdd8df141efa14fde160384810ccb1c7b36e79aaab0c37513e",
+    "member": "CSV/EPA_2024T3.tab",
+    "retained_records": 5974
+  },
+  {
+    "quarter": "2024Q4",
+    "url": "https://ine.es/ftp/microdatos/epa/datos_4t24.zip",
+    "archive_sha256": "55b502adc0b962442920b051f49478eea9e9def05c819995a694ad5a6e4a559b",
+    "member": "CSV/EPA_2024T4.tab",
+    "retained_records": 5642
+  },
+  {
+    "quarter": "2025Q1",
+    "url": "https://ine.es/ftp/microdatos/epa/datos_1t25.zip",
+    "archive_sha256": "2b1dde952ed4afd1720d9559fef68d3ae249d5e29c278e07b5628ebd8367106a",
+    "member": "CSV/EPA_2025T1.tab",
+    "retained_records": 6168
+  },
+  {
+    "quarter": "2025Q2",
+    "url": "https://ine.es/ftp/microdatos/epa/datos_2t25.zip",
+    "archive_sha256": "b71ad2e5f29c79b39e319ec30c01aa3a888b160f292bf6f579e405dcc8848bf7",
+    "member": "CSV/EPA_2025T2.tab",
+    "retained_records": 5620
+  },
+  {
+    "quarter": "2025Q3",
+    "url": "https://ine.es/ftp/microdatos/epa/datos_3t25.zip",
+    "archive_sha256": "26b37c80817fc94fcd97ef5a7ace920f267afea6aa7807471cc4bb7e4492fb42",
+    "member": "CSV/EPA_2025T3.tab",
+    "retained_records": 5311
+  },
+  {
+    "quarter": "2025Q4",
+    "url": "https://ine.es/ftp/microdatos/epa/datos_4t25.zip",
+    "archive_sha256": "1973be66ce765c14b6208f9a00167983da66d9e7e7847def819d075dc98cce76",
+    "member": "CSV/EPA_2025T4.tab",
+    "retained_records": 4875
+  },
+  {
+    "quarter": "2026Q1",
+    "url": "https://ine.es/ftp/microdatos/epa/datos_1t26.zip",
+    "archive_sha256": "d7ad27ab29513894bb332db638f22668bb585f26ed4c08738c05e27a3993853f",
+    "member": "CSV/EPA_2026T1.tab",
+    "retained_records": 5355
+  }
+]
