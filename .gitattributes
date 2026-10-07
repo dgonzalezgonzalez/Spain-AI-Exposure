@@ -18,4 +18,5 @@ docs/reference/** -text
 output/tables/** -text
 output/figures/** -text
 code/vendor/** -text
-docs/paper/** -text
+paper/** -text
+main.tex -text

@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def build() -> Path:
     names = ['README.md', 'AGENTS.md', 'LICENSE', '.gitignore', '.gitattributes', 'master.py',
-             'requirements.txt', 'requirements-lock.txt', 'renv.lock',
+             'requirements.txt', 'requirements-lock.txt', 'renv.lock', 'main.tex',
              'output/tables/.gitkeep', 'output/figures/.gitkeep']
     files = [ROOT / name for name in names]
     outputs = json.loads((ROOT / 'docs/paper_outputs.json').read_text(encoding='utf-8'))
@@ -19,7 +19,7 @@ def build() -> Path:
         if not path.is_file():
             raise FileNotFoundError(f'Missing publication output: {path}')
         files.append(path)
-    for folder in ['code', 'data/input', 'docs', 'tests']:
+    for folder in ['code', 'data/input', 'docs', 'paper', 'tests']:
         files.extend(p for p in (ROOT / folder).rglob('*')
                      if p.is_file() and '__pycache__' not in p.parts and p.suffix != '.pyc')
     target = ROOT / 'dist/latest_code.zip'

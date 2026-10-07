@@ -17,7 +17,8 @@ code/acquisition/         Optional public SEPE retrieval and parsing
 code/vendor/              Frozen Stata dependencies and software notices
 data/input/               Frozen source and author-constructed inputs
 docs/                     Codebook, provenance, output map, validation report
-docs/paper/               Authoritative manuscript LaTeX snapshots
+paper/                    Current LaTeX manuscript, bibliography, and compiled PDF
+main.tex                  Root LaTeX entry point, inputs paper/main.tex
 docs/reference/           Independent manuscript assets for validation
 output/tables/            Versioned publication LaTeX tables
 output/figures/           Versioned publication PNG figure panels
@@ -26,7 +27,7 @@ data/work/                Internal data, estimates, rendering cache, and logs
 tests/                    Parser, probability, and replication regressions
 ```
 
-All 26 publication tables and 61 figure panels are included in Git and the release ZIP, under `output/tables/` and `output/figures/`. The master recomputes and overwrites these files when the analysis runs. Reference assets under `docs/reference/` are comparison targets, never estimator inputs. They are retained solely for automatic validation; `output/` contains only the table and figure folders. The manuscript snapshots preserve the original upload paths for inspection; they are not a standalone typesetting project.
+All 26 publication tables and 61 figure panels are included in Git and the release ZIP, under `output/tables/` and `output/figures/`. The master recomputes and overwrites these files when the analysis runs. Reference assets under `docs/reference/` are comparison targets, never estimator inputs. They are retained solely for automatic validation; `output/` contains only the table and figure folders. The manuscript uses these same output paths in the repository and Prism. Compile root `main.tex`; current manuscript sources and the compiled `main.pdf` live in `paper/`. See [paper/README.md](paper/README.md) for compilation and synchronization details.
 
 ## Data Availability and Provenance Statements
 
@@ -127,6 +128,8 @@ Intermediate estimates and integrity audits under `data/work/` support the retai
    ```
 
 6. Inspect `logs/validation.json`, `logs/intext_statistics.json`, timings, and logs. Missing assets, differing printed numeric cells/significance stars, or differing figure pixels fail validation. Identical figure pixels pass despite PNG metadata differences. A maximum one-level RGB difference with mean normalized error at most 1e-8 is accepted for floating-point antialiasing; larger differences require visual review and resolution. Reviewed release comparisons are documented in `docs/validation_report.md`.
+
+7. To rebuild the manuscript separately, install a TeX distribution with pdfLaTeX and BibTeX, then run `python code/build_paper.py`. It compiles root `main.tex`, resolves citations and cross-references, and saves `paper/main.pdf`. This step does not rerun the analysis. The versioned PDF is the verified Prism compilation; local TeX package versions can affect pagination and PDF metadata.
 
 For a fresh run, use a new clone/extraction with no cached intermediate results under `data/work/`. The included publication outputs are overwritten by the full run; missing publication files are recreated. Paths resolve relative to the master file, so invocation from another working directory also works. To rerun one stage, use `--step` with `prepare`, `descriptives`, `estimates`, `sdid`, `jev`, `mediation`, `contdid`, `tuning`, `statistics`, or `validate`, after its predecessor inputs exist. `python master.py --check-inputs` verifies/stages all inputs without estimation. Run tests with `python -m unittest discover -s tests -v`.
 

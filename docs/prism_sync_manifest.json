@@ -1,0 +1,395 @@
+{
+  "date": "2026-10-07",
+  "project_url": "https://prism.openai.com/?u=d2a38c9d-2c46-440b-92e1-6d206cb7f593&pg=1&m=main.tex",
+  "retained_files": 95,
+  "comparison": "All retained files SHA-256 identical to exported Prism files.",
+  "compiled_pdf_pages": 101,
+  "compiled_pdf_sha256": "f2995c5b75204d12633a9d860e2ebf9bbfaec53b4fa2e7c80e7c3b53505c3e7f",
+  "original_backup_files": 560,
+  "original_backup_sha256": "578d1bd1e67e374d03c5c7af24365113a9b928179db7c4d7ea6e534bc9d568fa",
+  "cleanup_status": "Complete: 560 obsolete files deleted after author confirmation; 95 mirrored files remain.",
+  "files": [
+    {
+      "file": "main.tex",
+      "sha256": "d8e3febb73a54f25099ef98bae4acaffcdceaaa331b0ba04e51185b9277e6bc8"
+    },
+    {
+      "file": "paper/appendix_od_jev.tex",
+      "sha256": "b369b995aabfe43e469edb4384e2072e3c4fb101090ff43a1e9763325534415b"
+    },
+    {
+      "file": "paper/appendix_oe_jev_tiers.tex",
+      "sha256": "4025b9956d7a0dc48467ee0c9f46d9b1452e1f4b0f2084cb0c22c1a8ca85079d"
+    },
+    {
+      "file": "paper/main.pdf",
+      "sha256": "f2995c5b75204d12633a9d860e2ebf9bbfaec53b4fa2e7c80e7c3b53505c3e7f"
+    },
+    {
+      "file": "paper/main.tex",
+      "sha256": "80f686aa78abcc3b6775fe53699a3262e345720931bececf70eedaa91b258e89"
+    },
+    {
+      "file": "paper/README.md",
+      "sha256": "7eaa3987ec0f62c80d864ed93698afa8f8026728e8ec248cb96dfcd4e649983c"
+    },
+    {
+      "file": "paper/references.bib",
+      "sha256": "9df4f40ebae6fbbd46a6c1017d7fa6e4addd5fc94db1398921081bee1bb3040c"
+    },
+    {
+      "file": "paper/sdid_estimates_manuscript.tex",
+      "sha256": "acd3129535529b690ac739016ea23efc328bb6e2ba7db0fda6058170e1fca3ce"
+    },
+    {
+      "file": "output/tables/robustness_checks_jev_v1.tex",
+      "sha256": "f4e1f5482d2ee7ba8419469aff54e236701cce0e9a122778dd86e024a9689c0c"
+    },
+    {
+      "file": "output/figures/Robustness_unemployed_jev_nearest.png",
+      "sha256": "722f017007540c51c0f84b73a3565e3ec050e2453c3a88e358e5bb3123100ed7"
+    },
+    {
+      "file": "output/figures/Robustness_unemployed_jev_weighted.png",
+      "sha256": "8d30813fd94cf9cf40ae4001afb820bfe12caa31d31da9d3471dccfa01566975"
+    },
+    {
+      "file": "output/figures/Robustness_unemployed_jev_direct.png",
+      "sha256": "10031a1c5edb5109e9ebf03d1809d1c6330b0986e7fb1753d2f52e61c15be24d"
+    },
+    {
+      "file": "output/figures/Robustness_contracts_jev_nearest.png",
+      "sha256": "7c2901fe005c17f76702b30eb35d2fa4c7356eb24c86afcb94c6fabf3b54d0da"
+    },
+    {
+      "file": "output/figures/Robustness_contracts_jev_weighted.png",
+      "sha256": "1fb749338bf3125c0b66c2d385c406ac2d82ceaad7cf17fe427b90c055040612"
+    },
+    {
+      "file": "output/figures/Robustness_contracts_jev_direct.png",
+      "sha256": "a25000f44d3524520f982bf6a461a117ad97ef04e1522e91046b0a1aa1b3e416"
+    },
+    {
+      "file": "output/figures/Exposure_correlation_matrix.png",
+      "sha256": "633652f3650da7521042fee2ae590db21581a3f4d17922576e4d1663a628738e"
+    },
+    {
+      "file": "output/tables/job_tiers_did_jev_v1.tex",
+      "sha256": "9b127fae12e59bfbb025a8ad0fe0be4aec81633718386c9e067b405b928dcd14"
+    },
+    {
+      "file": "output/figures/JobTiers_unemployed_jev_tier1.png",
+      "sha256": "232024dc2b8a5792447b78967eaa9f294cba32fdfc6ec0e8a5260691ef4d709e"
+    },
+    {
+      "file": "output/figures/JobTiers_unemployed_jev_tier2.png",
+      "sha256": "0bea8d0b37a5ec4f2e2d39fe584d77180e9f3fd4e208060492b3d2e80e3b3ee8"
+    },
+    {
+      "file": "output/figures/JobTiers_contracts_jev_tier1.png",
+      "sha256": "eb28e2a66c66c88015f7944e48aeb702f71931374a1ae98c6c679662517deec1"
+    },
+    {
+      "file": "output/figures/JobTiers_contracts_jev_tier2.png",
+      "sha256": "4e13474a0ec539409a92b927ea7f629be5a4d8ff7c84dbc184b6bec57428c51b"
+    },
+    {
+      "file": "output/tables/job_tier_mediation_v1.tex",
+      "sha256": "127d639bf2f3fc3713e39530e22739b1cd34163e49a4b4d180bb236f1ecebaf9"
+    },
+    {
+      "file": "output/figures/figure_anthropic_country_soc_major_group_spain_global_may2026.png",
+      "sha256": "2fb0c194fc0e2a7bf78b911a87d54fb2804fa2e13e77e7af4c4a8e9657af9f3c"
+    },
+    {
+      "file": "output/figures/figure_ai_exposure_distribution_onet_vs_spain.png",
+      "sha256": "7e1aaa07bef445278b0067a68d8f40288585c3022e93835ca6f0f8abd974ecff"
+    },
+    {
+      "file": "output/figures/figure_ai_adoption_timing_panelA.png",
+      "sha256": "41a4d8f281551730fc57acbd021249a73f6e6bf5b4a2f2b7d7804fbf0978eace"
+    },
+    {
+      "file": "output/figures/figure_ai_adoption_timing_panelB.png",
+      "sha256": "27706cf0b632f62c6ee4836df7dd56eb66a3b5cb7e1d2da4936c443e4d2e4d8b"
+    },
+    {
+      "file": "output/tables/summary_statistics.tex",
+      "sha256": "488c2b3960b78bf22271ee62a78a9b6cc9b405598ffa14354088caec2b22a8ab"
+    },
+    {
+      "file": "output/figures/Figure1_panelA.png",
+      "sha256": "04aa73c130d12ea5458f2918d21766e91194f72677c4fe788b14998514f5d904"
+    },
+    {
+      "file": "output/figures/Figure1_panelB.png",
+      "sha256": "cc884fa3bf2e39c6449e2bf99ab4faaafcf07630e1d1768ae57214806b1709a4"
+    },
+    {
+      "file": "output/figures/Figure2_panelA.png",
+      "sha256": "de2d66446f557e7cb793bb177dfb362b5734701e7af0aee47913ddc679e4d8ae"
+    },
+    {
+      "file": "output/figures/Figure2_panelB.png",
+      "sha256": "69c4f2bb075520f66b494783a98d77738876537064a6bf54d1b522d79ecbd42a"
+    },
+    {
+      "file": "output/tables/table2_main_effects_v1.tex",
+      "sha256": "fa8040387879824cab0e50b7120d4c892a87e7f5c10f6bce8e2dac8bd30e0f0d"
+    },
+    {
+      "file": "output/tables/heterogeneity_v1.tex",
+      "sha256": "d3dd8ed3223f9e22409577d074f7c46eb8b0f5c67c6932b17d6ad80a87591639"
+    },
+    {
+      "file": "output/figures/Support_panelA.png",
+      "sha256": "1a7f7030acc5cbf64b7876b4ca1f3aeff1f0259b08065d3b0651c08adcf0af19"
+    },
+    {
+      "file": "output/figures/Support_panelB.png",
+      "sha256": "8b8b0577b57e24e4dc41a2e163e4187fd84ddce93967e5936b103e5b77d48ce8"
+    },
+    {
+      "file": "output/tables/family_support_v1.tex",
+      "sha256": "ec28a6bb039c4c63431e7f55c85538c2053cbf54d7ebe103838eb8d95d90f0e8"
+    },
+    {
+      "file": "output/tables/pretrend_diagnostics_v1.tex",
+      "sha256": "8602998d3a1dc551fcc0c0493dc5509b5807cd20596904a115ea9f37eb204d19"
+    },
+    {
+      "file": "output/tables/heterogeneity_pretrend_diagnostics_v1.tex",
+      "sha256": "115145ad680f1e1e0aec52396a0677c3967ed0ab0ed9410db8b6e83539031f97"
+    },
+    {
+      "file": "output/tables/age_cross_group_tests_v1.tex",
+      "sha256": "255011709c95ae5726ac04d4a928e47d450f5df5f3e3e7e5f5632674dadbb37f"
+    },
+    {
+      "file": "output/figures/Heterogeneity_unemployed_panel1.png",
+      "sha256": "b4015756454c0607ab2b12da0a4811b9befb45c34821703e08d751b2657a5d2a"
+    },
+    {
+      "file": "output/figures/Heterogeneity_unemployed_panel2.png",
+      "sha256": "164a3e24a79078ea669b772ae41dbe7ff1f3479846f2403b08e85ad65921c19a"
+    },
+    {
+      "file": "output/figures/Heterogeneity_unemployed_panel3.png",
+      "sha256": "61ab6130c023a860c88477782092d6b1a101c08dc673ff3ec6c327a158dbe826"
+    },
+    {
+      "file": "output/figures/Heterogeneity_unemployed_panel4.png",
+      "sha256": "6bb744b41ef7f3165bc260f328c0d78b2155b6b3ad6c93d6cfd2dd60f7299bb5"
+    },
+    {
+      "file": "output/figures/Heterogeneity_unemployed_panel5.png",
+      "sha256": "701aebb3457319a3ffa188f1f601e8e2d52b1cf82334eff7e77af8b1209ed0c0"
+    },
+    {
+      "file": "output/figures/Heterogeneity_contracts_panel1.png",
+      "sha256": "8337a18aca481a343609b2797e1b78c64d85d2d7749f4817f9c662f6715df707"
+    },
+    {
+      "file": "output/figures/Heterogeneity_contracts_panel2.png",
+      "sha256": "6ce799d501b1d71aa2e456814d24a64fb296ba235d8ba2198b6cd549f1a4a643"
+    },
+    {
+      "file": "output/figures/Heterogeneity_contracts_panel3.png",
+      "sha256": "71676f867d4ebf9c8dc352406861ef95b69b633e7215a27140af18911d705e26"
+    },
+    {
+      "file": "output/figures/Heterogeneity_contracts_panel4.png",
+      "sha256": "7b49225a07c65f75c9188fa24eb2eeb0d84eb3be2750f53740d19c07606fd283"
+    },
+    {
+      "file": "output/figures/Heterogeneity_contracts_panel5.png",
+      "sha256": "68e4a3bd9215d7bdc1ae3e135fa61af663c25261c27580c7979aa6d71ac55482"
+    },
+    {
+      "file": "output/figures/epa_vs_sepe_unemployment_quarterly.png",
+      "sha256": "ae2090f829e8a36eab270926a7ceee035d9d97849cdcbe16ba6e79d4f49ffdb4"
+    },
+    {
+      "file": "output/tables/table_top_bottom_exposure_appendix.tex",
+      "sha256": "c235c9df0e8311430f57f6c5811ed807c9d097f9da9aece81a739dfdc7aea0d3"
+    },
+    {
+      "file": "output/tables/binary_treatment_v1.tex",
+      "sha256": "84f30d160ead20a47f08ef803b5d0350ff5c0ae92b2b69b4ca5c64ca0f624952"
+    },
+    {
+      "file": "output/tables/binary_pretrend_diagnostics_v1.tex",
+      "sha256": "20ea3a0b953b6f29a3d2a2e34a7d9c25665fe05e90a16c0b59952ed1653215be"
+    },
+    {
+      "file": "output/figures/Binary_event_unemployed.png",
+      "sha256": "41d49069acd006eca3480a362515707a3d64cbe2d287e1073856b0b845aba26e"
+    },
+    {
+      "file": "output/figures/Binary_event_contracts.png",
+      "sha256": "c47535084a45fbcc5db21486f7496425773c2cc95b365532d58e0ba31e9c5fdb"
+    },
+    {
+      "file": "output/tables/robustness_checks_v1.tex",
+      "sha256": "d9331e49cb6ab9172695ab1c0b13b80e6741f5661def7f342493b95ea68bcde5"
+    },
+    {
+      "file": "output/tables/robustness_pretrend_diagnostics_v1.tex",
+      "sha256": "a5fba2ba87a76922de6598f4966d3186dc7045b89e7bfc3e5d9d3dbce5cc0a10"
+    },
+    {
+      "file": "output/figures/Robustness_unemployed_panel1.png",
+      "sha256": "de2d66446f557e7cb793bb177dfb362b5734701e7af0aee47913ddc679e4d8ae"
+    },
+    {
+      "file": "output/figures/Robustness_unemployed_panel2.png",
+      "sha256": "3621ed78856a744b59762d9627aba23a142547d25b5121caf6b62eac98894379"
+    },
+    {
+      "file": "output/figures/Robustness_unemployed_panel3.png",
+      "sha256": "f36dd5cf1e461779f80040fa925cf0568770ed7ef1d9f1fa1a79194ab6dcad8b"
+    },
+    {
+      "file": "output/figures/Robustness_contracts_panel1.png",
+      "sha256": "01d8660986a9ccf6b5806ec3d3a7e32a8f6cafa2a6fa9fa7336fea3039aefd7e"
+    },
+    {
+      "file": "output/figures/Robustness_contracts_panel2.png",
+      "sha256": "011a8c72683ae7f8e707830b373f55511c9302f9861120b456d3b76d50b6a848"
+    },
+    {
+      "file": "output/figures/Robustness_contracts_panel3.png",
+      "sha256": "43e647a2954ca2290203ef00c91dcf14cfdf3935cd73c9efc3641553b5894b08"
+    },
+    {
+      "file": "output/figures/LeaveOneCNO1_unemployed.png",
+      "sha256": "1af2ce1c5bb53808709afd80ef56c2f24c1bf94fa071a41d3814624ff40f7b05"
+    },
+    {
+      "file": "output/figures/LeaveOneCNO1_contracts.png",
+      "sha256": "be24b7ac888fabdc9dd4a2e910f5cb635502c05672345502f46a1cad80115198"
+    },
+    {
+      "file": "output/tables/trailing12_contracts_v1.tex",
+      "sha256": "d0306f620d9d3213a895b201838e761d34f75951af819730e025b98f0d5a8797"
+    },
+    {
+      "file": "output/figures/Trailing12_contracts_event.png",
+      "sha256": "bc7d85ae8f72257b7dd113610ef17789e689122eaea24091888a7178e815c9fb"
+    },
+    {
+      "file": "output/tables/alternative_exposure_validation_v1.tex",
+      "sha256": "8bac4e5466e16c8a2af9582256988404b04faba2ade89c6449af33b34fa8fc7b"
+    },
+    {
+      "file": "output/tables/bls_categorical_exposure_v1.tex",
+      "sha256": "3aff7ac002d45819d31b912265880cf91266fe624ab0ecfcdb0b1a685e83df8e"
+    },
+    {
+      "file": "output/figures/BLSExposure_unemployed.png",
+      "sha256": "52d7b4f1f473a216182fdb546d95bd504b8f097e9735284cc67212e2933fcc5e"
+    },
+    {
+      "file": "output/figures/BLSExposure_contracts.png",
+      "sha256": "8b2772bc72eb40d74f2e30739f078aaca29e00f90caf212bcb3d155244ce420c"
+    },
+    {
+      "file": "output/tables/lm_aioe_exposure_v1.tex",
+      "sha256": "581334a13966a8a7ba0794aafec8286e5b78fcd0234073c76bf470ff4365efd9"
+    },
+    {
+      "file": "output/figures/CapabilityExposure_unemployed.png",
+      "sha256": "4fc69eb942c0c3d6b8aa78177c3fba7deafb42881420fe211fdf8a72eb77c351"
+    },
+    {
+      "file": "output/figures/CapabilityExposure_contracts.png",
+      "sha256": "47e4251ff0fd2314a33899660840dcd65c6a5c337ae5ab46aa47732f0b268079"
+    },
+    {
+      "file": "output/tables/feminization_median_split_v1.tex",
+      "sha256": "1edabbe8c481c49b04981a6d0cafee950faf7540617a8445df8be27e0b8ee8a2"
+    },
+    {
+      "file": "output/figures/Feminization_median_unemployed.png",
+      "sha256": "a7c973cca541c9fd77d7af0e324b5718211f08ce4f24ef842818523afc735456"
+    },
+    {
+      "file": "output/figures/Feminization_median_detrended_unemployed.png",
+      "sha256": "dcd4057d83c40e25e0a9215c8a0dc5c8b192d71e582ef71fdc0864e479136936"
+    },
+    {
+      "file": "output/figures/Feminization_median_contracts.png",
+      "sha256": "b542532250a1de189a75dd7464dcda17f5a54a07ca08eaa0f763b025f0c87348"
+    },
+    {
+      "file": "output/figures/Feminization_median_detrended_contracts.png",
+      "sha256": "d8a5bcaf73506d1b8ede4673d13b5477a2666a6c8dfd96d5909cb77f9be7b987"
+    },
+    {
+      "file": "output/tables/feminization_three_group_v1.tex",
+      "sha256": "4ef2fafe9012112cd47ddfddc0f0e3659c4c8110e9d2881bfb905344e66c5891"
+    },
+    {
+      "file": "output/figures/Feminization_three_group_unemployed.png",
+      "sha256": "85c89ed8c2f45aa6c170c44c6abae98a0306309743fdb7bf006988663dc98f1f"
+    },
+    {
+      "file": "output/figures/Feminization_three_group_contracts.png",
+      "sha256": "e01d4fc392d0cc54b71bdebeb87908c63a8db8fdff22352e260e9db836cb58d8"
+    },
+    {
+      "file": "output/tables/main_provinces_v1.tex",
+      "sha256": "ce67d2a1bcbe94f34f728995742b7e01c1d5ab2cf2eb6a6c48bee2921c05df08"
+    },
+    {
+      "file": "output/figures/MainProvince_comparison_unemployed.png",
+      "sha256": "a679b649b36f77c78c737d31614c2b023215487846be2c76fa0567dd63bb7d8b"
+    },
+    {
+      "file": "output/figures/MainProvince_comparison_contracts.png",
+      "sha256": "b4ada9050725ae65da7bbcbdff0e753d2f193baccbcbdd2dd46d7b2da3a3e88e"
+    },
+    {
+      "file": "output/figures/ContDID_panel1.png",
+      "sha256": "c7534964af7910e9c702b811b9a50d4131200d21213c617608e92dd1f3677098"
+    },
+    {
+      "file": "output/figures/ContDID_panel2.png",
+      "sha256": "795a2455a82caee5b1d06ad0056b8c39e167072bf9bb6ed9adfef3c9597b81ba"
+    },
+    {
+      "file": "output/tables/contdid_alternatives_v1.tex",
+      "sha256": "a76f186e5d00bc2755999ff63e3dda672528d3427abf82b6abf998db11396627"
+    },
+    {
+      "file": "output/tables/sdid_estimates_v1.tex",
+      "sha256": "95276a436b1317596487bd53d8344b1f3b8516207e62f56f342c52b7a237387f"
+    },
+    {
+      "file": "output/figures/SDID_adjusted_path_unemployed.png",
+      "sha256": "b3cc72b43f5e7957b163d827432322d8c43a757274e2f8d953dcc3b28b72a524"
+    },
+    {
+      "file": "output/figures/SDID_adjusted_event_unemployed.png",
+      "sha256": "35767f225f4efb3d138f83ce5df62ab453ca72a9ce217cf64428d4ef3f800e91"
+    },
+    {
+      "file": "output/figures/SDID_adjusted_path_contracts.png",
+      "sha256": "61fc0fea0c8376b1fcab8576ce53d57ab4f4cc4fcb65f58e7f853fcfa6eacacc"
+    },
+    {
+      "file": "output/figures/SDID_adjusted_event_contracts.png",
+      "sha256": "8aae4708e42bc123054c7372af5e6a65c1eb2f02e907a4fca52f2aa234f8ef50"
+    },
+    {
+      "file": "output/tables/sdid_weight_diagnostics_v1.tex",
+      "sha256": "5a0a69b7270011da00422250ce7fab6ea5912ca002a0389624a64682a7718fb4"
+    },
+    {
+      "file": "output/tables/sdid_donor_weights_v1.tex",
+      "sha256": "29ca7e792de3fe2f6e820c0cd537a7d17b4072521ba4835d83fd77692d32866e"
+    }
+  ],
+  "clean_export_sha256": "500f93f60aa235f0c7a69079e20f80e8c843e5206d189fdaedc0914a698362f0",
+  "compilation_after_cleanup": "Prism reported Compilado after deleting all 560 obsolete files."
+}

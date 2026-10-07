@@ -2,7 +2,7 @@
   {
     "file": "robustness_checks_jev_v1.tex",
     "kind": "table",
-    "source_document": "appendix_od_jev.tex",
+    "source_document": "paper/appendix_od_jev.tex",
     "source_line": 22,
     "paper_number": "O.D.7",
     "paper_label": "tab:v1_jev_robustness",
@@ -16,7 +16,7 @@
   {
     "file": "Robustness_unemployed_jev_nearest.png",
     "kind": "figure",
-    "source_document": "appendix_od_jev.tex",
+    "source_document": "paper/appendix_od_jev.tex",
     "source_line": 29,
     "paper_number": "O.D.7",
     "paper_label": "fig:v1_jev_exposure_unemployed",
@@ -30,7 +30,7 @@
   {
     "file": "Robustness_unemployed_jev_weighted.png",
     "kind": "figure",
-    "source_document": "appendix_od_jev.tex",
+    "source_document": "paper/appendix_od_jev.tex",
     "source_line": 34,
     "paper_number": "O.D.7",
     "paper_label": "fig:v1_jev_exposure_unemployed",
@@ -44,7 +44,7 @@
   {
     "file": "Robustness_unemployed_jev_direct.png",
     "kind": "figure",
-    "source_document": "appendix_od_jev.tex",
+    "source_document": "paper/appendix_od_jev.tex",
     "source_line": 40,
     "paper_number": "O.D.7",
     "paper_label": "fig:v1_jev_exposure_unemployed",
@@ -58,7 +58,7 @@
   {
     "file": "Robustness_contracts_jev_nearest.png",
     "kind": "figure",
-    "source_document": "appendix_od_jev.tex",
+    "source_document": "paper/appendix_od_jev.tex",
     "source_line": 54,
     "paper_number": "O.D.8",
     "paper_label": "fig:v1_jev_exposure_contracts",
@@ -72,7 +72,7 @@
   {
     "file": "Robustness_contracts_jev_weighted.png",
     "kind": "figure",
-    "source_document": "appendix_od_jev.tex",
+    "source_document": "paper/appendix_od_jev.tex",
     "source_line": 59,
     "paper_number": "O.D.8",
     "paper_label": "fig:v1_jev_exposure_contracts",
@@ -86,7 +86,7 @@
   {
     "file": "Robustness_contracts_jev_direct.png",
     "kind": "figure",
-    "source_document": "appendix_od_jev.tex",
+    "source_document": "paper/appendix_od_jev.tex",
     "source_line": 65,
     "paper_number": "O.D.8",
     "paper_label": "fig:v1_jev_exposure_contracts",
@@ -100,7 +100,7 @@
   {
     "file": "Exposure_correlation_matrix.png",
     "kind": "figure",
-    "source_document": "appendix_od_jev.tex",
+    "source_document": "paper/appendix_od_jev.tex",
     "source_line": 78,
     "paper_number": "O.D.9",
     "paper_label": "fig:v1_jev_exposure_correlations",
@@ -114,7 +114,7 @@
   {
     "file": "job_tiers_did_jev_v1.tex",
     "kind": "table",
-    "source_document": "appendix_oe_jev_tiers.tex",
+    "source_document": "paper/appendix_oe_jev_tiers.tex",
     "source_line": 35,
     "paper_number": "O.H.1",
     "paper_label": "tab:v1_jev_job_tiers",
@@ -128,7 +128,7 @@
   {
     "file": "JobTiers_unemployed_jev_tier1.png",
     "kind": "figure",
-    "source_document": "appendix_oe_jev_tiers.tex",
+    "source_document": "paper/appendix_oe_jev_tiers.tex",
     "source_line": 42,
     "paper_number": "O.H.1",
     "paper_label": "fig:v1_jev_tiers_unemployed",
@@ -142,7 +142,7 @@
   {
     "file": "JobTiers_unemployed_jev_tier2.png",
     "kind": "figure",
-    "source_document": "appendix_oe_jev_tiers.tex",
+    "source_document": "paper/appendix_oe_jev_tiers.tex",
     "source_line": 47,
     "paper_number": "O.H.1",
     "paper_label": "fig:v1_jev_tiers_unemployed",
@@ -156,7 +156,7 @@
   {
     "file": "JobTiers_contracts_jev_tier1.png",
     "kind": "figure",
-    "source_document": "appendix_oe_jev_tiers.tex",
+    "source_document": "paper/appendix_oe_jev_tiers.tex",
     "source_line": 61,
     "paper_number": "O.H.2",
     "paper_label": "fig:v1_jev_tiers_contracts",
@@ -170,7 +170,7 @@
   {
     "file": "JobTiers_contracts_jev_tier2.png",
     "kind": "figure",
-    "source_document": "appendix_oe_jev_tiers.tex",
+    "source_document": "paper/appendix_oe_jev_tiers.tex",
     "source_line": 66,
     "paper_number": "O.H.2",
     "paper_label": "fig:v1_jev_tiers_contracts",
@@ -184,7 +184,7 @@
   {
     "file": "job_tier_mediation_v1.tex",
     "kind": "table",
-    "source_document": "appendix_oe_jev_tiers.tex",
+    "source_document": "paper/appendix_oe_jev_tiers.tex",
     "source_line": 75,
     "paper_number": "O.H.2",
     "paper_label": "tab:v1_job_tier_mediation",
@@ -198,7 +198,7 @@
   {
     "file": "figure_anthropic_country_soc_major_group_spain_global_may2026.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 195,
     "paper_number": "1",
     "paper_label": "fig:claude_usage_spain_global",
@@ -212,7 +212,7 @@
   {
     "file": "figure_ai_exposure_distribution_onet_vs_spain.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 212,
     "paper_number": "2",
     "paper_label": "fig:exposure_distribution_onet_spain",
@@ -226,7 +226,7 @@
   {
     "file": "figure_ai_adoption_timing_panelA.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 238,
     "paper_number": "3",
     "paper_label": "fig:ai_adoption_timing",
@@ -240,7 +240,7 @@
   {
     "file": "figure_ai_adoption_timing_panelB.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 246,
     "paper_number": "3",
     "paper_label": "fig:ai_adoption_timing",
@@ -254,7 +254,7 @@
   {
     "file": "summary_statistics.tex",
     "kind": "table",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 264,
     "paper_number": "1",
     "paper_label": "tab:summary_statistics",
@@ -268,7 +268,7 @@
   {
     "file": "Figure1_panelA.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 328,
     "paper_number": "4",
     "paper_label": "fig:descriptive_patterns",
@@ -282,7 +282,7 @@
   {
     "file": "Figure1_panelB.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 336,
     "paper_number": "4",
     "paper_label": "fig:descriptive_patterns",
@@ -296,7 +296,7 @@
   {
     "file": "Figure2_panelA.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 352,
     "paper_number": "5",
     "paper_label": "fig:eventstudy_contdid_twfe",
@@ -310,7 +310,7 @@
   {
     "file": "Figure2_panelB.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 360,
     "paper_number": "5",
     "paper_label": "fig:eventstudy_contdid_twfe",
@@ -324,7 +324,7 @@
   {
     "file": "table2_main_effects_v1.tex",
     "kind": "table",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 384,
     "paper_number": "2",
     "paper_label": "tab:v1_main_effects",
@@ -338,7 +338,7 @@
   {
     "file": "heterogeneity_v1.tex",
     "kind": "table",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 404,
     "paper_number": "3",
     "paper_label": "tab:v1_heterogeneity",
@@ -352,7 +352,7 @@
   {
     "file": "Support_panelA.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 484,
     "paper_number": "A.1",
     "paper_label": "fig:v1_support",
@@ -366,7 +366,7 @@
   {
     "file": "Support_panelB.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 490,
     "paper_number": "A.1",
     "paper_label": "fig:v1_support",
@@ -380,7 +380,7 @@
   {
     "file": "family_support_v1.tex",
     "kind": "table",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 498,
     "paper_number": "A.1",
     "paper_label": "tab:v1_family_support",
@@ -394,7 +394,7 @@
   {
     "file": "pretrend_diagnostics_v1.tex",
     "kind": "table",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 499,
     "paper_number": "A.2",
     "paper_label": "tab:v1_pretrends",
@@ -408,7 +408,7 @@
   {
     "file": "heterogeneity_pretrend_diagnostics_v1.tex",
     "kind": "table",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 507,
     "paper_number": "B.1",
     "paper_label": "tab:v1_heterogeneity_pretrends",
@@ -422,7 +422,7 @@
   {
     "file": "age_cross_group_tests_v1.tex",
     "kind": "table",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 508,
     "paper_number": "B.2",
     "paper_label": "tab:v1_age_cross_group_tests",
@@ -436,7 +436,7 @@
   {
     "file": "Heterogeneity_unemployed_panel1.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 516,
     "paper_number": "B.1",
     "paper_label": "fig:v1_heterogeneity_u",
@@ -450,7 +450,7 @@
   {
     "file": "Heterogeneity_unemployed_panel2.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 521,
     "paper_number": "B.1",
     "paper_label": "fig:v1_heterogeneity_u",
@@ -464,7 +464,7 @@
   {
     "file": "Heterogeneity_unemployed_panel3.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 526,
     "paper_number": "B.1",
     "paper_label": "fig:v1_heterogeneity_u",
@@ -478,7 +478,7 @@
   {
     "file": "Heterogeneity_unemployed_panel4.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 531,
     "paper_number": "B.1",
     "paper_label": "fig:v1_heterogeneity_u",
@@ -492,7 +492,7 @@
   {
     "file": "Heterogeneity_unemployed_panel5.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 536,
     "paper_number": "B.1",
     "paper_label": "fig:v1_heterogeneity_u",
@@ -506,7 +506,7 @@
   {
     "file": "Heterogeneity_contracts_panel1.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 550,
     "paper_number": "B.2",
     "paper_label": "fig:v1_heterogeneity_c",
@@ -520,7 +520,7 @@
   {
     "file": "Heterogeneity_contracts_panel2.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 555,
     "paper_number": "B.2",
     "paper_label": "fig:v1_heterogeneity_c",
@@ -534,7 +534,7 @@
   {
     "file": "Heterogeneity_contracts_panel3.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 560,
     "paper_number": "B.2",
     "paper_label": "fig:v1_heterogeneity_c",
@@ -548,7 +548,7 @@
   {
     "file": "Heterogeneity_contracts_panel4.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 565,
     "paper_number": "B.2",
     "paper_label": "fig:v1_heterogeneity_c",
@@ -562,7 +562,7 @@
   {
     "file": "Heterogeneity_contracts_panel5.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 570,
     "paper_number": "B.2",
     "paper_label": "fig:v1_heterogeneity_c",
@@ -576,7 +576,7 @@
   {
     "file": "epa_vs_sepe_unemployment_quarterly.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 612,
     "paper_number": "O.A.1",
     "paper_label": "fig:epa_vs_sepe_unemployment_quarterly",
@@ -590,7 +590,7 @@
   {
     "file": "table_top_bottom_exposure_appendix.tex",
     "kind": "table",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 621,
     "paper_number": "O.B.1",
     "paper_label": "tab:top_bottom_exposure_comparison",
@@ -604,7 +604,7 @@
   {
     "file": "binary_treatment_v1.tex",
     "kind": "table",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 632,
     "paper_number": "O.C.1",
     "paper_label": "tab:v1_binary_treatment",
@@ -618,7 +618,7 @@
   {
     "file": "binary_pretrend_diagnostics_v1.tex",
     "kind": "table",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 634,
     "paper_number": "O.C.2",
     "paper_label": "tab:v1_binary_pretrends",
@@ -632,7 +632,7 @@
   {
     "file": "Binary_event_unemployed.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 643,
     "paper_number": "O.C.1",
     "paper_label": "fig:v1_binary_event",
@@ -646,7 +646,7 @@
   {
     "file": "Binary_event_contracts.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 651,
     "paper_number": "O.C.1",
     "paper_label": "fig:v1_binary_event",
@@ -660,7 +660,7 @@
   {
     "file": "robustness_checks_v1.tex",
     "kind": "table",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 669,
     "paper_number": "O.D.1",
     "paper_label": "tab:v1_robustness",
@@ -674,7 +674,7 @@
   {
     "file": "robustness_pretrend_diagnostics_v1.tex",
     "kind": "table",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 670,
     "paper_number": "O.D.2",
     "paper_label": "tab:v1_robustness_pretrends",
@@ -688,7 +688,7 @@
   {
     "file": "Robustness_unemployed_panel1.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 696,
     "paper_number": "O.D.1",
     "paper_label": "fig:v1_robust_u",
@@ -702,7 +702,7 @@
   {
     "file": "Robustness_unemployed_panel2.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 701,
     "paper_number": "O.D.1",
     "paper_label": "fig:v1_robust_u",
@@ -716,7 +716,7 @@
   {
     "file": "Robustness_unemployed_panel3.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 707,
     "paper_number": "O.D.1",
     "paper_label": "fig:v1_robust_u",
@@ -730,7 +730,7 @@
   {
     "file": "Robustness_contracts_panel1.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 726,
     "paper_number": "O.D.2",
     "paper_label": "fig:v1_robust_c",
@@ -744,7 +744,7 @@
   {
     "file": "Robustness_contracts_panel2.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 731,
     "paper_number": "O.D.2",
     "paper_label": "fig:v1_robust_c",
@@ -758,7 +758,7 @@
   {
     "file": "Robustness_contracts_panel3.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 738,
     "paper_number": "O.D.2",
     "paper_label": "fig:v1_robust_c",
@@ -772,7 +772,7 @@
   {
     "file": "LeaveOneCNO1_unemployed.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 759,
     "paper_number": "O.D.3",
     "paper_label": "fig:v1_leave_one_out",
@@ -786,7 +786,7 @@
   {
     "file": "LeaveOneCNO1_contracts.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 765,
     "paper_number": "O.D.3",
     "paper_label": "fig:v1_leave_one_out",
@@ -800,7 +800,7 @@
   {
     "file": "trailing12_contracts_v1.tex",
     "kind": "table",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 773,
     "paper_number": "O.D.3",
     "paper_label": "tab:v1_trailing_contracts",
@@ -814,7 +814,7 @@
   {
     "file": "Trailing12_contracts_event.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 781,
     "paper_number": "O.D.4",
     "paper_label": "fig:v1_trailing_contracts",
@@ -828,7 +828,7 @@
   {
     "file": "alternative_exposure_validation_v1.tex",
     "kind": "table",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 800,
     "paper_number": "O.D.4",
     "paper_label": "tab:v1_alternative_exposure_validation",
@@ -842,7 +842,7 @@
   {
     "file": "bls_categorical_exposure_v1.tex",
     "kind": "table",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 802,
     "paper_number": "O.D.5",
     "paper_label": "tab:v1_bls_exposure",
@@ -856,7 +856,7 @@
   {
     "file": "BLSExposure_unemployed.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 809,
     "paper_number": "O.D.5",
     "paper_label": "fig:v1_bls_exposure",
@@ -870,7 +870,7 @@
   {
     "file": "BLSExposure_contracts.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 815,
     "paper_number": "O.D.5",
     "paper_label": "fig:v1_bls_exposure",
@@ -884,7 +884,7 @@
   {
     "file": "lm_aioe_exposure_v1.tex",
     "kind": "table",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 830,
     "paper_number": "O.D.6",
     "paper_label": "tab:v1_lm_aioe_exposure",
@@ -898,7 +898,7 @@
   {
     "file": "CapabilityExposure_unemployed.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 838,
     "paper_number": "O.D.6",
     "paper_label": "fig:v1_capability_exposure",
@@ -912,7 +912,7 @@
   {
     "file": "CapabilityExposure_contracts.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 844,
     "paper_number": "O.D.6",
     "paper_label": "fig:v1_capability_exposure",
@@ -926,7 +926,7 @@
   {
     "file": "feminization_median_split_v1.tex",
     "kind": "table",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 870,
     "paper_number": "O.E.1",
     "paper_label": "tab:v1_feminization_median_split",
@@ -940,7 +940,7 @@
   {
     "file": "Feminization_median_unemployed.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 890,
     "paper_number": "O.E.1",
     "paper_label": "fig:v1_feminization_u",
@@ -954,7 +954,7 @@
   {
     "file": "Feminization_median_detrended_unemployed.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 895,
     "paper_number": "O.E.1",
     "paper_label": "fig:v1_feminization_u",
@@ -968,7 +968,7 @@
   {
     "file": "Feminization_median_contracts.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 908,
     "paper_number": "O.E.2",
     "paper_label": "fig:v1_feminization_c",
@@ -982,7 +982,7 @@
   {
     "file": "Feminization_median_detrended_contracts.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 913,
     "paper_number": "O.E.2",
     "paper_label": "fig:v1_feminization_c",
@@ -996,7 +996,7 @@
   {
     "file": "feminization_three_group_v1.tex",
     "kind": "table",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 921,
     "paper_number": "O.E.2",
     "paper_label": "tab:v1_feminization_three_group",
@@ -1010,7 +1010,7 @@
   {
     "file": "Feminization_three_group_unemployed.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 928,
     "paper_number": "O.E.3",
     "paper_label": "fig:v1_feminization_three_group",
@@ -1024,7 +1024,7 @@
   {
     "file": "Feminization_three_group_contracts.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 934,
     "paper_number": "O.E.3",
     "paper_label": "fig:v1_feminization_three_group",
@@ -1038,7 +1038,7 @@
   {
     "file": "main_provinces_v1.tex",
     "kind": "table",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 950,
     "paper_number": "O.F.1",
     "paper_label": "tab:v1_main_provinces",
@@ -1052,7 +1052,7 @@
   {
     "file": "MainProvince_comparison_unemployed.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 971,
     "paper_number": "O.F.1",
     "paper_label": "fig:v1_main_provinces",
@@ -1066,7 +1066,7 @@
   {
     "file": "MainProvince_comparison_contracts.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 976,
     "paper_number": "O.F.1",
     "paper_label": "fig:v1_main_provinces",
@@ -1080,7 +1080,7 @@
   {
     "file": "ContDID_panel1.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 1016,
     "paper_number": "O.G.1",
     "paper_label": "fig:v1_contdid_paths",
@@ -1094,7 +1094,7 @@
   {
     "file": "ContDID_panel2.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 1021,
     "paper_number": "O.G.1",
     "paper_label": "fig:v1_contdid_paths",
@@ -1108,7 +1108,7 @@
   {
     "file": "contdid_alternatives_v1.tex",
     "kind": "table",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 1029,
     "paper_number": "O.G.1",
     "paper_label": "tab:v1_contdid_alternatives",
@@ -1122,7 +1122,7 @@
   {
     "file": "sdid_estimates_v1.tex",
     "kind": "table",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 1051,
     "paper_number": "O.G.2",
     "paper_label": "tab:v1_sdid",
@@ -1136,7 +1136,7 @@
   {
     "file": "SDID_adjusted_path_unemployed.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 1059,
     "paper_number": "O.G.2",
     "paper_label": "fig:v1_sdid_projected",
@@ -1150,7 +1150,7 @@
   {
     "file": "SDID_adjusted_event_unemployed.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 1064,
     "paper_number": "O.G.2",
     "paper_label": "fig:v1_sdid_projected",
@@ -1164,7 +1164,7 @@
   {
     "file": "SDID_adjusted_path_contracts.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 1070,
     "paper_number": "O.G.2",
     "paper_label": "fig:v1_sdid_projected",
@@ -1178,7 +1178,7 @@
   {
     "file": "SDID_adjusted_event_contracts.png",
     "kind": "figure",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 1075,
     "paper_number": "O.G.2",
     "paper_label": "fig:v1_sdid_projected",
@@ -1192,7 +1192,7 @@
   {
     "file": "sdid_weight_diagnostics_v1.tex",
     "kind": "table",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 1086,
     "paper_number": "O.G.3",
     "paper_label": "tab:v1_sdid_weight_diagnostics",
@@ -1206,7 +1206,7 @@
   {
     "file": "sdid_donor_weights_v1.tex",
     "kind": "table",
-    "source_document": "main.tex",
+    "source_document": "paper/main.tex",
     "source_line": 1087,
     "paper_number": "O.G.4",
     "paper_label": "tab:v1_sdid_donors",

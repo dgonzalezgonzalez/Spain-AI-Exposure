@@ -1,0 +1,17 @@
+# Manuscript synchronization record
+
+Synchronization date: 7 October 2026. The [active Prism project](https://prism.openai.com/?u=d2a38c9d-2c46-440b-92e1-6d206cb7f593&pg=1&m=main.tex) uses root `main.tex` as its compilation entry point.
+
+The mirrored manuscript subset contains **95 files**: root `main.tex`, seven files in `paper/`, 26 publication tables in `output/tables/`, and 61 figure panels in `output/figures/`. It excludes analysis code, input datasets, runtime environments, and independent validation targets. Folder placeholders are unnecessary in Prism. There is no automatic GitHub connection; future synchronization follows `AGENTS.md`.
+
+Before migration, the complete project was exported and its ZIP CRC and 560 file hashes were verified. A PDF of the original 104-page manuscript was saved too. The dated local backup directory is `Documents/PrismBackups/Spain-AI-exposure-20261007-180334/`, outside Git and the replication ZIP. It contains `Prism-project-before-cleanup.zip`, `backup_manifest.json`, extracted sources, and `paper-before-cleanup.pdf`. The backup ZIP's SHA-256 is `578d1bd1e67e374d03c5c7af24365113a9b928179db7c4d7ea6e534bc9d568fa`.
+
+The manuscript, appendices, bibliography, and publication outputs were migrated before cleanup. A complete export verified all 95 retained files; two edited text files initially differed only in line endings, which were aligned with the exported bytes. The per-file SHA-256 record is [prism_sync_manifest.json](prism_sync_manifest.json). The root entry point declares the document class and inputs `paper/main.tex`; active dependencies resolve through `paper/`, `output/tables/`, and `output/figures/`.
+
+Prism compiled the migrated sources successfully. Its downloaded **101-page PDF** is versioned as `paper/main.pdf` and was uploaded into the same Prism folder. SHA-256: `f2995c5b75204d12633a9d860e2ebf9bbfaec53b4fa2e7c80e7c3b53505c3e7f`. The title page, EPA–SEPE panel, exposure rankings, and preserved SDID table were visually reviewed. A local pdfLaTeX/BibTeX build also passed with stabilized references and no undefined citations, undefined labels, or duplicate labels. PDF metadata and layout can vary by TeX installation.
+
+All 87 publication-asset checks and 22 regression tests passed. Estimators were not rerun for this source/path migration. One duplicate section label was removed and the exposure-ranking table's missing bibliography key was aligned with the existing cited source, including its renderer; numeric cells are unchanged. As requested, the manuscript SDID wording remains in `paper/sdid_estimates_manuscript.tex`; the documented methodological wording discrepancy is preserved.
+
+After the author's confirmation, the backed-up `old/` folder (268 files), `uploads/` folder (290 files), obsolete root figure, and `main_before_sync.txt` were deleted (560 files total). A fresh clean export contains exactly the 95 mirrored files and matches repository file bytes throughout; its CRC passes. Project ownership and collaborator access were not changed.
+
+For future edits: inspect both current Prism and Git sources for collaborator changes, export a dated backup before cleanup, update matching relative paths and assets, compile, inspect the PDF, export and compare hashes, then commit/push and rebuild the release ZIP. If Prism is inaccessible, ask the user to open this project in an agent-accessible browser and continue independent repository work meanwhile.
