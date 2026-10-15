@@ -7,30 +7,30 @@ Tier 1 comprises jobs whose central output is a separable task or a weak bundle 
 
 As argued by \citet{garicano2026weak}, task bundling can offset the standard substitution channel through which AI takes over a task and reduces the revenue accruing to the worker. In strongly bundled occupations, AI can improve performance in one task while the worker retains the integrated job and a larger share of its revenue. The aggregate response of labor's share therefore depends partly on how costly it is to separate tasks within occupations: when strong bundles account for more employment, labor's share may be more resilient than task-exposure measures alone imply. This motivates examining whether post-release labor-market adjustment differs across job tiers.
 
-This empirical exercise uses a discrete DiD strategy where tier 1 and tier 2 occupations are considered the treatment groups while those in tier 3 are left as controls. Formally, the Jev categorization and treatment selection can be expressed as follows:
+This empirical exercise uses a discrete DiD strategy where tier 1 and tier 3 occupations are compared with tier 2 occupations, which form the reference group. Formally, the Jev categorization and treatment selection can be expressed as follows:
 
 Let $\tau_{jk}$ be Jev's probability for tier $k\in\{1,2,3\}$ in CNO4d occupation $j$. The assigned tier and treatment indicators are
 \begin{equation}
 \label{eq:v1_jev_tier_assignment}
-\widehat K_j=\arg\max_k\tau_{jk},\qquad D_j^r=\mathbf{1}\{\widehat K_j=r\},\quad r=1,2.
+\widehat K_j=\arg\max_k\tau_{jk},\qquad D_j^r=\mathbf{1}\{\widehat K_j=r\},\quad r\in\{1,3\}.
 \end{equation}
-Probability vectors are normalized after API rounding and ties in $\tau_{jk}$ select the smallest tier number. Tier 3 is the omitted control group.
+Probability vectors are normalized after API rounding and ties in $\tau_{jk}$ select the smallest tier number. Tier 2 is the omitted reference group.
 
 Similar to Section \ref{sec:empirical_model}, we estimate the following equation:
 
 \begin{equation}
-Y_{jt}=\mu_j+\delta_{g(j),t}+\beta^1_A D^1_jP^A_t+\beta^1_L D^1_jP^L_t+\beta^2_A D^2_jP^A_t+\beta^2_L D^2_jP^L_t+\nu_{jt}
+Y_{jt}=\mu_j+\delta_{g(j),t}+\beta^1_A D^1_jP^A_t+\beta^1_L D^1_jP^L_t+\beta^3_A D^3_jP^A_t+\beta^3_L D^3_jP^L_t+\nu_{jt}
 \label{eq:tier_static}
 \end{equation}
-where $\mu_j$ captures CNO4d occupation FE, $\delta_{g(j),t}$ denotes CNO1d-by-year-month FE, and $\nu_{jt}$ is the error term. $P^A_t$ and $P^L_t$ indicate the adjustment and later periods defined in Section~\ref{sec:empirical_model}. The coefficients measure changes for tiers 1 and 2 relative to tier 3, with standard errors clustered by CNO4d.
+where $\mu_j$ captures CNO4d occupation FE, $\delta_{g(j),t}$ denotes CNO1d-by-year-month FE, and $\nu_{jt}$ is the error term. $P^A_t$ and $P^L_t$ indicate the adjustment and later periods defined in Section~\ref{sec:empirical_model}. The coefficients measure changes for tiers 1 and 3 relative to tier 2, with standard errors clustered by CNO4d.
 
-Table~\ref{tab:v1_jev_job_tiers} presents the DiD results. For registered unemployment, column 1 reports negative coefficients for both tiers during the adjustment and later periods: \(-0.057\) and \(-0.122\) for tier 1, and \(-0.052\) and \(-0.100\) for tier 2. Restricting identification to within-CNO1d comparisons in column 2 attenuates the tier 1 coefficients to \(-0.001\) and \(-0.022\), and the tier 2 coefficients to \(-0.036\) and \(-0.097\). None of these preferred estimates is statistically distinguishable from zero. Excluding 2021 in column 3 leaves the signs negative, with coefficients of \(-0.031\) and \(-0.052\) for tier 1 and \(-0.056\) and \(-0.117\) for tier 2, again without statistically significant differences. The negative signs are consistent with lower registered unemployment in tiers 1 and 2 relative to tier 3, but the preferred specification does not establish such a response.
+Table~\ref{tab:v1_jev_job_tiers} presents the DiD results. For registered unemployment, column 1 reports coefficients of \(-0.006\) and \(-0.022\) for tier 1 and \(0.052\) and \(0.100\) for tier 3 during the adjustment and later periods, respectively. Restricting identification to within-CNO1d comparisons in column 2, the tier 1 coefficients are \(0.035\) and \(0.075\), both statistically significant, whereas the tier 3 estimates of \(0.036\) and \(0.097\) are not statistically distinguishable from zero. Excluding 2021 in column 3, the tier 1 coefficients are \(0.025\) and \(0.065\), with the latter statistically significant at the 5 percent level; the tier 3 estimates of \(0.056\) and \(0.117\) remain statistically insignificant. Thus, in the preferred specification, registered unemployment rises more in tier 1 than in tier 2, while the estimated differences for tier 3 are imprecise.
 
-The contract estimates display a similar attenuation. Column 4 reports coefficients of \(-0.221\) and \(-0.206\) for tier 1 and \(-0.106\) and \(-0.075\) for tier 2. Adding CNO1d-by-year-month FE in column 5 reduces their magnitudes to \(-0.135\) and \(-0.109\) for tier 1 and \(-0.078\) and \(-0.029\) for tier 2. The tier 1 adjustment-period estimate remains statistically significant at the 5 percent level. Excluding 2021 in column 6 further reduces the estimates to \(-0.089\) and \(-0.063\) for tier 1 and \(-0.067\) and \(-0.019\) for tier 2. None is statistically significant at the 5 percent level; only the tier 1 adjustment-period coefficient is significant at the 10 percent level, suggesting a possible reduction in new contracts after ChatGPT's release.
+The new-contract estimates show a different pattern. Column 4 reports coefficients of \(-0.116\) and \(-0.131\) for tier 1 and \(0.106\) and \(0.075\) for tier 3. Adding CNO1d-by-year-month FE in column 5, the tier 1 estimates are \(-0.057\) and \(-0.079\), both significant at the 5 percent level; the tier 3 estimates are \(0.078\) and \(0.029\), with only the adjustment-period coefficient significant at the 10 percent level. Excluding 2021 in column 6, neither tier's adjustment- or later-period estimates are statistically significant. In the preferred specification, tier 1 therefore experiences a relative decline in new contracts compared with tier 2, while the tier 3 differences are smaller and less precisely estimated.
 
-Figures~\ref{fig:v1_jev_tiers_unemployed} and~\ref{fig:v1_jev_tiers_contracts} report the corresponding event-study estimates. The pre-treatment coefficients do not remain consistently close to zero, providing less favorable evidence for the parallel-trends assumption than would be needed for a clear causal interpretation. The unemployment path is more stable for tier 2, but the joint pre-treatment test for both tiers rejects in the preferred full sample (\(p<0.001\)). Excluding 2021 improves the unemployment diagnostics, and the joint null cannot be rejected (\(p=0.475\)), although this does not establish parallel trends. For new contracts, the joint test rejects both with and without 2021 (\(p=0.037\) and \(p=0.049\), respectively). We therefore interpret the post-release coefficients cautiously as differences in occupational adjustment that may also reflect pre-existing trends.
+Figures~\ref{fig:v1_jev_tiers_unemployed} and~\ref{fig:v1_jev_tiers_contracts} report the corresponding event-study estimates relative to tier 2. The pre-treatment coefficients do not remain consistently close to zero, providing limited support for the parallel-trends assumption. The unemployment path is more stable for tier 1 than for tier 3, but the joint pre-treatment test for both comparisons rejects in the preferred full sample (\(p<0.001\)). Excluding 2021, the joint null cannot be rejected for unemployment (\(p=0.475\)), although this does not establish parallel trends. For new contracts, the joint test rejects both with and without 2021 (\(p=0.037\) and \(p=0.049\), respectively). We therefore interpret the post-release coefficients cautiously as differences in occupational adjustment that may also reflect pre-existing trends.
 
-The contrast between these negative, imprecise unemployment estimates and the positive exposure gradient in the baseline analysis could be tentatively consistent with the possibility that task bundling moderates adjustment to AI \citep{garicano2026weak}. However, the two exercises use different occupational comparisons, and the estimates in Table \ref{tab:v1_jev_job_tiers} do not clearly establish that stronger bundling protects jobs. Therefore, in order to test this mechanism, we complement these tier comparisons with a mediation exercise that conditions the baseline exposure gradient on job-tier dynamics. Table~\ref{tab:v1_job_tier_mediation} reproduces the preferred exposure specification and adds tier-by-year-month FE as controls, allowing each tier its own monthly path. For registered unemployment, the adjustment- and later-period coefficients decline from 0.012 and 0.017 to 0.010 and 0.012, respectively; neither adjusted estimate is statistically significant at the 5 percent level. For new contracts, the corresponding coefficients increase from 0.014 and 0.013 to 0.019 in both periods. The adjustment-period estimate is statistically significant at the 5 percent level, whereas the later estimate is significant at the 10 percent level. These changes suggest that tier-specific labor-market dynamics may account for part of the positive unemployment gradient and may mask a positive association between AI exposure and hiring. This pattern is consistent with the hypothesis of job bundling playing a role in occupational adjustment, although it does not identify which tier generates the change nor does it directly establish that stronger bundles protect jobs.
+The preferred tier comparisons show higher registered unemployment and fewer new contracts in tier 1 relative to tier 2, while the tier 3 differences are less precise. Given the pre-treatment evidence and the distinct occupational comparisons, these estimates do not establish that stronger bundling protects jobs. To examine whether tier-specific labor-market dynamics account for part of the baseline exposure gradient, we complement the tier comparisons with a mediation exercise. Table~\ref{tab:v1_job_tier_mediation} reproduces the preferred exposure specification and adds tier-by-year-month FE as controls, allowing each tier its own monthly path. For registered unemployment, the adjustment- and later-period coefficients decline from 0.012 and 0.017 to 0.010 and 0.012, respectively; neither adjusted estimate is statistically significant at the 5 percent level. For new contracts, the corresponding coefficients increase from 0.014 and 0.013 to 0.019 in both periods. The adjustment-period estimate is statistically significant at the 5 percent level, whereas the later estimate is significant at the 10 percent level. These changes suggest that tier-specific labor-market dynamics may account for part of the positive unemployment gradient and may mask a positive association between AI exposure and hiring. This pattern is consistent with the hypothesis of job bundling playing a role in occupational adjustment, although it does not identify which tier generates the change nor does it directly establish that stronger bundles protect jobs.
 
 \input{\tabdir/job_tiers_did_jev_v1.tex}
 \clearpage
@@ -40,16 +40,16 @@ The contrast between these negative, imprecise unemployment estimates and the po
 \label{fig:v1_jev_tiers_unemployed}
 \begin{subfigure}{0.70\textwidth}
 \includegraphics[width=\textwidth]{\figdir/JobTiers_unemployed_jev_tier1.png}
-\caption{Tier 1 relative to tier 3}
+\caption{Tier 1 relative to tier 2}
 \end{subfigure}
 \vspace{0.22cm}
 \begin{subfigure}{0.70\textwidth}
-\includegraphics[width=\textwidth]{\figdir/JobTiers_unemployed_jev_tier2.png}
-\caption{Tier 2 relative to tier 3}
+\includegraphics[width=\textwidth]{\figdir/JobTiers_unemployed_jev_tier3.png}
+\caption{Tier 3 relative to tier 2}
 \end{subfigure}
 \vspace{0.22cm}
 \begin{minipage}{0.94\textwidth}
-\footnotesize \emph{Notes:} Both tier paths are estimated jointly in one regression for the logarithm of registered unemployment. Tier 3 is the omitted control group. The specification includes CNO4 and CNO1-by-year-month FE. Coefficients are log-point differences, with no exposure scaling. October 2022 is the omitted reference month; the dashed line marks November 2022. Shaded areas are 95 percent confidence intervals with standard errors clustered by CNO4. Each graph uses its own vertical scale.
+\footnotesize \emph{Notes:} Both tier paths are estimated jointly in one regression for the logarithm of registered unemployment. Tier 2 is the omitted reference group. The specification includes CNO4 and CNO1-by-year-month FE. Coefficients are log-point differences, with no exposure scaling. October 2022 is the omitted reference month; the dashed line marks November 2022. Shaded areas are 95 percent confidence intervals with standard errors clustered by CNO4. Each graph uses its own vertical scale.
 \end{minipage}
 \end{figure}
 \clearpage
@@ -59,16 +59,16 @@ The contrast between these negative, imprecise unemployment estimates and the po
 \label{fig:v1_jev_tiers_contracts}
 \begin{subfigure}{0.70\textwidth}
 \includegraphics[width=\textwidth]{\figdir/JobTiers_contracts_jev_tier1.png}
-\caption{Tier 1 relative to tier 3}
+\caption{Tier 1 relative to tier 2}
 \end{subfigure}
 \vspace{0.22cm}
 \begin{subfigure}{0.70\textwidth}
-\includegraphics[width=\textwidth]{\figdir/JobTiers_contracts_jev_tier2.png}
-\caption{Tier 2 relative to tier 3}
+\includegraphics[width=\textwidth]{\figdir/JobTiers_contracts_jev_tier3.png}
+\caption{Tier 3 relative to tier 2}
 \end{subfigure}
 \vspace{0.22cm}
 \begin{minipage}{0.94\textwidth}
-\footnotesize \emph{Notes:} Both tier paths are estimated jointly in one regression for the logarithm of new contracts. Tier 3 is the omitted control group. The specification includes CNO4 and CNO1-by-year-month FE. Coefficients are log-point differences, with no exposure scaling. October 2022 is the omitted reference month; the dashed line marks November 2022. Shaded areas are 95 percent confidence intervals with standard errors clustered by CNO4. Each graph uses its own vertical scale.
+\footnotesize \emph{Notes:} Both tier paths are estimated jointly in one regression for the logarithm of new contracts. Tier 2 is the omitted reference group. The specification includes CNO4 and CNO1-by-year-month FE. Coefficients are log-point differences, with no exposure scaling. October 2022 is the omitted reference month; the dashed line marks November 2022. Shaded areas are 95 percent confidence intervals with standard errors clustered by CNO4. Each graph uses its own vertical scale.
 \end{minipage}
 \end{figure}
 \clearpage

@@ -1,4 +1,4 @@
-* Joint discrete DiD: tiers 1 and 2 versus the omitted tier 3.
+* Joint discrete DiD: tiers 1 and 3 versus the omitted tier 2.
 * Reuse the paper's periods, outcome transformations, FE estimator and clustering.
 capture program drop run_job_tier_phase
 program define run_job_tier_phase
@@ -8,21 +8,21 @@ program define run_job_tier_phase
         if "`samplevar'" != "" keep if `samplevar' == 1
         keep if !missing(`outcome', `tiervar', cno4_id)
         assert inlist(`tiervar', 1, 2, 3)
-        foreach tier in 1 2 {
+        foreach tier in 1 3 {
             gen double tier`tier'_adjustment = (`tiervar' == `tier') * inrange(event_time, 0, 24)
             gen double tier`tier'_later = (`tiervar' == `tier') * inrange(event_time, 25, 40)
         }
-        reghdfe `outcome' tier1_adjustment tier1_later tier2_adjustment tier2_later, ///
+        reghdfe `outcome' tier1_adjustment tier1_later tier3_adjustment tier3_later, ///
             absorb(`absorb') vce(cluster cno4_id)
         local observations = e(N)
         local clusters = e(N_clust)
-        test (tier1_adjustment = tier1_later) (tier2_adjustment = tier2_later)
+        test (tier1_adjustment = tier1_later) (tier3_adjustment = tier3_later)
         local equality_p = r(p)
         tempfile results
         postfile P str48 specification str32 outcome byte tier str16 phase ///
             double estimate se ci_low ci_high equality_p long observations clusters ///
             using `results', replace
-        foreach tier in 1 2 {
+        foreach tier in 1 3 {
             foreach phase in adjustment later {
                 lincom tier`tier'_`phase'
                 post P ("`spec'") ("`outcome'") (`tier') ("`phase'") ///
@@ -47,7 +47,7 @@ program define run_job_tier_event
         quietly levelsof event_time, local(observed_events)
         local all
         local pre
-        foreach tier in 1 2 {
+        foreach tier in 1 3 {
             foreach k of local observed_events {
                 if `k' != -1 {
                     if `k' < 0 local suffix "m`=abs(`k')'"
@@ -71,7 +71,7 @@ program define run_job_tier_event
         postclose P
         postfile E str48 specification str32 outcome byte tier int event_time ///
             double estimate se ci_low ci_high long observations clusters using `events', replace
-        foreach tier in 1 2 {
+        foreach tier in 1 3 {
             forvalues k = $ES_MIN/$ES_MAX {
                 local present : list posof "`k'" in observed_events
                 if `present' == 0 {

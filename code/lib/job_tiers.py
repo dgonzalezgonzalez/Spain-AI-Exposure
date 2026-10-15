@@ -20,7 +20,7 @@ def build_job_tier_outputs(estimates_dir: str | Path, output_dir: str | Path,
         for spec in specs:
             phase = pd.read_csv(estimates / f"twfe_tier_phase_{spec}_{outcome}.csv")
             if len(phase) != 4 or set(zip(phase.tier, phase.phase)) != {
-                (tier, name) for tier in (1, 2) for name in ("adjustment", "later")
+                (tier, name) for tier in (1, 3) for name in ("adjustment", "later")
             }:
                 raise ValueError("Joint tier regression must contain exactly four unique coefficients")
             for name in ("observations", "clusters", "equality_p"):
@@ -42,7 +42,7 @@ def build_job_tier_outputs(estimates_dir: str | Path, output_dir: str | Path,
              r"\scriptsize", r"\setlength{\tabcolsep}{3.5pt}", r"\begin{tabular}{lcccccc}",
              r"\toprule", r"& \multicolumn{3}{c}{\# of registered unemployed} & \multicolumn{3}{c}{\# of new contracts} \\",
              r"\cmidrule(lr){2-4}\cmidrule(lr){5-7}", r"& (1) & (2) & (3) & (4) & (5) & (6) \\", r"\midrule"]
-    for tier in (1, 2):
+    for tier in (1, 3):
         for phase in ("adjustment", "later"):
             rows = [frame.loc[(tier, phase)] for frame, _ in columns]
             latex += [rf"Tier {tier} $\times$ {phase} period & " + " & ".join(
@@ -56,9 +56,9 @@ def build_job_tier_outputs(estimates_dir: str | Path, output_dir: str | Path,
               r"$p$-value: equal phase effects & " + " & ".join(format_p(float(frame.iloc[0].equality_p)) for frame, _ in columns) + r" \\",
               "Observations & " + " & ".join(f"{int(frame.iloc[0].observations):,}" for frame, _ in columns) + r" \\",
               r"\bottomrule", r"\end{tabular}", r"\begin{tablenotes}[flushleft]", r"\footnotesize",
-              r"\item \emph{Notes:} Each column reports one joint regression with tier 1 and tier 2 indicators interacted with both post-treatment phases; tier 3 is the omitted control group. The indicators use the frozen " +
+              r"\item \emph{Notes:} Each column reports one joint regression with tier 1 and tier 3 indicators interacted with both post-treatment phases; tier 2 is the omitted control group. The indicators use the frozen " +
               ("Jev" if model_family == "jev" else "TEV") +
-              r" occupation classification. The adjustment and later periods cover event times 0--24 and 25--40; all pre-treatment months form the omitted period. Columns 1 and 4 include CNO4 and year-month fixed effects; the remaining columns include CNO4 and CNO1-by-year-month fixed effects. Columns 3 and 6 exclude 2021. Standard errors are clustered by CNO4. The pre-treatment row jointly tests all available pre-treatment event-study coefficients for both tiers: event times $-21$ through $-2$ when 2021 is included and $-10$ through $-2$ otherwise; October 2022 is omitted. The phase-equality row jointly tests equality of adjustment and later coefficients for both tiers. Coefficients are log-point differences relative to tier 3, without exposure scaling. $^{***}p<0.01$, $^{**}p<0.05$, and $^{*}p<0.10$.",
+              r" occupation classification. The adjustment and later periods cover event times 0--24 and 25--40; all pre-treatment months form the omitted period. Columns 1 and 4 include CNO4 and year-month fixed effects; the remaining columns include CNO4 and CNO1-by-year-month fixed effects. Columns 3 and 6 exclude 2021. Standard errors are clustered by CNO4. The pre-treatment row jointly tests all available pre-treatment event-study coefficients for tiers 1 and 3: event times $-21$ through $-2$ when 2021 is included and $-10$ through $-2$ otherwise; October 2022 is omitted. The phase-equality row jointly tests equality of adjustment and later coefficients for tiers 1 and 3. Coefficients are log-point differences relative to tier 2, without exposure scaling. $^{***}p<0.01$, $^{**}p<0.05$, and $^{*}p<0.10$.",
               r"\end{tablenotes}", r"\end{threeparttable}", r"\end{table}"]
     table = output / f"job_tiers_did_{model_family}_v1.tex"
     table.write_text("\n".join(latex) + "\n", encoding="utf-8")
@@ -67,9 +67,9 @@ def build_job_tier_outputs(estimates_dir: str | Path, output_dir: str | Path,
     paths = {"table": table, "table_csv": csv}
     for outcome, variable, step in [("unemployed", "ln_parados", 0.025), ("contracts", "ln_contratos", 0.05)]:
         frame = pd.read_csv(estimates / f"twfe_tier_event_{model_family}_tiers_cno1_month_{variable}.csv")
-        if set(frame.tier) != {1, 2} or frame.duplicated(["tier", "event_time"]).any():
+        if set(frame.tier) != {1, 3} or frame.duplicated(["tier", "event_time"]).any():
             raise ValueError("Event-study file must contain both jointly estimated tier paths")
-        for tier in (1, 2):
+        for tier in (1, 3):
             numeric = output / f"JobTiers_{outcome}_{model_family}_tier{tier}.csv"
             frame.loc[frame.tier.eq(tier)].to_csv(numeric, index=False)
             figure = numeric.with_suffix(".png")
