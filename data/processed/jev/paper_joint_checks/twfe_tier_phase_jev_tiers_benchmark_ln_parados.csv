@@ -1,5 +1,3 @@
-specification,outcome,tier,phase,estimate,se,ci_low,ci_high,equality_p,observations,clusters
-jev_tiers_benchmark,ln_parados,1,adjustment,-.0574238624804475,.025827199,-.10816683,-.0066808984,.12612844,31122,502
-jev_tiers_benchmark,ln_parados,1,later,-.1218328508750502,.052172758,-.22433721,-.019328494,.12612844,31122,502
-jev_tiers_benchmark,ln_parados,2,adjustment,-.0515595731274756,.026134526,-.10290635,-.00021279861,.12612844,31122,502
-jev_tiers_benchmark,ln_parados,2,later,-.0998748333878433,.051309768,-.20068367,.00093399419,.12612844,31122,502
+specification,outcome,tier,control_group,phase,estimate,se,ci_low,ci_high,equality_p,observations,clusters
+jev_tiers_benchmark,ln_parados,1,tiers_2_3,adjustment,-.0178948564160721,.012968781,-.043374754,.0075850422,.051328983,31122,502
+jev_tiers_benchmark,ln_parados,1,tiers_2_3,later,-.0452621452777179,.023714593,-.091854446,.0013301586,.051328983,31122,502

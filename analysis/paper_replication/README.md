@@ -47,3 +47,11 @@ and `descriptive.tex` is its descriptive validation companion. The frozen
 publication figures and table fragments are under `figuresNtables/`. Raw data,
 prepared panels, logs, and estimator intermediates stay in the ignored runtime
 because the ZIP contained more than 1 GB of generated/source data.
+
+## Current Manuscript PDF
+
+`Spain_AI_exposure_manuscript_2026-10-16.pdf` is the 101-page PDF exported from
+Prism after updating Online Appendix O.H to compare tier 1 with pooled tiers 2
+and 3. The full editable manuscript remains in the Prism project; the revised
+O.H text and estimates are archived in this repository in `appendix_oh_jev.tex`
+and the frozen outputs documented in `docs/jev-paper-checks.md`.

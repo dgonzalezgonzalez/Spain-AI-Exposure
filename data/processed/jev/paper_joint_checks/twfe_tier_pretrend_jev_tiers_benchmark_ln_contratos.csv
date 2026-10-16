@@ -1,2 +1,2 @@
-specification,outcome,p_value,observations,clusters
-jev_tiers_benchmark,ln_contratos,2.37581698327e-06,30787,502
+specification,outcome,control_group,p_value,observations,clusters
+jev_tiers_benchmark,ln_contratos,tiers_2_3,.0000280754129285,30787,502

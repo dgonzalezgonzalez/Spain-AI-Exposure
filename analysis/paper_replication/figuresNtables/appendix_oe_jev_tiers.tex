@@ -1,49 +1,39 @@
 \clearpage
 \section{Three Job Tiers}
 \label{sec:v1_job_tiers}
-Let $\tau_{jt}$ be Jev's probability for tier $t\in\{1,2,3\}$. The assigned tier and treatment indicators are
+Let $\tau_{jt}$ be Jev's probability for tier $t\in\{1,2,3\}$. The assigned tier and treatment indicator are
 \begin{equation}
 \label{eq:v1_jev_tier_assignment}
-\widehat T_j=\arg\max_t\tau_{jt},\qquad D_j^r=\mathbf{1}\{\widehat T_j=r\},\quad r=1,2.
+\widehat T_j=\arg\max_t\tau_{jt},\qquad D_j^1=\mathbf{1}\{\widehat T_j=1\}.
 \end{equation}
-Probability vectors are normalized after API rounding; ties select the smallest tier number. Tier 3 is the omitted control group.
+Probability vectors are normalized after API rounding; ties select the smallest tier number. Tiers 2 and 3 form the pooled control group.
 \input{\figdir/job_tiers_did_jev_v1.tex}
 \clearpage
 \begin{figure}[H]
 \centering
-\caption{Joint job-tier event study: registered unemployment}
+\caption{Job-tier event study: registered unemployment}
 \label{fig:v1_jev_tiers_unemployed}
 \begin{subfigure}{0.70\textwidth}
 \includegraphics[width=\textwidth]{\figdir/JobTiers_unemployed_jev_tier1.png}
-\caption{Tier 1 relative to tier 3}
-\end{subfigure}
-\vspace{0.22cm}
-\begin{subfigure}{0.70\textwidth}
-\includegraphics[width=\textwidth]{\figdir/JobTiers_unemployed_jev_tier2.png}
-\caption{Tier 2 relative to tier 3}
+\caption{Tier 1 relative to pooled tiers 2 and 3}
 \end{subfigure}
 \vspace{0.22cm}
 \begin{minipage}{0.94\textwidth}
-\footnotesize \emph{Notes:} Both tier paths are estimated jointly in one regression for the logarithm of registered unemployment. Tier 3 is the omitted control group. The specification includes CNO4 and CNO1-by-year-month fixed effects. Coefficients are log-point differences, with no exposure scaling. October 2022 is the omitted reference month; the dashed line marks November 2022. Shaded areas are 95 percent confidence intervals with standard errors clustered by CNO4. Each graph uses its own vertical scale.
+\footnotesize \emph{Notes:} The tier 1 path is estimated relative to pooled tiers 2 and 3 for the logarithm of registered unemployment. Tiers 2 and 3 form the pooled control group. The specification includes CNO4 and CNO1-by-year-month fixed effects. Coefficients are log-point differences, with no exposure scaling. October 2022 is the omitted reference month; the dashed line marks November 2022. Shaded areas are 95 percent confidence intervals with standard errors clustered by CNO4. Each graph uses its own vertical scale.
 \end{minipage}
 \end{figure}
 \clearpage
 \begin{figure}[H]
 \centering
-\caption{Joint job-tier event study: new contracts}
+\caption{Job-tier event study: new contracts}
 \label{fig:v1_jev_tiers_contracts}
 \begin{subfigure}{0.70\textwidth}
 \includegraphics[width=\textwidth]{\figdir/JobTiers_contracts_jev_tier1.png}
-\caption{Tier 1 relative to tier 3}
-\end{subfigure}
-\vspace{0.22cm}
-\begin{subfigure}{0.70\textwidth}
-\includegraphics[width=\textwidth]{\figdir/JobTiers_contracts_jev_tier2.png}
-\caption{Tier 2 relative to tier 3}
+\caption{Tier 1 relative to pooled tiers 2 and 3}
 \end{subfigure}
 \vspace{0.22cm}
 \begin{minipage}{0.94\textwidth}
-\footnotesize \emph{Notes:} Both tier paths are estimated jointly in one regression for the logarithm of new contracts. Tier 3 is the omitted control group. The specification includes CNO4 and CNO1-by-year-month fixed effects. Coefficients are log-point differences, with no exposure scaling. October 2022 is the omitted reference month; the dashed line marks November 2022. Shaded areas are 95 percent confidence intervals with standard errors clustered by CNO4. Each graph uses its own vertical scale.
+\footnotesize \emph{Notes:} The tier 1 path is estimated relative to pooled tiers 2 and 3 for the logarithm of new contracts. Tiers 2 and 3 form the pooled control group. The specification includes CNO4 and CNO1-by-year-month fixed effects. Coefficients are log-point differences, with no exposure scaling. October 2022 is the omitted reference month; the dashed line marks November 2022. Shaded areas are 95 percent confidence intervals with standard errors clustered by CNO4. Each graph uses its own vertical scale.
 \end{minipage}
 \end{figure}
 \clearpage

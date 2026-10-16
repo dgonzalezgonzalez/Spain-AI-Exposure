@@ -1,5 +1,3 @@
-specification,outcome,tier,phase,estimate,se,ci_low,ci_high,equality_p,observations,clusters
-jev_tiers_cno1_month_no2021,ln_parados,1,adjustment,-.031040311940168,.036703065,-.1031512,.04107058,.011749764,25600,502
-jev_tiers_cno1_month_no2021,ln_parados,1,later,-.0518173079196648,.078857109,-.20674868,.10311406,.011749764,25600,502
-jev_tiers_cno1_month_no2021,ln_parados,2,adjustment,-.0561181324065082,.035074897,-.12503015,.012793883,.011749764,25600,502
-jev_tiers_cno1_month_no2021,ln_parados,2,later,-.1171717254296245,.073812634,-.26219219,.027848724,.011749764,25600,502
+specification,outcome,tier,control_group,phase,estimate,se,ci_low,ci_high,equality_p,observations,clusters
+jev_tiers_cno1_month_no2021,ln_parados,1,tiers_2_3,adjustment,.0187792801810263,.015403067,-.011483284,.049041845,.039693303,25600,502
+jev_tiers_cno1_month_no2021,ln_parados,1,tiers_2_3,later,.0522099156365652,.029333407,-.0054217302,.10984156,.039693303,25600,502

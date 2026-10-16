@@ -3,8 +3,12 @@
   "occupation_estimates_sha256": "d6a01c9a013d87d136854a71756c5f6d467367f32592167144adb4a3d81a721c",
   "baseline_panel_sha256": "f988543cae9318d4fc8f98d5444289ec215df2362d4232021d41d4f3c952cb8b",
   "stata_source_sha256": "774f6f06f811c87bb77aec50af4030cb71f5de06a050cf708e04fab3608f7a7c",
-  "tier_source_sha256": "b2d478062a0fe9823b4e878788e5da390f609f8feabdfacb692d89cfcfd5f099",
-  "tier_treatment": "joint tier 1 and tier 2 indicators; tier 3 omitted; preferred CNO1-by-month FE",
+  "tier_source_sha256": "4558bf241df3b0b659f0c47aad538c64bcee3298f396d273c42bc38f970f1519",
+  "source_snapshots": [
+    "source_occupation_checks.do",
+    "source_job_tiers.do"
+  ],
+  "tier_treatment": "tier 1 indicator; pooled tiers 2 and 3 controls; preferred CNO1-by-month FE",
   "estimator_files": {
     "twfe_event_benchmark_twfe_ln_contratos.csv": "8d14eb84eff70da63686e272f50cd7bf2fb68dca2d27e203fa92adf48549feff",
     "twfe_event_benchmark_twfe_ln_parados.csv": "d59e923b9b4712fe83a501d9fb3068e9ab0c3cd798fa297d982f15ec929b8205",
@@ -78,27 +82,23 @@
     "twfe_pretrend_preferred_cno1_month_ln_parados.csv": "583bbab1ab34a2e60af759f51e119b529d50085d168faf62c9560513a779c65e",
     "twfe_pretrend_preferred_cno1_month_no2021_ln_contratos.csv": "330bd83f0c1ab0f26ac24eb81d17b81a5ac2e3f2f9ac3d7e6cb16c56fa90b6da",
     "twfe_pretrend_preferred_cno1_month_no2021_ln_parados.csv": "ba1a3e46c067a6222c97878864aee724f32f2dce2000602687e5e56e8a763137",
-    "twfe_tier_event_jev_tiers_benchmark_ln_contratos.csv": "6d7a56372b07656afe30647a072e20340ca3aa49675c0dc2979b4cdd0cc16234",
-    "twfe_tier_event_jev_tiers_benchmark_ln_parados.csv": "b07e039097ad8495ebf819108ec44eeb9449172f539332ef7464e5097e2b0da4",
-    "twfe_tier_event_jev_tiers_cno1_month_ln_contratos.csv": "78b7bb89e980a5bcc598378a2635ddacfb55cac773b3f285d0fe20fbd35551de",
-    "twfe_tier_event_jev_tiers_cno1_month_ln_parados.csv": "b78af85c9d9206864a8d94b784e291a4aa304894aa653d121469e662c5e68fbb",
-    "twfe_tier_event_jev_tiers_cno1_month_no2021_ln_contratos.csv": "ca43793b1006428a5c596bc87b526c6d2b13978db7e26c7bc8b6e1c56074cad7",
-    "twfe_tier_event_jev_tiers_cno1_month_no2021_ln_parados.csv": "52fd2caced7372db192ea722ff12b4174a6679e9505c28fee3a635007f3bf4d3",
-    "twfe_tier_phase_jev_tiers_benchmark_ln_contratos.csv": "a4f52ff72b7e58d6ed0838d0134488acf1b23a1408e1e5b3b0fe0b0272d693b0",
-    "twfe_tier_phase_jev_tiers_benchmark_ln_parados.csv": "8c19b07f98f6d431b0d0100a52363383308a05b43f8b7f0ba11be8077b118858",
-    "twfe_tier_phase_jev_tiers_cno1_month_ln_contratos.csv": "70f3d9c280d578703b35c15044026927e5a9d51505d3ca1359be73c427fbbc4e",
-    "twfe_tier_phase_jev_tiers_cno1_month_ln_parados.csv": "f7046042e3a4153d09b269412f0b59d2a37cc1be16a1ae636ee10e401d0d3cb0",
-    "twfe_tier_phase_jev_tiers_cno1_month_no2021_ln_contratos.csv": "e7e98a690b24bab35c932f1d47a156eb69dc144963affcab349b0250b7aa777f",
-    "twfe_tier_phase_jev_tiers_cno1_month_no2021_ln_parados.csv": "5282ff62bb97d7c473101e135987279079210ee13ead036aea6eda6e40e7d87a",
-    "twfe_tier_pretrend_jev_tiers_benchmark_ln_contratos.csv": "80316b461ceb192943b3982928d64d86fd61973a5668c01c1a70429e4b61cd81",
-    "twfe_tier_pretrend_jev_tiers_benchmark_ln_parados.csv": "0cc02e06f518c0dbd69b7b65c16afe36f0726381b15cc23154fd2b0dfff44242",
-    "twfe_tier_pretrend_jev_tiers_cno1_month_ln_contratos.csv": "95814775fd05a515262777b050bfe1f42cab070238d409cb829ce0571c0b23ec",
-    "twfe_tier_pretrend_jev_tiers_cno1_month_ln_parados.csv": "a6d462f2242439554291e78c030d8f8276a1177a89409d0e1e548144927443b8",
-    "twfe_tier_pretrend_jev_tiers_cno1_month_no2021_ln_contratos.csv": "96e3367c8911c116fbf0872498ae2878c41144f0b04980485832a10fedc36b95",
-    "twfe_tier_pretrend_jev_tiers_cno1_month_no2021_ln_parados.csv": "3ec303d0f9b3ffb7f43747304cfd1cae0d5836de294e046bf012c02076f85472"
-  },
-  "source_snapshots": [
-    "source_occupation_checks.do",
-    "source_job_tiers.do"
-  ]
+    "twfe_tier_event_jev_tiers_benchmark_ln_contratos.csv": "82996f8b181e801dd2488980e84d3a7fe68129fe1f10285da91d7b01461a24a8",
+    "twfe_tier_event_jev_tiers_benchmark_ln_parados.csv": "458ce5c2761dd49542a48c429973187d9c25078b79063454368e56f4d5f6401a",
+    "twfe_tier_event_jev_tiers_cno1_month_ln_contratos.csv": "f2437abf0f0df01ebccf5f173a31cd90377dcdf4b1bbca3db65328416c88a125",
+    "twfe_tier_event_jev_tiers_cno1_month_ln_parados.csv": "14e80b58bb519cc031a8546953147502ae8981064eeeb2df8a1da94c7e3aff8a",
+    "twfe_tier_event_jev_tiers_cno1_month_no2021_ln_contratos.csv": "dfdf057f0492f7a7be0a9458647fcac1c422d1eb75ddda3b65b68eb9db2d1ca5",
+    "twfe_tier_event_jev_tiers_cno1_month_no2021_ln_parados.csv": "777ca262a3d9d9fdc8b87b20c73ce79c9215d077c49c43b3ea0e8a166ba355ea",
+    "twfe_tier_phase_jev_tiers_benchmark_ln_contratos.csv": "6cdbb72ca8a30a510843a49164d81723f5637df6f865eebd5a5b88fc489ce0d5",
+    "twfe_tier_phase_jev_tiers_benchmark_ln_parados.csv": "554a2f95c900ef16af0ca0b19e38d56f86163ee6aa1f4c47a1515b0293e4fe21",
+    "twfe_tier_phase_jev_tiers_cno1_month_ln_contratos.csv": "5175f85fc53d387845447e0708248320544f6d1003b87bbeb408ffa49032c98c",
+    "twfe_tier_phase_jev_tiers_cno1_month_ln_parados.csv": "98a9082c7eef74175e9eb7a9e5cdf32fd3584c11225a3c0de477bb68c789c7d0",
+    "twfe_tier_phase_jev_tiers_cno1_month_no2021_ln_contratos.csv": "9a60c036504ad31112dda4ca94197f3996b65b62614dc1d2e8a5b87beee55a39",
+    "twfe_tier_phase_jev_tiers_cno1_month_no2021_ln_parados.csv": "ac0b66f9f64e515e0c3d47d1dae7bdbd8dab84f8db3d2062926d2854698b2932",
+    "twfe_tier_pretrend_jev_tiers_benchmark_ln_contratos.csv": "bba8ffa9cffb56de81be0d373cc1bf3c24037a2df73310c333ea596c489bd19c",
+    "twfe_tier_pretrend_jev_tiers_benchmark_ln_parados.csv": "8641b018dcc2665ced8180d922141ba07158d9d02ccd431dbacab4405a1dfbdc",
+    "twfe_tier_pretrend_jev_tiers_cno1_month_ln_contratos.csv": "c567b5a64ed0ef2e786521fb166e9094e949484be364d917824d9df4bb047200",
+    "twfe_tier_pretrend_jev_tiers_cno1_month_ln_parados.csv": "d6e28ca828d866c9fec4d716edf2c74bfe3e1c7b1ea7a2047e32ce9434666c12",
+    "twfe_tier_pretrend_jev_tiers_cno1_month_no2021_ln_contratos.csv": "6f5766872502745c3d8650ddf4009125e3b65181d201fee8c019413ff8bcf732",
+    "twfe_tier_pretrend_jev_tiers_cno1_month_no2021_ln_parados.csv": "2cc32adcccf858a74f10a8b79094e3bcce4ae649f3c9c476e3eb1687dc8ce93c"
+  }
 }

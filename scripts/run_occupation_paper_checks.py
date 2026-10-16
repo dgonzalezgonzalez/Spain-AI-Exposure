@@ -1,4 +1,4 @@
-"""Run exposure checks and joint job-tier DiD using frozen Jev or TEV classifications."""
+"""Run exposure checks and tier-1-versus-pooled-controls DiD with frozen classifications."""
 from __future__ import annotations
 
 import argparse
@@ -23,6 +23,7 @@ from src.jev import write_json
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--model-family", choices=("jev", "tev"), default="jev")
+    parser.add_argument("--tiers-only", action="store_true", help="Re-estimate tiers only; preserve frozen exposure estimates")
     parser.add_argument("--stata-exe", type=Path, default=Path(r"C:\Program Files\StataNow19\StataMP-64.exe"))
     args = parser.parse_args()
     family = args.model_family
@@ -44,18 +45,26 @@ def main() -> None:
     shutil.copytree(PACKAGE / "lib", run / "lib")
     env = os.environ.copy()
     env.update(V1_JEV_OD_ONLY="1", V1_OCCUPATION_MODEL=family)
-    print(f"Running baseline, three exposure variants, and joint tier DiD in {run}", flush=True)
+    if args.tiers_only:
+        env["V1_TIERS_ONLY"] = "1"
+    print(f"Running {'tier DiD only' if args.tiers_only else 'exposure checks and tier DiD'} in {run}", flush=True)
     subprocess.run([str(args.stata_exe), "/e", "do", str(dofile)], cwd=run, env=env, check=True)
     estimates = run / "intermediate"
     output = PACKAGE / "figuresNtables" if family == "jev" else PACKAGE / "figuresNtables/tev"
-    build_jev_robustness_outputs(estimates, output, model_family=family)
+    if not args.tiers_only:
+        build_jev_robustness_outputs(estimates, output, model_family=family)
     build_job_tier_outputs(estimates, output, model_family=family)
-    build_exposure_correlation_matrix(ROOT, model_panel, data / "occupation_estimates.csv", output, model_family=family)
+    if not args.tiers_only:
+        build_exposure_correlation_matrix(ROOT, model_panel, data / "occupation_estimates.csv", output, model_family=family)
     # Freeze the exact estimator inputs used by the publication renderer.
     snapshot = data / "paper_joint_checks"
     if snapshot.exists():
         shutil.move(str(snapshot), str(run / "previous_snapshot"))
     snapshot.mkdir()
+    if args.tiers_only:
+        for path in (run / "previous_snapshot").glob("*"):
+            if path.is_file() and not path.name.startswith("twfe_tier_"):
+                shutil.copy2(path, snapshot / path.name)
     for pattern in ("twfe_phase_*.csv", "twfe_pretrend_*.csv", "twfe_event_*.csv", "twfe_tier_*.csv"):
         for path in sorted(estimates.glob(pattern)):
             shutil.copy2(path, snapshot / path.name)
@@ -68,7 +77,7 @@ def main() -> None:
         "stata_source_sha256": hashlib.sha256(source.read_bytes()).hexdigest(),
         "tier_source_sha256": hashlib.sha256((PACKAGE / "lib/job_tiers.do").read_bytes()).hexdigest(),
         "source_snapshots": ["source_occupation_checks.do", "source_job_tiers.do"],
-        "tier_treatment": "joint tier 1 and tier 2 indicators; tier 3 omitted; preferred CNO1-by-month FE",
+        "tier_treatment": "tier 1 indicator; pooled tiers 2 and 3 controls; preferred CNO1-by-month FE",
         "estimator_files": {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(snapshot.glob("*.csv"))},
     })
     subprocess.run([sys.executable, str(ROOT / "scripts/build_model_appendices.py"),

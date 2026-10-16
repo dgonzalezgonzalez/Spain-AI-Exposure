@@ -55,7 +55,7 @@ def main() -> int:
     if args.action == "tiers":
         outputs = build_job_tier_outputs(args.estimates_dir, args.output_dir,
                                          model_family=args.model_family)
-        print("Joint tier DiD outputs:", outputs)
+        print("Tier 1 versus pooled tiers 2 and 3 DiD outputs:", outputs)
     if args.action == "matrix":
         summary = build_exposure_correlation_matrix(
             project_root=ROOT,

@@ -73,13 +73,13 @@ def exposure_events(family: str, outcome: str) -> str:
 def tier_events(family: str, outcome: str) -> str:
     caption = "registered unemployment" if outcome == "unemployed" else "new contracts"
     lines = [r"\clearpage", r"\begin{figure}[H]", r"\centering",
-             rf"\caption{{Joint job-tier event study: {caption}}}", rf"\label{{fig:v1_{family}_tiers_{outcome}}}"]
-    for tier in (1, 2):
+             rf"\caption{{Job-tier event study: {caption}}}", rf"\label{{fig:v1_{family}_tiers_{outcome}}}"]
+    for tier in (1,):
         lines += [r"\begin{subfigure}{0.70\textwidth}",
                   rf"\includegraphics[width=\textwidth]{{\figdir/JobTiers_{outcome}_{family}_tier{tier}.png}}",
-                  rf"\caption{{Tier {tier} relative to tier 3}}", r"\end{subfigure}", r"\vspace{0.22cm}"]
+                  rf"\caption{{Tier {tier} relative to pooled tiers 2 and 3}}", r"\end{subfigure}", r"\vspace{0.22cm}"]
     lines += [r"\begin{minipage}{0.94\textwidth}", r"\footnotesize \emph{Notes:} " +
-              f"Both tier paths are estimated jointly in one regression for the logarithm of {caption}. Tier 3 is the omitted control group. " +
+              f"The tier 1 path is estimated relative to pooled tiers 2 and 3 for the logarithm of {caption}. Tiers 2 and 3 form the pooled control group. " +
               "The specification includes CNO4 and CNO1-by-year-month fixed effects. Coefficients are log-point differences, with no exposure scaling. " +
               "October 2022 is the omitted reference month; the dashed line marks November 2022. Shaded areas are 95 percent confidence intervals with standard errors clustered by CNO4. Each graph uses its own vertical scale.",
               r"\end{minipage}", r"\end{figure}"]
@@ -95,7 +95,7 @@ def large_shareout_pair(family: str, measure: str, label: str, *, tiers: bool = 
                   rf"\caption{{{caption}}}", r"\end{subfigure}"]
         if index == 0:
             lines.append(r"\hfill")
-    notes = ("Both treatment-tier paths enter the same regression, with tier 3 as the control. Coefficients are log-point differences. "
+    notes = ("Tier 1 is compared with pooled tiers 2 and 3. Coefficients are log-point differences. "
              if tiers else "Coefficients are marginal effects of a 10 percentage-point increase in the indicated exposure measure. ")
     lines += [r"\begin{minipage}{0.94\linewidth}", r"\footnotesize \emph{Notes:} " + notes +
               "Outcomes are in logarithms. Regressions include CNO4 and CNO1-by-year-month fixed effects. October 2022 is omitted; the dashed line marks November 2022. " +
@@ -121,7 +121,7 @@ def main() -> None:
     figures = PACKAGE / "figuresNtables" if family == "jev" else PACKAGE / "figuresNtables/tev"
     required = [f"robustness_checks_{family}_v1.tex", f"job_tiers_did_{family}_v1.tex"]
     required += [f"Robustness_{outcome}_{family}_{measure}.png" for outcome in ("unemployed", "contracts") for measure in ("nearest", "weighted", "direct")]
-    required += [f"JobTiers_{outcome}_{family}_tier{tier}.png" for outcome in ("unemployed", "contracts") for tier in (1, 2)]
+    required += [f"JobTiers_{outcome}_{family}_tier{tier}.png" for outcome in ("unemployed", "contracts") for tier in (1,)]
     matrix = "Exposure_correlation_matrix.png" if family == "jev" else "Exposure_correlation_matrix_tev.png"
     for name in [*required, matrix]:
         if not (figures / name).is_file():
@@ -138,11 +138,11 @@ def main() -> None:
     f"BLS exposure maps to {status['bls_occupations']} occupations; LM-AIOE maps to {status['frs_lm_aioe_occupations']}.\n" +
     "\\end{minipage}\n\\end{figure}\n\\clearpage\n\\subsubsection*{Direct observed-exposure prompt}\n" + prompt_tex(direct))
     oe = ("\\clearpage\n\\section{Three Job Tiers}\n\\label{sec:v1_job_tiers}\n" +
-    f"Let $\\tau_{{jt}}$ be {label}'s probability for tier $t\\in\\{{1,2,3\\}}$. The assigned tier and treatment indicators are\n" +
+    f"Let $\\tau_{{jt}}$ be {label}'s probability for tier $t\\in\\{{1,2,3\\}}$. The assigned tier and treatment indicator are\n" +
     "\\begin{equation}\n" + rf"\label{{eq:v1_{family}_tier_assignment}}" + "\n" +
-    r"\widehat T_j=\arg\max_t\tau_{jt},\qquad D_j^r=\mathbf{1}\{\widehat T_j=r\},\quad r=1,2." +
+    r"\widehat T_j=\arg\max_t\tau_{jt},\qquad D_j^1=\mathbf{1}\{\widehat T_j=1\}." +
     "\n\\end{equation}\n" +
-    "Probability vectors are normalized after API rounding; ties select the smallest tier number. Tier 3 is the omitted control group.\n" +
+    "Probability vectors are normalized after API rounding; ties select the smallest tier number. Tiers 2 and 3 form the pooled control group.\n" +
     f"\\input{{\\figdir/job_tiers_did_{family}_v1.tex}}\n")
     for outcome in ("unemployed", "contracts"):
         oe += tier_events(family, outcome)
@@ -155,7 +155,7 @@ def main() -> None:
         internal_oe = internal_oe.replace(tier_events(family, outcome), "")
     large_exposure = "".join(large_shareout_pair(family, measure, f"{label}: {title}") for measure, title in [
         ("nearest", "highest-probability category"), ("weighted", "probability-weighted exposure"), ("direct", "direct exposure Score")])
-    large_tiers = "".join(large_shareout_pair(family, f"tier{tier}", f"Tier {tier} relative to tier 3", tiers=True) for tier in (1, 2))
+    large_tiers = "".join(large_shareout_pair(family, f"tier{tier}", f"Tier {tier} relative to pooled tiers 2 and 3", tiers=True) for tier in (1,))
     internal_od = internal_od.replace(f"\\input{{\\figdir/robustness_checks_{family}_v1.tex}}", f"\\input{{\\figdir/robustness_checks_{family}_v1.tex}}\n" + large_exposure)
     internal_oe = internal_oe.replace(f"\\input{{\\figdir/job_tiers_did_{family}_v1.tex}}", f"\\input{{\\figdir/job_tiers_did_{family}_v1.tex}}\n" + large_tiers)
     header = r"""\documentclass[10pt]{article}

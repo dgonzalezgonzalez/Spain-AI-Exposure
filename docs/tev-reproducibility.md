@@ -62,11 +62,11 @@ was too slow to meet the two-hour budget; no complete TEV occupation results
 are claimed. The reset-before-request configuration requires a fresh audit
 before any future production run.
 
-Exposure checks change only treatment. Tier checks jointly estimate tier 1
-and tier 2 indicators against the omitted tier 3. The coauthor Stata
+Exposure checks change only treatment. Tier checks estimate tier 1
+against pooled tiers 2 and 3. The coauthor Stata
 programs retain the adjustment/later periods, fixed effects, clustering, and
 event windows. Preferred specifications include CNO1-by-year-month fixed effects.
-The tier table has one panel with four coefficients and six columns.
+The tier table has one panel with two coefficients and six columns.
 Estimator outputs are frozen alongside input and source checksums.
 
 `scripts/build_model_appendices.py --model-family tev` requires complete results, creates separate O.D. and
