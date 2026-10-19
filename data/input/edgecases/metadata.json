@@ -1,0 +1,61 @@
+{
+  "screen_date": "2026-10-15",
+  "verification_date": "2026-10-19",
+  "detector": "jev-1.13.0",
+  "verifier": "gpt-oss:120b",
+  "verifier_runtime_model": "gpt-oss:120b-cloud",
+  "gate": "wrong_match >= 0.5",
+  "detector_calls_cached": 502,
+  "detector_calls_new": 0,
+  "verifier_successful_calls": 216,
+  "verifier_incomplete_attempts": 1,
+  "completion_repair": {
+    "cno4": "3314",
+    "reason": "6144 output tokens exhausted without final answer",
+    "num_predict": 8192
+  },
+  "candidate_count": 30,
+  "required_choice": true,
+  "missing_exposure_allowed": false,
+  "options": {
+    "temperature": 0,
+    "seed": 42,
+    "top_k": 1,
+    "top_p": 1.0,
+    "min_p": 0.0,
+    "repeat_penalty": 1.0,
+    "repeat_last_n": 0,
+    "num_predict": 6144
+  },
+  "reasoning": "medium",
+  "original_source_manifest": {
+    "rows": 502,
+    "us_rows": 756,
+    "edge_cases": [
+      "5895",
+      "5825",
+      "5823",
+      "2630",
+      "2443",
+      "2473",
+      "3833",
+      "2427",
+      "4424",
+      "3739",
+      "2719"
+    ],
+    "comparison_case": "5420",
+    "baseline_reconstruction_mismatches": [
+      "0011"
+    ],
+    "documented_override": "0011 -> 33-1012",
+    "maximum_similarity_difference": 7.771561172376096e-16,
+    "sha256": {
+      "data\\processed\\spanish_occupation_matches_cosine_nearest.csv": "d912f43fb2bd00d66d7cda0c3696d9f83382a28236cbb4074d5c5e9708a9b1a7",
+      "data\\processed\\jev\\spanish_inputs.csv": "644f0ab99be69d5a40fc76d82a49f4678c573a9b989992a698310458121a46cc",
+      "data\\processed\\jev\\us_catalogue.csv": "57628f322f26908b20780caf2078c0fb3eec922152b8783867adae6b168e5dc8",
+      "data\\processed\\jev\\occupation_estimates.csv": "d6a01c9a013d87d136854a71756c5f6d467367f32592167144adb4a3d81a721c"
+    }
+  },
+  "author_review": "All 502 final automatic assignments inspected; only clear residual errors receive overrides. Borderline proxies retained."
+}

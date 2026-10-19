@@ -6,5 +6,23 @@
     "original_sha256": "123f62d531607dc342d741d25442d9b68eec5a7a30a79417683f618477b914ac",
     "updated_sha256": "ae2090f829e8a36eab270926a7ceee035d9d97849cdcbe16ba6e79d4f49ffdb4",
     "verification": "Independently downloaded from Prism uploads/prism-uploads after replacing the manuscript filename; identical SHA-256 to the generated PNG."
+  },
+  {
+    "date": "2026-10-19",
+    "files": [
+      "paper/main.tex",
+      "paper/appendix_oe_jev_tiers.tex",
+      "output/tables/job_tiers_did_jev_v1.tex"
+    ],
+    "reason": "Preserve co-author source revisions exported from Prism before this exercise, including the existing pooled tiers 2 and 3 comparison. Align replication code with independent manuscript coefficients; do not substitute generated references.",
+    "source_export": "Spain-AI-exposure (7).zip, preserved in dated external Prism backup",
+    "independent_tier_paths": "docs/reference/appendix_oh_prism_20261019.tex",
+    "source_sha256": "c0848b8629be8840330d09b8b1eaca93af9482af626addc7c3368a7ba04a8e5c",
+    "reference_table": {
+      "file": "docs/reference/job_tiers_did_jev_v1.tex",
+      "original_sha256": "9b127fae12e59bfbb025a8ad0fe0be4aec81633718386c9e067b405b928dcd14",
+      "updated_sha256": "f8bae9f670266bb9df2b5a934edc13b93b90a741e3ade0949d2d3ddbbcc5d339",
+      "source": "Independently exported pre-edit Prism table, not generated output"
+    }
   }
 ]

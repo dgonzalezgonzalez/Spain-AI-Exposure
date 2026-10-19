@@ -68,8 +68,8 @@
     "kind": "table",
     "source_document": "appendix_oe_jev_tiers.tex",
     "source_line": 35,
-    "sha256": "9b127fae12e59bfbb025a8ad0fe0be4aec81633718386c9e067b405b928dcd14",
-    "source": "Prism manuscript asset downloaded 2026-10-07"
+    "sha256": "f8bae9f670266bb9df2b5a934edc13b93b90a741e3ade0949d2d3ddbbcc5d339",
+    "source": "Prism project export 2026-10-19, before edge-case edits; co-author pooled tiers 2 and 3 comparison"
   },
   {
     "file": "JobTiers_unemployed_jev_tier1.png",
@@ -694,5 +694,10 @@
     "source_line": 1087,
     "sha256": "033ebc275c88f7c86176b0623bb247c2fd934b18bbfa9c20b86839f1236de59e",
     "source": "Prism manuscript asset downloaded 2026-10-07"
+  },
+  {
+    "file": "appendix_oh_prism_20261019.tex",
+    "sha256": "c0848b8629be8840330d09b8b1eaca93af9482af626addc7c3368a7ba04a8e5c",
+    "provenance": "Prism project export, 2026-10-19, before edge-case edits; independent target for pooled-tier vector paths."
   }
 ]

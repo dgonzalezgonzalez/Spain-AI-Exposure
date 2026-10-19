@@ -17,7 +17,8 @@ program define load_v1_panel
         female_share_parados female_share_contratos ///
         log_gender_ratio_parados log_gender_ratio_contratos ///
         parados_female parados_male contratos_female contratos_male ///
-        exposure_jev_nearest_10pp exposure_jev_weighted_10pp exposure_jev_direct_10pp jev_tier {
+        exposure_jev_nearest_10pp exposure_jev_weighted_10pp exposure_jev_direct_10pp jev_tier ///
+        exposure_edgecases exposure_edgecases_10pp {
         capture destring `v', replace force
     }
 

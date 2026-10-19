@@ -8,6 +8,9 @@
 \usepackage{booktabs}
 \usepackage{threeparttable}
 \usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
 \usepackage{fvextra}
 \usepackage{caption}
 \usepackage{subcaption}
@@ -50,7 +53,10 @@
 \raggedbottom
 \graphicspath{{output/figures/}}
 
-\title{AI Exposure and Registered Unemployment in Spain:\\Early Evidence from Occupation-Level Administrative Data}%\thanks{Vázquez-Grenno acknowledges financial support from the Spanish Ministry of Science and Innovation (PID2025-168703NB-I00).}
+\title{AI Exposure and Registered Unemployment in Spain:\\Early Evidence from Occupation-Level Administrative Data\thanks{We thank Roberto Sanz García from SEPE for helpful comments and suggestions. All remaining errors are our own.}
+}
+
+%\thanks{Vázquez-Grenno acknowledges financial support from the Spanish Ministry of Science and Innovation (PID2025-168703NB-I00).}
 %}
 
 \author{
@@ -108,7 +114,7 @@ Finally, we assess whether alternative estimators yield the same qualitative res
 This paper is most directly related to the emerging empirical literature on the labor-market effects of generative AI, which has focused primarily on the United States and the Nordic countries. Using U.S. payroll data, \citet{brynjolfsson_chandar_chen_2025} document relative employment declines among workers aged 22--25 in highly exposed occupations, whereas \citet{massenkoff_mccrory_2026} find no systematic unemployment response and only tentative evidence of slower hiring among younger workers. Nordic evidence is similarly mixed. \citet{humlum_vestergaard_2025} document rapid chatbot adoption and extensive task reorganization in Denmark but find precise null effects on earnings and hours. \citet{facius_iacono_2026} find no robust displacement in Norwegian administrative data and show that backdated synthetic comparisons can generate apparent effects before ChatGPT. \citet{lodefalk_et_al_2026} document an age gradient in Swedish hiring, while online labor markets exhibit sharper short-run reductions in demand for directly exposed freelance services \citep{hui_reshef_zhou_2024}. Using task-level exposure measures that vary across firms, occupations, and time, \citet{hampole_et_al_2025} find that more AI-exposed tasks experience lower subsequent labor demand, although aggregate employment effects are more modest because substitution is partly offset by productivity-driven increases in labor demand at adopting firms. Taken together, this evidence suggests that the early labor-market effects of generative AI depend on adoption, task content, workers' career stage, and the particular adjustment margin being measured.
 
 
-Second, the paper builds on the task-based literature on technological change and occupational exposure. \citet{autor_levy_murnane_2003} and \citet{acemoglu_restrepo_2019} emphasize that automation reallocates tasks between labor and capital and can generate displacement and reinstatement simultaneously. Exposure measures developed by \citet{felten_raj_seamans_2021}, \citet{felten_raj_seamans_2023}, and \citet{eloundou_manning_mishkin_rock_2024} translate technological capabilities into occupation-level measures. \citet{massenkoff_mccrory_2026} extend this approach by combining theoretical capabilities with observed work-related AI use.
+Second, the paper builds on the task-based literature on technological change and occupational exposure. \citet{autor_levy_murnane_2003} and \citet{acemoglu_restrepo_2019} emphasize that automation reallocates tasks between labor and capital and can generate displacement and reinstatement simultaneously. Exposure measures developed by \citet{felten_raj_seamans_2021}, \citet{felten_raj_seamans_2023}, and \citet{eloundou_manning_mishkin_rock_2024} translate technological capabilities into occupation-level measures. \citet{massenkoff_mccrory_2026} extend this approach by combining theoretical capabilities with observed work-related AI use. Our analysis also relates to the task-autonomy framework in \citet{garicano2026messy}, which classifies jobs into three tiers, with those in the first tier most susceptible to replacement by AI.
 
 Exposure nevertheless remains distinct from adoption. Using nationally representative worker survey data linked to detailed occupations and tasks, \citet{bick_et_al_2026} show that standard occupational exposure measures explain only part of the variation in realized GenAI adoption and that usage measures based on platform chat logs differ conceptually from worker-level adoption measures. Using firm websites across four European countries, \citet{garbers_gregory_2026} show that realized adoption depends strongly on firms' human capital and digital capabilities. Linked Danish survey and administrative data in \citet{pulito_et_al_2026} similarly show that common occupational exposure measures differ in their ability to predict actual use.
 
@@ -434,9 +440,11 @@ The second check uses the language-model AIOE score in \citet{felten_raj_seamans
 Online Appendix Table~\ref{tab:v1_jev_robustness} further considers Jev-based occupation mappings and a direct model prediction of observed exposure.\footnote{Jev is a System One AI model that makes fast, structured probabilistic decisions over predefined categories, making it particularly well suited to scalable classification tasks.} These results are qualitatively consistent with our baseline specification, although they are generally larger in magnitude. For a 10 percentage-point increase in exposure, the preferred unemployment estimates are 1.8 and 3.0 percent under the highest-probability mapping and 2.2 and 3.7 percent under probability weighting, during the adjustment and later periods, respectively. Direct observed exposure imputation by Jev produces larger estimates of 4.0 and 8.2 percent. These patterns persist when 2021 is excluded, while preferred contract estimates are statistically indistinguishable from zero across all three alternative measures. Online Appendix Figures~\ref{fig:v1_jev_exposure_unemployed}--\ref{fig:v1_jev_exposure_contracts} report the corresponding dynamics. The full-sample unemployment pre-trend tests reject the joint null under all three measures, so the positive post-treatment gradients remain subject to the baseline identification concern.
 
 \FloatBarrier
+Online Appendix Table~\ref{tab:v1_edgecase_robustness} checks the occupational crosswalk using Jev screening, required-choice GPT-OSS 120B verification, and author corrections of clear residual mismatches, retaining all 502 occupations. The preferred unemployment gradients are 1.5 and 2.3 percent during the adjustment and later periods, compared with 1.2 and 1.7 percent in the baseline, while contract responses remain small and imprecise. Figure~\ref{fig:v1_edgecase_event} reports the corresponding dynamics. The full-period unemployment pre-trend test still rejects the joint null, whereas the test excluding 2021 does not.
+
 \paragraph{Alternative estimators, task bundling, and aggregate calibration.} To conserve space, we also defer three additional exercises to the Online Appendix. First, Online Appendix~\ref{app:v1_further} reports CDiD and SDiD estimates that construct the counterfactual differently from the preferred within-CNO1 TWFE specification. Both alternatives point to a positive unemployment response, although the estimated magnitudes are larger and the estimands and identifying assumptions differ from the baseline; the contract results are more method-dependent and generally less precise. We therefore treat these estimators as complementary robustness exercises rather than replacements for the preferred design.
 
-Second, Online Appendix~\ref{sec:v1_job_tiers} examines labor-market adjustment across three job tiers that distinguish separable tasks, strongly bundled jobs, and relational work. The preferred within-CNO1 estimates show negative but statistically insignificant unemployment differences for tiers 1 and 2 relative to tier 3. Contract estimates are also attenuated by family-by-month FE and by excluding 2021, leaving no statistically significant differences at the 5 percent level in the restricted sample. The event studies provide less favorable evidence on parallel trends, so we interpret these results as suggestive evidence on occupational adjustment rather than as identifying a protective effect of task bundling.
+Second, Online Appendix~\ref{sec:v1_job_tiers} examines labor-market adjustment in tier 1 jobs with separable outputs relative to a pooled comparison group of strongly bundled jobs and relational work (tiers 2 and 3). The preferred within-CNO1 estimates show higher registered unemployment, particularly in the later period, and fewer new contracts in tier 1. Excluding 2021 weakens the precision of the unemployment estimates and attenuates the contract differences. The preferred pre-treatment joint tests do not reject for either outcome, although this does not establish parallel trends or identify a protective effect of task bundling.
 
 Third, Online Appendix~\ref{app:v1_aggregate_calibration} presents an illustrative partial-equilibrium calibration that translates the occupation-level estimates into an aggregate unemployment magnitude. The calculation is intended only to provide an order of magnitude: it applies the estimated exposure gradient across occupations and abstracts from spillovers, general-equilibrium adjustment, and any common effect of AI that does not vary with occupational exposure. For these reasons, we do not interpret the exercise as identifying the aggregate causal effect of generative AI on unemployment in Spain.
 
@@ -860,6 +868,7 @@ Table~\ref{tab:v1_alternative_exposure_validation} reports coverage and rank cor
 
 
 \input{paper/appendix_od_jev.tex}
+\input{paper/appendix_od_edgecases.tex}
 \clearpage
 
 \section{Occupational feminization}

@@ -20,7 +20,7 @@ from zipfile import ZipFile
 ROOT = Path(__file__).resolve().parent
 WORK = ROOT / 'data/work'
 LOGS = ROOT / 'logs'
-STEPS = ('prepare', 'descriptives', 'estimates', 'sdid', 'jev', 'mediation', 'contdid', 'tuning', 'statistics', 'validate')
+STEPS = ('prepare', 'descriptives', 'estimates', 'sdid', 'jev', 'edgecases', 'mediation', 'contdid', 'tuning', 'statistics', 'validate')
 
 
 def publication_path(item: dict) -> Path:
@@ -154,7 +154,7 @@ def run_process(command: list[str], log_name: str, env: dict[str, str]) -> None:
                        check=True, **options)
 
 
-def run_stata(args, jev: bool = False, mediation: bool = False, sdid: bool = False) -> None:
+def run_stata(args, jev: bool = False, mediation: bool = False, sdid: bool = False, edgecases: bool = False) -> None:
     stata = executable(args.stata_exe, 'STATA_EXE', ['stata-mp', 'stata-se', 'stata', 'StataMP-64.exe'])
     env = os.environ.copy()
     # Development switches cannot silently shorten a production replication.
@@ -164,9 +164,9 @@ def run_stata(args, jev: bool = False, mediation: bool = False, sdid: bool = Fal
     env['V1_SDID_REPS'] = str(args.sdid_reps)
     if jev:
         env['V1_JEV_OD_ONLY'] = '1'
-    label = 'mediation' if mediation else 'jev' if jev else 'sdid' if sdid else 'estimates'
+    label = 'edgecases' if edgecases else 'mediation' if mediation else 'jev' if jev else 'sdid' if sdid else 'estimates'
     script = WORK / {'mediation': 'job_tier_mediation.do', 'jev': '03_Jev.do',
-                     'sdid': '03_SDID.do', 'estimates': '03_Estimates.do'}[label]
+                     'sdid': '03_SDID.do', 'estimates': '03_Estimates.do', 'edgecases': '03_Edgecases.do'}[label]
     wrapper = WORK / f'run_{label}.do'
     vendor = (ROOT / 'code/vendor/stata').as_posix()
     panel = (WORK / 'data/prepared/est_total_cno4_jev.csv').as_posix()
@@ -219,6 +219,7 @@ def finish_outputs() -> None:
         from lib.jev_robustness import build_jev_robustness_outputs, build_exposure_correlation_matrix
         from lib.job_tiers import build_job_tier_outputs
         from lib.job_tier_mediation import render_table
+        from lib.edgecase_outputs import build_outputs as build_edgecase_outputs
         from lib.terminology import normalize_latex_terminology
         final = WORK / 'rendered'
         tables = WORK / 'intermediate'
@@ -227,8 +228,10 @@ def finish_outputs() -> None:
         with plt.rc_context(matplotlib.rcParamsDefault):
             build_jev_robustness_outputs(tables, final)
             build_exposure_correlation_matrix(WORK, WORK / 'data/prepared/est_total_cno4.csv',
-                                             WORK / 'data/prepared/jev_occupation_estimates.csv', final)
+                                             WORK / 'data/prepared/jev_occupation_estimates.csv', final,
+                                             verified_crosswalk=WORK / 'data/prepared/occupation_crosswalk_edgecases.csv')
             build_job_tier_outputs(tables, final)
+            build_edgecase_outputs(tables, final)
         (final / 'job_tier_mediation_v1.tex').write_text(
             render_table(tables / 'job_tier_mediation_estimates.csv', tables / 'job_tier_mediation_pretrends.csv'),
             encoding='utf-8')
@@ -261,7 +264,41 @@ def validate_outputs() -> None:
             raise ValueError(f'Independent paper reference checksum differs: {target["file"]}')
     results = []
     items = json.loads((ROOT / 'docs/paper_outputs.json').read_text(encoding='utf-8'))
+    new_result_checks = None
+    preserved_tier_checks = None
     for item in items:
+        if item.get('validation') == 'exposure_matrix_independent_ranks':
+            from importlib.util import spec_from_file_location, module_from_spec
+            spec = spec_from_file_location('edgecase_validation', ROOT / 'code/lib/edgecase_validation.py')
+            module = module_from_spec(spec)
+            spec.loader.exec_module(module)
+            matrix_checks = module.validate_matrix(WORK)
+            if not publication_path(item).is_file():
+                raise FileNotFoundError(publication_path(item))
+            results.append({**item, 'status': 'new_matrix_verified', 'detail': matrix_checks})
+            continue
+        if item.get('validation') == 'pooled_tier_manuscript_source':
+            if preserved_tier_checks is None:
+                from importlib.util import spec_from_file_location, module_from_spec
+                spec = spec_from_file_location('edgecase_validation', ROOT / 'code/lib/edgecase_validation.py')
+                module = module_from_spec(spec)
+                spec.loader.exec_module(module)
+                preserved_tier_checks = module.validate_preserved_tiers(ROOT, WORK)
+            if not publication_path(item).is_file():
+                raise FileNotFoundError(publication_path(item))
+            results.append({**item, 'status': 'manuscript_paths_match', 'detail': preserved_tier_checks})
+            continue
+        if item.get('validation') == 'edgecase_independent_fit':
+            if new_result_checks is None:
+                from importlib.util import spec_from_file_location, module_from_spec
+                spec = spec_from_file_location('edgecase_validation', ROOT / 'code/lib/edgecase_validation.py')
+                module = module_from_spec(spec)
+                spec.loader.exec_module(module)
+                new_result_checks = module.validate(WORK)
+            if not publication_path(item).is_file():
+                raise FileNotFoundError(publication_path(item))
+            results.append({**item, 'status': 'new_result_verified', 'detail': new_result_checks})
+            continue
         generated, reference = publication_path(item), ROOT / 'docs/reference' / item['file']
         if not generated.exists() or not reference.exists():
             results.append({**item, 'status': 'missing', 'detail': 'generated or paper reference missing'})
@@ -353,6 +390,12 @@ def main() -> int:
                 run_stata(args, sdid=True)
             elif step == 'jev':
                 run_stata(args, jev=True)
+            elif step == 'edgecases':
+                with working_directory(WORK):
+                    from lib.edgecase_replay import replay as replay_edgecases
+                    replay_edgecases(ROOT / 'data/input', WORK / 'data/prepared/est_total_cno4.csv',
+                                     WORK / 'data/prepared')
+                run_stata(args, edgecases=True)
             elif step == 'mediation':
                 run_stata(args, mediation=True)
             elif step == 'contdid':

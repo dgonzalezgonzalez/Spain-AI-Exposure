@@ -1,6 +1,20 @@
 # Replication validation report
 
-## Scope and outcome
+## Current update: 19 October 2026
+
+All **88 retained publication assets** pass: **27 tables and 61 PNG panels**. Current per-file evidence is `validation_results.json`; status counts are 66 exact hashes, 13 matching numeric tables, 2 matching pixel arrays, 1 bounded pixel-rounding difference, 3 new-result checks, 2 preserved pooled-tier path checks, and 1 expanded-matrix check. Earlier validation below records historical snapshots rather than a fresh full-estimator rerun.
+
+The cached Jev screen is unchanged (502 occupations, 216 flagged). Only required-choice GPT-OSS verification was refreshed, followed by complete manual review and 13 explicit corrections. Final exposure covers all 502 occupations with no missing values or missing-to-zero conversion; 139 final matches differ from baseline. Required-choice proxies are documented and are not exact equivalence claims. `manual_edgecases.md` is the requested three-column audit. No new Jev calls were made.
+
+`master.py --step edgecases` ran successfully in 35.234 seconds on the existing Windows/Python 3.12.10/StataNow19 environment. Both baseline and alternative regressions use identical occupation coverage and outcome-specific samples. Panel A's printed numeric cells, significance stars and sample counts match Panel A of O.D.7. An independent NumPy within-OLS implementation checked 146 phase and event coefficients against Stata; maximum absolute difference 2.839670825652979e-8 (tolerance 1e-7). Clustered standard errors and Wald tests come from the retained Stata estimators.
+
+The eight-measure matrix preserves pairwise-complete counts and adds verified-match observed exposure. All 28 correlations independently reproduce with SciPy (maximum absolute difference 1.1102230246251565e-16); the new measure has 502 observations. Its baseline rank correlation is 0.84 at displayed precision. The matrix is now Figure O.D.10 at the end of O.D.; the new event study is O.D.9 and the table O.D.8.
+
+Pre-edit Prism sources contained co-author revisions absent from main: acknowledgements, Garicano discussion, pooled tiers 2 and 3 as controls, and updated notes. These were preserved. The pooled-tier Stata runs and renderer now reproduce that existing comparison. The two independent inline vector paths exported before editing agree within 5.000000000837668e-9; obsolete PNG targets describe an older comparison and were not replaced by generated targets. Historical unretained panels were removed from publication output folders. The mediation note retains Prism's equivalent tier-3 reference description; additive tier-by-month fixed effects absorb all tier paths.
+
+All **26 unittest tests passed** (including 4 new crosswalk/within-fit regressions). A pre-existing unclosed-file ResourceWarning occurs in the Jev missing-occupation failure-path test; it does not fail the test. Input checksum and archive CRC checks passed. Local pdfLaTeX/BibTeX compilation produced a 106-page paper with resolved citations and labels. The new method, table, event panels, prompts and matrix were visually inspected. A stale runtime ranking-table citation was aligned with the already-correct renderer and existing bibliography key; no numeric content changed. R/SDID, other costly estimators, fresh installations and other platforms were not rerun or newly certified for this update.
+
+## Historical validation: 7 October 2026
 
 The manuscript snapshot is dated 7 October 2026. All **87 retained assets** pass comparison with independently downloaded Prism assets: **26 LaTeX tables and 61 PNG panels**. The complete per-file results are in [validation_results.json](validation_results.json). The master produces only those 87 publication assets in `output/tables/` and `output/figures/`; logs, source checks, and estimator CSVs stay under `data/work/`.
 

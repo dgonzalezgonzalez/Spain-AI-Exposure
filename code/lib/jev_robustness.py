@@ -22,6 +22,7 @@ EVENT_MIN, EVENT_MAX = -21, 40
 MEASURES = {
     "exposure_nearest": "Anthropic nearest",
     "exposure_weighted": "Anthropic cosine-weighted",
+    "exposure_edgecases": "Verified-match observed exposure",
     "observed_exposure_jev_nearest": "Jev nearest category",
     "observed_exposure_jev_weighted": "Jev probability-weighted",
     "observed_exposure_jev_direct": "Jev direct score",
@@ -387,6 +388,7 @@ def build_exposure_correlation_matrix(
     bls_workbook: str | Path | None = None,
     frs_workbook: str | Path | None = None,
     model_family: str = "jev",
+    verified_crosswalk: str | Path | None = None,
 ) -> dict[str, object]:
     """Create the lower-triangle Spearman matrix, leaving BLS cells blank if absent."""
 
@@ -395,6 +397,8 @@ def build_exposure_correlation_matrix(
     model_label = "TEV" if model_family == "tev" else "Jev"
     measures = {key.replace("_jev_", f"_{model_family}_"): value.replace("Jev", model_label)
                 for key, value in MEASURES.items()}
+    if verified_crosswalk is None:
+        measures.pop("exposure_edgecases")
     root, output = Path(project_root), Path(output_dir)
     output.mkdir(parents=True, exist_ok=True)
     panel = pd.read_csv(prepared_panel, dtype={"cno4": "string"})
@@ -408,6 +412,13 @@ def build_exposure_correlation_matrix(
         f"observed_exposure_{model_family}_direct",
     ]
     merged = panel.merge(jev[["cno4", *jev_vars]], on="cno4", validate="one_to_one")
+    if verified_crosswalk is not None:
+        verified = pd.read_csv(verified_crosswalk, dtype={"cno4": "string"})
+        verified["cno4"] = _normalize_cno4(verified["cno4"])
+        merged = merged.merge(verified[["cno4", "exposure_edgecases"]], on="cno4",
+                              how="left", validate="one_to_one")
+        if merged["exposure_edgecases"].isna().any() or len(merged) != 502:
+            raise ValueError("Verified-match matrix input must cover all 502 occupations")
 
     bls_path = _find_workbook(root, "bls_ai_exposure_categories_2025_35.xlsx", bls_workbook)
     frs_path = _find_workbook(
@@ -487,6 +498,7 @@ def build_exposure_correlation_matrix(
     labels = [
         "Anthropic\nnearest",
         "Anthropic\ncosine-weighted",
+        *(["Verified-match\nobserved exposure"] if verified_crosswalk is not None else []),
         "Jev\nhighest-probability",
         "Jev\nprobability-weighted",
         "Jev\ndirect",
@@ -501,7 +513,7 @@ def build_exposure_correlation_matrix(
     lower_triangle = values[np.tril_indices(len(labels), k=-1)]
     finite = lower_triangle[np.isfinite(lower_triangle)]
     color_min = min(0.5, math.floor(float(finite.min()) * 10) / 10) if len(finite) else 0.5
-    fig, ax = plt.subplots(figsize=(8.6, 7.8))
+    fig, ax = plt.subplots(figsize=(9.4, 8.6) if verified_crosswalk is not None else (8.6, 7.8))
     image = ax.imshow(shown, cmap=cmap, vmin=color_min, vmax=1.0, interpolation="none")
     ax.set_xticks(np.arange(len(labels)), labels=labels, rotation=30, ha="right", rotation_mode="anchor")
     ax.set_yticks(np.arange(len(labels)), labels=labels)

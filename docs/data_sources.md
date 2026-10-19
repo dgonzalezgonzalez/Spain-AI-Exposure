@@ -1,6 +1,6 @@
 # Sources, provenance, and reuse
 
-This release combines the coauthor archive `last_scripts_code_only.zip`, the `main` preparation/rendering corrections, the Jev occupation branch (commit `b2f741d`), and retained strict-SDID table/code changes inspected at commit `90d4167`. Publication membership is determined solely by the manuscript and assets downloaded from Prism on 7 October 2026, not by the presence of an older generated file. Exact snapshot hashes appear in the input and reference manifests. Prior `main` is preserved by tag `archive/pre-replication-main-2026-10-07`; experimental branches are retained for history.
+This release combines the coauthor archive `last_scripts_code_only.zip`, the `main` preparation/rendering corrections, the Jev occupation branch (commit `b2f741d`), and retained strict-SDID table/code changes inspected at commit `90d4167`. The original publication membership comes from the manuscript and assets downloaded from Prism on 7 October 2026. The authorized 19 October update adds verified-match robustness and preserves newer co-author revisions exported from Prism. Older generated files do not determine publication membership. Exact snapshot hashes appear in the input and reference manifests. Prior `main` is preserved by tag `archive/pre-replication-main-2026-10-07`; experimental branches are retained for history.
 
 ## Administrative and survey statistics
 
@@ -37,3 +37,7 @@ Jev uses `jev-1.13.0`, an exhaustive hierarchy across all 756 US categories, pro
 `reghdfe` and `ftools` are by Sergio Correia, with MIT notices preserved. `sdid` and `sdid_event` are frozen Stata implementations associated with Clarke, Pailañir and Ciccia; source and GPL notices are preserved. `unique` and support helpers retain their original headers. Exact hashes are in `docs/stata_manifest.json`.
 
 Continuous DiD uses Callaway, Goodman-Bacon and Sant'Anna's implementation. `renv.lock` records all R package versions and exact source commits: `contdid` `443c1c12f013bdaf19503d9d0a4f7a494e9eb22f`, `BMisc` `eb5164b7030bc8a53a0bed91425959cb75f41f97`, and `ptetools` `915cc31099cf2df158f09375f8e639379d99c9a0`. Source repositories and package-specific licenses are recorded there. No R or Stata executable is redistributed.
+
+## Verified-match occupational crosswalk (19 October 2026)
+
+`data/input/edgecases/frozen_requests.zip` archives the exact 502 Jev screen requests/responses cached on 15 October and 216 required-choice GPT-OSS 120B verification requests/responses produced on 19 October. `metadata.json` records source hashes, settings, coverage, and the single token-budget repair. Neither screening nor verification sees exposure values or outcomes. The screen threshold is 0.5; the verifier chooses among the top 30 cosine candidates. Jev is not rerun. Optional acquisition is separate from offline replication. Author-generated model outputs and manual corrections are documented in `edgecase_method.md` and `manual_edgecases.md`; provider taxonomies and published exposure values retain their original terms. No credentials or private correspondence are included.

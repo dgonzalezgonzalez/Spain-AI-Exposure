@@ -1,6 +1,6 @@
 # Manuscript
 
-`main.tex` contains the paper and online appendix; the Jev and task-bundling
+`main.tex` contains the paper and online appendix; the Jev, verified-match, prompt, and task-bundling
 sections are separate appendix inputs. `references.bib` is the bibliography and
 `main.pdf` is the latest verified compiled paper.
 

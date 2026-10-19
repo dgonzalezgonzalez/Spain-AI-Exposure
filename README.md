@@ -4,9 +4,9 @@ Diego González-González (Loyola University), Nicolás González-Pampillón (In
 
 ## Overview
 
-This package reproduces the empirical results retained in the manuscript snapshot of 7 October 2026: **87 assets, comprising 26 LaTeX tables and 61 figure panels**, plus standalone sample and calibration statistics. The main sample covers 502 Spanish four-digit occupations over January 2021–March 2026. Registered unemployment is a monthly stock; registered contracts are a monthly flow.
+This package reproduces the empirical results retained in the manuscript snapshot of 19 October 2026: **88 assets, comprising 27 LaTeX tables and 61 figure panels**, plus standalone sample and calibration statistics. The main sample covers 502 Spanish four-digit occupations over January 2021–March 2026. Registered unemployment is a monthly stock; registered contracts are a monthly flow.
 
-After installing dependencies, run `python master.py`. It prepares the panels, replays frozen cosine and Jev calculations, estimates every retained specification, renders the publication assets, computes in-text statistics, and compares results with independently downloaded paper assets. The complete map is [docs/output_map.csv](docs/output_map.csv).
+After installing dependencies, run `python master.py`. It prepares the panels, replays frozen cosine, Jev, and required-choice GPT-OSS crosswalk calculations, estimates every retained specification, renders the publication assets, computes in-text statistics, and compares results with independently downloaded paper assets. The complete map is [docs/output_map.csv](docs/output_map.csv).
 
 ```text
 master.py                 Single entry point
@@ -27,7 +27,7 @@ data/work/                Internal data, estimates, rendering cache, and logs
 tests/                    Parser, probability, and replication regressions
 ```
 
-All 26 publication tables and 61 figure panels are included in Git and the release ZIP, under `output/tables/` and `output/figures/`. The master recomputes and overwrites these files when the analysis runs. Reference assets under `docs/reference/` are comparison targets, never estimator inputs. They are retained solely for automatic validation; `output/` contains only the table and figure folders. The manuscript uses these same output paths in the repository and Prism. Compile root `main.tex`; current manuscript sources and the compiled `main.pdf` live in `paper/`. See [paper/README.md](paper/README.md) for compilation and synchronization details.
+All 27 publication tables and 61 figure panels are included in Git and the release ZIP, under `output/tables/` and `output/figures/`. The master recomputes and overwrites these files when the analysis runs. Reference assets under `docs/reference/` are comparison targets, never estimator inputs. They are retained solely for automatic validation; `output/` contains only the table and figure folders. The manuscript uses these same output paths in the repository and Prism. Compile root `main.tex`; current manuscript sources and the compiled `main.pdf` live in `paper/`. See [paper/README.md](paper/README.md) for compilation and synchronization details.
 
 ## Data Availability and Provenance Statements
 
@@ -39,7 +39,7 @@ Author-written code and package documentation are released under the [MIT Licens
 
 ### Availability and provenance
 
-All 23 inputs needed for the frozen analysis are included in `data/input/`. Running the analysis requires no network access, restricted-data application, model server, or API key. Dependency installation requires internet access or an existing package cache. File hashes identify the exact snapshots in [docs/input_manifest.json](docs/input_manifest.json); the Economic Index member hash is in [docs/archive_members.json](docs/archive_members.json).
+All 25 inputs needed for the frozen analysis are included in `data/input/`. Running the analysis requires no network access, restricted-data application, model server, or API key. Dependency installation requires internet access or an existing package cache. File hashes identify the exact snapshots in [docs/input_manifest.json](docs/input_manifest.json); the Economic Index member hash is in [docs/archive_members.json](docs/archive_members.json).
 
 Original download dates were not consistently recorded in the inherited archive; unverified dates are not supplied. Provider versions, release identifiers, report URLs, and hashes identify the source materials used here. The adoption-timing CSV was reconstructed from the paper's published percentages and linked primary sources because its original source CSV was absent.
 
@@ -54,6 +54,7 @@ Original download dates were not consistently recorded in the inherited archive;
 | Spanish AI-adoption percentages | `spain_ai_adoption_timing_sources.csv` | Published ONTSI, Banco de España, and Funcas aggregate observations; source links and plotting-date conventions in the CSV |
 | Semantic mapping and labels | `cosine_embeddings.npz`, `spanish_occupation_matches_cosine_nearest.csv`, `cno4_english_titles.csv` | Author constructions using `qwen3-embedding:4b`; exact vectors permit offline replay |
 | May 2024 reconstructions | `sepe_cno4_age_may2024_backcast_from_june.csv`, `sepe_cno4_province_may2024_backcast_from_june.csv.gz` | Author calculations from published June-over-May changes; ambiguous cells remain missing |
+| Verified-match observed exposure | `edgecases/frozen_requests.zip`, `edgecases/metadata.json` | Cached Jev screen for all 502 occupations, 216 required-choice GPT-OSS 120B verifications, settings/source hashes; 13 explicit author corrections in code and [three-column audit](docs/manual_edgecases.md) |
 | Jev scores, tier assignments, and provenance | Nine files in `data/input/jev/` | Exact Spanish/O*NET inputs, questions, raw responses, probability vectors, estimates, audit, and original manifest for `jev-1.13.0` |
 
 The analysis starts from the assembled SEPE aggregate-data snapshot, which preserves report URLs. Full original HTML caches are not shipped. `code/acquisition/refresh_sepe.py` preserves retrieval and parsing for independent source checks; current provider pages may differ from the frozen archive. Refreshes never silently replace paper inputs. Data definitions and missing-value conventions are in [docs/codebook.md](docs/codebook.md).
@@ -66,7 +67,7 @@ The analysis starts from the assembled SEPE aggregate-data snapshot, which prese
 - **Licensed StataNow 19 MP / Stata 19**: verified on Windows. Do-files specify language version 17, but other versions/platforms have not been independently verified. Bundled `reghdfe` 6.13.1, `ftools` 2.50.0, `sdid`, `sdid_event`, and their dependencies are selected through a package-local ado path. Do not update these before replication. Exact files are identified in `docs/stata_manifest.json`; the SDID header is incomplete, so hashes are authoritative.
 - **R 4.5.2**: versions in `renv.lock`, including exact commits for `contdid`, `BMisc`, and `ptetools`. `code/setup.R` restores packages into `.r_libs/`. Installing archived compiled packages on Windows requires [Rtools45](https://cran.r-project.org/bin/windows/Rtools/rtools45/rtools.html); Linux/macOS require R package build tools.
 
-No GPU, Ollama installation, TypeSafe account, or API key is needed. Archived Jev responses are replayed without live calls; new model responses need not reproduce those probability vectors.
+No GPU, Ollama installation, TypeSafe account, or API key is needed. Archived Jev and GPT-OSS responses are replayed without live calls. Fixed sampling settings alone do not guarantee identical fresh inference. The added exposure covers all 502 occupations, including proxies where the U.S. catalogue lacks an exact counterpart. See [method and limitations](docs/edgecase_method.md).
 
 ### Controlled randomness
 
@@ -86,14 +87,17 @@ The verification host is Windows x64, Intel Core i7-1165G7 (4 cores, 8 logical p
 | `code/02_Descriptives_v1.py` | Summary statistics, distributions, rankings, adoption timing, worldwide usage and EPA comparisons |
 | `code/03_Estimates.do` | TWFE, binary treatment, heterogeneity and cross-group tests, geography, feminization, retained robustness |
 | `code/03_SDID.do` | Adjusted SDID paths, events, weights, phase effects, strict exposure-above-0.2 versus zero robustness |
-| `code/03_Jev.do`, `code/lib/job_tiers.do` | Three Jev measures and joint tier regressions |
+| `code/03_Edgecases.do`, `code/lib/edgecase_replay.py`, `code/lib/edgecase_outputs.py` | Complete verified-match exposure, baseline/alternative phase regressions and event studies; no live inference |
+| `code/acquisition/verify_edgecases.py` | Optional resumable GPT-OSS refresh requiring an explicit flag; never reruns Jev |
+| `code/lib/edgecase_validation.py` | Independent within-OLS, rank-correlation and preserved Prism pooled-tier source checks |
+| `code/03_Jev.do`, `code/lib/job_tiers.do` | Three Jev measures and tier 1 versus pooled tiers 2 and 3 |
 | `code/job_tier_mediation.do` | Exposure gradients with and without tier-by-month effects |
 | `code/04_Estimates_contDID_v1.R` | Stratified, control-adjusted, unconditional continuous DiD and no-2021 diagnostics |
 | `code/05_Output_tuning_v1.py`, `code/lib/` | Publication rendering, diagnostics, terminology, and calibration |
 | `code/setup.R` | R dependency installation/restoration before analysis |
 | `code/acquisition/refresh_sepe.py` | Optional resumable public-report retrieval; outside the default frozen run |
 
-Intermediate estimates and integrity audits under `data/work/` support the retained results. Internal rendering is staged under `data/work/rendered/`. Only the 87 mapped publication assets are exported to `output/tables/` and `output/figures/`. Logs remain under `data/work/logs/`.
+Intermediate estimates and integrity audits under `data/work/` support the retained results. Internal rendering is staged under `data/work/rendered/`. Only the 88 mapped publication assets are exported to `output/tables/` and `output/figures/`. Logs remain under `data/work/logs/`.
 
 ## Instructions to Replicators
 
@@ -131,7 +135,7 @@ Intermediate estimates and integrity audits under `data/work/` support the retai
 
 7. To rebuild the manuscript separately, install a TeX distribution with pdfLaTeX and BibTeX, then run `python code/build_paper.py`. It compiles root `main.tex`, resolves citations and cross-references, and saves `paper/main.pdf`. This step does not rerun the analysis. The versioned PDF is the verified Prism compilation; local TeX package versions can affect pagination and PDF metadata.
 
-For a fresh run, use a new clone/extraction with no cached intermediate results under `data/work/`. The included publication outputs are overwritten by the full run; missing publication files are recreated. Paths resolve relative to the master file, so invocation from another working directory also works. To rerun one stage, use `--step` with `prepare`, `descriptives`, `estimates`, `sdid`, `jev`, `mediation`, `contdid`, `tuning`, `statistics`, or `validate`, after its predecessor inputs exist. `python master.py --check-inputs` verifies/stages all inputs without estimation. Run tests with `python -m unittest discover -s tests -v`.
+For a fresh run, use a new clone/extraction with no cached intermediate results under `data/work/`. The included publication outputs are overwritten by the full run; missing publication files are recreated. Paths resolve relative to the master file, so invocation from another working directory also works. To rerun one stage, use `--step` with `prepare`, `descriptives`, `estimates`, `sdid`, `jev`, `edgecases`, `mediation`, `contdid`, `tuning`, `statistics`, or `validate`, after its predecessor inputs exist. `python master.py --check-inputs` verifies/stages all inputs without estimation. Run tests with `python -m unittest discover -s tests -v`.
 
 Never replace `docs/reference/` with regenerated files. Shortened bootstrap/placebo runs are not publication verification.
 
@@ -144,7 +148,7 @@ Never replace `docs/reference/` with regenerated files. Shortened bootstrap/plac
 | Main figures and Tables 1–3 | Preparation, descriptives, TWFE, rendering |
 | Appendices A–B: support, pre-trends, age tests and subgroup paths | TWFE, continuous-DiD support, rendering |
 | Online Appendices A–C: EPA, rankings, binary treatment | Descriptives, TWFE, rendering |
-| Online Appendix D: robustness, external measures, Jev | TWFE, Jev, rendering |
+| Online Appendix D: robustness, external measures, Jev, verified matches | TWFE, Jev, required-choice crosswalk replay, rendering |
 | Online Appendices E–F: feminization, geography | Preparation, TWFE, rendering |
 | Online Appendix G: continuous and synthetic DiD | R, SDID, rendering |
 | Online Appendix H: tiers and conditioning on tier dynamics | Jev, mediation, rendering |

@@ -159,5 +159,19 @@
     "sha256": "d912f43fb2bd00d66d7cda0c3696d9f83382a28236cbb4074d5c5e9708a9b1a7",
     "uncompressed_sha256": "d912f43fb2bd00d66d7cda0c3696d9f83382a28236cbb4074d5c5e9708a9b1a7",
     "bytes": 822141
+  },
+  {
+    "file": "data/input/edgecases/frozen_requests.zip",
+    "staged_name": "frozen_requests.zip",
+    "sha256": "91b69f0373fa3726ce93b5c9963abc3f230774a8f6d40f6a58bed245ddbebcf6",
+    "uncompressed_sha256": "91b69f0373fa3726ce93b5c9963abc3f230774a8f6d40f6a58bed245ddbebcf6",
+    "bytes": 2185969
+  },
+  {
+    "file": "data/input/edgecases/metadata.json",
+    "staged_name": "metadata.json",
+    "sha256": "ef0786204174e3bdf065445081d9f7f0ced685bfa133c1dcd403e8ce8aabaf26",
+    "uncompressed_sha256": "ef0786204174e3bdf065445081d9f7f0ced685bfa133c1dcd403e8ce8aabaf26",
+    "bytes": 1962
   }
 ]
