@@ -2,12 +2,12 @@
   "date": "2026-10-19",
   "project_url": "https://prism.openai.com/?u=d2a38c9d-2c46-440b-92e1-6d206cb7f593&pg=1&m=main.tex",
   "retained_files": 98,
-  "comparison": "All 98 retained files SHA-256 identical to clean Prism export; no extra files. ZIP CRC passes.",
+  "comparison": "Latest Prism project ZIP CRC passes. The two revised appendix sources match Git; the ZIP embeds the prior 106-page PDF (SHA-256 8885c4fc32541dec903c1b6fc9ea04c830673935750ffd175a38a10494c44933). Prism compiled and downloaded the current 106-page PDF separately (SHA-256 2cd4a262c83ecb6a9d392b513a94dbfd56aea53cc48f3104af4454955055e800), now versioned in Git. An extra Prism-only paper/main_2.pdf remains per author request.",
   "compiled_pdf_pages": 106,
-  "compiled_pdf_sha256": "8885c4fc32541dec903c1b6fc9ea04c830673935750ffd175a38a10494c44933",
-  "backup_directory": "C:\\Users\\dgonzalez\\Documents\\PrismBackups\\Spain-AI-exposure-20261019-edgecases",
-  "backup_zip_sha256": "3bcb8557c3a3a55ff756dd7cf5f5978b703171ee5fc15e416f436b339f2c56e9",
-  "cleanup_status": "12 backed-up unused files deleted after explicit author confirmation; 98 mirrored files remain.",
+  "compiled_pdf_sha256": "2cd4a262c83ecb6a9d392b513a94dbfd56aea53cc48f3104af4454955055e800",
+  "backup_directory": "C:\\Users\\dgonzalez\\Documents\\PrismBackups\\Spain-AI-exposure-20261019-appendix-text-update",
+  "backup_zip_sha256": "e860f02c7d6380786036fed93562781e815453b777d5b9efb69f815131b1a654",
+  "cleanup_status": "12 backed-up unused files deleted after explicit author confirmation; 98 mirrored files remain, with one extra Prism-only paper/main_2.pdf retained per author request.",
   "files": [
     {
       "file": "main.tex",
@@ -371,11 +371,11 @@
     },
     {
       "file": "paper/appendix_od_edgecases.tex",
-      "sha256": "7173aaf2f10b83cda96e44ef18dbad57fbd343f29d7b303931e852833b8a1737"
+      "sha256": "b767247f7a687c83043adea1f5152400f31619ce86788874252addcf71e59962"
     },
     {
       "file": "paper/appendix_od_jev.tex",
-      "sha256": "8ab34993a87027bd3dbb022eaf1209b7515bb4c0a5927a8b874b504a9bad43d5"
+      "sha256": "b62cf1c1da7c3ab93008163dd22eed6bebbb1de7c79eadca9e4c5d5a5c37aef0"
     },
     {
       "file": "paper/appendix_oe_jev_tiers.tex",
@@ -387,7 +387,7 @@
     },
     {
       "file": "paper/main.pdf",
-      "sha256": "8885c4fc32541dec903c1b6fc9ea04c830673935750ffd175a38a10494c44933"
+      "sha256": "2cd4a262c83ecb6a9d392b513a94dbfd56aea53cc48f3104af4454955055e800"
     },
     {
       "file": "paper/main.tex",
@@ -401,5 +401,8 @@
       "file": "paper/sdid_estimates_manuscript.tex",
       "sha256": "acd3129535529b690ac739016ea23efc328bb6e2ba7db0fda6058170e1fca3ce"
     }
-  ]
+  ],
+  "prism_export_pdf_sha256": "8885c4fc32541dec903c1b6fc9ea04c830673935750ffd175a38a10494c44933",
+  "export_zip_sha256": "e860f02c7d6380786036fed93562781e815453b777d5b9efb69f815131b1a654",
+  "backup_pdf_sha256": "2cd4a262c83ecb6a9d392b513a94dbfd56aea53cc48f3104af4454955055e800"
 }
