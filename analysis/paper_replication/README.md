@@ -42,6 +42,14 @@ smoke tests should pass smaller values explicitly.
 
 ## Tracked Artifacts
 
+The latest full manuscript sources received from Nico on October 22, 2026 are
+mirrored under `paper/main.tex` and `paper/references.bib`, matching the
+corresponding paths in the Prism project. Prism's root `main.tex` is only the
+compile wrapper; the manuscript source itself lives under `paper/`. The
+repository keeps its existing analysis outputs under `figuresNtables/` and does
+not include every Prism-only figure, table, or appendix dependency, so Prism
+remains the complete compile-ready project.
+
 `estimates_results_report_v1.tex` is the current empirical-results manuscript,
 and `descriptive.tex` is its descriptive validation companion. The frozen
 publication figures and table fragments are under `figuresNtables/`. Raw data,
@@ -52,6 +60,7 @@ because the ZIP contained more than 1 GB of generated/source data.
 
 `Spain_AI_exposure_manuscript_2026-10-16.pdf` is the 101-page PDF exported from
 Prism after updating Online Appendix O.H to compare tier 1 with pooled tiers 2
-and 3. The full editable manuscript remains in the Prism project; the revised
-O.H text and estimates are archived in this repository in `appendix_oh_jev.tex`
-and the frozen outputs documented in `docs/jev-paper-checks.md`.
+and 3. The full editable manuscript remains in the Prism project; its latest
+source and bibliography are mirrored in `paper/`. The revised O.H text and
+estimates are archived in this repository in `appendix_oh_jev.tex` and the
+frozen outputs documented in `docs/jev-paper-checks.md`.
