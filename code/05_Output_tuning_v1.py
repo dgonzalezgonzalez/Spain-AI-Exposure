@@ -440,6 +440,11 @@ donors = donors.loc[
     (donors["weight_unemployed"].abs() > 1e-10)
     | (donors["weight_contracts"].abs() > 1e-10)
 ].copy()
+donors["occupation_title"] = donors["cno4"].map(english_titles.set_index("cno4")["occupation_title_english"])
+donors["exposure_nearest"] = donors["exposure_nearest"].fillna(
+    donors["cno4"].map(omega_c.set_index("cno4")["exposure_nearest"])
+)
+assert donors[["occupation_title", "exposure_nearest"]].notna().all().all()
 donors["max_weight"] = donors[["weight_unemployed", "weight_contracts"]].max(axis=1)
 donors = donors.sort_values("max_weight", ascending=False)
 donors.to_csv(TABLES_DIR / "sdid_positive_weight_donors_v1.csv", index=False)
