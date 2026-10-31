@@ -1,4 +1,4 @@
-"""Paper outputs for Jev exposure robustness and cross-measure correlations."""
+"""Paper outputs for TEV exposure robustness and cross-measure correlations."""
 
 from __future__ import annotations
 
@@ -23,9 +23,9 @@ MEASURES = {
     "exposure_nearest": "Anthropic nearest",
     "exposure_weighted": "Anthropic cosine-weighted",
     "exposure_edgecases": "Verified-match observed exposure",
-    "observed_exposure_jev_nearest": "Jev nearest category",
-    "observed_exposure_jev_weighted": "Jev probability-weighted",
-    "observed_exposure_jev_direct": "Jev direct score",
+    "observed_exposure_jev_nearest": "TEV nearest category",
+    "observed_exposure_jev_weighted": "TEV shortlist-weighted",
+    "observed_exposure_jev_direct": "TEV direct score",
     "bls_ai_category_code": "BLS ordinal category",
     "frs_lm_percentile": "LM-AIOE percentile",
 }
@@ -60,7 +60,7 @@ def prepare_jev_panel(
     ]
     missing = [column for column in ["cno4", *exposure_columns] if column not in estimates]
     if missing:
-        raise ValueError(f"Jev estimate file is missing columns: {missing}")
+        raise ValueError(f"TEV estimate file is missing columns: {missing}")
 
     prepared["cno4"] = _normalize_cno4(prepared["cno4"])
     estimates["cno4"] = _normalize_cno4(estimates["cno4"])
@@ -73,7 +73,7 @@ def prepare_jev_panel(
         join_columns.append(tier_column)
     estimates = estimates[join_columns].copy()
     if estimates["cno4"].duplicated().any():
-        raise ValueError("Jev estimates must contain exactly one row per CNO4 code.")
+        raise ValueError("TEV estimates must contain exactly one row per CNO4 code.")
     for column in exposure_columns:
         estimates[column] = pd.to_numeric(estimates[column], errors="coerce")
         if estimates[column].isna().any() or not estimates[column].between(0, 1).all():
@@ -82,7 +82,7 @@ def prepare_jev_panel(
     merged = prepared.merge(estimates, on="cno4", how="left", validate="many_to_one")
     if merged[exposure_columns].isna().any().any():
         missing_codes = sorted(merged.loc[merged[exposure_columns[0]].isna(), "cno4"].unique())
-        raise ValueError(f"No Jev score for {len(missing_codes)} panel occupations: {missing_codes[:8]}")
+        raise ValueError(f"No TEV score for {len(missing_codes)} panel occupations: {missing_codes[:8]}")
     for column in exposure_columns:
         merged[f"exposure_{model_family}_{column.removeprefix(f'observed_exposure_{model_family}_')}_10pp"] = (
             merged[column] / 0.10
@@ -167,7 +167,7 @@ def build_jev_robustness_outputs(
 
     if model_family not in {"jev", "tev"}:
         raise ValueError("Unknown occupation model")
-    model_label = "TEV" if model_family == "tev" else "Jev"
+    model_label = "TEV"
     estimates = Path(estimates_dir)
     output = Path(output_dir)
     output.mkdir(parents=True, exist_ok=True)
@@ -182,19 +182,19 @@ def build_jev_robustness_outputs(
             "Panel B. Jev: highest-probability O*NET occupation",
             "nearest",
             ("jev_nearest_benchmark", "jev_nearest_cno1_month", "jev_nearest_cno1_month_no2021"),
-            "Jev highest-probability category",
+            "TEV highest-probability category",
         ),
         (
-            "Panel C. Jev: probability-weighted O*NET occupations",
+            "Panel C. Jev: shortlist-weighted O*NET occupations",
             "weighted",
             ("jev_weighted_benchmark", "jev_weighted_cno1_month", "jev_weighted_cno1_month_no2021"),
-            "Jev probability-weighted exposure",
+            "TEV shortlist-weighted exposure",
         ),
         (
             "Panel D. Jev: directly imputed observed exposure",
             "direct",
             ("jev_direct_benchmark", "jev_direct_cno1_month", "jev_direct_cno1_month_no2021"),
-            "Jev direct observed-exposure score",
+            "TEV direct observed-exposure score",
         ),
     ]
 
@@ -332,7 +332,7 @@ def build_jev_robustness_outputs(
             r"}",
             r"\begin{minipage}{0.92\textwidth}",
             r"\footnotesize",
-            r"\emph{Notes:} Entries are marginal effects for the adjustment period (event times 0--24) and the later period (25--40), relative to all pre-treatment months. Panel A reproduces the baseline specification. Panels B--D use, respectively, the Jev-assigned O*NET occupation with the highest probability, the probability-weighted average across O*NET occupations, and Jev's direct observed-exposure score. Columns 1 and 4 include CNO4 and year-month fixed effects; the remaining columns include CNO4 and CNO1-by-year-month fixed effects. Columns 3 and 6 exclude 2021. Exposure is divided by 0.10. Standard errors are clustered by CNO4. The pre-treatment row tests the joint null that all available pre-treatment event-study coefficients equal zero: event times $-21$ through $-2$ when 2021 is included and $-10$ through $-2$ otherwise. Equality rows test whether the adjustment- and later-period effects are equal. $^{***}p<0.01$, $^{**}p<0.05$, and $^{*}p<0.10$.",
+            r"\emph{Notes:} Entries are marginal effects for the adjustment period (event times 0--24) and the later period (25--40), relative to all pre-treatment months. Panel A reproduces the baseline specification. Panels B--D use, respectively, the Jev-assigned O*NET occupation with the highest probability, the probability-weighted average across O*NET occupations, and TEV's direct observed-exposure score. Nearest and weighted TEV measures use the fixed 24-candidate cosine shortlist, with probabilities normalized within that shortlist. Columns 1 and 4 include CNO4 and year-month fixed effects; the remaining columns include CNO4 and CNO1-by-year-month fixed effects. Columns 3 and 6 exclude 2021. Exposure is divided by 0.10. Standard errors are clustered by CNO4. The pre-treatment row tests the joint null that all available pre-treatment event-study coefficients equal zero: event times $-21$ through $-2$ when 2021 is included and $-10$ through $-2$ otherwise. Equality rows test whether the adjustment- and later-period effects are equal. $^{***}p<0.01$, $^{**}p<0.05$, and $^{*}p<0.10$.",
             r"\end{minipage}",
             r"\end{threeparttable}",
             r"\end{table}",
@@ -394,7 +394,7 @@ def build_exposure_correlation_matrix(
 
     if model_family not in {"jev", "tev"}:
         raise ValueError("Unknown occupation model")
-    model_label = "TEV" if model_family == "tev" else "Jev"
+    model_label = "TEV"
     measures = {key.replace("_jev_", f"_{model_family}_"): value.replace("Jev", model_label)
                 for key, value in MEASURES.items()}
     if verified_crosswalk is None:

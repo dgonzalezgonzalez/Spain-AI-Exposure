@@ -24,5 +24,14 @@
       "updated_sha256": "f8bae9f670266bb9df2b5a934edc13b93b90a741e3ade0949d2d3ddbbcc5d339",
       "source": "Independently exported pre-edit Prism table, not generated output"
     }
+  },
+  {
+    "date": "2026-10-31",
+    "branch": "codex/tev-deterministic",
+    "reason": "User-authorized isolated local TEV replacement and complete estimator rerun; faster fixed top-24 shortlist and two grouped requests per occupation explicitly selected. Preserve original Jev inputs, independent targets and main paper.",
+    "data": "502 occupations, 1004 archived local requests; complete assistant-led source review, 56 corrections; conditional shortlist probabilities.",
+    "estimation": "Original specifications, Stata/R seed20260728, SDID500 and ContDID1000 retained; all stages rerun.",
+    "paper": "Actual TEV coefficient prose and tier vectors; adverse pre-treatment tier diagnostics reported; separate local PDF; Jev Prism unchanged.",
+    "reference_discrepancy": "SDID donor CNO6430 has no unemployment donor row; computed allocation0 versus reference dash. Validation normalizes only this verified cell and compares all other printed numeric cells unchanged."
   }
 ]

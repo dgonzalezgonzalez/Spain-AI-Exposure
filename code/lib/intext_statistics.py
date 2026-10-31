@@ -31,12 +31,14 @@ def build(work: Path, destination: Path) -> dict:
     expected = {'occupations': (502,0), 'months': (63,0), 'occupation_months': (31626,0),
                 'zero_unemployment_cells': (2,0), 'zero_contract_cells': (342,0),
                 'calibration_adjustment_percent': (1.42,2), 'calibration_later_percent': (2.01,2),
-                'calibration_full_post_percent': (1.64,2), 'tier_1_occupations': (232,0),
-                'tier_2_occupations': (207,0), 'tier_3_occupations': (63,0)}
+                'calibration_full_post_percent': (1.64,2)}
+    # Baseline facts remain fixed; local-model tier counts are intentionally new.
+    if sum(stats.get(f'tier_{k}_occupations', 0) for k in (1, 2, 3)) != 502:
+        raise ValueError('TEV tier counts must cover all 502 occupations')
     checks = {key: {'paper': value, 'generated': stats[key], 'matches_printed_precision': bool(round(stats[key],digits)==value)}
               for key,(value,digits) in expected.items()}
     report = {'statistics':stats,'paper_checks':checks,
-              'source': 'Main manuscript panel construction and aggregate-calibration appendix; frozen Jev tier assignment.',
+              'source': 'Main manuscript panel construction and aggregate-calibration appendix; frozen local TEV tier assignment.',
               'interpretation': 'Calibration removes the estimated occupational exposure gradient; it does not identify an aggregate causal effect.'}
     destination.write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8')
     if not all(item['matches_printed_precision'] for item in checks.values()):

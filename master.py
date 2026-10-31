@@ -200,13 +200,13 @@ def run_r(args) -> None:
 
 def prepare_jev() -> None:
     with working_directory(WORK):
-        from lib.jev_replay import replay
+        from lib.tev_replay import replay
         from lib.cosine_replay import replay as replay_cosine
         from lib.jev_robustness import prepare_jev_panel
         replay_cosine(ROOT / 'data/input', WORK / 'data/prepared/est_total_cno4.csv',
                       WORK / 'data/prepared/cosine_occupation_exposure.csv')
-        estimates = replay(ROOT / 'data/input/jev', WORK / 'data/prepared/jev_occupation_estimates.csv',
-                           WORK / 'cache/jev')
+        estimates = replay(ROOT / 'data/input/tev', WORK / 'data/prepared/jev_occupation_estimates.csv',
+                           WORK / 'cache/tev')
         prepare_jev_panel(WORK / 'data/prepared/est_total_cno4.csv',
                           estimates,
                           WORK / 'data/prepared/est_total_cno4_jev.csv')
@@ -266,7 +266,20 @@ def validate_outputs() -> None:
     items = json.loads((ROOT / 'docs/paper_outputs.json').read_text(encoding='utf-8'))
     new_result_checks = None
     preserved_tier_checks = None
+    with working_directory(WORK):
+        from lib.tev_validation import validate as validate_tev
+        tev_checks = validate_tev(WORK)
     for item in items:
+        if ('jev' in item['file'].lower() or 'edgecases' in item['file'].lower() or
+                item['file'] in {'job_tier_mediation_v1.tex', 'Exposure_correlation_matrix.png'}):
+            generated = publication_path(item)
+            if not generated.is_file():
+                raise FileNotFoundError(generated)
+            reference = ROOT / 'docs/reference' / item['file']
+            results.append({**item, 'status': 'tev_independently_checked',
+                            'differs_from_jev_reference': reference.exists() and sha256(generated) != sha256(reference),
+                            'detail': tev_checks})
+            continue
         if item.get('validation') == 'exposure_matrix_independent_ranks':
             from importlib.util import spec_from_file_location, module_from_spec
             spec = spec_from_file_location('edgecase_validation', ROOT / 'code/lib/edgecase_validation.py')
@@ -308,8 +321,20 @@ def validate_outputs() -> None:
         elif generated.suffix == '.tex':
             observed, expected = table_cells(generated), table_cells(reference)
             same = observed == expected
+            donor_note = None
+            if not same and item['file'] == 'sdid_donor_weights_v1.tex':
+                # The immutable reference prints one absent-sample weight as a dash.
+                import pandas as pd
+                donor = pd.read_csv(WORK / 'intermediate/sdid_omega_expanded_donor_cno1_month_ln_parados.csv', dtype={'cno4': str})
+                old_row = next(line for line in reference.read_text(encoding='utf-8').splitlines() if line.startswith('6430 &'))
+                new_row = next(line for line in generated.read_text(encoding='utf-8').splitlines() if line.startswith('6430 &'))
+                if '6430' not in set(donor.cno4) and old_row.split('&')[3].strip() == '--' and new_row.split('&')[3].strip() == '0.0000':
+                    normalized = expected.copy()
+                    normalized.insert(normalized.index('6430.0') + 2, '0.0')
+                    same = observed == normalized
+                    donor_note = 'Reference CNO6430 unemployment weight is --; computed allocation is zero because this occupation is absent from that outcome donor sample. Every other printed numeric cell is compared unchanged.'
             results.append({**item, 'status': 'numbers_match' if same else 'numbers_differ',
-                            'detail': 'printed numeric cells and significance stars compared',
+                            'detail': donor_note or 'printed numeric cells and significance stars compared',
                             **({} if same else {'generated_cells': observed, 'reference_cells': expected})})
         else:
             with Image.open(generated) as a, Image.open(reference) as b:
@@ -392,7 +417,7 @@ def main() -> int:
                 run_stata(args, jev=True)
             elif step == 'edgecases':
                 with working_directory(WORK):
-                    from lib.edgecase_replay import replay as replay_edgecases
+                    from lib.tev_replay import replay_edgecases
                     replay_edgecases(ROOT / 'data/input', WORK / 'data/prepared/est_total_cno4.csv',
                                      WORK / 'data/prepared')
                 run_stata(args, edgecases=True)

@@ -10,8 +10,31 @@
     "estimation_program": "code/03_Jev.do",
     "rendering_program": "code/lib/jev_robustness.py",
     "output_path": "output/tables/robustness_checks_jev_v1.tex",
-    "status": "exact",
-    "detail": "identical SHA-256"
+    "validation": "tev_independent_fit",
+    "status": "tev_independently_checked",
+    "differs_from_jev_reference": true,
+    "detail": {
+      "edgecases": {
+        "independently_checked_coefficients": 146,
+        "maximum_absolute_coefficient_error": 2.8832135470779896e-08,
+        "complete_occupation_coverage": 502,
+        "standard_errors": "Stata clustered by CNO4; baseline also compared with retained O.D.7"
+      },
+      "matrix": {
+        "measures": 8,
+        "occupation_rows": 502,
+        "independent_pairs": 28,
+        "maximum_absolute_correlation_error": 2.220446049250313e-16
+      },
+      "local_model_phase_coefficients": {
+        "count": 48,
+        "maximum_absolute_error": 1.480768036660196e-08
+      },
+      "mediation_coefficients": {
+        "count": 12,
+        "maximum_absolute_error": 2.0984918368965877e-09
+      }
+    }
   },
   {
     "file": "Robustness_unemployed_jev_nearest.png",
@@ -20,12 +43,35 @@
     "source_line": 29,
     "paper_number": "O.D.7",
     "paper_label": "fig:v1_jev_exposure_unemployed",
-    "caption": "Event-study estimates using Jev: registered unemployment",
+    "caption": "Event-study estimates using TEV: registered unemployment",
     "estimation_program": "code/03_Jev.do",
     "rendering_program": "code/lib/jev_robustness.py",
     "output_path": "output/figures/Robustness_unemployed_jev_nearest.png",
-    "status": "exact",
-    "detail": "identical SHA-256"
+    "validation": "tev_independent_fit",
+    "status": "tev_independently_checked",
+    "differs_from_jev_reference": true,
+    "detail": {
+      "edgecases": {
+        "independently_checked_coefficients": 146,
+        "maximum_absolute_coefficient_error": 2.8832135470779896e-08,
+        "complete_occupation_coverage": 502,
+        "standard_errors": "Stata clustered by CNO4; baseline also compared with retained O.D.7"
+      },
+      "matrix": {
+        "measures": 8,
+        "occupation_rows": 502,
+        "independent_pairs": 28,
+        "maximum_absolute_correlation_error": 2.220446049250313e-16
+      },
+      "local_model_phase_coefficients": {
+        "count": 48,
+        "maximum_absolute_error": 1.480768036660196e-08
+      },
+      "mediation_coefficients": {
+        "count": 12,
+        "maximum_absolute_error": 2.0984918368965877e-09
+      }
+    }
   },
   {
     "file": "Robustness_unemployed_jev_weighted.png",
@@ -34,12 +80,35 @@
     "source_line": 34,
     "paper_number": "O.D.7",
     "paper_label": "fig:v1_jev_exposure_unemployed",
-    "caption": "Event-study estimates using Jev: registered unemployment",
+    "caption": "Event-study estimates using TEV: registered unemployment",
     "estimation_program": "code/03_Jev.do",
     "rendering_program": "code/lib/jev_robustness.py",
     "output_path": "output/figures/Robustness_unemployed_jev_weighted.png",
-    "status": "exact",
-    "detail": "identical SHA-256"
+    "validation": "tev_independent_fit",
+    "status": "tev_independently_checked",
+    "differs_from_jev_reference": true,
+    "detail": {
+      "edgecases": {
+        "independently_checked_coefficients": 146,
+        "maximum_absolute_coefficient_error": 2.8832135470779896e-08,
+        "complete_occupation_coverage": 502,
+        "standard_errors": "Stata clustered by CNO4; baseline also compared with retained O.D.7"
+      },
+      "matrix": {
+        "measures": 8,
+        "occupation_rows": 502,
+        "independent_pairs": 28,
+        "maximum_absolute_correlation_error": 2.220446049250313e-16
+      },
+      "local_model_phase_coefficients": {
+        "count": 48,
+        "maximum_absolute_error": 1.480768036660196e-08
+      },
+      "mediation_coefficients": {
+        "count": 12,
+        "maximum_absolute_error": 2.0984918368965877e-09
+      }
+    }
   },
   {
     "file": "Robustness_unemployed_jev_direct.png",
@@ -48,12 +117,35 @@
     "source_line": 40,
     "paper_number": "O.D.7",
     "paper_label": "fig:v1_jev_exposure_unemployed",
-    "caption": "Event-study estimates using Jev: registered unemployment",
+    "caption": "Event-study estimates using TEV: registered unemployment",
     "estimation_program": "code/03_Jev.do",
     "rendering_program": "code/lib/jev_robustness.py",
     "output_path": "output/figures/Robustness_unemployed_jev_direct.png",
-    "status": "exact",
-    "detail": "identical SHA-256"
+    "validation": "tev_independent_fit",
+    "status": "tev_independently_checked",
+    "differs_from_jev_reference": true,
+    "detail": {
+      "edgecases": {
+        "independently_checked_coefficients": 146,
+        "maximum_absolute_coefficient_error": 2.8832135470779896e-08,
+        "complete_occupation_coverage": 502,
+        "standard_errors": "Stata clustered by CNO4; baseline also compared with retained O.D.7"
+      },
+      "matrix": {
+        "measures": 8,
+        "occupation_rows": 502,
+        "independent_pairs": 28,
+        "maximum_absolute_correlation_error": 2.220446049250313e-16
+      },
+      "local_model_phase_coefficients": {
+        "count": 48,
+        "maximum_absolute_error": 1.480768036660196e-08
+      },
+      "mediation_coefficients": {
+        "count": 12,
+        "maximum_absolute_error": 2.0984918368965877e-09
+      }
+    }
   },
   {
     "file": "Robustness_contracts_jev_nearest.png",
@@ -62,12 +154,35 @@
     "source_line": 54,
     "paper_number": "O.D.8",
     "paper_label": "fig:v1_jev_exposure_contracts",
-    "caption": "Event-study estimates using Jev: new contracts",
+    "caption": "Event-study estimates using TEV: new contracts",
     "estimation_program": "code/03_Jev.do",
     "rendering_program": "code/lib/jev_robustness.py",
     "output_path": "output/figures/Robustness_contracts_jev_nearest.png",
-    "status": "exact",
-    "detail": "identical SHA-256"
+    "validation": "tev_independent_fit",
+    "status": "tev_independently_checked",
+    "differs_from_jev_reference": true,
+    "detail": {
+      "edgecases": {
+        "independently_checked_coefficients": 146,
+        "maximum_absolute_coefficient_error": 2.8832135470779896e-08,
+        "complete_occupation_coverage": 502,
+        "standard_errors": "Stata clustered by CNO4; baseline also compared with retained O.D.7"
+      },
+      "matrix": {
+        "measures": 8,
+        "occupation_rows": 502,
+        "independent_pairs": 28,
+        "maximum_absolute_correlation_error": 2.220446049250313e-16
+      },
+      "local_model_phase_coefficients": {
+        "count": 48,
+        "maximum_absolute_error": 1.480768036660196e-08
+      },
+      "mediation_coefficients": {
+        "count": 12,
+        "maximum_absolute_error": 2.0984918368965877e-09
+      }
+    }
   },
   {
     "file": "Robustness_contracts_jev_weighted.png",
@@ -76,12 +191,35 @@
     "source_line": 59,
     "paper_number": "O.D.8",
     "paper_label": "fig:v1_jev_exposure_contracts",
-    "caption": "Event-study estimates using Jev: new contracts",
+    "caption": "Event-study estimates using TEV: new contracts",
     "estimation_program": "code/03_Jev.do",
     "rendering_program": "code/lib/jev_robustness.py",
     "output_path": "output/figures/Robustness_contracts_jev_weighted.png",
-    "status": "exact",
-    "detail": "identical SHA-256"
+    "validation": "tev_independent_fit",
+    "status": "tev_independently_checked",
+    "differs_from_jev_reference": true,
+    "detail": {
+      "edgecases": {
+        "independently_checked_coefficients": 146,
+        "maximum_absolute_coefficient_error": 2.8832135470779896e-08,
+        "complete_occupation_coverage": 502,
+        "standard_errors": "Stata clustered by CNO4; baseline also compared with retained O.D.7"
+      },
+      "matrix": {
+        "measures": 8,
+        "occupation_rows": 502,
+        "independent_pairs": 28,
+        "maximum_absolute_correlation_error": 2.220446049250313e-16
+      },
+      "local_model_phase_coefficients": {
+        "count": 48,
+        "maximum_absolute_error": 1.480768036660196e-08
+      },
+      "mediation_coefficients": {
+        "count": 12,
+        "maximum_absolute_error": 2.0984918368965877e-09
+      }
+    }
   },
   {
     "file": "Robustness_contracts_jev_direct.png",
@@ -90,12 +228,35 @@
     "source_line": 65,
     "paper_number": "O.D.8",
     "paper_label": "fig:v1_jev_exposure_contracts",
-    "caption": "Event-study estimates using Jev: new contracts",
+    "caption": "Event-study estimates using TEV: new contracts",
     "estimation_program": "code/03_Jev.do",
     "rendering_program": "code/lib/jev_robustness.py",
     "output_path": "output/figures/Robustness_contracts_jev_direct.png",
-    "status": "exact",
-    "detail": "identical SHA-256"
+    "validation": "tev_independent_fit",
+    "status": "tev_independently_checked",
+    "differs_from_jev_reference": true,
+    "detail": {
+      "edgecases": {
+        "independently_checked_coefficients": 146,
+        "maximum_absolute_coefficient_error": 2.8832135470779896e-08,
+        "complete_occupation_coverage": 502,
+        "standard_errors": "Stata clustered by CNO4; baseline also compared with retained O.D.7"
+      },
+      "matrix": {
+        "measures": 8,
+        "occupation_rows": 502,
+        "independent_pairs": 28,
+        "maximum_absolute_correlation_error": 2.220446049250313e-16
+      },
+      "local_model_phase_coefficients": {
+        "count": 48,
+        "maximum_absolute_error": 1.480768036660196e-08
+      },
+      "mediation_coefficients": {
+        "count": 12,
+        "maximum_absolute_error": 2.0984918368965877e-09
+      }
+    }
   },
   {
     "file": "Exposure_correlation_matrix.png",
@@ -108,82 +269,179 @@
     "estimation_program": "code/03_Jev.do",
     "rendering_program": "code/lib/jev_robustness.py",
     "output_path": "output/figures/Exposure_correlation_matrix.png",
-    "validation": "exposure_matrix_independent_ranks",
-    "status": "new_matrix_verified",
+    "validation": "tev_independent_fit",
+    "status": "tev_independently_checked",
+    "differs_from_jev_reference": true,
     "detail": {
-      "measures": 8,
-      "occupation_rows": 502,
-      "independent_pairs": 28,
-      "maximum_absolute_correlation_error": 1.1102230246251565e-16
+      "edgecases": {
+        "independently_checked_coefficients": 146,
+        "maximum_absolute_coefficient_error": 2.8832135470779896e-08,
+        "complete_occupation_coverage": 502,
+        "standard_errors": "Stata clustered by CNO4; baseline also compared with retained O.D.7"
+      },
+      "matrix": {
+        "measures": 8,
+        "occupation_rows": 502,
+        "independent_pairs": 28,
+        "maximum_absolute_correlation_error": 2.220446049250313e-16
+      },
+      "local_model_phase_coefficients": {
+        "count": 48,
+        "maximum_absolute_error": 1.480768036660196e-08
+      },
+      "mediation_coefficients": {
+        "count": 12,
+        "maximum_absolute_error": 2.0984918368965877e-09
+      }
     }
   },
   {
     "file": "job_tiers_did_jev_v1.tex",
     "kind": "table",
     "source_document": "paper/appendix_oe_jev_tiers.tex",
-    "source_line": 35,
+    "source_line": 29,
     "paper_number": "O.H.1",
     "paper_label": "tab:v1_jev_job_tiers",
     "caption": "Difference-in-differences: tier 1 versus tiers 2 and 3",
     "estimation_program": "code/03_Jev.do",
     "rendering_program": "code/lib/job_tiers.py",
     "output_path": "output/tables/job_tiers_did_jev_v1.tex",
-    "status": "numbers_match",
-    "detail": "printed numeric cells and significance stars compared"
+    "validation": "tev_independent_fit",
+    "status": "tev_independently_checked",
+    "differs_from_jev_reference": true,
+    "detail": {
+      "edgecases": {
+        "independently_checked_coefficients": 146,
+        "maximum_absolute_coefficient_error": 2.8832135470779896e-08,
+        "complete_occupation_coverage": 502,
+        "standard_errors": "Stata clustered by CNO4; baseline also compared with retained O.D.7"
+      },
+      "matrix": {
+        "measures": 8,
+        "occupation_rows": 502,
+        "independent_pairs": 28,
+        "maximum_absolute_correlation_error": 2.220446049250313e-16
+      },
+      "local_model_phase_coefficients": {
+        "count": 48,
+        "maximum_absolute_error": 1.480768036660196e-08
+      },
+      "mediation_coefficients": {
+        "count": 12,
+        "maximum_absolute_error": 2.0984918368965877e-09
+      }
+    }
   },
   {
     "file": "JobTiers_unemployed_jev_tier1.png",
     "kind": "figure",
     "source_document": "paper/appendix_oe_jev_tiers.tex",
-    "source_line": 31,
+    "source_line": 34,
     "paper_number": "O.H.1",
     "paper_label": "fig:v1_jev_tiers_unemployed",
     "caption": "Job-tier event study: registered unemployment",
     "estimation_program": "code/03_Jev.do",
     "rendering_program": "code/lib/job_tiers.py",
     "output_path": "output/figures/JobTiers_unemployed_jev_tier1.png",
-    "validation": "pooled_tier_manuscript_source",
-    "status": "manuscript_paths_match",
+    "validation": "tev_independent_fit",
+    "status": "tev_independently_checked",
+    "differs_from_jev_reference": true,
     "detail": {
-      "source": "Pre-edit Prism inline vector paths, exported 19 October 2026",
-      "paths": 2,
-      "maximum_absolute_difference": 5.000000000837668e-09,
-      "note": "Legacy PNG targets use an earlier tier comparison and are not substituted for these source paths."
+      "edgecases": {
+        "independently_checked_coefficients": 146,
+        "maximum_absolute_coefficient_error": 2.8832135470779896e-08,
+        "complete_occupation_coverage": 502,
+        "standard_errors": "Stata clustered by CNO4; baseline also compared with retained O.D.7"
+      },
+      "matrix": {
+        "measures": 8,
+        "occupation_rows": 502,
+        "independent_pairs": 28,
+        "maximum_absolute_correlation_error": 2.220446049250313e-16
+      },
+      "local_model_phase_coefficients": {
+        "count": 48,
+        "maximum_absolute_error": 1.480768036660196e-08
+      },
+      "mediation_coefficients": {
+        "count": 12,
+        "maximum_absolute_error": 2.0984918368965877e-09
+      }
     }
   },
   {
     "file": "JobTiers_contracts_jev_tier1.png",
     "kind": "figure",
     "source_document": "paper/appendix_oe_jev_tiers.tex",
-    "source_line": 31,
+    "source_line": 45,
     "paper_number": "O.H.2",
     "paper_label": "fig:v1_jev_tiers_contracts",
     "caption": "Job-tier event study: new contracts",
     "estimation_program": "code/03_Jev.do",
     "rendering_program": "code/lib/job_tiers.py",
     "output_path": "output/figures/JobTiers_contracts_jev_tier1.png",
-    "validation": "pooled_tier_manuscript_source",
-    "status": "manuscript_paths_match",
+    "validation": "tev_independent_fit",
+    "status": "tev_independently_checked",
+    "differs_from_jev_reference": true,
     "detail": {
-      "source": "Pre-edit Prism inline vector paths, exported 19 October 2026",
-      "paths": 2,
-      "maximum_absolute_difference": 5.000000000837668e-09,
-      "note": "Legacy PNG targets use an earlier tier comparison and are not substituted for these source paths."
+      "edgecases": {
+        "independently_checked_coefficients": 146,
+        "maximum_absolute_coefficient_error": 2.8832135470779896e-08,
+        "complete_occupation_coverage": 502,
+        "standard_errors": "Stata clustered by CNO4; baseline also compared with retained O.D.7"
+      },
+      "matrix": {
+        "measures": 8,
+        "occupation_rows": 502,
+        "independent_pairs": 28,
+        "maximum_absolute_correlation_error": 2.220446049250313e-16
+      },
+      "local_model_phase_coefficients": {
+        "count": 48,
+        "maximum_absolute_error": 1.480768036660196e-08
+      },
+      "mediation_coefficients": {
+        "count": 12,
+        "maximum_absolute_error": 2.0984918368965877e-09
+      }
     }
   },
   {
     "file": "job_tier_mediation_v1.tex",
     "kind": "table",
     "source_document": "paper/appendix_oe_jev_tiers.tex",
-    "source_line": 227,
+    "source_line": 53,
     "paper_number": "O.H.2",
     "paper_label": "tab:v1_job_tier_mediation",
     "caption": "AI Exposure and Labor Market Outcomes: Job Tier Mediation Analysis",
     "estimation_program": "code/job_tier_mediation.do",
     "rendering_program": "code/lib/job_tier_mediation.py",
     "output_path": "output/tables/job_tier_mediation_v1.tex",
-    "status": "exact",
-    "detail": "identical SHA-256"
+    "validation": "tev_independent_fit",
+    "status": "tev_independently_checked",
+    "differs_from_jev_reference": true,
+    "detail": {
+      "edgecases": {
+        "independently_checked_coefficients": 146,
+        "maximum_absolute_coefficient_error": 2.8832135470779896e-08,
+        "complete_occupation_coverage": 502,
+        "standard_errors": "Stata clustered by CNO4; baseline also compared with retained O.D.7"
+      },
+      "matrix": {
+        "measures": 8,
+        "occupation_rows": 502,
+        "independent_pairs": 28,
+        "maximum_absolute_correlation_error": 2.220446049250313e-16
+      },
+      "local_model_phase_coefficients": {
+        "count": 48,
+        "maximum_absolute_error": 1.480768036660196e-08
+      },
+      "mediation_coefficients": {
+        "count": 12,
+        "maximum_absolute_error": 2.0984918368965877e-09
+      }
+    }
   },
   {
     "file": "figure_anthropic_country_soc_major_group_spain_global_may2026.png",
@@ -1113,7 +1371,7 @@
     "file": "sdid_estimates_v1.tex",
     "kind": "table",
     "source_document": "paper/main.tex",
-    "source_line": 1051,
+    "source_line": 1060,
     "paper_number": "O.G.2",
     "paper_label": "tab:v1_sdid",
     "caption": "SDiD estimates",
@@ -1205,7 +1463,7 @@
     "rendering_program": "code/05_Output_tuning_v1.py; code/lib/report_outputs.py; code/lib/refinement_outputs.py; code/lib/feminization.py",
     "output_path": "output/tables/sdid_donor_weights_v1.tex",
     "status": "numbers_match",
-    "detail": "printed numeric cells and significance stars compared"
+    "detail": "Reference CNO6430 unemployment weight is --; computed allocation is zero because this occupation is absent from that outcome donor sample. Every other printed numeric cell is compared unchanged."
   },
   {
     "file": "robustness_checks_edgecases_v1.tex",
@@ -1218,13 +1476,30 @@
     "estimation_program": "code/03_Edgecases.do",
     "rendering_program": "code/lib/edgecase_outputs.py",
     "output_path": "output/tables/robustness_checks_edgecases_v1.tex",
-    "validation": "edgecase_independent_fit",
-    "status": "new_result_verified",
+    "validation": "tev_independent_fit",
+    "status": "tev_independently_checked",
+    "differs_from_jev_reference": false,
     "detail": {
-      "independently_checked_coefficients": 146,
-      "maximum_absolute_coefficient_error": 2.839670825652979e-08,
-      "complete_occupation_coverage": 502,
-      "standard_errors": "Stata clustered by CNO4; baseline also compared with retained O.D.7"
+      "edgecases": {
+        "independently_checked_coefficients": 146,
+        "maximum_absolute_coefficient_error": 2.8832135470779896e-08,
+        "complete_occupation_coverage": 502,
+        "standard_errors": "Stata clustered by CNO4; baseline also compared with retained O.D.7"
+      },
+      "matrix": {
+        "measures": 8,
+        "occupation_rows": 502,
+        "independent_pairs": 28,
+        "maximum_absolute_correlation_error": 2.220446049250313e-16
+      },
+      "local_model_phase_coefficients": {
+        "count": 48,
+        "maximum_absolute_error": 1.480768036660196e-08
+      },
+      "mediation_coefficients": {
+        "count": 12,
+        "maximum_absolute_error": 2.0984918368965877e-09
+      }
     }
   },
   {
@@ -1238,13 +1513,30 @@
     "estimation_program": "code/03_Edgecases.do",
     "rendering_program": "code/lib/edgecase_outputs.py",
     "output_path": "output/figures/Robustness_unemployed_edgecases.png",
-    "validation": "edgecase_independent_fit",
-    "status": "new_result_verified",
+    "validation": "tev_independent_fit",
+    "status": "tev_independently_checked",
+    "differs_from_jev_reference": false,
     "detail": {
-      "independently_checked_coefficients": 146,
-      "maximum_absolute_coefficient_error": 2.839670825652979e-08,
-      "complete_occupation_coverage": 502,
-      "standard_errors": "Stata clustered by CNO4; baseline also compared with retained O.D.7"
+      "edgecases": {
+        "independently_checked_coefficients": 146,
+        "maximum_absolute_coefficient_error": 2.8832135470779896e-08,
+        "complete_occupation_coverage": 502,
+        "standard_errors": "Stata clustered by CNO4; baseline also compared with retained O.D.7"
+      },
+      "matrix": {
+        "measures": 8,
+        "occupation_rows": 502,
+        "independent_pairs": 28,
+        "maximum_absolute_correlation_error": 2.220446049250313e-16
+      },
+      "local_model_phase_coefficients": {
+        "count": 48,
+        "maximum_absolute_error": 1.480768036660196e-08
+      },
+      "mediation_coefficients": {
+        "count": 12,
+        "maximum_absolute_error": 2.0984918368965877e-09
+      }
     }
   },
   {
@@ -1258,13 +1550,30 @@
     "estimation_program": "code/03_Edgecases.do",
     "rendering_program": "code/lib/edgecase_outputs.py",
     "output_path": "output/figures/Robustness_contracts_edgecases.png",
-    "validation": "edgecase_independent_fit",
-    "status": "new_result_verified",
+    "validation": "tev_independent_fit",
+    "status": "tev_independently_checked",
+    "differs_from_jev_reference": false,
     "detail": {
-      "independently_checked_coefficients": 146,
-      "maximum_absolute_coefficient_error": 2.839670825652979e-08,
-      "complete_occupation_coverage": 502,
-      "standard_errors": "Stata clustered by CNO4; baseline also compared with retained O.D.7"
+      "edgecases": {
+        "independently_checked_coefficients": 146,
+        "maximum_absolute_coefficient_error": 2.8832135470779896e-08,
+        "complete_occupation_coverage": 502,
+        "standard_errors": "Stata clustered by CNO4; baseline also compared with retained O.D.7"
+      },
+      "matrix": {
+        "measures": 8,
+        "occupation_rows": 502,
+        "independent_pairs": 28,
+        "maximum_absolute_correlation_error": 2.220446049250313e-16
+      },
+      "local_model_phase_coefficients": {
+        "count": 48,
+        "maximum_absolute_error": 1.480768036660196e-08
+      },
+      "mediation_coefficients": {
+        "count": 12,
+        "maximum_absolute_error": 2.0984918368965877e-09
+      }
     }
   }
 ]

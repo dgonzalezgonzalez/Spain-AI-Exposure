@@ -1,3 +1,7 @@
+# Experimental TEV branch boundary
+
+The TEV manuscript is a separate local experiment. The original Jev Prism project has not been replaced or synchronized with this branch. The records below concern historical Jev publication synchronization.
+
 # Manuscript synchronization record
 
 Synchronization date: **19 October 2026**. The [active Prism project](https://prism.openai.com/?u=d2a38c9d-2c46-440b-92e1-6d206cb7f593&pg=1&m=main.tex) compiles root `main.tex`. All **98 retained files** are byte-identical to a clean project export: root entry point, nine files in `paper/`, 27 publication tables and 61 PNG panels. There are no extra active files. ZIP CRC passes. Exact hashes are in `prism_sync_manifest.json`.

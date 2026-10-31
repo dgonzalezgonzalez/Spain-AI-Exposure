@@ -90,7 +90,7 @@ def build_job_tier_outputs(estimates_dir: str | Path, output_dir: str | Path,
               "Observations & " + " & ".join(f"{int(frame.iloc[0].observations):,}" for frame, _ in columns) + r" \\",
               r"\bottomrule", r"\end{tabular}", r"\begin{tablenotes}[flushleft]", r"\footnotesize",
               r"\item \emph{Notes:} Each column reports one regression with a tier 1 indicator interacted with both post-treatment phases; tiers 2 and 3 form the pooled control group. The indicator uses the frozen " +
-              ("Jev" if model_family == "jev" else "TEV") +
+              "TEV" +
               r" occupation classification. The adjustment and later periods cover event times 0--24 and 25--40; all pre-treatment months form the omitted period. Columns 1 and 4 include CNO4 and year-month FE; the remaining columns include CNO4 and CNO1-by-year-month FE. Columns 3 and 6 exclude 2021. Standard errors are clustered by CNO4. The pre-treatment row jointly tests all available pre-treatment event-study coefficients for tier 1: event times $-21$ through $-2$ when 2021 is included and $-10$ through $-2$ otherwise; October 2022 is omitted. The phase-equality row tests equality of the adjustment and later coefficients. Coefficients are log-point differences for tier 1 relative to pooled tiers 2 and 3, without exposure scaling. $^{***}p<0.01$, $^{**}p<0.05$, and $^{*}p<0.10$.",
               r"\end{tablenotes}", r"\end{threeparttable}", r"\end{table}"]
     table = output / f"job_tiers_did_{model_family}_v1.tex"

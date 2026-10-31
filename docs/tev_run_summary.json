@@ -1,0 +1,81 @@
+{
+  "branch": "codex/tev-deterministic",
+  "base_main": "c855fd9",
+  "occupations": 502,
+  "requests": 1004,
+  "conditional_shortlist_size": 24,
+  "assistant_review_corrections": 56,
+  "independent_human_adjudication": false,
+  "acquisition_seconds": 44245.422,
+  "successful_stages": [
+    {
+      "step": "prepare",
+      "seconds": 180.71900000004098
+    },
+    {
+      "step": "descriptives",
+      "seconds": 43.296999999904074
+    },
+    {
+      "step": "estimates",
+      "seconds": 849.969000000041
+    },
+    {
+      "step": "sdid",
+      "seconds": 12965.625
+    },
+    {
+      "step": "jev",
+      "seconds": 50.203000000095926
+    },
+    {
+      "step": "mediation",
+      "seconds": 14.186999999918044
+    },
+    {
+      "step": "contdid",
+      "seconds": 99.03200000000652
+    },
+    {
+      "step": "edgecases",
+      "seconds": 26.70299999997951
+    },
+    {
+      "step": "tuning",
+      "seconds": 20.484000000054948
+    },
+    {
+      "step": "statistics",
+      "seconds": 2.5
+    },
+    {
+      "step": "validate",
+      "seconds": 10.48499999998603,
+      "status": "completed"
+    }
+  ],
+  "sdid_placebo_repetitions": 500,
+  "contdid_bootstraps": 1000,
+  "estimator_seed": 20260728,
+  "input_checks": "36 pass; 25 original unchanged",
+  "tests": "31 pass",
+  "asset_status_counts": {
+    "tev_independently_checked": 15,
+    "pixels_match": 2,
+    "exact": 58,
+    "numbers_match": 12,
+    "pixels_match_with_rounding": 1
+  },
+  "reference_policy": "original independent references untouched; documented CNO6430 absent-sample dash/zero convention only",
+  "prism": "Jev project untouched; experimental manuscript local",
+  "commits_or_pushes": false,
+  "pdf": {
+    "file": "paper/main.pdf",
+    "pages": 109,
+    "sha256": "220b04c42a50e3c458c5d10e4cafecdf546dd764ce6a73eba4cb2cf5e45e5274",
+    "citations_and_labels_resolved": true,
+    "visual_review": "Updated result prose, model methods/footnote, exposure/edgecase/tier/mediation tables and figures, matrix, prompt endings and donor longtable inspected using Poppler renders; orphan prompt ending repaired."
+  },
+  "pip_check": "no broken requirements",
+  "archive": "dist/latest_code.zip with adjacent SHA256; package integrity/routing/offline-replay evidence retained in ignored logs/tev_archive_validation.json"
+}

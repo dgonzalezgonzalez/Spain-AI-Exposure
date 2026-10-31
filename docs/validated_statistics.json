@@ -14,9 +14,9 @@
     "unemployment_adjustment_exact_percent": 1.2134982744593685,
     "unemployment_later_coefficient": 0.0168132599278554,
     "unemployment_later_exact_percent": 1.695539826813617,
-    "tier_1_occupations": 232,
-    "tier_2_occupations": 207,
-    "tier_3_occupations": 63
+    "tier_2_occupations": 284,
+    "tier_1_occupations": 153,
+    "tier_3_occupations": 65
   },
   "paper_checks": {
     "occupations": {
@@ -58,23 +58,8 @@
       "paper": 1.64,
       "generated": 1.6374911299199273,
       "matches_printed_precision": true
-    },
-    "tier_1_occupations": {
-      "paper": 232,
-      "generated": 232,
-      "matches_printed_precision": true
-    },
-    "tier_2_occupations": {
-      "paper": 207,
-      "generated": 207,
-      "matches_printed_precision": true
-    },
-    "tier_3_occupations": {
-      "paper": 63,
-      "generated": 63,
-      "matches_printed_precision": true
     }
   },
-  "source": "Main manuscript panel construction and aggregate-calibration appendix; frozen Jev tier assignment.",
+  "source": "Main manuscript panel construction and aggregate-calibration appendix; frozen local TEV tier assignment.",
   "interpretation": "Calibration removes the estimated occupational exposure gradient; it does not identify an aggregate causal effect."
 }

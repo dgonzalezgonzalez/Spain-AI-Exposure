@@ -1,61 +1,15 @@
-# Complete occupational crosswalk robustness
+# Complete TEV-reviewed occupational crosswalk
 
-The retained robustness exercise starts from the frozen nearest-neighbor crosswalk.
-Jev's **15 October 2026 cached screen** is unchanged: `jev-1.13.0`, 502 occupations,
-and a `wrong_match >= 0.5` gate selecting 216 occupations. The separate
-heterogeneity probability is diagnostic and does not change this gate.
+This experimental branch starts from the frozen cosine-nearest crosswalk and replaces the Jev screen and separate cloud verifier with local TEV. Each occupation receives a fixed top-24 cosine shortlist. Matching, baseline mismatch and heterogeneity are grouped in one request; tier and direct exposure are grouped separately using semantic evidence only. There are two requests per occupation and no second matching pass.
 
-The author requested complete occupation coverage on 19 October 2026. Accordingly,
-the retained GPT-OSS 120B stage requires one selection for every flagged occupation.
-It replaces the exploratory abstention policy. The earlier exploratory 32
-`NO_EQUIVALENT` and 38 `HETEROGENEOUS` outputs are not used in this exercise.
-Each request supplies the same Spanish evidence and 30 cosine-ranked U.S.
-candidates. The model selects a substantive equivalent or the best available
-proxy; it cannot generate an exposure value. Published Anthropic exposure is
-joined only after matching. This preserves all 502 Spanish occupations.
+The original `wrong_match >= 0.5` gate is retained. TEV flags 166 of 502 baseline matches. Flagged occupations use the already acquired shortlist argmax; unflagged occupations initially retain baseline. Heterogeneity is diagnostic and does not change the gate. Raw weighted exposure is conditional on the shortlist, not a full-catalogue probability average. Screening sees the same shortlist schema, an additional difference from the original workflow.
 
-The authors review the complete automatic crosswalk, including unflagged cases.
-Only clear residual conflicts receive explicit overrides in
-`code/lib/edgecase_replay.py`; debatable scope and cross-national proxies remain.
-The three-column author-review table documents the automatic and final titles.
-Some occupations have no exact equivalent among the 756 exposure-bearing U.S.
-categories. Required choice provides a proxy in these cases and cannot establish
-that an exact counterpart exists or that its true exposure is known.
+The Codex assistant inspected all 502 resulting crosswalks against the frozen Spanish definitions/tasks/examples/exclusions and actual available US descriptions. The new review records 56 explicit corrections and reasoned retention notes for every other code. No old override list was applied automatically. This is assistant-led source inspection, not independent human adjudication or accuracy ground truth. See `manual_edgecases.md` and the complete frozen `data/input/tev/author_review.json`.
 
-The known detector false positive was CNO 5941 (armed security guards), whose
-baseline `33-9032 Security Guards` assignment was retained by the verifier.
-This is one checked false positive, not an estimate that there was only one
-false positive across all 502 occupations. No manual correction is applied there.
-The exploratory count of 65 obvious concerns was a manual triage of old baseline
-matches, not a gold-standard evaluation or a count of remaining errors.
+Final exposure covers all 502 occupations; 123 final codes differ from the baseline. Published Anthropic exposure values are joined after selecting codes. The review does not change raw model responses, probabilities or the separate nearest/weighted measures. Matching and review choices do not use exposure magnitudes or econometric results.
 
-`data/input/edgecases/frozen_requests.zip` retains the exact Jev and required-choice
-GPT-OSS requests and raw responses used by the release. Metadata record versions,
-settings, source hashes, counts and any completion repair. Default replication is
-offline: `master.py --step edgecases` reconstructs the complete crosswalk, merges
-it into the prepared SEPE panel and runs the same phase and event-study
-specifications. No service credentials are included or required for replay.
+Catalogue gaps and mixed occupation groups remain material. Some retained mappings are qualified or severely limited proxies, including raw-hide tanning, paper/pulp manufacture, electrical/electronic assembly and wild fishing. The complete review documents these rather than inventing categories or occupation shares. No missing value is converted to zero; valid published zero exposures remain zero.
 
-Temperature 0, seed 42, top-k 1, top-p 1, min-p 0, repeat penalty 1 and
-repeat-last-n 0 are fixed; reasoning effort is medium. The normal output budget is
-6,144 tokens. An incomplete final answer caused by the budget is repaired at
-8,192 tokens, without rerolling successful matches. Model aliases and hardware can
-change, so the archived responses, rather than fresh inference, define the release.
+Original Jev/GPT-OSS archives, source code and independent manuscript targets remain unchanged for comparison. The original method used 216 flagged occupations, a separate 30-candidate GPT-OSS verifier and 13 author corrections. Differences in correction counts are not accuracy statistics. Changes in results combine model, shortlist, screening/verification architecture and review differences.
 
-Publication assets are `robustness_checks_edgecases_v1.tex` and the unemployment
-and contracts `Robustness_*_edgecases.png` panels. The table's Panel A is the
-original six-column baseline; Panel B changes the exposure crosswalk only. Both
-panels use CNO4 clustering, the original periods and fixed effects, and a 10 pp
-exposure increment. The two event-study panels use the preferred within-CNO1
-specification and the original October 2022 reference month.
-
-New results have no pre-existing independent manuscript target. Validation
-therefore independently recomputes phase and displayed event-study coefficients
-using Python within-transformed least squares and checks occupation coverage and
-sample sizes against Stata. Existing reference assets remain independent targets;
-updated job-tier targets come from the latest Prism export, preserving co-author
-edits already present before this exercise.
-
-The common publication label is **Verified-match observed exposure**. It identifies Panel B in Table O.D.8, the two event-study panels in Figure O.D.9, and the eighth measure in the correlation matrix. The matrix now follows the edge-case prompts at the end of Online Appendix O.D. and is numbered O.D.10. Its 28 off-diagonal rank correlations are independently checked with SciPy, including pairwise occupation counts; the new measure has 502 observations.
-
-Preserved co-author edits already in Prism use tier 1 versus pooled tiers 2 and 3. Main-branch tier code and retained outputs were aligned with those existing estimates. The two inline vector paths exported before editing are an immutable independent target. Legacy PNG references for earlier tier comparisons remain historical evidence and are not replaced with generated images. Only current retained pooled-tier panels remain in publication output folders.
+Estimator specifications, fixed seeds, 500 SDID placebos and 1,000 continuous-DiD bootstraps are retained. Legacy `jev` variable/filename identifiers only preserve estimator interfaces. Model-dependent estimates must be independently checked, with differences from Jev reported honestly; the original publication targets must never be replaced with generated TEV outputs.

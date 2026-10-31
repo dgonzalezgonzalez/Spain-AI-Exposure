@@ -1,0 +1,82 @@
+{
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "packages": {
+    "beautifulsoup4": "4.15.0",
+    "certifi": "2026.7.22",
+    "charset-normalizer": "3.5.1",
+    "contourpy": "1.3.3",
+    "cycler": "0.12.1",
+    "et_xmlfile": "2.0.0",
+    "fonttools": "4.63.0",
+    "formulaic": "1.2.2",
+    "idna": "3.19",
+    "interface_meta": "2.0.1",
+    "kiwisolver": "1.5.0",
+    "lxml": "6.1.3",
+    "matplotlib": "3.11.1",
+    "narwhals": "2.26.0",
+    "numpy": "2.5.2",
+    "openpyxl": "3.1.5",
+    "packaging": "26.3",
+    "pandas": "3.0.5",
+    "patsy": "1.0.3",
+    "pillow": "12.3.0",
+    "pyparsing": "3.3.2",
+    "pypdf": "6.19.0",
+    "python-dateutil": "2.9.0.post0",
+    "requests": "2.34.2",
+    "scipy": "1.18.1",
+    "six": "1.17.0",
+    "soupsieve": "2.10",
+    "statsmodels": "0.15.0",
+    "typing_extensions": "4.16.0",
+    "tzdata": "2026.3",
+    "urllib3": "2.7.0",
+    "wrapt": "2.5.0"
+  },
+  "R": "4.5.2; existing library checked against renv.lock",
+  "Stata": "StataNow/MP19; language17 in do files",
+  "TeX": "MiKTeX pdfTeX1.40.28 and BibTeX",
+  "fresh_install_tested": false,
+  "other_platforms_tested": false,
+  "differences_from_original_main_lock": {
+    "beautifulsoup4": {
+      "locked": "4.14.3",
+      "actual": "4.15.0"
+    },
+    "charset-normalizer": {
+      "locked": "3.5.2",
+      "actual": "3.5.1"
+    },
+    "contourpy": {
+      "locked": "1.4.0",
+      "actual": "1.3.3"
+    },
+    "fonttools": {
+      "locked": "4.66.1",
+      "actual": "4.63.0"
+    },
+    "idna": {
+      "locked": "3.20",
+      "actual": "3.19"
+    },
+    "kiwisolver": {
+      "locked": "1.5.1",
+      "actual": "1.5.0"
+    },
+    "pyparsing": {
+      "locked": "3.3.3",
+      "actual": "3.3.2"
+    },
+    "tzdata": {
+      "locked": "2026.5",
+      "actual": "2026.3"
+    },
+    "urllib3": {
+      "locked": "2.8.0",
+      "actual": "2.7.0"
+    }
+  },
+  "lock_policy": "TEV branch requirements-lock.txt records these actually used versions; no package installation was changed during the experiment. Original main lock remains in main/Git history."
+}

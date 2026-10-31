@@ -2,11 +2,27 @@
 
 Diego González-González (Loyola University), Nicolás González-Pampillón (Institut d'Economia de Barcelona), Héctor Jiménez Portilla (Comisión Nacional de los Mercados y la Competencia), and Javier Vázquez-Grenno (Universitat de Barcelona and Institut d'Economia de Barcelona).
 
+## Experimental TEV branch
+
+This branch substitutes local `tev1:4b-q4_K_M` decisions for Jev and cloud
+verification. At the author's request, matching uses a fixed top-24 cosine
+shortlist: weighted exposure is conditional on that shortlist. Each occupation
+requires two grouped requests, and its matching output is reused for flagged
+edge-case corrections. Estimator specifications and the repository layout are
+preserved. The complete local acquisition, source review and econometric rerun are
+finished: 502 occupations, 1,004 archived requests, and 56 explicit assistant-led
+corrections. All 88 publication assets pass the branch's documented checks;
+model-dependent results are independently checked rather than forced to match
+Jev. The separate TEV manuscript reports actual new estimates and limitations.
+Legacy `jev_*` columns and filenames are retained solely for compatibility;
+TEV records identify the actual model. Main keeps the Jev release.
+See [the local runtime protocol](docs/tev-replication.md), [actual Jev comparison](docs/tev_comparison.md), and [validation evidence](docs/validation_report.md).
+
 ## Overview
 
-This package reproduces the empirical results retained in the manuscript snapshot of 19 October 2026: **88 assets, comprising 27 LaTeX tables and 61 figure panels**, plus standalone sample and calibration statistics. The main sample covers 502 Spanish four-digit occupations over January 2021–March 2026. Registered unemployment is a monthly stock; registered contracts are a monthly flow.
+This experimental package reruns the retained 19 October 2026 specifications with the local TEV decisions described above: **88 assets, comprising 27 LaTeX tables and 61 figure panels**, plus standalone sample and calibration statistics. The main sample covers 502 Spanish four-digit occupations over January 2021–March 2026. Registered unemployment is a monthly stock; registered contracts are a monthly flow.
 
-After installing dependencies, run `python master.py`. It prepares the panels, replays frozen cosine, Jev, and required-choice GPT-OSS crosswalk calculations, estimates every retained specification, renders the publication assets, computes in-text statistics, and compares results with independently downloaded paper assets. The complete map is [docs/output_map.csv](docs/output_map.csv).
+After installing dependencies, run `python master.py`. It prepares the panels, replays frozen cosine and local TEV shortlist decisions, estimates every retained specification, renders the publication assets, computes in-text statistics, and compares unchanged results with independently downloaded paper assets and checks changed TEV results independently. The complete map is [docs/output_map.csv](docs/output_map.csv).
 
 ```text
 master.py                 Single entry point
@@ -54,7 +70,8 @@ Original download dates were not consistently recorded in the inherited archive;
 | Spanish AI-adoption percentages | `spain_ai_adoption_timing_sources.csv` | Published ONTSI, Banco de España, and Funcas aggregate observations; source links and plotting-date conventions in the CSV |
 | Semantic mapping and labels | `cosine_embeddings.npz`, `spanish_occupation_matches_cosine_nearest.csv`, `cno4_english_titles.csv` | Author constructions using `qwen3-embedding:4b`; exact vectors permit offline replay |
 | May 2024 reconstructions | `sepe_cno4_age_may2024_backcast_from_june.csv`, `sepe_cno4_province_may2024_backcast_from_june.csv.gz` | Author calculations from published June-over-May changes; ambiguous cells remain missing |
-| Verified-match observed exposure | `edgecases/frozen_requests.zip`, `edgecases/metadata.json` | Cached Jev screen for all 502 occupations, 216 required-choice GPT-OSS 120B verifications, settings/source hashes; 13 explicit author corrections in code and [three-column audit](docs/manual_edgecases.md) |
+| Original Jev/GPT-OSS crosswalk comparison | `edgecases/frozen_requests.zip`, `edgecases/metadata.json` | Historical 502-occupation Jev screen, 216 GPT-OSS verifications and original 13 author corrections; retained unchanged for comparison |
+| Local TEV decisions and reviewed crosswalk | Eleven files in `data/input/tev/` | 1,004 exact raw responses, conditional top-24 probabilities, scores/tiers, runtime/probe audit, frozen shortlists, complete assistant-led review and 56 corrections; [three-column audit](docs/manual_edgecases.md) |
 | Jev scores, tier assignments, and provenance | Nine files in `data/input/jev/` | Exact Spanish/O*NET inputs, questions, raw responses, probability vectors, estimates, audit, and original manifest for `jev-1.13.0` |
 
 The analysis starts from the assembled SEPE aggregate-data snapshot, which preserves report URLs. Full original HTML caches are not shipped. `code/acquisition/refresh_sepe.py` preserves retrieval and parsing for independent source checks; current provider pages may differ from the frozen archive. Refreshes never silently replace paper inputs. Data definitions and missing-value conventions are in [docs/codebook.md](docs/codebook.md).
@@ -63,19 +80,19 @@ The analysis starts from the assembled SEPE aggregate-data snapshot, which prese
 
 ### Software requirements
 
-- **Python 3.12**: direct dependencies in `requirements.txt`, complete tested environment in `requirements-lock.txt`. Jupyter is unnecessary.
+- **Python 3.12**: direct dependencies in `requirements.txt`, actually used package versions in `requirements-lock.txt` and `docs/tev_software_environment.json`. Nine ancillary versions differ from the original main lock; no packages were installed or changed during this experiment. Jupyter is unnecessary.
 - **Licensed StataNow 19 MP / Stata 19**: verified on Windows. Do-files specify language version 17, but other versions/platforms have not been independently verified. Bundled `reghdfe` 6.13.1, `ftools` 2.50.0, `sdid`, `sdid_event`, and their dependencies are selected through a package-local ado path. Do not update these before replication. Exact files are identified in `docs/stata_manifest.json`; the SDID header is incomplete, so hashes are authoritative.
 - **R 4.5.2**: versions in `renv.lock`, including exact commits for `contdid`, `BMisc`, and `ptetools`. `code/setup.R` restores packages into `.r_libs/`. Installing archived compiled packages on Windows requires [Rtools45](https://cran.r-project.org/bin/windows/Rtools/rtools45/rtools.html); Linux/macOS require R package build tools.
 
-No GPU, Ollama installation, TypeSafe account, or API key is needed. Archived Jev and GPT-OSS responses are replayed without live calls. Fixed sampling settings alone do not guarantee identical fresh inference. The added exposure covers all 502 occupations, including proxies where the U.S. catalogue lacks an exact counterpart. See [method and limitations](docs/edgecase_method.md).
+Offline replay needs no GPU, Ollama installation, TypeSafe account, or API key. Fresh TEV acquisition requires Ollama 0.40.13 and the exact model configuration in [the protocol](docs/tev-replication.md). The TEV branch replays archived local responses without live calls; the original Jev and GPT-OSS archives are retained for comparison. Fixed sampling settings alone do not guarantee identical fresh inference. The added exposure covers all 502 occupations, including proxies where the U.S. catalogue lacks an exact counterpart. See [method and limitations](docs/edgecase_method.md).
 
 ### Controlled randomness
 
-Stata uses seed `20260728`, reset within estimators, and **500 SDID placebo replications**. R uses seed `20260728` and **1,000 bootstrap repetitions**; the no-2021 appendix run resets the same seed. Embeddings and Jev responses are frozen. Changing repetition counts is for development and changes inference.
+Stata uses seed `20260728`, reset within estimators, and **500 SDID placebo replications**. R uses seed `20260728` and **1,000 bootstrap repetitions**; the no-2021 appendix run resets the same seed. Embeddings, original Jev responses and new TEV responses are frozen. Changing repetition counts is for development and changes inference.
 
 ### Memory, runtime, and storage
 
-The verification host is Windows x64, Intel Core i7-1165G7 (4 cores, 8 logical processors), 16 GB RAM. Plan for at least 16 GB RAM and 10 GB free disk space, plus software and R build tools. The SEPE input decompresses to approximately 452 MB. Province estimation and SDID dominate runtime. Actual timings and verification limits are in [docs/validation_report.md](docs/validation_report.md). The master writes environment information and stage timings to `logs/run_environment.json`; individual reruns have separate timing files.
+The verification host is Windows x64, Intel Core i7-1165G7 (4 cores, 8 logical processors), 16 GB RAM. Plan for at least 16 GB RAM and 10 GB free disk space, plus software and R build tools. The SEPE input decompresses to approximately 452 MB. Province estimation and SDID dominate runtime. Fresh local TEV acquisition took 44,245 seconds (12.29 hours); raw replay took approximately three minutes. This is a measured acquisition time, not a full-pipeline runtime. Actual timings and verification limits are in [docs/validation_report.md](docs/validation_report.md). The master writes environment information and stage timings to `logs/run_environment.json`; individual reruns have separate timing files.
 
 ## Description of programs/code
 
@@ -87,10 +104,11 @@ The verification host is Windows x64, Intel Core i7-1165G7 (4 cores, 8 logical p
 | `code/02_Descriptives_v1.py` | Summary statistics, distributions, rankings, adoption timing, worldwide usage and EPA comparisons |
 | `code/03_Estimates.do` | TWFE, binary treatment, heterogeneity and cross-group tests, geography, feminization, retained robustness |
 | `code/03_SDID.do` | Adjusted SDID paths, events, weights, phase effects, strict exposure-above-0.2 versus zero robustness |
-| `code/03_Edgecases.do`, `code/lib/edgecase_replay.py`, `code/lib/edgecase_outputs.py` | Complete verified-match exposure, baseline/alternative phase regressions and event studies; no live inference |
-| `code/acquisition/verify_edgecases.py` | Optional resumable GPT-OSS refresh requiring an explicit flag; never reruns Jev |
+| `code/03_Edgecases.do`, `code/lib/tev_replay.py`, `code/lib/edgecase_outputs.py` | Complete TEV-reviewed crosswalk exposure, baseline/alternative phase regressions and event studies; no live inference |
+| `code/acquisition/run_tev.py`, `code/lib/tev.py` | Optional pinned local acquisition, two grouped requests per occupation, immediate cache, cold probes and offline archive replay |
+| `code/acquisition/verify_edgecases.py`, `code/lib/edgecase_replay.py` | Original Jev/GPT-OSS workflow retained as historical comparison; not the TEV branch acquisition route |
 | `code/lib/edgecase_validation.py` | Independent within-OLS, rank-correlation and preserved Prism pooled-tier source checks |
-| `code/03_Jev.do`, `code/lib/job_tiers.do` | Three Jev measures and tier 1 versus pooled tiers 2 and 3 |
+| `code/03_Jev.do`, `code/lib/job_tiers.do` | Three TEV measures and tier 1 versus pooled tiers 2 and 3 (legacy filenames) |
 | `code/job_tier_mediation.do` | Exposure gradients with and without tier-by-month effects |
 | `code/04_Estimates_contDID_v1.R` | Stratified, control-adjusted, unconditional continuous DiD and no-2021 diagnostics |
 | `code/05_Output_tuning_v1.py`, `code/lib/` | Publication rendering, diagnostics, terminology, and calibration |

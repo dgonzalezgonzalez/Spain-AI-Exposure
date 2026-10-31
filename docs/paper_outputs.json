@@ -9,7 +9,8 @@
     "caption": "Robustness checks: alternative exposure measures",
     "estimation_program": "code/03_Jev.do",
     "rendering_program": "code/lib/jev_robustness.py",
-    "output_path": "output/tables/robustness_checks_jev_v1.tex"
+    "output_path": "output/tables/robustness_checks_jev_v1.tex",
+    "validation": "tev_independent_fit"
   },
   {
     "file": "Robustness_unemployed_jev_nearest.png",
@@ -18,10 +19,11 @@
     "source_line": 29,
     "paper_number": "O.D.7",
     "paper_label": "fig:v1_jev_exposure_unemployed",
-    "caption": "Event-study estimates using Jev: registered unemployment",
+    "caption": "Event-study estimates using TEV: registered unemployment",
     "estimation_program": "code/03_Jev.do",
     "rendering_program": "code/lib/jev_robustness.py",
-    "output_path": "output/figures/Robustness_unemployed_jev_nearest.png"
+    "output_path": "output/figures/Robustness_unemployed_jev_nearest.png",
+    "validation": "tev_independent_fit"
   },
   {
     "file": "Robustness_unemployed_jev_weighted.png",
@@ -30,10 +32,11 @@
     "source_line": 34,
     "paper_number": "O.D.7",
     "paper_label": "fig:v1_jev_exposure_unemployed",
-    "caption": "Event-study estimates using Jev: registered unemployment",
+    "caption": "Event-study estimates using TEV: registered unemployment",
     "estimation_program": "code/03_Jev.do",
     "rendering_program": "code/lib/jev_robustness.py",
-    "output_path": "output/figures/Robustness_unemployed_jev_weighted.png"
+    "output_path": "output/figures/Robustness_unemployed_jev_weighted.png",
+    "validation": "tev_independent_fit"
   },
   {
     "file": "Robustness_unemployed_jev_direct.png",
@@ -42,10 +45,11 @@
     "source_line": 40,
     "paper_number": "O.D.7",
     "paper_label": "fig:v1_jev_exposure_unemployed",
-    "caption": "Event-study estimates using Jev: registered unemployment",
+    "caption": "Event-study estimates using TEV: registered unemployment",
     "estimation_program": "code/03_Jev.do",
     "rendering_program": "code/lib/jev_robustness.py",
-    "output_path": "output/figures/Robustness_unemployed_jev_direct.png"
+    "output_path": "output/figures/Robustness_unemployed_jev_direct.png",
+    "validation": "tev_independent_fit"
   },
   {
     "file": "Robustness_contracts_jev_nearest.png",
@@ -54,10 +58,11 @@
     "source_line": 54,
     "paper_number": "O.D.8",
     "paper_label": "fig:v1_jev_exposure_contracts",
-    "caption": "Event-study estimates using Jev: new contracts",
+    "caption": "Event-study estimates using TEV: new contracts",
     "estimation_program": "code/03_Jev.do",
     "rendering_program": "code/lib/jev_robustness.py",
-    "output_path": "output/figures/Robustness_contracts_jev_nearest.png"
+    "output_path": "output/figures/Robustness_contracts_jev_nearest.png",
+    "validation": "tev_independent_fit"
   },
   {
     "file": "Robustness_contracts_jev_weighted.png",
@@ -66,10 +71,11 @@
     "source_line": 59,
     "paper_number": "O.D.8",
     "paper_label": "fig:v1_jev_exposure_contracts",
-    "caption": "Event-study estimates using Jev: new contracts",
+    "caption": "Event-study estimates using TEV: new contracts",
     "estimation_program": "code/03_Jev.do",
     "rendering_program": "code/lib/jev_robustness.py",
-    "output_path": "output/figures/Robustness_contracts_jev_weighted.png"
+    "output_path": "output/figures/Robustness_contracts_jev_weighted.png",
+    "validation": "tev_independent_fit"
   },
   {
     "file": "Robustness_contracts_jev_direct.png",
@@ -78,10 +84,11 @@
     "source_line": 65,
     "paper_number": "O.D.8",
     "paper_label": "fig:v1_jev_exposure_contracts",
-    "caption": "Event-study estimates using Jev: new contracts",
+    "caption": "Event-study estimates using TEV: new contracts",
     "estimation_program": "code/03_Jev.do",
     "rendering_program": "code/lib/jev_robustness.py",
-    "output_path": "output/figures/Robustness_contracts_jev_direct.png"
+    "output_path": "output/figures/Robustness_contracts_jev_direct.png",
+    "validation": "tev_independent_fit"
   },
   {
     "file": "Exposure_correlation_matrix.png",
@@ -94,57 +101,59 @@
     "estimation_program": "code/03_Jev.do",
     "rendering_program": "code/lib/jev_robustness.py",
     "output_path": "output/figures/Exposure_correlation_matrix.png",
-    "validation": "exposure_matrix_independent_ranks"
+    "validation": "tev_independent_fit"
   },
   {
     "file": "job_tiers_did_jev_v1.tex",
     "kind": "table",
     "source_document": "paper/appendix_oe_jev_tiers.tex",
-    "source_line": 35,
+    "source_line": 29,
     "paper_number": "O.H.1",
     "paper_label": "tab:v1_jev_job_tiers",
     "caption": "Difference-in-differences: tier 1 versus tiers 2 and 3",
     "estimation_program": "code/03_Jev.do",
     "rendering_program": "code/lib/job_tiers.py",
-    "output_path": "output/tables/job_tiers_did_jev_v1.tex"
+    "output_path": "output/tables/job_tiers_did_jev_v1.tex",
+    "validation": "tev_independent_fit"
   },
   {
     "file": "JobTiers_unemployed_jev_tier1.png",
     "kind": "figure",
     "source_document": "paper/appendix_oe_jev_tiers.tex",
-    "source_line": 31,
+    "source_line": 34,
     "paper_number": "O.H.1",
     "paper_label": "fig:v1_jev_tiers_unemployed",
     "caption": "Job-tier event study: registered unemployment",
     "estimation_program": "code/03_Jev.do",
     "rendering_program": "code/lib/job_tiers.py",
     "output_path": "output/figures/JobTiers_unemployed_jev_tier1.png",
-    "validation": "pooled_tier_manuscript_source"
+    "validation": "tev_independent_fit"
   },
   {
     "file": "JobTiers_contracts_jev_tier1.png",
     "kind": "figure",
     "source_document": "paper/appendix_oe_jev_tiers.tex",
-    "source_line": 31,
+    "source_line": 45,
     "paper_number": "O.H.2",
     "paper_label": "fig:v1_jev_tiers_contracts",
     "caption": "Job-tier event study: new contracts",
     "estimation_program": "code/03_Jev.do",
     "rendering_program": "code/lib/job_tiers.py",
     "output_path": "output/figures/JobTiers_contracts_jev_tier1.png",
-    "validation": "pooled_tier_manuscript_source"
+    "validation": "tev_independent_fit"
   },
   {
     "file": "job_tier_mediation_v1.tex",
     "kind": "table",
     "source_document": "paper/appendix_oe_jev_tiers.tex",
-    "source_line": 227,
+    "source_line": 53,
     "paper_number": "O.H.2",
     "paper_label": "tab:v1_job_tier_mediation",
     "caption": "AI Exposure and Labor Market Outcomes: Job Tier Mediation Analysis",
     "estimation_program": "code/job_tier_mediation.do",
     "rendering_program": "code/lib/job_tier_mediation.py",
-    "output_path": "output/tables/job_tier_mediation_v1.tex"
+    "output_path": "output/tables/job_tier_mediation_v1.tex",
+    "validation": "tev_independent_fit"
   },
   {
     "file": "figure_anthropic_country_soc_major_group_spain_global_may2026.png",
@@ -942,7 +951,7 @@
     "file": "sdid_estimates_v1.tex",
     "kind": "table",
     "source_document": "paper/main.tex",
-    "source_line": 1051,
+    "source_line": 1060,
     "paper_number": "O.G.2",
     "paper_label": "tab:v1_sdid",
     "caption": "SDiD estimates",
@@ -1033,7 +1042,7 @@
     "estimation_program": "code/03_Edgecases.do",
     "rendering_program": "code/lib/edgecase_outputs.py",
     "output_path": "output/tables/robustness_checks_edgecases_v1.tex",
-    "validation": "edgecase_independent_fit"
+    "validation": "tev_independent_fit"
   },
   {
     "file": "Robustness_unemployed_edgecases.png",
@@ -1046,7 +1055,7 @@
     "estimation_program": "code/03_Edgecases.do",
     "rendering_program": "code/lib/edgecase_outputs.py",
     "output_path": "output/figures/Robustness_unemployed_edgecases.png",
-    "validation": "edgecase_independent_fit"
+    "validation": "tev_independent_fit"
   },
   {
     "file": "Robustness_contracts_edgecases.png",
@@ -1059,6 +1068,6 @@
     "estimation_program": "code/03_Edgecases.do",
     "rendering_program": "code/lib/edgecase_outputs.py",
     "output_path": "output/figures/Robustness_contracts_edgecases.png",
-    "validation": "edgecase_independent_fit"
+    "validation": "tev_independent_fit"
   }
 ]

@@ -11,21 +11,21 @@
 \cmidrule(lr){2-4}\cmidrule(lr){5-7}
 & (1) & (2) & (3) & (4) & (5) & (6) \\
 \midrule
-Tier 1 $\times$ adjustment period & -0.018 & 0.031$^{*}$ & 0.019 & -0.139$^{***}$ & -0.066$^{**}$ & -0.029 \\
- & (0.013) & (0.017) & (0.015) & (0.022) & (0.029) & (0.025) \\
-Tier 1 $\times$ later period & -0.045$^{*}$ & 0.064$^{**}$ & 0.052$^{*}$ & -0.148$^{***}$ & -0.083$^{**}$ & -0.046 \\
- & (0.024) & (0.030) & (0.029) & (0.027) & (0.037) & (0.036) \\
+Tier 1 $\times$ adjustment period & -0.012 & 0.065$^{***}$ & 0.042$^{**}$ & -0.160$^{***}$ & -0.086$^{**}$ & -0.057$^{*}$ \\
+ & (0.013) & (0.019) & (0.017) & (0.025) & (0.039) & (0.031) \\
+Tier 1 $\times$ later period & -0.049$^{*}$ & 0.116$^{***}$ & 0.093$^{***}$ & -0.158$^{***}$ & -0.083$^{*}$ & -0.055 \\
+ & (0.025) & (0.033) & (0.033) & (0.030) & (0.044) & (0.040) \\
 \midrule
 CNO1 $\times$ year-month FE & No & Yes & Yes & No & Yes & Yes \\
 2021 included & Yes & Yes & No & Yes & Yes & No \\
-Pre-trend joint-null $p$-value & $<0.001$ & 0.118 & 0.457 & $<0.001$ & 0.408 & 0.328 \\
-$p$-value: equal phase effects & 0.051 & 0.040 & 0.040 & 0.585 & 0.391 & 0.391 \\
+Pre-trend joint-null $p$-value & $<0.001$ & 0.010 & 0.005 & $<0.001$ & 0.007 & 0.226 \\
+$p$-value: equal phase effects & 0.012 & 0.006 & 0.006 & 0.914 & 0.922 & 0.918 \\
 Observations & 31,122 & 31,122 & 25,600 & 30,787 & 30,786 & 25,317 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}[flushleft]
 \footnotesize
-\item \emph{Notes:} Each column reports one regression with a tier 1 indicator interacted with both post-treatment phases; tiers 2 and 3 form the pooled control group. The indicator uses the frozen Jev occupation classification. The adjustment and later periods cover event times 0--24 and 25--40; all pre-treatment months form the omitted period. Columns 1 and 4 include CNO4 and year-month FE; the remaining columns include CNO4 and CNO1-by-year-month FE. Columns 3 and 6 exclude 2021. Standard errors are clustered by CNO4. The pre-treatment row jointly tests all available pre-treatment event-study coefficients for tier 1: event times $-21$ through $-2$ when 2021 is included and $-10$ through $-2$ otherwise; October 2022 is omitted. The phase-equality row tests equality of the adjustment and later coefficients. Coefficients are log-point differences for tier 1 relative to pooled tiers 2 and 3, without exposure scaling. $^{***}p<0.01$, $^{**}p<0.05$, and $^{*}p<0.10$.
+\item \emph{Notes:} Each column reports one regression with a tier 1 indicator interacted with both post-treatment phases; tiers 2 and 3 form the pooled control group. The indicator uses the frozen TEV occupation classification. The adjustment and later periods cover event times 0--24 and 25--40; all pre-treatment months form the omitted period. Columns 1 and 4 include CNO4 and year-month FE; the remaining columns include CNO4 and CNO1-by-year-month FE. Columns 3 and 6 exclude 2021. Standard errors are clustered by CNO4. The pre-treatment row jointly tests all available pre-treatment event-study coefficients for tier 1: event times $-21$ through $-2$ when 2021 is included and $-10$ through $-2$ otherwise; October 2022 is omitted. The phase-equality row tests equality of the adjustment and later coefficients. Coefficients are log-point differences for tier 1 relative to pooled tiers 2 and 3, without exposure scaling. $^{***}p<0.01$, $^{**}p<0.05$, and $^{*}p<0.10$.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}

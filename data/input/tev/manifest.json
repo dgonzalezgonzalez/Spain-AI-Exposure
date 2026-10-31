@@ -1,0 +1,24 @@
+{
+  "model": "tev-replication:4b-q4-cpu4",
+  "partial_run": false,
+  "occupations": 502,
+  "categories": 756,
+  "elapsed_seconds": 44245.42200000002,
+  "method": "fixed cosine top-24 shortlist; conditional probabilities; shared TEV match for flagged corrections",
+  "artifacts": {
+    "direct_score_probabilities.csv": "5b471ba53c0042a5a2abd84b624d5ae2885a06afa344db322ef08c5cc4fe82c7",
+    "occupation_crosswalk_automatic.csv": "6b2b8d485a39e2edf810f64b29b49acc818035c56ba697f9e847efc4ef24736b",
+    "occupation_estimates.csv": "79d84876d35baa7881cc6807fee89a0623fa796d077070ca6dede1084c760668",
+    "occupation_probabilities.csv.gz": "2534780615a28c38b1daa10fe14282d1e2ab8928fc95196668ad74018e2350e0",
+    "repeatability_audit.json": "263bdc5db810f85668b12aa0ab054ce95f096a2995b48970128a580335cea422",
+    "request_audit.json": "536ddf51884d84f29966316662ef44904d9e90b9f72a057b0e62eb9c4fada99b",
+    "runtime.json": "7e8156fa932565a56b18a1d0b1ea56cc2c0e056a483c93737ea5d88b34d06558",
+    "shortlists.json": "6c2b7ae10225f0a3badfc882abf7432be8d8885ee90f11b264b9cbbacaa38f2a",
+    "tev_response_cache.zip": "f8db7b2390291ce44dbdec05b1267c45ee39b7fb6c1f7835794945120bf7e7da",
+    "author_review.json": "66317eec41c8dbf1f14ecf9b51b339da94d0d37106aefee19fea206c527e8db9"
+  },
+  "shortlist_size": 24,
+  "probabilities": "conditional on cosine shortlist; excluded categories outside support",
+  "review": "Complete assistant-led source review; not independent human adjudication",
+  "requests": 1004
+}

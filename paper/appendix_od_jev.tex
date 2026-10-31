@@ -1,20 +1,20 @@
 \clearpage
-\subsection*{Jev exposure measures}
+\subsection*{TEV exposure measures}
 \label{sec:appendix_od_jev}
-We use Jev, a System One AI model that returns probabilities over predefined categories and score levels, to construct three alternative measures of observed AI exposure.\footnote{Repeated Jev API calls can yield different probability vectors. The replication package archives the exact requests, raw responses, probability distributions, and resulting occupation measures. The reported estimates use these frozen outputs. We use Jev version \texttt{jev-1.13.0}.} Each measure uses the Spanish occupation's title, description, and task information. The first two retain Anthropic's O*NET exposure values and replace the embedding-based mapping in Section~\ref{sec:mapping}: one assigns the exposure of the O*NET occupation with the highest model probability, while the other averages exposure across all O*NET occupations using their model probabilities as weights. The third asks Jev to predict observed exposure directly, using the definition and the rules for task coverage, automation weighting, and task-time aggregation in \citet{massenkoff_mccrory_2026}. We summarize its probabilities over ten exposure levels by an expected score between zero and one. This direct measure is a semantic prediction of the index from occupational information and leaves the underlying task-level Claude usage records and task-time weights out of the exercise. The exact direct-exposure prompt appears at the end of this subsection. We formalize the three measures below:
+We use TEV1 4B, a local System One decision model, to construct three alternative measures of observed AI exposure.\footnote{Jev is TypeSafe's flagship System One model and a strong benchmark for structured decisions. We use the quantized local TEV1 model through Ollama to control the inference runtime and test repeatability of fresh probabilities; Jev's hosted API does not guarantee identical fresh probability vectors. Cold-start checks apply to the recorded setup and tested requests. The replication package archives exact requests, raw responses, model and software hashes, and the occupation measures used in estimation.} Each measure uses the Spanish occupation's title, description, and task information. The first two retain Anthropic's O*NET exposure values and replace the embedding-based mapping in Section~\ref{sec:mapping}: one assigns the exposure of the O*NET occupation with the highest model probability, while the other averages exposure across the 24 shortlisted O*NET occupations using their conditional model probabilities as weights. The third asks TEV to predict observed exposure directly, using the definition and the rules for task coverage, automation weighting, and task-time aggregation in \citet{massenkoff_mccrory_2026}. We summarize its probabilities over ten exposure levels by an expected score between zero and one. This direct measure is a semantic prediction of the index from occupational information and leaves the underlying task-level Claude usage records and task-time weights out of the exercise. The exact direct-exposure prompt appears at the end of this subsection. We formalize the three measures below:
 
-Let $i=1,\ldots,N$ index O*NET occupations and $j=1,\ldots,J$ index Spanish CNO4d occupations and let $y_i$ denote Anthropic observed exposure. Jev evaluates every branch of the occupation hierarchy. If $\mathcal P(i)$ denotes the path to occupation $i$ and $q_{j\ell}$ the conditional branch probabilities,
+Let $i=1,\ldots,N$ index O*NET occupations and $j=1,\ldots,J$ index Spanish CNO4d occupations and let $y_i$ denote Anthropic observed exposure. For occupation $j$, let $\mathcal C_j$ denote the 24 U.S. occupations with the highest cosine similarity under the frozen baseline embeddings. TEV selects among these candidates using their full titles and descriptions. Its probabilities are conditional on this shortlist:
 \begin{equation}
 \label{eq:v1_jev_occupation_probabilities}
-p_{ji}=\prod_{\ell\in\mathcal P(i)}q_{j\ell},\qquad \sum_{i=1}^{N}p_{ji}=1.
+p_{ji}=\Pr(i\mid j,i\in\mathcal C_j),\qquad \sum_{i\in\mathcal C_j}p_{ji}=1.
 \end{equation}
 The highest-probability and probability-weighted measures are
 \begin{equation}
 \label{eq:v1_jev_mapped_exposure}
-\widehat y^{\,N}_j=y_{i^*(j)},\quad i^*(j)=\arg\max_i p_{ji};\qquad
-\widehat y^{\,W}_j=\sum_{i=1}^{N}p_{ji}y_i.
+\widehat y^{\,N}_j=y_{i^*(j)},\quad i^*(j)=\arg\max_{i\in\mathcal C_j} p_{ji};\qquad
+\widehat y^{\,W}_j=\sum_{i\in\mathcal C_j}p_{ji}y_i.
 \end{equation}
-For the direct Score, $\pi_{jk}$ is Jev's probability for level $k\in\{0,\ldots,9\}$, giving
+For the direct Score, $\pi_{jk}$ is TEV's probability for level $k\in\{0,\ldots,9\}$, giving
 \begin{equation}
 \label{eq:v1_jev_direct_exposure}
 \widehat y^{\,D}_j=\sum_{k=0}^{9}\frac{k}{9}\pi_{jk},\qquad \sum_{k=0}^{9}\pi_{jk}=1.
@@ -23,7 +23,7 @@ For the direct Score, $\pi_{jk}$ is Jev's probability for level $k\in\{0,\ldots,
 \clearpage
 \begin{figure}[H]
 \centering
-\caption{Event-study estimates using Jev: registered unemployment}
+\caption{Event-study estimates using TEV: registered unemployment}
 \label{fig:v1_jev_exposure_unemployed}
 \begin{subfigure}{0.48\textwidth}
 \includegraphics[width=\textwidth]{\figdir/Robustness_unemployed_jev_nearest.png}
@@ -42,13 +42,13 @@ For the direct Score, $\pi_{jk}$ is Jev's probability for level $k\in\{0,\ldots,
 \end{subfigure}
 \end{center}
 \begin{minipage}{0.94\textwidth}
-\footnotesize \emph{Notes:} The dependent variable is the logarithm of registered unemployment. Panels (a)--(c) use the highest-probability O*NET category, probability-weighted exposure, and direct Score, respectively. Each regression includes CNO4 and CNO1-by-year-month FE. Coefficients are marginal effects of a 10 percentage-point increase in the indicated exposure measure. October 2022 is omitted; the dashed line marks November 2022. Shaded areas show 95 percent confidence intervals with standard errors clustered by CNO4. Each panel uses its own vertical scale.
+\footnotesize \emph{Notes:} The dependent variable is the logarithm of registered unemployment. Panels (a)--(c) use the highest-probability O*NET category, shortlist-probability-weighted exposure, and direct Score, respectively. Each regression includes CNO4 and CNO1-by-year-month FE. Coefficients are marginal effects of a 10 percentage-point increase in the indicated exposure measure. October 2022 is omitted; the dashed line marks November 2022. Shaded areas show 95 percent confidence intervals with standard errors clustered by CNO4. Each panel uses its own vertical scale.
 \end{minipage}
 \end{figure}
 \clearpage
 \begin{figure}[H]
 \centering
-\caption{Event-study estimates using Jev: new contracts}
+\caption{Event-study estimates using TEV: new contracts}
 \label{fig:v1_jev_exposure_contracts}
 \begin{subfigure}{0.48\textwidth}
 \includegraphics[width=\textwidth]{\figdir/Robustness_contracts_jev_nearest.png}
@@ -67,7 +67,7 @@ For the direct Score, $\pi_{jk}$ is Jev's probability for level $k\in\{0,\ldots,
 \end{subfigure}
 \end{center}
 \begin{minipage}{0.94\textwidth}
-\footnotesize \emph{Notes:} The dependent variable is the logarithm of new contracts. Panels (a)--(c) use the highest-probability O*NET category, probability-weighted exposure, and direct Score, respectively. Each regression includes CNO4 and CNO1-by-year-month FE. Coefficients are marginal effects of a 10 percentage-point increase in the indicated exposure measure. October 2022 is omitted; the dashed line marks November 2022. Shaded areas show 95 percent confidence intervals with standard errors clustered by CNO4. Each panel uses its own vertical scale.
+\footnotesize \emph{Notes:} The dependent variable is the logarithm of new contracts. Panels (a)--(c) use the highest-probability O*NET category, shortlist-probability-weighted exposure, and direct Score, respectively. Each regression includes CNO4 and CNO1-by-year-month FE. Coefficients are marginal effects of a 10 percentage-point increase in the indicated exposure measure. October 2022 is omitted; the dashed line marks November 2022. Shaded areas show 95 percent confidence intervals with standard errors clustered by CNO4. Each panel uses its own vertical scale.
 \end{minipage}
 \end{figure}
 

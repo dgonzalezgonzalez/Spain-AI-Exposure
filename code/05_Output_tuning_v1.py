@@ -487,7 +487,9 @@ weight_audit.to_csv(TABLES_DIR / "sdid_weight_audit_v1.csv", index=False)
 assert np.allclose(weight_audit["weight_sum"], 1, atol=1e-6)
 
 donor_tex = [
+    r"\begingroup",
     r"\small",
+    r"\setlength{\parskip}{0pt}",
     r"\begin{longtable}{p{0.08\textwidth}>{\raggedright\arraybackslash}p{0.43\textwidth}rrr}",
     r"\caption{Treated occupations and positive-weight synthetic-DiD donors}\label{tab:v1_sdid_donors}\\",
     r"\toprule",
@@ -518,10 +520,11 @@ for row in donors.itertuples():
     )
 donor_tex += [
     r"\midrule",
-    r"\multicolumn{5}{p{0.93\textwidth}}{\footnotesize \emph{Notes:} Panel A lists occupations above the fixed 0.1169 cutoff. Panel B is ordered by the larger of the two outcome-specific weights and omits donors receiving zero weight in both estimations. Occupation descriptions are English translations of official CNO titles. Donor weights sum to one separately by outcome.} \\",
+    r"\multicolumn{5}{p{0.93\textwidth}}{\footnotesize \emph{Notes:} Panel A lists occupations above the fixed 0.1169 cutoff. Panel B is ordered by the larger of the two outcome-specific weights and omits donors receiving zero weight in both estimations. Donor weights are obtained from the full-post SDiD specification (November 2022 to March 2026) and do not correspond to separate re-estimated weights for the adjustment or later periods. Occupation descriptions are English translations of official CNO titles. Donor weights sum to one separately by outcome.} \\",
     r"\bottomrule",
     r"\end{longtable}",
     r"\normalsize",
+    r"\endgroup",
 ]
 save_tex("sdid_donor_weights_v1.tex", donor_tex)
 
